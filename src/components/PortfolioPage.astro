@@ -432,7 +432,7 @@ const contactIcon = (label: string) => {
             headers: { Accept: 'application/json' },
             body: new FormData(form),
           });
-          const result = (await response.json()) as { success?: string };
+          const result = await response.json();
 
           if (!response.ok || result.success === 'false') {
             throw new Error('Formsubmit request failed.');
