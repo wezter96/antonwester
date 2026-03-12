@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { cityId } = Astro.props as Props;
-const page = await getPortfolioPage('en', cityId);
+const page = await getPortfolioPage('sv', cityId);
 ---
 
 <Layout

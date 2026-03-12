@@ -1,5 +1,5 @@
 export type Locale = 'en' | 'sv';
-export type CityId = 'gothenburg' | 'stenungsund' | 'ale' | 'kungalv' | 'partille';
+export type CityId = 'gothenburg' | 'stenungsund' | 'ale' | 'kungalv' | 'partille' | 'trollhattan' | 'kungsbacka' | 'boras' | 'varberg';
 
 export interface NavItem {
   href: string;
@@ -272,6 +272,74 @@ const cityDefinitions: Record<CityId, CityDefinition> = {
     deliveryMode: {
       en: 'hybrid in Partille and Gothenburg, with remote support for distributed teams',
       sv: 'hybrid i Partille och Göteborg, med remote-stöd för distribuerade team',
+    },
+  },
+  trollhattan: {
+    slug: 'trollhattan',
+    names: { en: 'Trollhättan', sv: 'Trollhättan' },
+    region: { en: 'the northern Västra Götaland region', sv: 'norra Västra Götaland' },
+    nearbyAreas: {
+      en: ['Vänersborg', 'Uddevalla', 'Kungälv', 'Gothenburg'],
+      sv: ['Vänersborg', 'Uddevalla', 'Kungälv', 'Göteborg'],
+    },
+    localFocus: {
+      en: 'A strong fit for teams in Trollhättan that need senior engineering support, especially for product teams working on web and mobile experiences in the automotive or manufacturing space.',
+      sv: 'Passar bra för team i Trollhättan som behöver senior teknisk hjälp, särskilt för produktteam som arbetar med webb- och mobilupplevelser inom bilindustrin eller tillverkningsindustrin.',
+    },
+    deliveryMode: {
+      en: 'on-site in Trollhättan when needed and hybrid across Västra Götaland',
+      sv: 'på plats i Trollhättan vid behov och hybrid över Västra Götaland',
+    },
+  },
+  kungsbacka: {
+    slug: 'kungsbacka',
+    names: { en: 'Kungsbacka', sv: 'Kungsbacka' },
+    region: { en: 'southern Gothenburg region', sv: 'södra Göteborgsregionen' },
+    nearbyAreas: {
+      en: ['Varberg', 'Falkenberg', 'Mölndal', 'Gothenburg'],
+      sv: ['Varberg', 'Falkenberg', 'Mölndal', 'Göteborg'],
+    },
+    localFocus: {
+      en: 'Useful for teams in Kungsbacka that need senior delivery support, particularly for e-commerce, web platforms, or product teams looking for a consultant who can balance strategy with hands-on implementation.',
+      sv: 'Relevant för team i Kungsbacka som behöver senior leveranshjälp, särskilt för e-handel, webbplattformar eller produktteam som letar efter en konsult som kan balansera strategi med hands-on implementation.',
+    },
+    deliveryMode: {
+      en: 'hybrid in Kungsbacka and Gothenburg, with remote options',
+      sv: 'hybrid i Kungsbacka och Göteborg, med möjlighet till remote',
+    },
+  },
+  boras: {
+    slug: 'boras',
+    names: { en: 'Borås', sv: 'Borås' },
+    region: { en: 'the Borås region and western Sweden', sv: 'Boråsregionen och västra Sverige' },
+    nearbyAreas: {
+      en: ['Falkenberg', 'Varberg', 'Kungsbacka', 'Gothenburg'],
+      sv: ['Falkenberg', 'Varberg', 'Kungsbacka', 'Göteborg'],
+    },
+    localFocus: {
+      en: 'Often a strong fit for teams in Borås working in textile, e-commerce, or manufacturing sectors that need senior product engineering and architecture support.',
+      sv: 'Ofta rätt för team i Borås inom textil-, e-handel- eller tillverkningsindustrin som behöver senior produktutveckling och arkitekturstöd.',
+    },
+    deliveryMode: {
+      en: 'on-site in Borås when needed and hybrid across western Sweden',
+      sv: 'på plats i Borås vid behov och hybrid i västra Sverige',
+    },
+  },
+  varberg: {
+    slug: 'varberg',
+    names: { en: 'Varberg', sv: 'Varberg' },
+    region: { en: 'the Halland coast near Gothenburg', sv: 'Hallandskusten nära Göteborg' },
+    nearbyAreas: {
+      en: ['Falkenberg', 'Kungsbacka', 'Halmstad', 'Gothenburg'],
+      sv: ['Falkenberg', 'Kungsbacka', 'Halmstad', 'Göteborg'],
+    },
+    localFocus: {
+      en: 'Useful for teams in Varberg that need senior delivery support, particularly for tourism, wellness, or coastal businesses looking for web and mobile product expertise.',
+      sv: 'Relevat för team i Varberg som behöver senior leveranshjälp, särskilt för turism, hälsa eller kustnära företag som letar efter webb- och mobilproduktexpertis.',
+    },
+    deliveryMode: {
+      en: 'hybrid in Varberg and along the Halland coast, with remote support',
+      sv: 'hybrid i Varberg och längs Hallandskusten, med möjlighet till remote',
     },
   },
 };

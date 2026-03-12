@@ -20,6 +20,10 @@ const contentLoaders = {
     ale: () => import('./portfolio-content/en/ale'),
     kungalv: () => import('./portfolio-content/en/kungalv'),
     partille: () => import('./portfolio-content/en/partille'),
+    trollhattan: () => import('./portfolio-content/en/trollhattan'),
+    kungsbacka: () => import('./portfolio-content/en/kungsbacka'),
+    boras: () => import('./portfolio-content/en/boras'),
+    varberg: () => import('./portfolio-content/en/varberg'),
   },
   sv: {
     gothenburg: () => import('./portfolio-content/sv/gothenburg'),
@@ -27,6 +31,10 @@ const contentLoaders = {
     ale: () => import('./portfolio-content/sv/ale'),
     kungalv: () => import('./portfolio-content/sv/kungalv'),
     partille: () => import('./portfolio-content/sv/partille'),
+    trollhattan: () => import('./portfolio-content/sv/trollhattan'),
+    kungsbacka: () => import('./portfolio-content/sv/kungsbacka'),
+    boras: () => import('./portfolio-content/sv/boras'),
+    varberg: () => import('./portfolio-content/sv/varberg'),
   },
 } satisfies Record<Locale, Record<CityId, () => Promise<ContentModule>>>;
 
