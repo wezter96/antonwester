@@ -503,7 +503,7 @@ function getEnglishProjects(): PortfolioContent['projects'] {
         label: 'Founder project',
         summary: 'An AI-native, self-hosted localization platform that gives product, content, and engineering teams one place to manage translation work, reviews, releases, and delivery.',
         impact: 'A strong example of product thinking, systems design, and developer tooling coming together in one platform.',
-        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
+        tags: ['React', 'TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
         href: 'https://lingo.antonwester.se',
         linkLabel: 'Explore Lingo',
       },
@@ -549,7 +549,7 @@ function getSwedishProjects(): PortfolioContent['projects'] {
         label: 'Eget produktprojekt',
         summary: 'En AI-native, self-hosted lokaliseringsplattform som ger produkt-, innehålls- och utvecklingsteam ett gemensamt ställe för översättningar, review, releaser och leverans.',
         impact: 'Ett tydligt exempel på hur produktidé, systemdesign och developer tooling kan mötas i en och samma plattform.',
-        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
+        tags: ['React', 'TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
         href: 'https://lingo.antonwester.se',
         linkLabel: 'Utforska Lingo',
       },
@@ -849,8 +849,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         title: `Mjukvarukonsult i ${cityName} | ${siteConfig.companyName}`,
         description:
           cityId === 'gothenburg'
-            ? 'Anton Wester är en oberoende mjukvarukonsult i Göteborg som hjälper team med React, TypeScript, mobilappar, arkitektur, lokalisering och tech lead-stöd via Anton Wester AB.'
-            : `Anton Wester är en oberoende mjukvarukonsult som hjälper team i ${cityName} och ${regionName} med React, TypeScript, mobilappar, arkitektur, lokalisering och tech lead-stöd via Anton Wester AB.`,
+            ? 'Anton Wester är en oberoende mjukvarukonsult i Göteborg som hjälper team med React, TypeScript, mobilappar, arkitektur, AI-integration, automation och tillgänglighet via Anton Wester AB.'
+            : `Anton Wester är en oberoende mjukvarukonsult som hjälper team i ${cityName} och ${regionName} med React, TypeScript, mobilappar, arkitektur, AI-integration, automation och tillgänglighet via Anton Wester AB.`,
       },
       cityName,
       regionName,
@@ -860,7 +860,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         label: 'Tillgänglig',
         context: cityId === 'gothenburg' ? 'Göteborg / Remote' : `${cityName} / Hybrid`,
       },
-      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional tech lead', 'Arkitektur', 'AI-integration', 'Tillgänglighet', 'Prestanda', 'Produktutveckling'],
+      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional tech lead', 'Arkitektur', 'AI-integration', 'Tillgänglighet', 'Prestanda', 'Produktutveckling'],
       nav: [
         { href: '#services', label: 'Tjänster' },
         { href: '#work', label: 'Utvalda case' },
@@ -872,14 +872,13 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         eyebrow: `Oberoende mjukvarukonsult · ${siteConfig.companyName} · ${cityName} / Remote`,
         title:
           cityId === 'gothenburg'
-            ? 'Mjukvarukonsult och tech lead-stöd för produktteam i Göteborg som vill röra sig snabbt utan onödig komplexitet.'
-            : `Mjukvarukonsult för team i ${cityName} som vill röra sig snabbt utan onödig komplexitet.`,
+            ? 'Mjukvarukonsult och tech lead-stöd för produktteam i Göteborg som värdesätter kvalitet, tillgänglighet och hållbar leverans.'
+            : `Mjukvarukonsult för team i ${cityName} som värdesätter kvalitet, tillgänglighet och hållbar leverans.`,
         description: getSharedHeroDescription('sv', cityId),
         primaryCta: { href: siteConfig.bookingLink, label: 'Boka ett intro-samtal' },
         tertiaryCta: { href: '#work', label: 'Se utvalda case' },
         metrics: [
           { value: '7+', label: 'år av produktutveckling' },
-          { value: '2x', label: 'roller: strategisk och hands-on' },
           { value: 'EN / SV', label: 'arbetsspråk' },
         ],
       },
@@ -920,12 +919,12 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
 
   return {
     seo: {
-      title: `Software Consultant in ${cityName} | ${siteConfig.companyName}`,
-      description:
-        cityId === 'gothenburg'
-          ? 'Anton Wester is an independent software consultant in Gothenburg helping teams with React, TypeScript, mobile apps, architecture, localization, and tech lead support through Anton Wester AB.'
-          : `Anton Wester is an independent software consultant helping teams in ${cityName} and ${regionName} with React, TypeScript, mobile apps, architecture, localization, and tech lead support through Anton Wester AB.`,
-    },
+    title: `Software Consultant in ${cityName} | ${siteConfig.companyName}`,
+    description:
+      cityId === 'gothenburg'
+        ? 'Anton Wester is an independent software consultant in Gothenburg helping teams with React, TypeScript, mobile apps, architecture, AI integration, automation, and accessibility through Anton Wester AB.'
+        : `Anton Wester is an independent software consultant helping teams in ${cityName} and ${regionName} with React, TypeScript, mobile apps, architecture, AI integration, automation, and accessibility through Anton Wester AB.`,
+  },
     cityName,
     regionName,
     skipToContentLabel: 'Skip to content',
@@ -934,7 +933,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       label: 'Available',
       context: cityId === 'gothenburg' ? 'Gothenburg / Remote' : `${cityName} / Hybrid`,
     },
-    tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional Tech Lead', 'Architecture', 'AI integration', 'Accessibility', 'Performance', 'Product Engineering'],
+      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional Tech Lead', 'Architecture', 'AI integration', 'Accessibility', 'Performance', 'Product Engineering'],
     nav: [
       { href: '#services', label: 'Services' },
       { href: '#work', label: 'Selected work' },
@@ -946,14 +945,13 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       eyebrow: `Independent software consultant · ${siteConfig.companyName} · ${cityName} / Remote`,
       title:
         cityId === 'gothenburg'
-          ? 'Software consulting and tech leadership for product teams in Gothenburg that want to move fast without making a mess.'
-          : `Software consulting for teams in ${cityName} that want to move fast without making a mess.`,
+          ? 'Software consulting and tech leadership for product teams in Gothenburg that value quality, accessibility, and sustainable delivery.'
+          : `Software consulting for teams in ${cityName} that value quality, accessibility, and sustainable delivery.`,
       description: getSharedHeroDescription('en', cityId),
       primaryCta: { href: siteConfig.bookingLink, label: 'Book an intro call' },
       tertiaryCta: { href: '#work', label: 'See selected work' },
       metrics: [
         { value: '7+', label: 'years shipping software' },
-        { value: '2x', label: 'roles: strategic and hands-on' },
         { value: 'EN / SV', label: 'working languages' },
       ],
     },
