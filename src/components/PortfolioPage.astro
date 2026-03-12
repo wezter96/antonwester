@@ -198,36 +198,36 @@ const contactIcon = (label: string) => {
         <h2 id="experience-title" class="section-title" data-reveal>{content.experience.title}</h2>
         <p class="section-intro" data-reveal>{content.experience.description}</p>
         <div class="experience-grid">
-          <ol class="timeline" data-reveal>
+          <dl class="timeline" data-reveal>
             {content.experience.items.slice(0, Math.ceil(content.experience.items.length / 2)).map((item) => (
-              <li class="timeline-item">
-                <p class="exp-period">{item.period}</p>
-                <h3 class="exp-role">{item.role}</h3>
-                <p class="exp-company">{item.company}</p>
-                <p class="exp-summary">{item.summary}</p>
-                <div class="exp-tags">
+              <div class="timeline-item">
+                <dt class="exp-period">{item.period}</dt>
+                <dd class="exp-role">{item.role}</dd>
+                <dd class="exp-company">{item.company}</dd>
+                <dd class="exp-summary">{item.summary}</dd>
+                <dd class="exp-tags">
                   {item.tags.map((tag) => (
                     <span class="tag-dark">{tag}</span>
                   ))}
-                </div>
-              </li>
+                </dd>
+              </div>
             ))}
-          </ol>
-          <ol class="timeline" data-reveal>
+          </dl>
+          <dl class="timeline" data-reveal>
             {content.experience.items.slice(Math.ceil(content.experience.items.length / 2)).map((item) => (
-              <li class="timeline-item">
-                <p class="exp-period">{item.period}</p>
-                <h3 class="exp-role">{item.role}</h3>
-                <p class="exp-company">{item.company}</p>
-                <p class="exp-summary">{item.summary}</p>
-                <div class="exp-tags">
+              <div class="timeline-item">
+                <dt class="exp-period">{item.period}</dt>
+                <dd class="exp-role">{item.role}</dd>
+                <dd class="exp-company">{item.company}</dd>
+                <dd class="exp-summary">{item.summary}</dd>
+                <dd class="exp-tags">
                   {item.tags.map((tag) => (
                     <span class="tag-dark">{tag}</span>
                   ))}
-                </div>
-              </li>
+                </dd>
+              </div>
             ))}
-          </ol>
+          </dl>
         </div>
       </div>
     </section>
@@ -259,7 +259,7 @@ const contactIcon = (label: string) => {
             <p class="contact-sub">{content.contact.description}</p>
 
             <address class="contact-address">
-              <ul class="contact-options">
+              <ul class="contact-options" role="list">
                 {content.contact.directOptions.map((option) => (
                   <li>
                     <a
@@ -301,24 +301,24 @@ const contactIcon = (label: string) => {
               <input class="sr-only" type="text" name="_honey" tabindex="-1" autocomplete="off" />
 
               <div class="form-field-grid">
-                <label>
+                <label for="name">
                   <span>{content.contact.fields.name}</span>
-                  <input name="name" autocomplete="name" placeholder={content.contact.placeholders.name} required />
+                  <input id="name" name="name" autocomplete="name" placeholder={content.contact.placeholders.name} required />
                 </label>
-                <label>
+                <label for="email">
                   <span>{content.contact.fields.email}</span>
-                  <input type="email" name="email" autocomplete="email" placeholder={content.contact.placeholders.email} required />
+                  <input id="email" type="email" name="email" autocomplete="email" placeholder={content.contact.placeholders.email} required />
                 </label>
               </div>
 
               <div class="form-field-grid">
-                <label>
+                <label for="company">
                   <span>{content.contact.fields.company}</span>
-                  <input name="company" autocomplete="organization" placeholder={content.contact.placeholders.company} />
+                  <input id="company" name="company" autocomplete="organization" placeholder={content.contact.placeholders.company} />
                 </label>
-                <label>
+                <label for="inquiryType">
                   <span>{content.contact.fields.inquiry}</span>
-                  <select name="inquiryType" required>
+                  <select id="inquiryType" name="inquiryType" required>
                     {content.contact.inquiryOptions.map((option) => (
                       <option value={option.value}>{option.label}</option>
                     ))}
@@ -326,9 +326,9 @@ const contactIcon = (label: string) => {
                 </label>
               </div>
 
-              <label>
+              <label for="message">
                 <span>{content.contact.fields.message}</span>
-                <textarea name="message" rows="6" placeholder={content.contact.placeholders.message} required></textarea>
+                <textarea id="message" name="message" rows="6" placeholder={content.contact.placeholders.message} required></textarea>
               </label>
 
               <div class="form-actions">
@@ -355,6 +355,26 @@ const contactIcon = (label: string) => {
 
 <script is:inline>
   (() => {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    let lastScroll = 0;
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll <= 0) {
+        header.classList.remove('is-hidden');
+        return;
+      }
+      if (currentScroll > lastScroll && !header.classList.contains('is-hidden')) {
+        header.classList.add('is-hidden');
+      } else if (currentScroll < lastScroll && header.classList.contains('is-hidden')) {
+        header.classList.remove('is-hidden');
+      }
+      lastScroll = currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     const revealTargets = document.querySelectorAll('[data-reveal]');
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(

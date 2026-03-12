@@ -40,8 +40,8 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--cream);
-  color: var(--green-deep);
+  background: var(--green-deep);
+  color: var(--cream);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -138,6 +138,11 @@ button, input, select, textarea {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(196, 154, 80, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.site-header.is-hidden {
+  transform: translateY(-100%);
 }
 
 .nav-shell {
@@ -172,7 +177,7 @@ button, input, select, textarea {
 }
 
 .nav-links a {
-  color: rgba(240, 236, 227, 0.55);
+  color: rgba(240, 236, 227, 0.75);
   font-size: 13px;
   letter-spacing: 0.03em;
   position: relative;
@@ -200,7 +205,7 @@ button, input, select, textarea {
 }
 
 .locale-link {
-  color: rgba(240, 236, 227, 0.45);
+  color: rgba(240, 236, 227, 0.7);
   font-size: 13px;
   letter-spacing: 0.03em;
   transition: color 0.25s;
@@ -408,7 +413,7 @@ button, input, select, textarea {
 
 .stat-label {
   font-size: 11px;
-  color: rgba(240, 236, 227, 0.38);
+  color: rgba(240, 236, 227, 0.6);
   letter-spacing: 0.06em;
 }
 
@@ -452,7 +457,7 @@ button, input, select, textarea {
   padding: 0 32px;
   font-size: 12px;
   letter-spacing: 0.1em;
-  color: rgba(196, 154, 80, 0.6);
+  color: rgba(196, 154, 80, 0.8);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -467,6 +472,13 @@ button, input, select, textarea {
 /* ─── SECTION COMMONS ─── */
 .section {
   padding: 96px 0;
+}
+
+@supports (content-visibility: auto) {
+  .section {
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
+  }
 }
 
 .section-label {
@@ -535,6 +547,11 @@ button, input, select, textarea {
   background: var(--cream-dark);
   border-radius: 14px;
   overflow: hidden;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.services-grid li {
+  display: flex;
 }
 
 .service-card {
@@ -543,6 +560,10 @@ button, input, select, textarea {
   position: relative;
   transition: background 0.3s;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
 }
 
 .service-card::before {
@@ -588,6 +609,7 @@ button, input, select, textarea {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .tag {
@@ -678,7 +700,7 @@ button, input, select, textarea {
 
 .work-desc {
   font-size: 13px;
-  color: rgba(240, 236, 227, 0.52);
+  color: rgba(240, 236, 227, 0.7);
   line-height: 1.7;
   margin-bottom: 16px;
 }
@@ -693,7 +715,7 @@ button, input, select, textarea {
 .work-link {
   display: inline-block;
   font-size: 12px;
-  color: rgba(196, 154, 80, 0.65);
+  color: rgba(196, 154, 80, 0.85);
   letter-spacing: 0.04em;
   margin-bottom: 18px;
   transition: color 0.2s;
@@ -733,7 +755,6 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   gap: 44px;
-  list-style: none;
   margin: 0;
 }
 
@@ -762,16 +783,16 @@ button, input, select, textarea {
 
 .exp-period {
   font-size: 11px;
-  color: rgba(240, 236, 227, 0.32);
+  color: rgba(240, 236, 227, 0.55);
   letter-spacing: 0.06em;
-  margin-bottom: 4px;
+  margin: 0 0 4px 0;
 }
 
 .exp-role {
   font-size: 16px;
   font-weight: 600;
   color: var(--cream);
-  margin-bottom: 2px;
+  margin: 0 0 2px 0;
 }
 
 .exp-company {
@@ -779,15 +800,15 @@ button, input, select, textarea {
   font-size: 14px;
   color: var(--amber);
   font-style: italic;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   opacity: 0.78;
 }
 
 .exp-summary {
   font-size: 13px;
-  color: rgba(240, 236, 227, 0.44);
+  color: rgba(240, 236, 227, 0.7);
   line-height: 1.7;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 .exp-tags {

@@ -431,13 +431,13 @@ function getSharedHeroDescription(locale: Locale, cityId: CityId): string {
 
   if (locale === 'sv') {
     return cityId === 'gothenburg'
-      ? 'Jag hjälper startups, byråer och produktbolag i Göteborg att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter.'
-      : `Jag hjälper startups, byråer och produktbolag i ${cityName} och ${city.region.sv} att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter.`;
+      ? 'Jag hjälper startups, byråer och produktbolag i Göteborg att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter. Med AI som verktyg levererar jag mer än traditionella team kan göra.'
+      : `Jag hjälper startups, byråer och produktbolag i ${cityName} och ${city.region.sv} att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter. Med AI som verktyg levererar jag mer än traditionella team kan göra.`;
   }
 
   return cityId === 'gothenburg'
-    ? 'I help startups, agencies, and product companies in Gothenburg shape architecture, build polished web and mobile experiences, and turn ambitious ideas into reliable products.'
-    : `I help startups, agencies, and product companies in ${cityName} and ${city.region.en} shape architecture, build polished web and mobile experiences, and turn ambitious ideas into reliable products.`;
+    ? 'I help startups, agencies, and product companies in Gothenburg shape architecture, build polished web and mobile experiences, and turn ambitious ideas into reliable products. With AI as a force multiplier, I deliver more than traditional teams can.'
+    : `I help startups, agencies, and product companies in ${cityName} and ${city.region.en} shape architecture, build polished web and mobile experiences, and turn ambitious ideas into reliable products. With AI as a force multiplier, I deliver more than traditional teams can.`;
 }
 
 function getEnglishServices(): PortfolioContent['services'] {
@@ -595,7 +595,7 @@ function getSwedishProjects(): PortfolioContent['projects'] {
 function getEnglishExperience(): PortfolioContent['experience'] {
   return {
     eyebrow: 'Experience',
-    title: 'Built through consulting, product teams, and cross-platform leadership.',
+    title: 'Shaped by product teams, cross-platform leadership, and a passion for polished delivery.',
     description: 'My background spans product development, architecture, cross-platform delivery, and the kind of close collaboration that helps teams keep shipping.',
     items: [
       {
@@ -640,7 +640,7 @@ function getEnglishExperience(): PortfolioContent['experience'] {
 function getSwedishExperience(): PortfolioContent['experience'] {
   return {
     eyebrow: 'Erfarenhet',
-    title: 'Formad av konsulting, produktteam och cross-platform-ledarskap.',
+    title: 'Formad av produktteam, cross-platform-ledarskap och passion för tydlig leverans.',
     description: 'Min bakgrund spänner över produktutveckling, arkitektur, cross-platform-leverans och det nära samarbetet som hjälper team att fortsätta skeppa.',
     items: [
       {
