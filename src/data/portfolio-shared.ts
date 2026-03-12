@@ -186,6 +186,8 @@ export const siteConfig = {
   githubLink: 'https://github.com/wezter96',
   linkedinLink: 'https://www.linkedin.com/in/anton-wester-93a26011b',
   lingoLink: 'https://lingo.antonwester.se',
+  socialImagePath: '/social-preview.png',
+  socialImageAlt: 'Anton Wester brand mark and wordmark on a dark background',
 } as const;
 
 const cityDefinitions: Record<CityId, CityDefinition> = {
@@ -371,14 +373,16 @@ export function getLocalizedCityName(locale: Locale, cityId: CityId): string {
 export function buildPath(locale: Locale, cityId: CityId): string {
   const city = cityDefinitions[cityId];
   if (city.slug === null) {
-    return locale === 'sv' ? '/sv/' : '/';
+    return locale === 'sv' ? '/sv/' : '/en/';
   }
 
-  return locale === 'sv' ? `/sv/${city.slug}/` : `/${city.slug}/`;
+  return locale === 'sv' ? `/sv/${city.slug}/` : `/en/${city.slug}/`;
 }
 
 export function buildOgImagePath(locale: Locale, cityId: CityId): string {
-  return `/og/${locale}/${cityId}.svg`;
+  void locale;
+  void cityId;
+  return siteConfig.socialImagePath;
 }
 
 export function buildOgImageUrl(locale: Locale, cityId: CityId): string {
@@ -1015,6 +1019,10 @@ export function buildStructuredData({
   const organizationId = `${siteConfig.siteUrl}#organization`;
   const webPageId = `${pageUrl}#webpage`;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
+  const homePageUrl =
+    cityId === 'gothenburg'
+      ? pageUrl
+      : `${siteConfig.siteUrl}${buildPath(locale, 'gothenburg')}`;
   const faqId = `${pageUrl}#faq`;
   const availableLanguage = locale === 'sv' ? ['sv-SE', 'en'] : ['en', 'sv-SE'];
   const pageLanguage = locale === 'sv' ? 'sv-SE' : 'en';
@@ -1031,7 +1039,7 @@ export function buildStructuredData({
       name: siteConfig.companyName,
       url: siteConfig.siteUrl,
       email: siteConfig.email,
-      image: `${siteConfig.siteUrl}/og-image.svg`,
+      image: `${siteConfig.siteUrl}${siteConfig.socialImagePath}`,
       sameAs: [siteConfig.linkedinLink, siteConfig.githubLink, siteConfig.lingoLink],
     },
     {
@@ -1116,7 +1124,7 @@ export function buildStructuredData({
           '@type': 'ListItem',
           position: 1,
           name: locale === 'sv' ? 'Start' : 'Home',
-          item: `${siteConfig.siteUrl}${buildPath(locale, 'gothenburg')}`,
+          item: homePageUrl,
         },
         {
           '@type': 'ListItem',

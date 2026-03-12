@@ -40,9 +40,9 @@ const contentLoaders = {
 
 export * from './portfolio-shared';
 
-export async function getPortfolioPage(locale: Locale, cityId: CityId): Promise<PortfolioPageData> {
+export async function getPortfolioPage(locale: Locale, cityId: CityId, pathOverride?: string): Promise<PortfolioPageData> {
   const { default: content } = await contentLoaders[locale][cityId]();
-  const path = buildPath(locale, cityId);
+  const path = pathOverride ?? buildPath(locale, cityId);
 
   return {
     locale,

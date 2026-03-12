@@ -51,21 +51,30 @@ const themeBootScript = `(() => {
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <meta name="author" content="Anton Wester" />
+    <meta name="application-name" content={siteConfig.companyName} />
+    <meta name="apple-mobile-web-app-title" content={siteConfig.companyName} />
+    <meta name="msapplication-TileColor" content="#0b1020" />
     <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#eef2f7" media="(prefers-color-scheme: light)" />
     <link rel="canonical" href={canonicalUrl} />
     {alternates.map((alternate) => (
       <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
     ))}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteConfig.companyName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:alt" content={title} />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:alt" content={siteConfig.socialImageAlt} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content={ogLocale} />
@@ -73,10 +82,11 @@ const themeBootScript = `(() => {
       <meta property="og:locale:alternate" content={value} />
     ))}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="twitter:image:alt" content={title} />
+    <meta name="twitter:image:alt" content={siteConfig.socialImageAlt} />
     <title>{title}</title>
     {structuredData.map((entry) => (
       <script type="application/ld+json" set:html={JSON.stringify(entry)}></script>

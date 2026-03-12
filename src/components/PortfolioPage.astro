@@ -7,9 +7,9 @@ interface Props {
 }
 
 const { page } = Astro.props as Props;
-const { content, locale, switchHref, locationLinks } = page;
+const { content, locale, switchHref } = page;
 const currentYear = new Date().getFullYear();
-const homeHref = locale === 'sv' ? '/sv/' : '/';
+const homeHref = page.cityId === 'gothenburg' ? page.path : locale === 'sv' ? '/sv/' : '/en/';
 const switchLang = locale === 'sv' ? 'en' : 'sv';
 
 const heroTitleHtml = locale === 'en'
@@ -141,23 +141,6 @@ const contactIcon = (label: string) => {
             ))}
           </ul>
         </aside>
-      </div>
-
-      <div class="container" data-reveal>
-        <p class="related-locations-label">{content.localLanding.locationLinksLabel}</p>
-        <ul class="location-links">
-          {locationLinks.map((link) => (
-            <li>
-              <a
-                class={link.isCurrent ? 'location-link is-current' : 'location-link'}
-                href={link.href}
-                aria-current={link.isCurrent ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
 
