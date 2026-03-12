@@ -1,0 +1,18 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service"
+      }
+    ],
+    "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

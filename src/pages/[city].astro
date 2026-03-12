@@ -1,0 +1,31 @@
+---
+import PortfolioPage from '../components/PortfolioPage.astro';
+import { getCitySlug, getDynamicCityIds, getPortfolioPage, type CityId } from '../data/portfolio';
+import Layout from '../layouts/Layout.astro';
+
+interface Props {
+  cityId: CityId;
+}
+
+export async function getStaticPaths() {
+  return getDynamicCityIds().map((cityId) => ({
+    params: { city: getCitySlug(cityId) },
+    props: { cityId },
+  }));
+}
+
+const { cityId } = Astro.props as Props;
+const page = await getPortfolioPage('en', cityId);
+---
+
+<Layout
+  title={page.content.seo.title}
+  description={page.content.seo.description}
+  locale={page.locale}
+  path={page.path}
+  ogImageUrl={page.ogImageUrl}
+  alternates={page.alternates}
+  structuredData={page.structuredData}
+>
+  <PortfolioPage page={page} />
+</Layout>
