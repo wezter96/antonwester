@@ -56,11 +56,10 @@ const themeBootScript = `(() => {
     <meta name="msapplication-TileColor" content="#0b1020" />
     <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#eef2f7" media="(prefers-color-scheme: light)" />
-    <link rel="preconnect" href="https://calendar.app.google" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://formsubmit.co" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
+    <link rel="preload" as="image" href="/logo.webp" fetchpriority="high" />
     <style is:inline set:html={globalStyles}></style>
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="preload" as="image" href={siteConfig.socialImagePath} />
     {alternates.map((alternate) => (
       <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
     ))}
