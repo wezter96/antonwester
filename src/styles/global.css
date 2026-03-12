@@ -757,9 +757,9 @@ button, input, select, textarea {
   background: var(--green-deep);
 }
 
-.experience-section .section-label { color: rgba(196, 154, 80, 0.85); }
-.experience-section .section-title { color: var(--cream); }
-.experience-section .section-intro { color: var(--cream); }
+.experience-section .section-label { color: var(--amber-light); }
+.experience-section .section-title { color: var(--amber); }
+.experience-section .section-intro { color: rgba(240, 236, 227, 0.9); }
 
 .experience-grid {
   display: grid;
