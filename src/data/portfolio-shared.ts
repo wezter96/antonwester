@@ -453,7 +453,7 @@ function getEnglishServices(): PortfolioContent['services'] {
       },
       {
         title: 'Senior product engineering',
-        body: 'Design and build refined product experiences across web and mobile with strong attention to usability, reliability, and iteration speed.',
+        body: 'Design and build refined, accessible product experiences across web and mobile with strong attention to usability, reliability, accessibility, and iteration speed.',
         outcomes: ['React / Next.js', 'React Native', 'TypeScript systems'],
       },
       {
@@ -462,9 +462,9 @@ function getEnglishServices(): PortfolioContent['services'] {
         outcomes: ['Performance tuning', 'Platform design', 'Developer experience'],
       },
       {
-        title: 'Localization and platform workflows',
-        body: 'Build the internal tooling and delivery pipelines that help teams scale content, internationalization, and product operations with confidence.',
-        outcomes: ['Localization strategy', 'Publishing flows', 'Internal product tooling'],
+        title: 'AI integration & automation',
+        body: 'Helps teams streamline workflows with automation and integrate AI capabilities responsibly into products.',
+        outcomes: ['AI integration', 'Workflow automation', 'Internal tooling'],
       },
     ],
   };
@@ -483,7 +483,7 @@ function getSwedishServices(): PortfolioContent['services'] {
       },
       {
         title: 'Senior produktutveckling',
-        body: 'Designar och bygger genomarbetade produktupplevelser för webb och mobil med fokus på användbarhet, tillförlitlighet och hög iterationstakt.',
+        body: 'Designar och bygger genomarbetade, tillgängliga produktupplevelser för webb och mobil med fokus på användbarhet, tillförlitlighet, tillgänglighet och hög iterationstakt.',
         outcomes: ['React / Next.js', 'React Native', 'TypeScript-system'],
       },
       {
@@ -492,9 +492,9 @@ function getSwedishServices(): PortfolioContent['services'] {
         outcomes: ['Prestandaoptimering', 'Plattformsdesign', 'Developer experience'],
       },
       {
-        title: 'Lokalisering och interna plattformar',
-        body: 'Bygger verktyg och leveransflöden som hjälper team att skala innehåll, internationalisering och interna produktprocesser med kontroll.',
-        outcomes: ['Lokaliseringsstrategi', 'Publiceringsflöden', 'Interna verktyg'],
+        title: 'AI-integration & automation',
+        body: 'Hjälper team att effektivisera arbetsflöden med automation och integrera AI ansvarsfullt i produkter.',
+        outcomes: ['AI-integration', 'Workflow-automatisering', 'Interna verktyg'],
       },
     ],
   };
@@ -511,7 +511,7 @@ function getEnglishProjects(): PortfolioContent['projects'] {
         label: 'Founder project',
         summary: 'An AI-native, self-hosted localization platform that gives product, content, and engineering teams one place to manage translation work, reviews, releases, and delivery.',
         impact: 'A strong example of product thinking, systems design, and developer tooling coming together in one platform.',
-        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API'],
+        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
         href: 'https://lingo.antonwester.se',
         linkLabel: 'Explore Lingo',
       },
@@ -557,7 +557,7 @@ function getSwedishProjects(): PortfolioContent['projects'] {
         label: 'Eget produktprojekt',
         summary: 'En AI-native, self-hosted lokaliseringsplattform som ger produkt-, innehålls- och utvecklingsteam ett gemensamt ställe för översättningar, review, releaser och leverans.',
         impact: 'Ett tydligt exempel på hur produktidé, systemdesign och developer tooling kan mötas i en och samma plattform.',
-        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API'],
+        tags: ['TypeScript', 'Bun', 'Hono', 'SDK / API / CLI'],
         href: 'https://lingo.antonwester.se',
         linkLabel: 'Utforska Lingo',
       },
@@ -868,7 +868,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         label: 'Tillgänglig',
         context: cityId === 'gothenburg' ? 'Göteborg / Remote' : `${cityName} / Hybrid`,
       },
-      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional tech lead', 'Arkitektur', 'Lokalisering', 'Prestanda', 'Produktutveckling'],
+      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional tech lead', 'Arkitektur', 'AI-integration', 'Tillgänglighet', 'Prestanda', 'Produktutveckling'],
       nav: [
         { href: '#services', label: 'Tjänster' },
         { href: '#work', label: 'Utvalda case' },
@@ -886,7 +886,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         primaryCta: { href: siteConfig.bookingLink, label: 'Boka ett intro-samtal' },
         tertiaryCta: { href: '#work', label: 'Se utvalda case' },
         metrics: [
-          { value: '6+', label: 'år av produktutveckling' },
+          { value: '7+', label: 'år av produktutveckling' },
           { value: '2x', label: 'roller: strategisk och hands-on' },
           { value: 'EN / SV', label: 'arbetsspråk' },
         ],
@@ -942,7 +942,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       label: 'Available',
       context: cityId === 'gothenburg' ? 'Gothenburg / Remote' : `${cityName} / Hybrid`,
     },
-    tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional Tech Lead', 'Architecture', 'Localization', 'Performance', 'Product Engineering'],
+    tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Fractional Tech Lead', 'Architecture', 'AI integration', 'Accessibility', 'Performance', 'Product Engineering'],
     nav: [
       { href: '#services', label: 'Services' },
       { href: '#work', label: 'Selected work' },
@@ -960,7 +960,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       primaryCta: { href: siteConfig.bookingLink, label: 'Book an intro call' },
       tertiaryCta: { href: '#work', label: 'See selected work' },
       metrics: [
-        { value: '6+', label: 'years shipping software' },
+        { value: '7+', label: 'years shipping software' },
         { value: '2x', label: 'roles: strategic and hands-on' },
         { value: 'EN / SV', label: 'working languages' },
       ],

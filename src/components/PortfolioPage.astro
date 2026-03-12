@@ -17,7 +17,7 @@ const heroTitleHtml = locale === 'en'
   : content.hero.title.replace('röra sig snabbt', '<em>röra sig snabbt</em>');
 
 const contactIcon = (label: string) => {
-  if (label === 'Email' || label === 'E-post') return '✉';
+  if (label === 'Email' || label === 'E-post') return '📧';
   if (label === 'LinkedIn') return 'in';
   return '📅';
 };
@@ -84,6 +84,9 @@ const contactIcon = (label: string) => {
           <a class="btn-ghost" href={content.hero.tertiaryCta.href}>
             {content.hero.tertiaryCta.label}
           </a>
+          <a class="btn-ghost btn-cv" href="/anton-wester-resume.pdf" target="_blank" rel="noreferrer">
+            {locale === 'sv' ? 'Ladda ner CV' : 'Download CV'}
+          </a>
         </div>
 
         <dl class="hero-stats">
@@ -131,13 +134,6 @@ const contactIcon = (label: string) => {
           <ul class="aside-list">
             {content.localLanding.highlights.map((highlight) => (
               <li>{highlight}</li>
-            ))}
-          </ul>
-
-          <p class="aside-label">{content.localLanding.nearbyAreasLabel}</p>
-          <ul class="nearby-list">
-            {content.localLanding.nearbyAreas.map((area) => (
-              <li>{area}</li>
             ))}
           </ul>
         </aside>

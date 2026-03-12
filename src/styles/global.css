@@ -636,6 +636,9 @@ button, input, select, textarea {
   transition: background 0.3s, border-color 0.3s, transform 0.3s;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
 }
 
 .work-card::after {
