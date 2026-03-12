@@ -564,6 +564,7 @@ button, input, select, textarea {
   flex-direction: column;
   gap: 16px;
   min-height: 100%;
+  color: var(--green-deep);
 }
 
 .service-card::before {
@@ -582,7 +583,7 @@ button, input, select, textarea {
 .service-num {
   font-family: Georgia, serif;
   font-size: 52px;
-  color: var(--green-light);
+  color: var(--green-deep);
   line-height: 1;
   margin-bottom: 18px;
   transition: color 0.3s;
@@ -600,7 +601,7 @@ button, input, select, textarea {
 
 .service-body {
   font-size: 14px;
-  color: #4a5e52;
+  color: var(--green-deep);
   line-height: 1.7;
   margin-bottom: 20px;
 }
@@ -629,7 +630,7 @@ button, input, select, textarea {
 .tag-dark {
   padding: 3px 10px;
   background: rgba(184, 212, 196, 0.1);
-  color: var(--green-light);
+  color: var(--green-deep);
   border-radius: 20px;
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -783,7 +784,7 @@ button, input, select, textarea {
 
 .exp-period {
   font-size: 11px;
-  color: rgba(240, 236, 227, 0.55);
+  color: rgba(240, 236, 227, 0.85);
   letter-spacing: 0.06em;
   margin: 0 0 4px 0;
 }
@@ -798,7 +799,7 @@ button, input, select, textarea {
 .exp-company {
   font-family: Georgia, serif;
   font-size: 14px;
-  color: var(--amber);
+  color: rgba(240, 236, 227, 0.9);
   font-style: italic;
   margin: 0 0 10px 0;
   opacity: 0.78;
@@ -806,7 +807,7 @@ button, input, select, textarea {
 
 .exp-summary {
   font-size: 13px;
-  color: rgba(240, 236, 227, 0.7);
+  color: rgba(240, 236, 227, 0.9);
   line-height: 1.7;
   margin: 0 0 10px 0;
 }
@@ -833,6 +834,11 @@ button, input, select, textarea {
 .local-section,
 .faq-section {
   background: #f7f3eb;
+}
+
+.local-section .section-intro,
+.local-section .local-copy p {
+  color: var(--green-deep);
 }
 
 .local-grid {
@@ -875,7 +881,7 @@ button, input, select, textarea {
   position: relative;
   padding-left: 18px;
   font-size: 14px;
-  color: #4a6655;
+  color: var(--green-deep);
 }
 
 .aside-list li::before {
@@ -975,7 +981,7 @@ button, input, select, textarea {
   margin: 0;
   font-size: 14px;
   line-height: 1.8;
-  color: #4a6655;
+  color: var(--green-deep);
 }
 
 /* ─── CONTACT (cream, matches services) ─── */
@@ -1017,7 +1023,7 @@ button, input, select, textarea {
 
 .contact-sub {
   font-size: 14px;
-  color: #4a6655;
+  color: var(--green-deep);
   line-height: 1.8;
   margin-bottom: 32px;
 }
@@ -1028,7 +1034,7 @@ button, input, select, textarea {
 
 .contact-form-description {
   font-size: 14px;
-  color: #4a6655;
+  color: var(--green-deep);
   line-height: 1.8;
 }
 
@@ -1079,7 +1085,7 @@ button, input, select, textarea {
 
 .contact-detail {
   font-size: 12px;
-  color: #5a7266;
+  color: var(--green-deep);
   display: block;
 }
 
