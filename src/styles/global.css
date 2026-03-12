@@ -483,12 +483,8 @@ button, input, select, textarea {
   padding: 96px 0;
 }
 
-@supports (content-visibility: auto) {
-  .section {
-    content-visibility: auto;
-    contain-intrinsic-size: 600px;
-  }
-}
+/* content-visibility: auto removed — it causes axe-core/Lighthouse to fail
+   background resolution for off-screen sections, producing false contrast failures. */
 
 .section-label {
   font-size: 11px;
@@ -660,6 +656,11 @@ button, input, select, textarea {
   background: var(--green-work);
 }
 
+/* Explicit background for accessibility tools (background inherited from body otherwise) */
+.experience-section {
+  background: var(--green-deep);
+}
+
 .work-section .section-label { color: rgba(196, 154, 80, 0.85); }
 .work-section .section-title { color: var(--cream); }
 .work-section .section-intro { color: var(--cream); }
@@ -707,7 +708,6 @@ button, input, select, textarea {
   text-transform: uppercase;
   color: var(--amber);
   margin-bottom: 14px;
-  opacity: 0.8;
 }
 
 .work-name {
@@ -818,10 +818,9 @@ button, input, select, textarea {
 .exp-company {
   font-family: Georgia, serif;
   font-size: 14px;
-  color: var(--cream);
+  color: rgba(240, 236, 227, 0.85);
   font-style: italic;
   margin: 0 0 10px 0;
-  opacity: 0.78;
 }
 
 .exp-summary {
