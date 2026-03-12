@@ -160,6 +160,15 @@ button, input, select, textarea {
   letter-spacing: 0.02em;
   animation: fadeIn 0.6s ease both;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+}
+
+.brand img {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .nav-links {
@@ -485,7 +494,7 @@ button, input, select, textarea {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--green-muted);
+  color: var(--green-deep);
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -519,7 +528,7 @@ button, input, select, textarea {
 .section-intro {
   font-size: 15px;
   line-height: 1.8;
-  color: #4a5e52;
+  color: var(--green-deep);
   max-width: 720px;
   margin-top: -36px;
   margin-bottom: 52px;
@@ -629,12 +638,21 @@ button, input, select, textarea {
 
 .tag-dark {
   padding: 3px 10px;
-  background: rgba(240, 236, 227, 0.18);
-  border: 1px solid rgba(240, 236, 227, 0.35);
+  background: #0d170e;
+  border: 1px solid rgba(240, 236, 227, 0.45);
   color: var(--cream);
   border-radius: 20px;
   font-size: 11px;
   letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+.faq-section .tag-dark,
+.services-section .tag-dark {
+  background: var(--cream);
+  border: 1px solid rgba(28, 58, 46, 0.18);
+  color: var(--green-deep);
+  font-weight: 600;
 }
 
 /* ─── WORK ─── */
@@ -644,7 +662,7 @@ button, input, select, textarea {
 
 .work-section .section-label { color: rgba(196, 154, 80, 0.85); }
 .work-section .section-title { color: var(--cream); }
-.work-section .section-intro { color: rgba(240, 236, 227, 0.58); }
+.work-section .section-intro { color: var(--cream); }
 
 .work-grid {
   display: grid;
@@ -702,7 +720,7 @@ button, input, select, textarea {
 
 .work-desc {
   font-size: 13px;
-  color: rgba(240, 236, 227, 0.7);
+  color: var(--cream);
   line-height: 1.7;
   margin-bottom: 16px;
 }
@@ -717,21 +735,21 @@ button, input, select, textarea {
 .work-link {
   display: inline-block;
   font-size: 12px;
-  color: rgba(196, 154, 80, 0.85);
+  color: var(--amber);
   letter-spacing: 0.04em;
   margin-bottom: 18px;
   transition: color 0.2s;
 }
 
-.work-link:hover { color: var(--amber); }
+.work-link:hover { color: #ffd37c; }
 
 .work-impact {
   font-size: 13px;
-  color: rgba(196, 154, 80, 0.8);
+  color: var(--amber);
   font-style: italic;
   font-family: Georgia, serif;
   padding-top: 18px;
-  border-top: 1px solid rgba(240, 236, 227, 0.06);
+  border-top: 1px solid rgba(240, 236, 227, 0.2);
 }
 
 /* ─── EXPERIENCE ─── */
@@ -741,7 +759,7 @@ button, input, select, textarea {
 
 .experience-section .section-label { color: rgba(196, 154, 80, 0.85); }
 .experience-section .section-title { color: var(--cream); }
-.experience-section .section-intro { color: rgba(240, 236, 227, 0.58); }
+.experience-section .section-intro { color: var(--cream); }
 
 .experience-grid {
   display: grid;
@@ -785,7 +803,7 @@ button, input, select, textarea {
 
 .exp-period {
   font-size: 11px;
-  color: rgba(240, 236, 227, 0.85);
+  color: var(--cream);
   letter-spacing: 0.06em;
   margin: 0 0 4px 0;
 }
@@ -800,7 +818,7 @@ button, input, select, textarea {
 .exp-company {
   font-family: Georgia, serif;
   font-size: 14px;
-  color: rgba(240, 236, 227, 0.9);
+  color: var(--cream);
   font-style: italic;
   margin: 0 0 10px 0;
   opacity: 0.78;
@@ -808,7 +826,7 @@ button, input, select, textarea {
 
 .exp-summary {
   font-size: 13px;
-  color: rgba(240, 236, 227, 0.9);
+  color: var(--cream);
   line-height: 1.7;
   margin: 0 0 10px 0;
 }
@@ -1296,3 +1314,9 @@ button, input, select, textarea {
     color: var(--amber);
   }
 }
+.experience-section .section-label { color: rgba(240, 236, 227, 0.85); }
+.experience-section .section-title { color: var(--cream); }
+.experience-section .section-intro { color: rgba(240, 236, 227, 0.9); }
+
+/* FAQ section keeps labels dark on light background for readability */
+.faq-section .section-label { color: var(--green-deep); }
