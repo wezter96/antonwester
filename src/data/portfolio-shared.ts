@@ -405,14 +405,6 @@ export function getLocationLinks(locale: Locale, currentCityId: CityId): Locatio
   }));
 }
 
-function getSharedNearbyRegion(locale: Locale, cityId: CityId): string {
-  if (cityId === 'gothenburg') {
-    return locale === 'sv' ? 'Göteborg och Västsverige' : 'Gothenburg and western Sweden';
-  }
-
-  return cityDefinitions[cityId].region[locale];
-}
-
 function getServiceAreaLead(locale: Locale, cityId: CityId): string {
   const cityName = cityDefinitions[cityId].names[locale];
 

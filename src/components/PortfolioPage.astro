@@ -301,23 +301,23 @@ const contactIcon = (label: string) => {
               <input class="sr-only" type="text" name="_honey" tabindex="-1" autocomplete="off" />
 
               <div class="form-field-grid">
-                <label for="name">
-                  <span>{content.contact.fields.name}</span>
+                <label>
+                  <span class="field-label">{content.contact.fields.name}</span>
                   <input id="name" name="name" autocomplete="name" placeholder={content.contact.placeholders.name} required />
                 </label>
-                <label for="email">
-                  <span>{content.contact.fields.email}</span>
+                <label>
+                  <span class="field-label">{content.contact.fields.email}</span>
                   <input id="email" type="email" name="email" autocomplete="email" placeholder={content.contact.placeholders.email} required />
                 </label>
               </div>
 
               <div class="form-field-grid">
-                <label for="company">
-                  <span>{content.contact.fields.company}</span>
+                <label>
+                  <span class="field-label">{content.contact.fields.company}</span>
                   <input id="company" name="company" autocomplete="organization" placeholder={content.contact.placeholders.company} />
                 </label>
-                <label for="inquiryType">
-                  <span>{content.contact.fields.inquiry}</span>
+                <label>
+                  <span class="field-label">{content.contact.fields.inquiry}</span>
                   <select id="inquiryType" name="inquiryType" required>
                     {content.contact.inquiryOptions.map((option) => (
                       <option value={option.value}>{option.label}</option>
@@ -326,8 +326,8 @@ const contactIcon = (label: string) => {
                 </label>
               </div>
 
-              <label for="message">
-                <span>{content.contact.fields.message}</span>
+              <label>
+                <span class="field-label">{content.contact.fields.message}</span>
                 <textarea id="message" name="message" rows="6" placeholder={content.contact.placeholders.message} required></textarea>
               </label>
 

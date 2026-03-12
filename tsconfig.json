@@ -10,7 +10,6 @@
     "noUnusedLocals": true,
     "noImplicitOverride": true,
     "skipLibCheck": true,
-    "declarationMap": true,
     "sourceMap": true
   },
   "include": [".astro/types.d.ts", "**/*"],

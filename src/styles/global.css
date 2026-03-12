@@ -1100,7 +1100,7 @@ button, input, select, textarea {
   gap: 6px;
 }
 
-.contact-form label span {
+.contact-form label .field-label {
   font-size: 13px;
   font-weight: 600;
   color: var(--green-deep);
@@ -1119,6 +1119,11 @@ button, input, select, textarea {
   outline: none;
   transition: border-color 0.25s, box-shadow 0.25s;
   resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #6b8a7d;
 }
 
 .contact-form input:focus,
@@ -1168,6 +1173,7 @@ button, input, select, textarea {
 .site-footer {
   background: var(--cream-dark);
   border-top: 1px solid rgba(28, 58, 46, 0.08);
+  padding: 0 24px;
 }
 
 .footer-shell {
@@ -1179,13 +1185,13 @@ button, input, select, textarea {
 
 .footer-brand {
   font-family: Georgia, serif;
-  color: rgba(17, 31, 24, 0.4);
+  color: var(--green-deep);
   font-size: 14px;
 }
 
 .footer-avail {
   font-size: 12px;
-  color: var(--green-muted);
+  color: var(--green-deep);
   display: flex;
   align-items: center;
   gap: 6px;
