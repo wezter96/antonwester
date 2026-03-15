@@ -636,7 +636,7 @@ function getSwedishExperience(): PortfolioContent['experience'] {
     description: 'Min bakgrund spänner över produktutveckling, arkitektur, cross-platform-leverans och det nära samarbetet som hjälper team att fortsätta skeppa.',
     items: [
       {
-        role: 'Oberoende mjukvarukonsult',
+        role: 'Frilansande mjukvarukonsult',
         company: 'Anton Wester AB',
         period: 'juli 2024 – nu',
         summary: 'Driver eget bolag och hjälper team med mjukvaruarkitektur, produktleverans och hands-on utveckling inom webbtjänster och produktupplevelser.',
@@ -799,7 +799,7 @@ function getEnglishFaq(cityId: CityId): PortfolioContent['faq'] {
     items: [
       {
         question: `Do you take on software consulting projects in ${cityName}?`,
-        answer: `Yes. I work with teams in ${getServiceAreaLead('en', cityId)} on product development, architecture, performance work, localization systems, and fractional tech lead support.`,
+        answer: `Yes. I work with teams in ${getServiceAreaLead('en', cityId)} on product development, architecture, performance work, and fractional tech lead support.`,
       },
       {
         question: `What kinds of projects are a good fit in ${cityName}?`,
@@ -819,12 +819,12 @@ function getSwedishFaq(cityId: CityId): PortfolioContent['faq'] {
 
   return {
     eyebrow: 'Vanliga frågor',
-    title: `Vanliga frågor om mjukvarukonsulting i ${cityName}`,
+    title: `Vanliga frågor om att anlita en mjukvarukonsult i ${cityName}`,
     description: `Snabba svar för team som utvärderar en konsult i ${cityName} eller i närliggande områden.`,
     items: [
       {
         question: `Tar du uppdrag som mjukvarukonsult i ${cityName}?`,
-        answer: `Ja. Jag jobbar med team i ${getServiceAreaLead('sv', cityId)} inom produktutveckling, arkitektur, prestanda, lokaliseringssystem och fractional tech lead-stöd.`,
+        answer: `Ja. Jag jobbar med team i ${getServiceAreaLead('sv', cityId)} inom produktutveckling, arkitektur, prestanda och fractional tech lead-stöd.`,
       },
       {
         question: `Vilka typer av projekt passar bäst i ${cityName}?`,
@@ -869,11 +869,11 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         { href: '#contact', label: 'Kontakt' },
       ],
       hero: {
-        eyebrow: `Oberoende mjukvarukonsult · ${siteConfig.companyName} · ${cityName} / Remote`,
+        eyebrow: `Frilansande mjukvarukonsult · ${siteConfig.companyName} · ${cityName} / Remote`,
         title:
           cityId === 'gothenburg'
-            ? 'IT- och appkonsult i Göteborg | Apputvecklare, AI-utvecklare och hemsidepartner'
-            : `IT- och apputvecklarkonsult i ${cityName} | Apputvecklare med AI-fokus och hemsidepartner`,
+            ? 'IT- och appkonsult i Göteborg | Apputvecklare & AI-utvecklare'
+            : `IT- och apputvecklarkonsult i ${cityName} | Apputvecklare med AI-fokus`,
         description: getSharedHeroDescription('sv', cityId),
         primaryCta: { href: siteConfig.bookingLink, label: 'Boka ett intro-samtal' },
         tertiaryCta: { href: '#work', label: 'Se utvalda case' },
@@ -895,7 +895,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         ],
         highlightsTitle: 'Vanligt stöd',
         highlights: [
-          'Senior React-, Next.js- och TypeScript-leverans',
+          'Senior React-, Next.js-, React Native- och TypeScript-leverans',
           'Tech lead-stöd för arkitektur, prioritering och leverans',
           'Webb- och mobilproduktutveckling för växande team',
         ],
@@ -968,7 +968,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       ],
       highlightsTitle: 'Typical support',
       highlights: [
-        'Senior React, Next.js, and TypeScript delivery',
+        'Senior React, Next.js, React Native, and TypeScript delivery',
         'Fractional tech lead support for architecture and planning',
         'Web and mobile product development for growing teams',
       ],

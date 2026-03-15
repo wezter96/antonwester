@@ -851,7 +851,7 @@ button, input, select, textarea {
 
 .local-section,
 .faq-section {
-  background: #f7f3eb;
+  background: var(--cream);
 }
 
 .local-section .section-intro,
