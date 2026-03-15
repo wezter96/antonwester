@@ -423,8 +423,8 @@ function getSharedHeroDescription(locale: Locale, cityId: CityId): string {
 
   if (locale === 'sv') {
     return cityId === 'gothenburg'
-      ? 'Jag hjälper startups, byråer och produktbolag i Göteborg att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter. Med AI som verktyg levererar jag mer än traditionella team kan göra.'
-      : `Jag hjälper startups, byråer och produktbolag i ${cityName} och ${city.region.sv} att forma arkitektur, bygga polerade webb- och mobilupplevelser och förvandla ambitiösa idéer till stabila produkter. Med AI som verktyg levererar jag mer än traditionella team kan göra.`;
+      ? 'Som IT-konsult, apputvecklare och utvecklare inom AI hjälper jag startups, byråer och produktbolag i Göteborg skapa hållbara hemsidor, mobilappar och AI-drivna funktioner.'
+      : `Som IT-konsult, apputvecklare och utvecklare inom AI hjälper jag startups, byråer och produktbolag i ${cityName} och ${city.region.sv} skapa hållbara hemsidor, mobilappar och AI-drivna funktioner.`;
   }
 
   return cityId === 'gothenburg'
@@ -872,8 +872,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         eyebrow: `Oberoende mjukvarukonsult · ${siteConfig.companyName} · ${cityName} / Remote`,
         title:
           cityId === 'gothenburg'
-            ? 'Mjukvarukonsult och tech lead-stöd för produktteam i Göteborg som värdesätter kvalitet, tillgänglighet och hållbar leverans.'
-            : `Mjukvarukonsult för team i ${cityName} som värdesätter kvalitet, tillgänglighet och hållbar leverans.`,
+            ? 'IT- och appkonsult i Göteborg | Apputvecklare, AI-utvecklare och hemsidepartner'
+            : `IT- och apputvecklarkonsult i ${cityName} | Apputvecklare med AI-fokus och hemsidepartner`,
         description: getSharedHeroDescription('sv', cityId),
         primaryCta: { href: siteConfig.bookingLink, label: 'Boka ett intro-samtal' },
         tertiaryCta: { href: '#work', label: 'Se utvalda case' },
@@ -886,8 +886,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         eyebrow: 'Lokalt i Västsverige',
         title:
           cityId === 'gothenburg'
-            ? 'Senior utvecklingshjälp nära Göteborgs produktteam.'
-            : `Senior utvecklingshjälp för team i ${cityName} och närliggande orter.`,
+            ? 'IT-konsult och apputvecklare nära Göteborgs produktteam.'
+            : `IT-konsult och apputvecklare för team i ${cityName} och närliggande orter.`,
         intro: city.localFocus.sv,
         body: [
           `Jag går oftast in när ett team i ${cityName} behöver en senior utvecklare eller tech lead som kan växla mellan strategi, implementation och uppföljning utan att tempot faller.`,
