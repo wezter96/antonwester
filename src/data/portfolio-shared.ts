@@ -922,8 +922,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
     title: `Software Consultant in ${cityName} | ${siteConfig.companyName}`,
     description:
       cityId === 'gothenburg'
-        ? 'Anton Wester is an independent software consultant in Gothenburg helping teams with React, TypeScript, mobile apps, architecture, AI integration, automation, and accessibility through Anton Wester AB.'
-        : `Anton Wester is an independent software consultant helping teams in ${cityName} and ${regionName} with React, TypeScript, mobile apps, architecture, AI integration, automation, and accessibility through Anton Wester AB.`,
+        ? 'Anton Wester is a freelance software consultant in Gothenburg – helping teams with React, TypeScript, mobile apps, architecture and AI integration via Anton Wester AB.'
+        : `Anton Wester is a freelance software consultant – helping teams in ${cityName} and ${regionName} with React, TypeScript, mobile apps, architecture and AI integration via Anton Wester AB.`,
   },
     cityName,
     regionName,
@@ -942,11 +942,11 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       { href: '#contact', label: 'Contact' },
     ],
     hero: {
-      eyebrow: `Independent software consultant · ${siteConfig.companyName} · ${cityName} / Remote`,
+      eyebrow: `Freelance software consultant · ${siteConfig.companyName} · ${cityName} / Remote`,
       title:
         cityId === 'gothenburg'
-          ? 'Software consulting and tech leadership for product teams in Gothenburg that value quality, accessibility, and sustainable delivery.'
-          : `Software consulting for teams in ${cityName} that value quality, accessibility, and sustainable delivery.`,
+          ? 'Software Consultant in Gothenburg | React, TypeScript & AI Integration'
+          : `Software Consultant in ${cityName} | React, TypeScript & AI Integration`,
       description: getSharedHeroDescription('en', cityId),
       primaryCta: { href: siteConfig.bookingLink, label: 'Book an intro call' },
       tertiaryCta: { href: '#work', label: 'See selected work' },
