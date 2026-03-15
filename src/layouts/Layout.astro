@@ -95,9 +95,7 @@ const themeBootScript = `(() => {
       <script type="application/ld+json" set:html={JSON.stringify(entry)}></script>
     ))}
     <script is:inline set:html={themeBootScript}></script>
-    {import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
-      <script async src="https://cloud.umami.is/script.js" data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}></script>
-    )}
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="159f3935-55d2-40cc-8794-84a30e0fc443"></script>
   </head>
   <body>
     <slot />
