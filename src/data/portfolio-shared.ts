@@ -849,8 +849,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         title: `Mjukvarukonsult i ${cityName} | ${siteConfig.companyName}`,
         description:
           cityId === 'gothenburg'
-            ? 'Anton Wester är en oberoende mjukvarukonsult i Göteborg som hjälper team med React, TypeScript, mobilappar, arkitektur, AI-integration, automation och tillgänglighet via Anton Wester AB.'
-            : `Anton Wester är en oberoende mjukvarukonsult som hjälper team i ${cityName} och ${regionName} med React, TypeScript, mobilappar, arkitektur, AI-integration, automation och tillgänglighet via Anton Wester AB.`,
+            ? 'Anton Wester är frilansande mjukvarukonsult i Göteborg – hjälper team med React, TypeScript, mobilappar, arkitektur och AI-integration via Anton Wester AB.'
+            : `Anton Wester är frilansande mjukvarukonsult – hjälper team i ${cityName} och ${regionName} med React, TypeScript, mobilappar, arkitektur och AI-integration via Anton Wester AB.`,
       },
       cityName,
       regionName,
@@ -872,8 +872,8 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         eyebrow: `Frilansande mjukvarukonsult · ${siteConfig.companyName} · ${cityName} / Remote`,
         title:
           cityId === 'gothenburg'
-            ? 'IT- och appkonsult i Göteborg | Apputvecklare & AI-utvecklare'
-            : `IT- och apputvecklarkonsult i ${cityName} | Apputvecklare med AI-fokus`,
+            ? 'Mjukvarukonsult i Göteborg | React, TypeScript & AI-integration'
+            : `Mjukvarukonsult i ${cityName} | React, TypeScript & AI-integration`,
         description: getSharedHeroDescription('sv', cityId),
         primaryCta: { href: siteConfig.bookingLink, label: 'Boka ett intro-samtal' },
         tertiaryCta: { href: '#work', label: 'Se utvalda case' },

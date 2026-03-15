@@ -44,13 +44,20 @@ export async function getPortfolioPage(locale: Locale, cityId: CityId, pathOverr
   const { default: content } = await contentLoaders[locale][cityId]();
   const path = pathOverride ?? buildPath(locale, cityId);
 
+  let alternates = getRouteAlternates(cityId);
+  if (pathOverride) {
+    alternates = alternates.map((alt) =>
+      alt.hreflang === locale ? { ...alt, href: `${siteConfig.siteUrl}${pathOverride}` } : alt,
+    );
+  }
+
   return {
     locale,
     cityId,
     path,
     switchHref: buildPath(locale === 'en' ? 'sv' : 'en', cityId),
     ogImageUrl: buildOgImageUrl(locale, cityId),
-    alternates: getRouteAlternates(cityId),
+    alternates,
     locationLinks: getLocationLinks(locale, cityId),
     content,
     structuredData: buildStructuredData({
