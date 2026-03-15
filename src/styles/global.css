@@ -11,6 +11,7 @@
   --amber:        #c49a50;
   --amber-light:  #e8d0a0;
   --cream:        #f0ece3;
+  --cream-warm:   #f7f3eb;
   --cream-dark:   #e0dbd0;
   --max-width:    1120px;
   --success:      #2e7d52;
@@ -643,7 +644,6 @@ button, input, select, textarea {
   font-weight: 600;
 }
 
-.faq-section .tag-dark,
 .services-section .tag-dark {
   background: var(--cream);
   border: 1px solid rgba(28, 58, 46, 0.18);
@@ -849,9 +849,17 @@ button, input, select, textarea {
   );
 }
 
-.local-section,
+.local-section {
+  background: var(--cream);
+}
+
 .faq-section {
   background: var(--cream);
+}
+
+/* ─── SERVICES (cream-warm, lighter than local) ─── */
+.services-section {
+  background: var(--cream-warm);
 }
 
 .local-section .section-intro,
@@ -1002,9 +1010,9 @@ button, input, select, textarea {
   color: var(--green-deep);
 }
 
-/* ─── CONTACT (cream, matches services) ─── */
+/* ─── CONTACT (cream-dark, distinct from local/services) ─── */
 .contact-section {
-  background: var(--cream);
+  background: var(--cream-dark);
 }
 
 .contact-section .section-label { color: var(--green-muted); }
@@ -1272,7 +1280,11 @@ button, input, select, textarea {
 
   .services-grid,
   .work-grid,
-  .faq-list {
+.faq-section .section-label { color: var(--green-deep); }
+.faq-section .section-title { color: var(--green-deep); }
+.faq-section .section-intro { color: var(--green-deep); }
+
+.faq-list {
     grid-template-columns: 1fr;
   }
 

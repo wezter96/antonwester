@@ -587,7 +587,7 @@ function getSwedishProjects(): PortfolioContent['projects'] {
 function getEnglishExperience(): PortfolioContent['experience'] {
   return {
     eyebrow: 'Experience',
-    title: 'Shaped by product teams, cross-platform leadership, and a passion for polished delivery.',
+    title: 'Experience across product development, architecture, and cross-platform delivery.',
     description: 'My background spans product development, architecture, cross-platform delivery, and the kind of close collaboration that helps teams keep shipping.',
     items: [
       {
@@ -632,7 +632,7 @@ function getEnglishExperience(): PortfolioContent['experience'] {
 function getSwedishExperience(): PortfolioContent['experience'] {
   return {
     eyebrow: 'Erfarenhet',
-    title: 'Formad av produktteam, cross-platform-ledarskap och passion för tydlig leverans.',
+    title: 'Erfarenhet inom produktutveckling, arkitektur och cross-platform-leverans.',
     description: 'Min bakgrund spänner över produktutveckling, arkitektur, cross-platform-leverans och det nära samarbetet som hjälper team att fortsätta skeppa.',
     items: [
       {
