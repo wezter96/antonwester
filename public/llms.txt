@@ -1,0 +1,27 @@
+# Anton Wester AB
+
+> Frilansande mjukvarukonsult i Göteborg – hjälper team med React, TypeScript, mobilappar, arkitektur och AI-integration via Anton Wester AB.
+
+Anton Wester AB is an independent software consultancy based in Gothenburg, Sweden. Anton Wester provides freelance software consulting including React, TypeScript, React Native, Next.js, full stack development, AI integration, accessibility, and fractional technical leadership.
+
+## Services
+
+- React & Next.js development
+- React Native mobile app development
+- TypeScript & full stack development
+- AI integration & automation
+- Software architecture & fractional tech lead
+- Accessibility consulting & performance optimisation
+
+## Languages
+
+Works in Swedish and English.
+
+## Location
+
+Gothenburg, Sweden — available remote.
+
+## Links
+
+- Homepage (SV): https://antonwester.se/
+- Homepage (EN): https://antonwester.se/en/gothenburg

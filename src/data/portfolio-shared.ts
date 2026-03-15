@@ -846,7 +846,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
   if (locale === 'sv') {
     return {
       seo: {
-        title: `Mjukvarukonsult i ${cityName} | ${siteConfig.companyName}`,
+        title: `Frilansande mjukvarukonsult i ${cityName} | ${siteConfig.companyName}`,
         description:
           cityId === 'gothenburg'
             ? 'Anton Wester är frilansande mjukvarukonsult i Göteborg – hjälper team med React, TypeScript, mobilappar, arkitektur och AI-integration via Anton Wester AB.'
