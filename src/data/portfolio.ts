@@ -5,6 +5,7 @@ import {
   cityIds,
   getLocationLinks,
   getRouteAlternates,
+  siteConfig,
   type CityId,
   type Locale,
   type PortfolioContent,
