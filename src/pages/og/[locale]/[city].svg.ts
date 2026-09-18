@@ -25,8 +25,8 @@ function renderOgImage(locale: Locale, cityId: CityId): string {
   const serviceLabel = locale === 'sv' ? 'Mjukvarukonsult' : 'Software Consultant';
   const capabilityLabel =
     locale === 'sv'
-      ? 'React · TypeScript · Mobil · Tech lead'
-      : 'React · TypeScript · Mobile · Tech Lead';
+      ? 'React · TypeScript · Mobil · Fractional CTO'
+      : 'React · TypeScript · Mobile · Fractional CTO';
   const locationLabel =
     locale === 'sv' ? `I ${content.cityName}` : `In ${content.cityName}`;
 

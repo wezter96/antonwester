@@ -439,7 +439,7 @@ function getEnglishServices(): PortfolioContent['services'] {
     description: 'I am most useful when a team needs someone who can both think clearly about the system and build the thing that matters now.',
     items: [
       {
-        title: 'Fractional tech lead',
+        title: 'Fractional CTO',
         body: 'Guide architecture, reduce delivery risk, and create momentum for teams that need senior technical leadership without a full-time hire yet.',
         outcomes: ['Technical direction', 'Decision support', 'Delivery clarity'],
       },
@@ -469,7 +469,7 @@ function getSwedishServices(): PortfolioContent['services'] {
     description: 'Jag är som mest värdefull när ett team behöver någon som både kan tänka klart om systemet och bygga det som är viktigast just nu.',
     items: [
       {
-        title: 'Fractional tech lead',
+        title: 'Fractional CTO',
         body: 'Hjälper team att fatta bättre tekniska beslut, minska leveransrisk och skapa momentum utan att behöva göra en full rekrytering direkt.',
         outcomes: ['Teknisk riktning', 'Beslutsstöd', 'Tydligare leverans'],
       },
@@ -498,6 +498,15 @@ function getEnglishProjects(): PortfolioContent['projects'] {
     title: 'A few things that show how I think, build, and lead.',
     description: 'From product-facing apps to internal platforms and open source, I care about useful software, clean architecture, and experiences that feel considered.',
     items: [
+      {
+        name: 'SökHem',
+        label: 'Founder project',
+        summary: 'Swedish housing platform I co-founded where buyers describe what they are looking for once and get matched automatically, and sellers can list for free with or without an agent.',
+        impact: 'Live marketplace with 120,000+ homes, daily matching, valuations, and direct buyer–seller chat.',
+        tags: ['TanStack Start', 'TypeScript', 'Hono'],
+        href: 'https://sokhem.se',
+        linkLabel: 'Visit SökHem',
+      },
       {
         name: 'Lingo',
         label: 'Founder project',
@@ -544,6 +553,15 @@ function getSwedishProjects(): PortfolioContent['projects'] {
     title: 'Några projekt som visar hur jag tänker, bygger och leder.',
     description: 'Från produktnära appar till interna plattformar och open source bryr jag mig om användbar mjukvara, ren arkitektur och upplevelser som känns genomtänkta.',
     items: [
+      {
+        name: 'SökHem',
+        label: 'Eget produktprojekt',
+        summary: 'Svensk bostadsplattform som jag var med och grundade – köpare beskriver vad de söker en gång och matchas automatiskt, säljare kan annonsera gratis med eller utan mäklare.',
+        impact: 'Live marknadsplats med 120 000+ bostäder, daglig matchning, värdering och direkt chatt mellan köpare och säljare.',
+        tags: ['TanStack Start', 'TypeScript', 'Hono'],
+        href: 'https://sokhem.se',
+        linkLabel: 'Besök SökHem',
+      },
       {
         name: 'Lingo',
         label: 'Eget produktprojekt',
@@ -719,7 +737,7 @@ function getEnglishContact(cityId: CityId): PortfolioContent['contact'] {
     },
     inquiryOptions: [
       { value: 'Product build', label: 'Product build' },
-      { value: 'Fractional tech lead', label: 'Fractional tech lead' },
+      { value: 'Fractional CTO', label: 'Fractional CTO' },
       { value: 'Architecture review', label: 'Architecture review' },
       { value: 'Hiring / recruiting', label: 'Hiring / recruiting' },
       { value: 'Other', label: 'Other' },
@@ -776,7 +794,7 @@ function getSwedishContact(cityId: CityId): PortfolioContent['contact'] {
     },
     inquiryOptions: [
       { value: 'Produktbygge', label: 'Produktbygge' },
-      { value: 'Fractional tech lead', label: 'Fractional tech lead' },
+      { value: 'Fractional CTO', label: 'Fractional CTO' },
       { value: 'Arkitekturöversyn', label: 'Arkitekturöversyn' },
       { value: 'Rekrytering', label: 'Rekrytering' },
       { value: 'Övrigt', label: 'Övrigt' },
@@ -799,7 +817,7 @@ function getEnglishFaq(cityId: CityId): PortfolioContent['faq'] {
     items: [
       {
         question: `Do you take on software consulting projects in ${cityName}?`,
-        answer: `Yes. I work with teams in ${getServiceAreaLead('en', cityId)} on product development, architecture, performance work, and fractional tech lead support.`,
+        answer: `Yes. I work with teams in ${getServiceAreaLead('en', cityId)} on product development, architecture, performance work, and fractional CTO support.`,
       },
       {
         question: `What kinds of projects are a good fit in ${cityName}?`,
@@ -824,7 +842,7 @@ function getSwedishFaq(cityId: CityId): PortfolioContent['faq'] {
     items: [
       {
         question: `Tar du uppdrag som mjukvarukonsult i ${cityName}?`,
-        answer: `Ja. Jag jobbar med team i ${getServiceAreaLead('sv', cityId)} inom produktutveckling, arkitektur, prestanda och fractional tech lead-stöd.`,
+        answer: `Ja. Jag jobbar med team i ${getServiceAreaLead('sv', cityId)} inom produktutveckling, arkitektur, prestanda och fractional CTO-stöd.`,
       },
       {
         question: `Vilka typer av projekt passar bäst i ${cityName}?`,
@@ -860,7 +878,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
         label: 'Tillgänglig',
         context: cityId === 'gothenburg' ? 'Göteborg / Remote' : `${cityName} / Hybrid`,
       },
-      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional tech lead', 'Arkitektur', 'AI-integration', 'Tillgänglighet', 'Prestanda', 'Produktutveckling'],
+      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional CTO', 'Arkitektur', 'AI-integration', 'Tillgänglighet', 'Prestanda', 'Produktutveckling'],
       nav: [
         { href: '#services', label: 'Tjänster' },
         { href: '#work', label: 'Utvalda case' },
@@ -890,13 +908,13 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
             : `IT-konsult och apputvecklare för team i ${cityName} och närliggande orter.`,
         intro: city.localFocus.sv,
         body: [
-          `Jag går oftast in när ett team i ${cityName} behöver en senior utvecklare eller tech lead som kan växla mellan strategi, implementation och uppföljning utan att tempot faller.`,
+          `Jag går oftast in när ett team i ${cityName} behöver en senior utvecklare eller fractional CTO som kan växla mellan strategi, implementation och uppföljning utan att tempot faller.`,
           'Det kan handla om att stabilisera en roadmap, få loss en release eller höja kvaliteten i en webb- eller mobilprodukt samtidigt som teamet fortsätter leverera.',
         ],
         highlightsTitle: 'Vanligt stöd',
         highlights: [
           'Senior React-, Next.js-, React Native- och TypeScript-leverans',
-          'Tech lead-stöd för arkitektur, prioritering och leverans',
+          'Fractional CTO-stöd för arkitektur, prioritering och leverans',
           'Webb- och mobilproduktutveckling för växande team',
         ],
         nearbyAreasLabel: 'Närliggande områden',
@@ -933,7 +951,7 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
       label: 'Available',
       context: cityId === 'gothenburg' ? 'Gothenburg / Remote' : `${cityName} / Hybrid`,
     },
-      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional Tech Lead', 'Architecture', 'AI integration', 'Accessibility', 'Performance', 'Product Engineering'],
+      tickerItems: ['React', 'Next.js', 'React Native', 'TypeScript', 'Full stack', 'Fractional CTO', 'Architecture', 'AI integration', 'Accessibility', 'Performance', 'Product Engineering'],
     nav: [
       { href: '#services', label: 'Services' },
       { href: '#work', label: 'Selected work' },
@@ -963,13 +981,13 @@ export function createPortfolioContent(locale: Locale, cityId: CityId): Portfoli
           : `Senior product engineering for teams in ${cityName} and nearby areas.`,
       intro: city.localFocus.en,
       body: [
-        `I am usually most useful when a team in ${cityName} needs a senior engineer or fractional tech lead who can move between strategy, implementation, and follow-through without slowing delivery down.`,
+        `I am usually most useful when a team in ${cityName} needs a senior engineer or fractional CTO who can move between strategy, implementation, and follow-through without slowing delivery down.`,
         'That often means stabilising a roadmap, unblocking a release, improving a codebase, or making a web or mobile product feel far more considered.',
       ],
       highlightsTitle: 'Typical support',
       highlights: [
         'Senior React, Next.js, React Native, and TypeScript delivery',
-        'Fractional tech lead support for architecture and planning',
+        'Fractional CTO support for architecture and planning',
         'Web and mobile product development for growing teams',
       ],
       nearbyAreasLabel: 'Nearby areas',
@@ -1018,8 +1036,8 @@ export function buildStructuredData({
   const pageLanguage = locale === 'sv' ? 'sv-SE' : 'en';
   const serviceType =
     locale === 'sv'
-      ? ['Mjukvarukonsult', 'Tech lead-stöd', 'React-utveckling', 'Produktutveckling']
-      : ['Software consultant', 'Fractional tech lead', 'React development', 'Product engineering'];
+      ? ['Mjukvarukonsult', 'Fractional CTO-stöd', 'React-utveckling', 'Produktutveckling']
+      : ['Software consultant', 'Fractional CTO', 'React development', 'Product engineering'];
 
   return [
     {
@@ -1066,7 +1084,7 @@ export function buildStructuredData({
       name: 'Anton Wester',
       url: siteConfig.siteUrl,
       image: ogImageUrl,
-      jobTitle: locale === 'sv' ? 'Mjukvarukonsult och tech lead' : 'Software consultant and fractional tech lead',
+      jobTitle: locale === 'sv' ? 'Mjukvarukonsult och fractional CTO' : 'Software consultant and fractional CTO',
       sameAs: [siteConfig.linkedinLink, siteConfig.githubLink, siteConfig.lingoLink],
       knowsAbout: ['React', 'Next.js', 'React Native', 'TypeScript', 'Localization', 'Software Architecture'],
     },
