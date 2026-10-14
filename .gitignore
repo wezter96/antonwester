@@ -28,3 +28,4 @@ pnpm-debug.log*
 .unlighthouse/
 .playwright-mcp/
 .taste-skill/
+.vitest/
