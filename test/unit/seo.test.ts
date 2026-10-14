@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { allPages, LOCALES, urlFor } from '../../src/content/routes';
-import { headForCase, headForCity, headForHome, headForService, personLd } from '../../src/lib/seo';
+import { headForCase, headForCity, headForHome, headForService, personLd, professionalServiceLd, serviceLd } from '../../src/lib/seo';
 import type { PageRef } from '../../src/content/routes';
 
 const headFor = (p: PageRef, l: 'sv' | 'en') =>
@@ -38,5 +38,16 @@ describe('heads', () => {
   it('gives the person the agreed job title per locale', () => {
     expect(personLd('sv').jobTitle).toBe('AI-konsult och systemarkitekt');
     expect(personLd('en').jobTitle).toBe('AI consultant and software architect');
+  });
+});
+
+describe('local and service signals', () => {
+  it('places the business in Göteborg', () => {
+    const ld = professionalServiceLd('sv', 'https://antonwester.se/') as { address?: Record<string, string> };
+    expect(ld.address).toMatchObject({ '@type': 'PostalAddress', addressLocality: 'Göteborg', addressCountry: 'SE' });
+  });
+  it('types each service', () => {
+    const ld = serviceLd({ url: 'https://antonwester.se/sv/ai-agenter/', name: 'AI-agenter', description: 'x', locale: 'sv' }) as { serviceType?: string };
+    expect(ld.serviceType).toBe('AI-agenter');
   });
 });

@@ -23,6 +23,8 @@ export interface ServiceContent {
   fitsWhen: string[];
   firstEngagement: string;
   relatedCases: CaseId[];
+  /** Neighbouring services the page links to, so overlapping intents point at their own page. */
+  relatedServices?: ServiceId[];
   faq: Faq[];
 }
 
@@ -65,7 +67,7 @@ export type Client =
   | { id: string; name: string; kind: 'symbol-text'; file: string; text: string }
   | { id: string; name: string; kind: 'text'; text: string; dot: boolean };
 
-export interface Stage { word: string; lead: string; body: string; service: ServiceId; linkLabel: string; wdth: number }
+export interface Stage { word: string; lead: string; body: string; service: ServiceId; linkLabel: string; wdth: number; more?: Array<{ service: ServiceId; label: string }> }
 export interface ExperienceRow { years: string; role: string; org: string }
 
 export interface HomeContent {
@@ -122,7 +124,7 @@ export interface Ui {
   };
   footer: { org: string; services: string; cities: string; cv: string };
   caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string };
-  serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string };
+  serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string; related: string };
   cityLabels: { nearby: string; delivery: string; services: string; neighbours: string; useCases: string; products: string };
   notFound: { title: string; body: string; home: string };
 }

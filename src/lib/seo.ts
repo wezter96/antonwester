@@ -28,10 +28,12 @@ const ORG = `${SITE_URL}/#organization`;
 const PERSON = `${SITE_URL}/#anton-wester`;
 const WEBSITE = `${SITE_URL}/#website`;
 const lang = (l: Locale) => (l === 'sv' ? 'sv-SE' : 'en');
+// a service-area business: the locality is public, a street address is not needed
+const ADDRESS = { '@type': 'PostalAddress', addressLocality: 'Göteborg', addressRegion: 'Västra Götalands län', addressCountry: 'SE' } as const;
 
 export const organizationLd = (): Ld => ({
   '@context': CTX, '@type': 'Organization', '@id': ORG, name: site.company, url: SITE_URL,
-  email: site.email, logo: `${SITE_URL}/monogram.svg`, founder: { '@id': PERSON }, sameAs: [site.linkedin, site.github],
+  email: site.email, logo: `${SITE_URL}/monogram.svg`, address: ADDRESS, founder: { '@id': PERSON }, sameAs: [site.linkedin, site.github],
 });
 
 export const personLd = (l: Locale): Ld => ({
@@ -64,7 +66,7 @@ export const breadcrumbLd = (url: string, crumbs: Crumb[]): Ld => ({
 
 export const professionalServiceLd = (l: Locale, url: string): Ld => ({
   '@context': CTX, '@type': 'ProfessionalService', '@id': `${url}#service`, name: site.company, url,
-  description: home[l].seo.description, image: `${SITE_URL}${ogPath({ kind: 'home' }, l)}`, email: site.email,
+  description: home[l].seo.description, image: `${SITE_URL}${ogPath({ kind: 'home' }, l)}`, email: site.email, address: ADDRESS,
   areaServed: [{ '@type': 'City', name: l === 'sv' ? 'Göteborg' : 'Gothenburg' }, ...CITY_IDS.map((id) => ({ '@type': 'City', name: cities[id][l].name }))],
   provider: { '@id': ORG }, founder: { '@id': PERSON },
   hasOfferCatalog: {
@@ -74,7 +76,7 @@ export const professionalServiceLd = (l: Locale, url: string): Ld => ({
 });
 
 export const serviceLd = (o: { url: string; name: string; description: string; locale: Locale }): Ld => ({
-  '@context': CTX, '@type': 'Service', '@id': `${o.url}#service`, name: o.name, description: o.description, url: o.url,
+  '@context': CTX, '@type': 'Service', '@id': `${o.url}#service`, name: o.name, serviceType: o.name, description: o.description, url: o.url,
   provider: { '@id': ORG }, areaServed: { '@type': 'Country', name: o.locale === 'sv' ? 'Sverige' : 'Sweden' }, inLanguage: lang(o.locale),
 });
 

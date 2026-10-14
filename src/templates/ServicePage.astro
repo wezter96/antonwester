@@ -18,6 +18,8 @@ const s = services[id][locale];
 const t = ui[locale];
 const L = t.serviceLabels;
 const page: PageRef = { kind: 'service', id };
+// the form keeps the spec's five inquiry options; agents and automation are AI development
+const inquiry = t.contact.inquiries.includes(s.name) ? s.name : services.development[locale].name;
 ---
 <Base head={headForService(id, locale)}>
   <Nav locale={locale} page={page} />
@@ -51,6 +53,12 @@ const page: PageRef = { kind: 'service', id };
           <p>{L.homeLead} <a class="lnk" href={pathFor({ kind: 'home' }, locale)}>{L.homeLink}</a>.</p>
         </div>
       </div>
+      {s.relatedServices && (
+        <div class="block grid">
+          <h2 class="sub">{L.related}</h2>
+          <p class="col related">{s.relatedServices.map((r) => <a class="lnk" href={pathFor({ kind: 'service', id: r }, locale)}>{services[r][locale].name}</a>)}</p>
+        </div>
+      )}
     </section>
     {s.relatedCases.length > 0 && (
       <section class="cases" data-ground="fog">
@@ -59,7 +67,7 @@ const page: PageRef = { kind: 'service', id };
       </section>
     )}
     <Faq id="faq" heading={L.faq} items={s.faq} />
-    <Contact locale={locale} inquiry={s.name} />
+    <Contact locale={locale} inquiry={inquiry} />
   </main>
   <Footer locale={locale} page={page} />
 </Base>
@@ -77,6 +85,7 @@ const page: PageRef = { kind: 'service', id };
     content: counter(step); font-size: var(--step-sub); font-weight: 800; font-stretch: 112%;
     line-height: 1; font-variant-numeric: tabular-nums;
   }
+  .related { display: flex; flex-wrap: wrap; gap: 12px 28px; max-width: none; padding-left: 0; }
   .cases { padding: var(--section) var(--margin); }
   @media (max-width: 900px) {
     .block h2, .col { grid-column: 1 / -1; }

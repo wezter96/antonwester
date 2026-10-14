@@ -12,6 +12,8 @@ const wordCount = (s: string) => s.split(/\s+/).filter(Boolean).length;
 const TERMS = {
   assessment: { sv: 'AI-kartläggning', en: 'AI assessment' },
   development: { sv: 'AI-utveckling', en: 'AI development' },
+  agents: { sv: 'AI-agenter', en: 'AI agents' },
+  automation: { sv: 'AI-automation', en: 'AI automation' },
   operations: { sv: 'drift och förvaltning', en: 'hosting and maintenance' },
   cto: { sv: 'Fractional CTO', en: 'Fractional CTO' },
 } as const;

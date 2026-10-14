@@ -2,7 +2,7 @@ export type Locale = 'sv' | 'en';
 export const LOCALES: readonly Locale[] = ['sv', 'en'];
 export const SITE_URL = 'https://antonwester.se';
 
-export const SERVICE_IDS = ['assessment', 'development', 'operations', 'cto'] as const;
+export const SERVICE_IDS = ['assessment', 'development', 'agents', 'automation', 'operations', 'cto'] as const;
 export type ServiceId = (typeof SERVICE_IDS)[number];
 
 export const CASE_IDS = ['sokhem', 'openaudit', 'wez', 'lingo'] as const;
@@ -24,6 +24,8 @@ export type SlugPage = Extract<PageRef, { kind: 'service' | 'city' }>;
 export const SERVICE_SLUGS: Record<ServiceId, Record<Locale, string>> = {
   assessment: { sv: 'ai-kartlaggning', en: 'ai-assessment' },
   development: { sv: 'ai-utveckling', en: 'ai-development' },
+  agents: { sv: 'ai-agenter', en: 'ai-agents' },
+  automation: { sv: 'ai-automation', en: 'ai-automation' },
   operations: { sv: 'drift-och-forvaltning', en: 'hosting-and-maintenance' },
   cto: { sv: 'fractional-cto', en: 'fractional-cto' },
 };
