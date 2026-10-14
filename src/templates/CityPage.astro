@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Approach from '../components/Approach.astro';
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Scan from '../components/Scan.astro';
+import Work from '../components/Work.astro';
+import { cities } from '../content/cities';
+import { home } from '../content/home';
+import { pathFor, type CityId, type Locale, type PageRef } from '../content/routes';
+import { ui } from '../content/ui';
+import { headForCity } from '../lib/seo';
+
+interface Props { id: CityId; locale: Locale }
+const { id, locale } = Astro.props;
+const c = cities[id][locale];
+const t = ui[locale];
+const L = t.cityLabels;
+const page: PageRef = { kind: 'city', id };
+---
+<Base head={headForCity(id, locale)} intro>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} monument={[c.name]} h1={c.h1} intro={c.focus}>
+      <p class="nearby"><span class="sr-only">{L.nearby}: </span>{c.nearby.join(' · ')}</p>
+    </PageHero>
+    <section class="copy" data-ground="fog">
+      <div class="block grid">
+        <div class="col">{c.paragraphs.map((p) => <p>{p}</p>)}</div>
+      </div>
+      <div class="block grid">
+        <h2 class="sub">{L.delivery}</h2>
+        <div class="col"><p>{c.deliveryMode}</p></div>
+      </div>
+    </section>
+    <Scan locale={locale} />
+    <Approach locale={locale} />
+    <Work locale={locale} />
+    <Faq id="faq" heading={t.faqHeading} items={c.faq} />
+    <section class="copy near" data-ground="fog">
+      <div class="block grid">
+        <h2 class="sub">{L.neighbours}</h2>
+        <p class="col links">
+          {c.neighbours.map((n) => <a class="lnk" href={pathFor({ kind: 'city', id: n }, locale)}>{cities[n][locale].h1}</a>)}
+          <a class="lnk" href={pathFor({ kind: 'home' }, locale)}>{home[locale].h1Tail.replace(/\.$/, '')}</a>
+        </p>
+      </div>
+    </section>
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>
+
+<style>
+  .nearby { color: var(--soft); max-width: 60ch; }
+  .copy { padding: clamp(64px, 8vw, 140px) var(--margin); display: grid; gap: clamp(48px, 6vw, 96px); }
+  .near { padding-block: clamp(48px, 6vw, 96px); }
+  .block { row-gap: 20px; align-items: start; }
+  .block h2 { grid-column: 1 / 4; }
+  .col { grid-column: 4 / 11; max-width: 62ch; display: grid; gap: 1em; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; max-width: none; }
+  @media (max-width: 900px) {
+    .block h2, .col { grid-column: 1 / -1; }
+  }
+</style>

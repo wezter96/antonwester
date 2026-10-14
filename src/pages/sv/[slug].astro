@@ -1,0 +1,11 @@
+---
+import { slugPages, type SlugPage } from '../../content/routes';
+import ServicePage from '../../templates/ServicePage.astro';
+import CityPage from '../../templates/CityPage.astro';
+
+export function getStaticPaths() {
+  return slugPages('sv').map(({ slug, page }) => ({ params: { slug }, props: { page } }));
+}
+const { page } = Astro.props as { page: SlugPage };
+---
+{page.kind === 'service' ? <ServicePage id={page.id} locale="sv" /> : <CityPage id={page.id} locale="sv" />}

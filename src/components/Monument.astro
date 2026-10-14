@@ -12,8 +12,10 @@ interface Props {
   setting?: Setting;
   targetVw?: number;
   gapEm?: number;
+  /** Largest font size in svh, so short words don't outgrow the screen. */
+  capSvh?: number;
 }
-const { words, spaceEm = 0, as: Tag = 'h1', tail, decorative = false, setting = MONUMENT, targetVw = 82, gapEm = 0.12 } = Astro.props;
+const { words, spaceEm = 0, as: Tag = 'h1', tail, decorative = false, setting = MONUMENT, targetVw = 82, gapEm = 0.12, capSvh } = Astro.props;
 const desktop = lineSizeVw(spaceEm ? [words[0], spaceEm, ...words.slice(1)] : words, targetVw, gapEm, setting);
 const longest = words.reduce((a, b) => (b.length > a.length ? b : a));
 const mobile = lineSizeVw([longest], 88, 0, setting);
@@ -24,7 +26,7 @@ const letters = words.map((w) => [...w].map((ch) => ({ ch, delay: index++ * 55 }
   class="monument-area"
   data-monument-area
   aria-hidden={decorative ? 'true' : undefined}
-  style={`--mono-d:${desktop}vw;--mono-m:${mobile}vw;--mono-wdth:${setting.wdth};--mono-track:${setting.tracking}em;--mono-gap:${gapEm}em;--mono-space:${spaceEm}em`}
+  style={`--mono-d:${desktop}vw;--mono-m:${mobile}vw;--mono-wdth:${setting.wdth};--mono-track:${setting.tracking}em;--mono-gap:${gapEm}em;--mono-space:${spaceEm}em${capSvh ? `;--mono-cap:${capSvh}svh` : ''}`}
 >
   <Tag class="monument" data-monument>
     <span class="line" aria-hidden="true">
@@ -43,7 +45,7 @@ const letters = words.map((w) => [...w].map((ch) => ({ ch, delay: index++ * 55 }
 <style>
   .monument-area { touch-action: pan-y; }
   .monument { margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: var(--mono-track); line-height: .8; font-size: inherit; }
-  .line { display: flex; justify-content: center; align-items: baseline; gap: var(--mono-gap); font-size: var(--mono-d); white-space: nowrap; user-select: none; -webkit-user-select: none; }
+  .line { display: flex; justify-content: center; align-items: baseline; gap: var(--mono-gap); font-size: min(var(--mono-d), var(--mono-cap, 100vw)); white-space: nowrap; user-select: none; -webkit-user-select: none; }
   .word { display: flex; }
   .ch {
     display: inline-block; font-variation-settings: 'wdth' var(--mono-wdth); transform-origin: 50% 100%;
@@ -54,7 +56,7 @@ const letters = words.map((w) => [...w].map((ch) => ({ ch, delay: index++ * 55 }
   .space { width: var(--mono-space); flex: none; }
   .tail { display: block; font-size: var(--step-lead); line-height: 1.35; font-weight: 700; text-transform: none; letter-spacing: 0; }
   @media (max-width: 640px) {
-    .line { flex-direction: column; align-items: center; font-size: var(--mono-m); gap: .08em; }
+    .line { flex-direction: column; align-items: center; font-size: min(var(--mono-m), var(--mono-cap, 100vw)); gap: .08em; }
     .space { display: none; }
   }
 </style>

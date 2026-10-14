@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import CaseRow from '../components/CaseRow.astro';
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Scan from '../components/Scan.astro';
+import { pathFor, type Locale, type PageRef, type ServiceId } from '../content/routes';
+import { services } from '../content/services';
+import { ui } from '../content/ui';
+import { headForService } from '../lib/seo';
+
+interface Props { id: ServiceId; locale: Locale }
+const { id, locale } = Astro.props;
+const s = services[id][locale];
+const t = ui[locale];
+const L = t.serviceLabels;
+const page: PageRef = { kind: 'service', id };
+---
+<Base head={headForService(id, locale)}>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} h1={s.h1} intro={s.intro} />
+    {id === 'assessment' && <Scan locale={locale} />}
+    <section class="copy" data-ground="fog">
+      {s.sections.map((sec) => (
+        <div class="block grid">
+          <h2 class="sub">{sec.heading}</h2>
+          <div class="col">
+            {sec.paragraphs.map((p) => <p>{p}</p>)}
+            {sec.list && <ul>{sec.list.map((li) => <li>{li}</li>)}</ul>}
+          </div>
+        </div>
+      ))}
+    </section>
+    <section class="copy" data-ground="fog2">
+      <div class="block grid">
+        <h2 class="sub">{L.steps}</h2>
+        <ol class="col steps">{s.steps.map((step) => <li>{step}</li>)}</ol>
+      </div>
+      <div class="block grid">
+        <h2 class="sub">{L.fits}</h2>
+        <ul class="col">{s.fitsWhen.map((f) => <li>{f}</li>)}</ul>
+      </div>
+      <div class="block grid">
+        <h2 class="sub">{L.first}</h2>
+        <div class="col">
+          <p class="lead">{s.firstEngagement}</p>
+          <p>{L.homeLead} <a class="lnk" href={pathFor({ kind: 'home' }, locale)}>{L.homeLink}</a>.</p>
+        </div>
+      </div>
+    </section>
+    {s.relatedCases.length > 0 && (
+      <section class="cases" data-ground="fog">
+        <div class="grid"><h2 class="head">{L.cases}</h2></div>
+        {s.relatedCases.map((c, i) => <CaseRow id={c} locale={locale} flip={i % 2 === 1} />)}
+      </section>
+    )}
+    <Faq id="faq" heading={L.faq} items={s.faq} />
+    <Contact locale={locale} inquiry={s.name} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<style>
+  .copy { padding: clamp(64px, 8vw, 140px) var(--margin); display: grid; gap: clamp(48px, 6vw, 96px); }
+  .block { row-gap: 20px; align-items: start; }
+  .block h2 { grid-column: 1 / 4; }
+  .col { grid-column: 4 / 11; max-width: 62ch; display: grid; gap: 1em; }
+  ul.col, ol.col { margin: 0; padding-left: 1.2em; }
+  .steps { list-style: none; padding: 0; counter-reset: step; gap: clamp(20px, 2vw, 28px); }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 2.4em 1fr; gap: 16px; align-items: baseline; }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero); font-size: var(--step-sub); font-weight: 800; font-stretch: 112%;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .cases { padding: var(--section) var(--margin); }
+  @media (max-width: 900px) {
+    .block h2, .col { grid-column: 1 / -1; }
+  }
+</style>

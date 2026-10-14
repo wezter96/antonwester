@@ -1,0 +1,10 @@
+---
+import { CASE_IDS, type CaseId } from '../../../content/routes';
+import CasePage from '../../../templates/CasePage.astro';
+
+export function getStaticPaths() {
+  return CASE_IDS.map((id) => ({ params: { id } }));
+}
+const { id } = Astro.params as { id: CaseId };
+---
+<CasePage id={id} locale="sv" />

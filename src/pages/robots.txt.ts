@@ -1,7 +1,7 @@
-import { siteConfig } from '../data/portfolio';
+import { SITE_URL } from '../content/routes';
 
 export function GET() {
-  const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${siteConfig.siteUrl}/sitemap.xml`].join('\n');
+  const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_URL}/sitemap.xml`].join('\n');
 
   return new Response(body, {
     headers: {

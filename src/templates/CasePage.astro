@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import { cases } from '../content/cases';
+import { CASE_IDS, pathFor, type CaseId, type Locale, type PageRef } from '../content/routes';
+import { services } from '../content/services';
+import { ui } from '../content/ui';
+import { headForCase } from '../lib/seo';
+
+interface Props { id: CaseId; locale: Locale }
+const { id, locale } = Astro.props;
+const c = cases[id][locale];
+const t = ui[locale];
+const L = t.caseLabels;
+const page: PageRef = { kind: 'case', id };
+const next = cases[CASE_IDS[(CASE_IDS.indexOf(id) + 1) % CASE_IDS.length]][locale];
+const service = services[c.service][locale];
+const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
+const shot = shots[`../assets/shots/${id}.png`]?.default;
+---
+<Base head={headForCase(id, locale)} intro>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} monument={[c.name]} h1={c.h1} book={false} />
+    <figure class="shot" data-ground="fog">
+      {shot
+        ? <Image src={shot} alt={`${c.name}: ${c.tagline}`} widths={[960, 1600, 2400]} sizes="100vw" loading="eager" fetchpriority="high" />
+        : <div class="ph" aria-hidden="true">{c.name}</div>}
+    </figure>
+    <section class="copy" data-ground="fog">
+      <div class="block grid">
+        <h2 class="sub">{L.what}</h2>
+        <div class="col">{c.what.map((p) => <p>{p}</p>)}</div>
+      </div>
+      <div class="block grid">
+        <h2 class="sub">{L.how}</h2>
+        <div class="col">
+          {c.how.map((p) => <p>{p}</p>)}
+          <p><b>{L.stack}:</b> {c.stack.join(', ')}.</p>
+        </div>
+      </div>
+      <div class="block grid">
+        <h2 class="sub">{L.proves}</h2>
+        <div class="col">
+          {c.proves.map((p) => <p>{p}</p>)}
+          <dl class="facts">{c.facts.map((f) => <><dt>{f.value}</dt><dd>{f.label}</dd></>)}</dl>
+        </div>
+      </div>
+      <div class="block grid">
+        <p class="col links">
+          {c.url ? <a class="lnk" href={c.url} rel="noopener">{c.url.replace(/^https:\/\//, '')}</a> : <span class="private">{c.privateLabel}</span>}
+          <a class="lnk" href={pathFor({ kind: 'service', id: c.service }, locale)}>{L.service}: {service.name}</a>
+          <a class="lnk" href={pathFor({ kind: 'case', id: next.id }, locale)}>{L.next}: {next.name}</a>
+        </p>
+      </div>
+    </section>
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>
+
+<style>
+  .shot { margin: 0; padding: 0 var(--margin); }
+  .shot :global(img), .ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top left; }
+  .ph { display: flex; align-items: center; justify-content: center; background: var(--gs); color: var(--soft); font-size: var(--step-head); font-weight: 800; font-stretch: 112%; letter-spacing: -.03em; }
+  .copy { padding: clamp(64px, 8vw, 140px) var(--margin); display: grid; gap: clamp(48px, 6vw, 96px); }
+  .block { row-gap: 20px; align-items: start; }
+  .block h2 { grid-column: 1 / 4; }
+  .col { grid-column: 4 / 11; max-width: 62ch; display: grid; gap: 1em; }
+  .facts { margin: 1em 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
+  .facts dt { font-weight: 800; font-variant-numeric: tabular-nums; font-stretch: 112%; }
+  .facts dd { margin: 0; color: var(--soft); }
+  .links { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; max-width: none; }
+  .private { font-weight: 600; }
+  @media (max-width: 900px) {
+    .block h2, .col { grid-column: 1 / -1; }
+  }
+</style>

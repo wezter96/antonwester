@@ -1,0 +1,31 @@
+---
+import Monument from './Monument.astro';
+import type { Locale } from '../content/routes';
+import { site } from '../content/site';
+import { ui } from '../content/ui';
+
+interface Props { locale: Locale; h1: string; intro?: string; monument?: string[]; book?: boolean }
+const { locale, h1, intro, monument, book = true } = Astro.props;
+const t = ui[locale];
+---
+<section class:list={['page-hero', { big: monument }]} data-ground="fog">
+  {monument && <Monument words={monument} as="p" decorative capSvh={36} />}
+  <div class="txt">
+    <h1 class={monument ? 'sub' : 'head'}>{h1}</h1>
+    {intro && <p class="lead">{intro}</p>}
+    <slot />
+    {book && <a class="btn" href={site.booking} rel="noopener">{t.book}</a>}
+  </div>
+</section>
+
+<style>
+  .page-hero { padding: clamp(120px, 14vw, 220px) var(--margin) clamp(56px, 7vw, 112px); }
+  .big { padding-top: clamp(104px, 10vw, 160px); }
+  .big :global(.monument-area) { margin-inline: calc(-1 * var(--margin)); margin-bottom: clamp(32px, 4vw, 64px); }
+  .txt { display: grid; justify-items: start; gap: clamp(16px, 1.6vw, 24px); }
+  .head { max-width: 16ch; }
+  .lead { max-width: 46ch; }
+  .btn { margin-top: clamp(8px, 1.2vw, 16px); }
+  .txt { transition: opacity .8s ease .95s, transform 1s var(--ease-out) .95s; }
+  :global(.pre) .txt { opacity: 0; transform: translateY(12px); }
+</style>

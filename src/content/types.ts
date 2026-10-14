@@ -118,7 +118,7 @@ export interface Ui {
   };
   footer: { org: string; services: string; cities: string; cv: string };
   caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string };
-  serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string };
+  serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string };
   cityLabels: { nearby: string; delivery: string; services: string; neighbours: string };
   notFound: { title: string; body: string; home: string };
 }
