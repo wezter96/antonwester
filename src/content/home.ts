@@ -17,7 +17,7 @@ export const home: L10n<HomeContent> = {
       { word: 'Förvalta.', wdth: 125, service: 'operations', linkLabel: 'Om drift och förvaltning',
         lead: 'Jag driftar och förvaltar det åt er:', body: 'hosting, övervakning, säkerhet, uppdateringar och löpande förbättringar. Vill ni hellre driva det själva får teamet koden, dokumentationen och utbildningen. Ni väljer, och det finns ingen inlåsning.' },
     ],
-    workHeading: 'Jag bygger egna produkter också.',
+    workHeading: 'Egna produkter i drift',
     alsoLine: '<b>Dessutom:</b> <a href="/sv/case/lingo/">Lingo</a>, en AI-native plattform för lokalisering, och bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, ett open source-startpaket för typade webb- och mobilappar.',
     aboutHeading: 'Om mig',
     bio: [
@@ -70,7 +70,7 @@ export const home: L10n<HomeContent> = {
       { word: 'Run.', wdth: 125, service: 'operations', linkLabel: 'About hosting and maintenance',
         lead: 'I host and run it for you:', body: 'monitoring, security, updates and steady improvements. If you would rather run it yourselves, your team gets the code, the docs and the training. Your choice, and no lock-in.' },
     ],
-    workHeading: 'I build my own products too.',
+    workHeading: 'My own products, live',
     alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, an AI-native localization platform, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, an open-source starter for typed web and native apps.',
     aboutHeading: 'About',
     bio: [
