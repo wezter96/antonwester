@@ -1,0 +1,47 @@
+---
+import Monument from './Monument.astro';
+import { cities } from '../content/cities';
+import { CITY_IDS, SERVICE_IDS, otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
+import { services } from '../content/services';
+import { site } from '../content/site';
+import { ui } from '../content/ui';
+
+interface Props { locale: Locale; page: PageRef }
+const { locale, page } = Astro.props;
+const t = ui[locale];
+const other = otherLocale(locale);
+---
+<footer class="foot" data-ground="ink">
+  <div class="cols">
+    <nav aria-label={t.footer.services}>
+      <p class="h">{t.footer.services}</p>
+      <ul>{SERVICE_IDS.map((id) => <li><a href={pathFor({ kind: 'service', id }, locale)}>{services[id][locale].name}</a></li>)}</ul>
+    </nav>
+    <nav aria-label={t.footer.cities}>
+      <p class="h">{t.footer.cities}</p>
+      <ul>{CITY_IDS.map((id) => <li><a href={pathFor({ kind: 'city', id }, locale)}>{cities[id][locale].h1}</a></li>)}</ul>
+    </nav>
+    <div>
+      <p class="h">{site.company}</p>
+      <ul>
+        <li>{t.footer.org}</li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={site.linkedin} rel="noopener">LinkedIn</a></li>
+        <li><a href={site.github} rel="noopener">GitHub</a></li>
+        <li><a href={site.cv} download>{t.footer.cv}</a></li>
+        <li><a href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
+      </ul>
+    </div>
+  </div>
+  <Monument words={['Anton', 'Wester']} as="p" locale={locale} setting={{ wdth: 125, wght: 800, tracking: -0.03 }} targetVw={94} gapEm={0.25} />
+</footer>
+
+<style>
+  .foot { padding: clamp(64px, 8vw, 128px) 0 clamp(20px, 2.4vw, 32px); overflow: hidden; }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px var(--gutter); padding: 0 var(--margin) clamp(56px, 7vw, 112px); }
+  .h { font-weight: 700; margin-bottom: 12px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; color: var(--soft); }
+  a { text-decoration: none; display: inline-block; min-height: 28px; }
+  a:hover { color: var(--fg); text-decoration: underline; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,37 @@
+---
+import type { Faq } from '../content/types';
+
+interface Props { id: string; heading: string; items: Faq[]; ground?: 'fog' | 'fog2' | 'ink' }
+const { id, heading, items, ground = 'fog2' } = Astro.props;
+---
+<section id={id} class="faq" data-ground={ground}>
+  <div class="grid"><h2 class="head">{heading}</h2></div>
+  <div class="list">
+    {items.map((i) => (
+      <details>
+        <summary><span>{i.q}</span><i aria-hidden="true"></i></summary>
+        <p>{i.a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .faq { padding: var(--section) var(--margin); }
+  .faq h2 { grid-column: 1 / 10; margin-bottom: clamp(32px, 4vw, 64px); }
+  .list { display: grid; gap: 4px; max-width: 72rem; }
+  details { background: var(--gs); }
+  summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    padding: clamp(18px, 2vw, 28px); font-size: var(--step-lead); font-weight: 700; line-height: 1.25; letter-spacing: -.01em;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary i { position: relative; flex: none; width: 18px; height: 18px; }
+  summary i::before, summary i::after {
+    content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor;
+    transition: transform .35s var(--ease-out);
+  }
+  summary i::after { transform: rotate(90deg); }
+  details[open] summary i::after { transform: rotate(0deg); }
+  details p { padding: 0 clamp(18px, 2vw, 28px) clamp(20px, 2.4vw, 32px); max-width: 62ch; font-size: var(--step-body); }
+</style>

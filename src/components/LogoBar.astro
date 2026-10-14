@@ -1,0 +1,69 @@
+---
+import { CLIENTS } from '../content/clients';
+import type { Locale } from '../content/routes';
+import { ui } from '../content/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = ui[locale];
+---
+<div class="axis" role="group" aria-label={t.workedWith}>
+  <p class="say">{t.workedWith}</p>
+  <div class="track">
+    {[0, 1].map((copy) => (
+      <div class:list={['set', { dup: copy === 1 }]} aria-hidden={copy === 1 ? 'true' : undefined}>
+        {CLIENTS.map((c) => {
+          const attrs = copy === 0 ? { 'data-client': c.name } : {};
+          if (c.kind === 'mask') {
+            return <span class="item logo" role={copy === 0 ? 'img' : undefined} aria-label={copy === 0 ? c.name : undefined} {...attrs} style={`--src:url(${c.file});--r:${c.ratio};--h:${c.height}`} />;
+          }
+          if (c.kind === 'symbol-text') {
+            return <span class="item fm" {...attrs}><span class="logo" aria-hidden="true" style={`--src:url(${c.file});--r:1;--h:1.6`} />{c.text}</span>;
+          }
+          return <span class="item zd" {...attrs}>{c.text}{c.dot && <i aria-hidden="true" />}</span>;
+        })}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .axis {
+    --logo-u: clamp(14px, 1.15vw, 18px);
+    position: relative; display: flex; align-items: center; height: clamp(64px, 7.4vw, 104px);
+    background: var(--gs); overflow: hidden; transition: transform 1s var(--ease-out) 1.2s;
+  }
+  :global(.pre) .axis { transform: translateY(100%); }
+  .say {
+    position: relative; z-index: 2; flex: none; align-self: stretch; display: flex; align-items: center;
+    padding: 0 clamp(12px, 1.4vw, 20px) 0 var(--margin); background: var(--gs); font-weight: 650; white-space: nowrap;
+  }
+  .say::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 100%; width: clamp(64px, 11vw, 160px); pointer-events: none;
+    background: linear-gradient(90deg, var(--gs) 0%, color-mix(in srgb, var(--gs) 80%, transparent) 30%, color-mix(in srgb, var(--gs) 0%, transparent) 100%);
+  }
+  .axis::after {
+    content: ''; position: absolute; top: 0; bottom: 0; right: 0; z-index: 2; width: clamp(48px, 7vw, 120px); pointer-events: none;
+    background: linear-gradient(270deg, var(--gs), color-mix(in srgb, var(--gs) 0%, transparent));
+  }
+  .track { display: flex; flex: none; animation: drift 52s linear infinite; }
+  .axis:hover .track, .axis:focus-within .track { animation-play-state: paused; }
+  .set { display: flex; align-items: center; gap: clamp(40px, 6vw, 96px); padding-right: clamp(40px, 6vw, 96px); flex: none; }
+  @keyframes drift { to { transform: translateX(-50%); } }
+  .item { flex: none; opacity: .86; transition: opacity .3s; }
+  .axis:hover .item { opacity: .4; }
+  .axis .item:hover { opacity: 1; }
+  .logo {
+    display: block; height: calc(var(--h) * var(--logo-u)); aspect-ratio: var(--r); background: var(--fg);
+    -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat;
+  }
+  .fm, .zd { display: flex; align-items: center; gap: .5em; white-space: nowrap; }
+  .fm { font-weight: 700; font-size: calc(var(--logo-u) * 1.25); letter-spacing: -.01em; font-stretch: 88%; }
+  .fm .logo { opacity: 1; }
+  .zd { position: relative; font-weight: 600; font-size: calc(var(--logo-u) * 1.5); letter-spacing: -.03em; padding-right: .5em; }
+  .zd i { position: absolute; right: .05em; top: .12em; width: .26em; height: .26em; border-radius: 50%; background: currentColor; }
+  @media (prefers-reduced-motion: reduce) {
+    .track { animation: none; }
+    .dup { display: none; }
+  }
+</style>

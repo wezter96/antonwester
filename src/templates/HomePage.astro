@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import About from '../components/About.astro';
+import Approach from '../components/Approach.astro';
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import HomeHero from '../components/HomeHero.astro';
+import Nav from '../components/Nav.astro';
+import Scan from '../components/Scan.astro';
+import Work from '../components/Work.astro';
+import { home } from '../content/home';
+import type { Locale, PageRef } from '../content/routes';
+import { ui } from '../content/ui';
+import { headForHome } from '../lib/seo';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const page: PageRef = { kind: 'home' };
+---
+<Base head={headForHome(locale)} intro>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <HomeHero locale={locale} />
+    <Scan locale={locale} />
+    <Approach locale={locale} />
+    <Work locale={locale} />
+    <About locale={locale} />
+    <Faq id="faq" heading={ui[locale].faqHeading} items={home[locale].faq} />
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>

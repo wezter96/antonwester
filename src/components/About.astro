@@ -1,0 +1,47 @@
+---
+import Portrait from './Portrait.astro';
+import { home } from '../content/home';
+import type { Locale } from '../content/routes';
+import { site } from '../content/site';
+import { ui } from '../content/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = home[locale];
+const t = ui[locale];
+---
+<section id="about" class="about grid" data-ground="fog">
+  <div class="pic"><Portrait size="large" locale={locale} /></div>
+  <div class="body">
+    <h2 class="head">{c.aboutHeading}</h2>
+    <div class="bio">{c.bio.map((p) => <p class="lead">{p}</p>)}</div>
+    <table>
+      <caption class="sr-only">{locale === 'sv' ? 'Erfarenhet' : 'Experience'}</caption>
+      <tbody>
+        {c.experience.map((r) => <tr><td class="years">{r.years}</td><td>{r.role}</td><td class="org">{r.org}</td></tr>)}
+      </tbody>
+    </table>
+    <p class="stack">{c.stack}</p>
+    <p class="links">
+      <a class="lnk" href={site.linkedin} rel="noopener">LinkedIn</a>
+      <a class="lnk" href={site.github} rel="noopener">GitHub</a>
+      <a class="lnk" href={site.cv} download>{t.footer.cv}</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .about { padding: var(--section) var(--margin); row-gap: 40px; align-items: start; }
+  .pic { grid-column: 1 / 6; }
+  .body { grid-column: 7 / 13; }
+  .body h2 { margin-bottom: 28px; }
+  .bio { display: grid; gap: 16px; max-width: 48ch; }
+  table { width: 100%; border-collapse: collapse; margin: 36px 0 28px; }
+  td { padding: 11px 12px; vertical-align: top; }
+  tr:nth-child(odd) td { background: var(--gs); }
+  .years { white-space: nowrap; width: 1%; color: var(--soft); font-variant-numeric: tabular-nums; }
+  .org { font-weight: 700; text-align: right; white-space: nowrap; }
+  .stack { max-width: 60ch; color: var(--soft); }
+  .links { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+  @media (max-width: 800px) { .pic, .body { grid-column: 1 / -1; } }
+</style>

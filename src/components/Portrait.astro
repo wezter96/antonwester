@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Locale } from '../content/routes';
+import { ui } from '../content/ui';
+
+interface Props { size: 'inline' | 'large'; locale: Locale }
+const { size, locale } = Astro.props;
+const t = ui[locale];
+const found = Object.values(
+  import.meta.glob<{ default: ImageMetadata }>('../assets/portrait.{jpg,jpeg,png,webp}', { eager: true }),
+)[0]?.default;
+const inline = size === 'inline';
+---
+{found ? (
+  <Image
+    class:list={['portrait', size]}
+    src={found}
+    alt={t.portraitAlt}
+    widths={inline ? [240, 480, 720] : [480, 960, 1600]}
+    sizes={inline ? '(max-width: 640px) 100vw, 12vw' : '(max-width: 800px) 100vw, 40vw'}
+    loading={inline ? 'eager' : 'lazy'}
+    fetchpriority={inline ? 'high' : 'auto'}
+  />
+) : (
+  <div class:list={['portrait', 'ph', size]} role="img" aria-label={t.portraitPlaceholder}>
+    <svg viewBox="0 0 100 78" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <circle cx="50" cy="32" r="15" />
+      <path d="M18 78 C20 56 34 50 50 50 C66 50 80 56 82 78Z" />
+    </svg>
+  </div>
+)}
+
+<style>
+  .portrait { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ph { position: relative; overflow: hidden; background: color-mix(in srgb, var(--fg) 12%, var(--ground)); }
+  .ph svg { position: absolute; inset: 0; width: 100%; height: 100%; fill: color-mix(in srgb, var(--fg) 22%, var(--ground)); }
+  .large { aspect-ratio: 4 / 5; height: auto; }
+</style>

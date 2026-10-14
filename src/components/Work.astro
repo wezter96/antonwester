@@ -1,0 +1,23 @@
+---
+import CaseRow from './CaseRow.astro';
+import { home } from '../content/home';
+import type { Locale } from '../content/routes';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = home[locale];
+---
+<section id="work" class="work" data-ground="fog2">
+  <div class="grid"><h2 class="head">{c.workHeading}</h2></div>
+  <CaseRow id="openaudit" locale={locale} />
+  <CaseRow id="sokhem" locale={locale} flip />
+  <CaseRow id="wez" locale={locale} />
+  <p class="also lead" set:html={c.alsoLine} />
+</section>
+
+<style>
+  .work { padding: var(--section) var(--margin) clamp(64px, 8vw, 140px); }
+  .work h2 { grid-column: 1 / 10; }
+  .also { margin-top: clamp(48px, 7vw, 112px); max-width: 52ch; }
+  .also :global(a) { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: .06em; }
+</style>

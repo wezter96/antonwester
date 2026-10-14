@@ -1,0 +1,14 @@
+---
+import raw from '../assets/monogram.svg?raw';
+
+const svg = raw
+  .replace('<svg ', '<svg aria-hidden="true" focusable="false" ')
+  .replace('fill="#0C1E22"', 'style="fill:currentColor"')
+  .replace('fill="#FF5A1F"', 'style="fill:var(--signal)"');
+---
+<span class="monogram" set:html={svg} />
+
+<style>
+  .monogram { display: inline-flex; }
+  .monogram :global(svg) { height: 1.3em; width: auto; display: block; }
+</style>

@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { cases } from '../content/cases';
+import { pathFor, type CaseId, type Locale } from '../content/routes';
+import { ui } from '../content/ui';
+
+interface Props { id: CaseId; locale: Locale; flip?: boolean; heading?: 'h2' | 'h3' }
+const { id, locale, flip = false, heading: H = 'h3' } = Astro.props;
+const c = cases[id][locale];
+const t = ui[locale];
+const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
+const shot = shots[`../assets/shots/${id}.png`]?.default;
+---
+<article class:list={['case', 'grid', { flip }]}>
+  <div class="shot">
+    {shot
+      ? <Image src={shot} alt={`${c.name}: ${c.tagline}`} widths={[640, 1280]} sizes="(max-width: 800px) 100vw, 58vw" loading="lazy" />
+      : <div class="ph" aria-hidden="true">{c.name}</div>}
+  </div>
+  <div class="txt">
+    <H class="sub">{c.name}</H>
+    <p class="desc">{c.what[0]}</p>
+    <dl class="facts">
+      {c.facts.map((f) => <><dt>{f.value}</dt><dd>{f.label}</dd></>)}
+    </dl>
+    <p class="links">
+      <a class="lnk" href={pathFor({ kind: 'case', id }, locale)}>{t.work.readCase}</a>
+      {c.url ? <a class="lnk" href={c.url} rel="noopener">{c.url.replace(/^https:\/\//, '')}</a> : <span class="private">{c.privateLabel}</span>}
+    </p>
+  </div>
+</article>
+
+<style>
+  .case { margin-top: clamp(48px, 7vw, 112px); align-items: end; }
+  .shot { grid-column: 1 / 8; }
+  .txt { grid-column: 9 / 13; }
+  .flip .shot { grid-column: 6 / 13; grid-row: 1; }
+  .flip .txt { grid-column: 1 / 5; grid-row: 1; }
+  .shot :global(img), .ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+  .ph { display: flex; align-items: center; justify-content: center; background: var(--gs); color: var(--soft); font-size: var(--step-head); font-weight: 800; font-stretch: 112%; letter-spacing: -.03em; }
+  .sub { margin-bottom: 12px; }
+  .desc { margin-bottom: 18px; max-width: 38ch; }
+  .facts { margin: 0 0 22px; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
+  .facts dt { font-weight: 800; font-variant-numeric: tabular-nums; font-stretch: 112%; }
+  .facts dd { margin: 0; color: var(--soft); }
+  .links { display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+  .private { font-weight: 600; }
+  @media (max-width: 800px) {
+    .shot, .txt, .flip .shot, .flip .txt { grid-column: 1 / -1; grid-row: auto; }
+    .txt { margin-top: 20px; }
+  }
+</style>

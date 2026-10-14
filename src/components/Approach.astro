@@ -1,0 +1,32 @@
+---
+import { home } from '../content/home';
+import { pathFor, type Locale } from '../content/routes';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const stages = home[locale].approach;
+---
+<section id="approach" class="approach grid" data-ground="fog">
+  <h2 class="sr-only">{locale === 'sv' ? 'Arbetssätt' : 'Approach'}</h2>
+  {stages.map((s) => (
+    <>
+      <p class="stage" style={`--wd:${s.wdth}`}>{s.word}</p>
+      <p class="copy">
+        <b>{s.lead}</b> {s.body}
+        <a class="lnk" href={pathFor({ kind: 'service', id: s.service }, locale)}>{s.linkLabel}</a>
+      </p>
+    </>
+  ))}
+</section>
+
+<style>
+  .approach { padding: var(--section) var(--margin); row-gap: clamp(32px, 4.2vw, 64px); align-items: baseline; }
+  .stage { grid-column: 1 / 7; font-size: var(--step-head); line-height: .9; font-weight: 800; letter-spacing: -.03em; font-variation-settings: 'wdth' var(--wd); }
+  .copy { grid-column: 7 / 12; font-size: var(--step-lead); line-height: 1.4; max-width: 42ch; }
+  .copy b { font-weight: 700; }
+  .copy a { display: table; margin-top: 14px; font-size: var(--step-body); }
+  @media (max-width: 800px) {
+    .stage, .copy { grid-column: 1 / -1; }
+    .copy { margin-bottom: 16px; }
+  }
+</style>
