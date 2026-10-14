@@ -39,7 +39,10 @@ export const personLd = (l: Locale): Ld => ({
   jobTitle: l === 'sv' ? 'AI-konsult och systemarkitekt' : 'AI consultant and software architect',
   worksFor: { '@id': ORG },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Chalmers University of Technology' },
-  knowsAbout: ['AI agents', 'LLM integration', 'Process automation', 'Model Context Protocol', 'TypeScript', 'React', 'React Native', 'Software architecture', 'DevOps'],
+  knowsAbout: [
+    'AI agents', 'LLM integration', 'Process automation', 'Workflow automation', 'Model Context Protocol', 'TypeScript', 'React', 'React Native',
+    'Full-stack web development', 'Mobile app development', 'Software architecture', 'DevOps', 'Test automation', 'Search engine optimization',
+  ],
   sameAs: [site.linkedin, site.github, 'https://openaudit.se', 'https://sokhem.se'],
 });
 

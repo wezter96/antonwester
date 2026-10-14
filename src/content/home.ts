@@ -20,7 +20,7 @@ export const home: L10n<HomeContent> = {
     alsoLine: '<b>Dessutom:</b> <a href="/sv/case/lingo/">Lingo</a>, en AI-native plattform för lokalisering, och bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, ett open source-startpaket för typade webb- och mobilappar.',
     aboutHeading: 'Om mig',
     bio: [
-      'Jag har byggt digitala produkter i över sju år, för webb, iOS och Android. Jag är högskoleingenjör i datateknik från Chalmers, har varit tech lead för cross-platform på weapp och utvecklare på Telia.',
+      'Jag har programmerat i över tio år och byggt digitala produkter för webb, iOS och Android i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers, har varit tech lead för cross-platform på weapp och utvecklare på Telia.',
       'I dag bygger jag AI-lösningar åt företag och driver mina egna plattformar, SökHem och OpenAudit, hela vägen från arkitektur till drift. I världens största chattcommunity för React är jag utsedd till star helper.',
     ],
     experience: [
@@ -30,6 +30,19 @@ export const home: L10n<HomeContent> = {
       { years: '2019–2021', role: 'Mjukvaruutvecklare', org: 'Telia' },
       { years: '2016–2019', role: 'Högskoleingenjör, datateknik', org: 'Chalmers' },
     ],
+    expertise: {
+      heading: 'Det här kan jag',
+      items: [
+        { name: 'AI-integrationer', detail: 'Språkmodeller från Anthropic och OpenAI i riktiga arbetsflöden: agenter, verktyg, MCP och utvärdering av promptar.' },
+        { name: 'Automation av arbetsflöden', detail: 'Processer som sköter sig själva, med loggar och mänskligt godkännande där det behövs.' },
+        { name: 'Fullstack webb', detail: 'React, TanStack Start, Next.js och Astro mot Node, Bun och Hono, med Postgres/PostGIS och Redis.' },
+        { name: 'Appar för webb, iOS och Android', detail: 'En kodbas i React Native och Expo för alla plattformar.' },
+        { name: 'DevOps och drift', detail: 'Egna servrar med Docker, Traefik och Dokploy, Kubernetes, Azure och Cloudflare, övervakning med Prometheus och Grafana, och snabb CI.' },
+        { name: 'Arkitektur och teknisk ledning', detail: 'Tech lead för ett cross-platform-team, omstrukturerade kodbaser och projektmallar som återanvänds.' },
+        { name: 'Testautomation', detail: 'Playwright, kvalitetsgrindar och tester som håller tempot uppe.' },
+        { name: 'SEO', detail: 'Teknisk SEO, strukturerad data och snabba sidor, som den här.' },
+      ],
+    },
     stack: 'Jag bygger i TypeScript, React, React Native och Node/Bun, med Postgres, Redis och Docker i drift, och integrerar språkmodeller från bland andra Anthropic och OpenAI med agenter, verktyg och MCP.',
     faq: [
       { q: 'Vad kostar en AI-kartläggning?', a: 'Det beror på hur stor del av verksamheten den ska täcka. Efter ett första samtal får ni ett fast pris för kartläggningen, så att ni vet kostnaden innan vi börjar.' },
@@ -59,7 +72,7 @@ export const home: L10n<HomeContent> = {
     alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, an AI-native localization platform, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, an open-source starter for typed web and native apps.',
     aboutHeading: 'About',
     bio: [
-      'I have built digital products for more than seven years, for web, iOS and Android. I studied computer engineering at Chalmers, led cross-platform development as tech lead at weapp and worked as a developer at Telia.',
+      'I have been programming for more than ten years and building digital products for web, iOS and Android professionally since 2019. I studied computer engineering at Chalmers, led cross-platform development as tech lead at weapp and worked as a developer at Telia.',
       'Today I build AI solutions for companies and run my own platforms, SökHem and OpenAudit, from architecture to operations. In the world’s largest React chat community I am recognised as a star helper.',
     ],
     experience: [
@@ -69,6 +82,19 @@ export const home: L10n<HomeContent> = {
       { years: '2019–2021', role: 'Software developer', org: 'Telia' },
       { years: '2016–2019', role: 'B.Sc. computer engineering', org: 'Chalmers' },
     ],
+    expertise: {
+      heading: 'What I know well',
+      items: [
+        { name: 'AI integrations', detail: 'Language models from Anthropic and OpenAI in real workflows: agents, tools, MCP and prompt evaluation.' },
+        { name: 'Workflow automation', detail: 'Processes that run themselves, with logs and human approval where it matters.' },
+        { name: 'Full-stack web', detail: 'React, TanStack Start, Next.js and Astro on Node, Bun and Hono, with Postgres/PostGIS and Redis.' },
+        { name: 'Apps for web, iOS and Android', detail: 'One React Native and Expo codebase for every platform.' },
+        { name: 'DevOps and hosting', detail: 'Self-hosted servers with Docker, Traefik and Dokploy, Kubernetes, Azure and Cloudflare, monitoring with Prometheus and Grafana, and fast CI.' },
+        { name: 'Architecture and technical leadership', detail: 'Tech lead of a cross-platform team, re-architected codebases and project templates that get reused.' },
+        { name: 'Test automation', detail: 'Playwright, quality gates and tests that keep the pace up.' },
+        { name: 'SEO', detail: 'Technical SEO, structured data and fast pages, like this one.' },
+      ],
+    },
     stack: 'I build in TypeScript, React, React Native and Node/Bun, run Postgres, Redis and Docker in production, and integrate language models from Anthropic, OpenAI and others with agents, tools and MCP.',
     faq: [
       { q: 'What does an AI assessment cost?', a: 'It depends on how much of the business it covers. After a first call you get a fixed price for the assessment, so you know the cost before we start.' },

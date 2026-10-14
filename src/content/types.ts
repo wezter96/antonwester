@@ -77,6 +77,7 @@ export interface HomeContent {
   aboutHeading: string;
   bio: string[];
   experience: ExperienceRow[];
+  expertise: { heading: string; items: Array<{ name: string; detail: string }> };
   stack: string;
   faq: Faq[];
 }

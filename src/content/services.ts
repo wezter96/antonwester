@@ -405,7 +405,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'Erfarenhet från båda sidor',
           paragraphs: [
-            'Jag har byggt produkter i över sju år och lett cross-platform-utveckling som tech lead på weapp, med ansvar för arkitektur och ett team som levererade appar för webb, iOS och Android. I dag bygger och driver jag mina egna plattformar, så jag har stått med både det tekniska och det affärsmässiga ansvaret.',
+            'Jag har programmerat i över tio år, byggt produkter i yrket sedan 2019 och lett cross-platform-utveckling som tech lead på weapp, med ansvar för arkitektur och ett team som levererade appar för webb, iOS och Android. I dag bygger och driver jag mina egna plattformar, så jag har stått med både det tekniska och det affärsmässiga ansvaret.',
             'Det gör att jag kan översätta mellan ledning och utvecklare. Jag förklarar tekniska risker i affärstermer och affärsmål i tekniska termer, och jag skriver kod själv när det är det snabbaste sättet att komma vidare.',
           ],
         },
@@ -470,7 +470,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'Experience from both sides',
           paragraphs: [
-            'I have built products for more than seven years and led cross-platform development as tech lead at weapp, responsible for architecture and a team shipping apps for web, iOS and Android. Today I build and run my own platforms, so I have carried both the technical and the business responsibility.',
+            'I have been programming for more than ten years, building products professionally since 2019, and led cross-platform development as tech lead at weapp, responsible for architecture and a team shipping apps for web, iOS and Android. Today I build and run my own platforms, so I have carried both the technical and the business responsibility.',
             'That lets me translate between leadership and developers. I explain technical risks in business terms and business goals in technical terms, and I write code myself when that is the fastest way forward.',
           ],
         },

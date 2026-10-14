@@ -15,6 +15,10 @@ const t = ui[locale];
   <div class="body">
     <h2 class="head">{c.aboutHeading}</h2>
     <div class="bio">{c.bio.map((p) => <p class="lead">{p}</p>)}</div>
+    <h3 class="sub skills-h">{c.expertise.heading}</h3>
+    <ul class="skills">
+      {c.expertise.items.map((i) => <li><b>{i.name}</b><span>{i.detail}</span></li>)}
+    </ul>
     <table>
       <caption class="sr-only">{locale === 'sv' ? 'Erfarenhet' : 'Experience'}</caption>
       <tbody>
@@ -36,6 +40,11 @@ const t = ui[locale];
   .body { grid-column: 7 / 13; }
   .body h2 { margin-bottom: 28px; }
   .bio { display: grid; gap: 16px; max-width: 48ch; }
+  .skills-h { margin-top: clamp(40px, 4vw, 64px); }
+  .skills { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px var(--gutter); }
+  .skills li { display: grid; gap: 4px; align-content: start; }
+  .skills b { font-weight: 700; }
+  .skills span { color: var(--soft); }
   table { width: 100%; border-collapse: collapse; margin: 36px 0 28px; }
   td { padding: 11px 12px; vertical-align: top; }
   tr:nth-child(odd) td { background: var(--gs); }
@@ -45,6 +54,7 @@ const t = ui[locale];
   .links { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
   @media (max-width: 800px) { .pic, .body { grid-column: 1 / -1; } }
   @media (max-width: 640px) {
+    .skills { grid-template-columns: 1fr; }
     td { padding: 10px 8px; hyphens: auto; overflow-wrap: anywhere; }
     .org { white-space: normal; }
   }
