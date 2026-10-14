@@ -1,0 +1,82 @@
+import type { HomeContent, L10n } from './types';
+
+export const home: L10n<HomeContent> = {
+  sv: {
+    seo: {
+      title: 'AI-konsult i Göteborg | Anton Wester',
+      description: 'AI-konsult i Göteborg. Jag hittar var AI och automation lönar sig i er verksamhet, bygger lösningen och underhåller den. Boka ett introsamtal.',
+    },
+    h1Tail: 'AI-konsult i Göteborg.',
+    offer: 'Jag hittar var AI och automation lönar sig i er verksamhet, bygger det och underhåller det.',
+    approach: [
+      { word: 'Hitta.', wdth: 62, service: 'assessment', linkLabel: 'Om AI-kartläggning',
+        lead: 'Jag sitter med dem som gör jobbet', body: 'och kartlägger vart timmarna tar vägen. Ni får en prioriterad lista över var AI lönar sig, vad det kostar att bygga och vad som ska förbli mänskligt. Kartan är er, oavsett om vi bygger vidare tillsammans.' },
+      { word: 'Bygg.', wdth: 96, service: 'development', linkLabel: 'Om AI-utveckling',
+        lead: 'Jag bygger det själv, i er stack:', body: 'agenter, integrationer och gränssnitten teamet ska använda, med tester, övervakning och de skyddsräcken som reglerade branscher kräver.' },
+      { word: 'Förvalta.', wdth: 125, service: 'operations', linkLabel: 'Om drift och förvaltning',
+        lead: 'Jag driftar och förvaltar det åt er:', body: 'hosting, övervakning, säkerhet, uppdateringar och löpande förbättringar. Vill ni hellre driva det själva får teamet koden, dokumentationen och utbildningen. Ni väljer, och det finns ingen inlåsning.' },
+    ],
+    workHeading: 'Jag bygger egna produkter också.',
+    alsoLine: '<b>Dessutom:</b> <a href="/sv/case/lingo/">Lingo</a>, en AI-native plattform för lokalisering, och bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, ett open source-startpaket för typade webb- och mobilappar.',
+    aboutHeading: 'Om mig',
+    bio: [
+      'Jag har byggt digitala produkter i över sju år, för webb, iOS och Android. Jag är högskoleingenjör i datateknik från Chalmers, har varit tech lead för cross-platform på weapp och utvecklare på Telia.',
+      'I dag bygger jag AI-lösningar åt företag och driver mina egna plattformar, SökHem och OpenAudit, hela vägen från arkitektur till drift. I världens största chattcommunity för React är jag utsedd till star helper.',
+    ],
+    experience: [
+      { years: '2024–', role: 'AI-konsult och utvecklare', org: 'Anton Wester AB' },
+      { years: '2022–2024', role: 'Tech lead, cross-platform', org: 'weapp' },
+      { years: '2021–2022', role: 'Mjukvaruutvecklare', org: 'weapp' },
+      { years: '2019–2021', role: 'Mjukvaruutvecklare', org: 'Telia' },
+      { years: '2016–2019', role: 'Högskoleingenjör, datateknik', org: 'Chalmers' },
+    ],
+    stack: 'Jag bygger i TypeScript, React, React Native och Node/Bun, med Postgres, Redis och Docker i drift, och integrerar språkmodeller från bland andra Anthropic och OpenAI med agenter, verktyg och MCP.',
+    faq: [
+      { q: 'Vad kostar en AI-kartläggning?', a: 'Det beror på hur stor del av verksamheten den ska täcka. Efter ett första samtal får ni ett fast pris för kartläggningen, så att ni vet kostnaden innan vi börjar.' },
+      { q: 'Hur snabbt kan vi ha något i drift?', a: 'Ett avgränsat första steg, till exempel en agent som sorterar och besvarar inkommande mejl, går ofta att ha i drift inom några veckor. Större integrationer tar längre tid, och det framgår av kartläggningen.' },
+      { q: 'Hur hanterar du säkerhet, GDPR och EU:s AI-förordning?', a: 'Jag bygger med dataminimering och tydliga loggar, väljer leverantörer och regioner efter var er data får behandlas och dokumenterar vilka beslut AI fattar och vilka en människa godkänner. Det gör det enklare att uppfylla GDPR och AI-förordningen.' },
+      { q: 'Vilka AI-modeller och verktyg använder du?', a: 'Det som passar uppgiften. Jag arbetar med modeller från bland andra Anthropic och OpenAI och med öppna modeller som kan köras på egen server, och bygger agenter som använder era befintliga system via API:er och MCP.' },
+      { q: 'Kan du drifta lösningen åt oss, eller tar vårt team över?', a: 'Båda går. Standard är att jag driftar och förvaltar lösningen åt er, med övervakning, säkerhetsuppdateringar och löpande förbättringar. Vill ni hellre ta över får teamet koden, dokumentationen och utbildningen.' },
+      { q: 'Jobbar du på plats eller på distans?', a: 'Jag utgår från Göteborg och jobbar gärna på plats i Västsverige, till exempel under kartläggningen. Resten sker oftast på distans, och jag tar uppdrag i hela Sverige.' },
+    ],
+  },
+  en: {
+    seo: {
+      title: 'AI Consultant in Gothenburg | Anton Wester',
+      description: 'AI consultant in Gothenburg. I find where AI and automation pay off in your business, build the solution and maintain it. Book an intro call.',
+    },
+    h1Tail: 'AI consultant in Gothenburg.',
+    offer: 'I find where AI and automation pay off in your business, build it, and maintain it.',
+    approach: [
+      { word: 'Find.', wdth: 62, service: 'assessment', linkLabel: 'About the AI assessment',
+        lead: 'I sit with the people who do the work', body: 'and map where the hours go. You get a ranked list of where AI pays, what it costs to build, and what should stay human. You keep the map whether or not we build it together.' },
+      { word: 'Build.', wdth: 96, service: 'development', linkLabel: 'About AI development',
+        lead: 'I build it myself, in your stack:', body: 'agents, integrations and the interfaces your team will use, with tests, monitoring and the guardrails regulated businesses need.' },
+      { word: 'Run.', wdth: 125, service: 'operations', linkLabel: 'About hosting and maintenance',
+        lead: 'I host and run it for you:', body: 'monitoring, security, updates and steady improvements. If you would rather run it yourselves, your team gets the code, the docs and the training. Your choice, and no lock-in.' },
+    ],
+    workHeading: 'I build my own products too.',
+    alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, an AI-native localization platform, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, an open-source starter for typed web and native apps.',
+    aboutHeading: 'About',
+    bio: [
+      'I have built digital products for more than seven years, for web, iOS and Android. I studied computer engineering at Chalmers, led cross-platform development as tech lead at weapp and worked as a developer at Telia.',
+      'Today I build AI solutions for companies and run my own platforms, SökHem and OpenAudit, from architecture to operations. In the world’s largest React chat community I am recognised as a star helper.',
+    ],
+    experience: [
+      { years: '2024–', role: 'AI consultant and developer', org: 'Anton Wester AB' },
+      { years: '2022–2024', role: 'Tech lead, cross-platform', org: 'weapp' },
+      { years: '2021–2022', role: 'Software engineer', org: 'weapp' },
+      { years: '2019–2021', role: 'Software developer', org: 'Telia' },
+      { years: '2016–2019', role: 'B.Sc. computer engineering', org: 'Chalmers' },
+    ],
+    stack: 'I build in TypeScript, React, React Native and Node/Bun, run Postgres, Redis and Docker in production, and integrate language models from Anthropic, OpenAI and others with agents, tools and MCP.',
+    faq: [
+      { q: 'What does an AI assessment cost?', a: 'It depends on how much of the business it covers. After a first call you get a fixed price for the assessment, so you know the cost before we start.' },
+      { q: 'How quickly can we have something running?', a: 'A contained first step, such as an agent that sorts and answers incoming email, can often be running within a few weeks. Larger integrations take longer, and the assessment shows how long.' },
+      { q: 'How do you handle security, GDPR and the EU AI Act?', a: 'I build with data minimisation and clear logs, choose providers and regions by where your data may be processed, and document which decisions AI makes and which a person approves. That makes GDPR and the AI Act easier to meet.' },
+      { q: 'Which AI models and tools do you use?', a: 'Whatever fits the task. I work with models from Anthropic, OpenAI and others, and with open models that can run on your own server, and I build agents that use your existing systems through APIs and MCP.' },
+      { q: 'Can you run it for us, or does our team take over?', a: 'Either works. By default I host and run the solution for you, with monitoring, security updates and steady improvements. If you would rather take over, your team gets the code, the docs and the training.' },
+      { q: 'Do you work on site or remotely?', a: 'I am based in Gothenburg and happy to work on site in western Sweden, for example during the assessment. The rest is usually remote, and I take on work across Sweden.' },
+    ],
+  },
+};
