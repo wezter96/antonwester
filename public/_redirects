@@ -1,0 +1,19 @@
+# Real 301s on Cloudflare. Generated from LEGACY_REDIRECTS in src/content/routes.ts; test/unit/cloudflare.test.ts keeps them in step.
+/sv/ / 301
+/sv / 301
+/stenungsund/ /sv/stenungsund/ 301
+/stenungsund /sv/stenungsund/ 301
+/ale/ /sv/ale/ 301
+/ale /sv/ale/ 301
+/kungalv/ /sv/kungalv/ 301
+/kungalv /sv/kungalv/ 301
+/partille/ /sv/partille/ 301
+/partille /sv/partille/ 301
+/trollhattan/ /sv/trollhattan/ 301
+/trollhattan /sv/trollhattan/ 301
+/kungsbacka/ /sv/kungsbacka/ 301
+/kungsbacka /sv/kungsbacka/ 301
+/boras/ /sv/boras/ 301
+/boras /sv/boras/ 301
+/varberg/ /sv/varberg/ 301
+/varberg /sv/varberg/ 301

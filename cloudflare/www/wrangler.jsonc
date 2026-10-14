@@ -1,0 +1,8 @@
+{
+  "name": "antonwester-www",
+  "account_id": "bf20e985c7cc69a7e1ec289ce878b494",
+  "main": "index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "www.antonwester.se/*", "zone_name": "antonwester.se" }]
+}

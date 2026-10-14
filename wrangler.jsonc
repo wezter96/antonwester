@@ -1,0 +1,13 @@
+{
+  // antonwester.se as static assets on Cloudflare Workers, deployed by .github/workflows/deploy.yml
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "antonwester",
+  "account_id": "bf20e985c7cc69a7e1ec289ce878b494",
+  "compatibility_date": "2026-10-01",
+  "routes": [{ "pattern": "antonwester.se/*", "zone_name": "antonwester.se" }],
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
