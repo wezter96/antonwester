@@ -18,6 +18,7 @@ const c = home[locale];
 <style>
   .work { padding: var(--section) var(--margin) clamp(64px, 8vw, 140px); }
   .work h2 { grid-column: 1 / 10; }
+  @media (max-width: 640px) { .work h2 { grid-column: 1 / -1; } }
   .also { margin-top: clamp(48px, 7vw, 112px); max-width: 52ch; }
   .also :global(a) { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: .06em; }
 </style>

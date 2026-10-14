@@ -24,9 +24,10 @@ const stages = home[locale].approach;
   .stage { grid-column: 1 / 7; font-size: var(--step-head); line-height: .9; font-weight: 800; letter-spacing: -.03em; font-variation-settings: 'wdth' var(--wd); }
   .copy { grid-column: 7 / 12; font-size: var(--step-lead); line-height: 1.4; max-width: 42ch; }
   .copy b { font-weight: 700; }
-  .copy a { display: table; margin-top: 14px; font-size: var(--step-body); }
+  .copy a { display: table; margin-top: 5px; font-size: var(--step-body); }
   @media (max-width: 800px) {
     .stage, .copy { grid-column: 1 / -1; }
-    .copy { margin-bottom: 16px; }
+    /* the link closes its own stage, so it sits well clear of the next stage word */
+    .copy { margin-bottom: clamp(48px, 12vw, 80px); }
   }
 </style>

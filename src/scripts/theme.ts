@@ -5,13 +5,23 @@ const sections = [...document.querySelectorAll<HTMLElement>('[data-ground]')].fi
 let tops: number[] = [];
 let current = root.dataset.ground ?? 'fog';
 let queued = 0;
+let lastY = scrollY;
 
 const measure = () => { tops = sections.map((s) => s.getBoundingClientRect().top + scrollY); };
 const update = () => {
   queued = 0;
   if (!sections.length) return;
   const ground = sections[activeSection(tops, scrollY + innerHeight * 0.6)].dataset.ground ?? 'fog';
-  if (ground !== current) { current = ground; root.dataset.ground = ground; }
+  // a jump (Home, End, a link without Lenis) cuts to the new ground; only scrolling fades through
+  const jump = Math.abs(scrollY - lastY) > innerHeight * 1.5;
+  lastY = scrollY;
+  if (ground === current) return;
+  current = ground;
+  if (jump) {
+    root.classList.remove('ground-ready');
+    root.dataset.ground = ground;
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('ground-ready')));
+  } else root.dataset.ground = ground;
 };
 
 measure();

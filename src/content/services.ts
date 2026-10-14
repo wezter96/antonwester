@@ -11,7 +11,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'AI-kartläggning för företag | Anton Wester',
         description: 'En AI-kartläggning visar var AI och automation lönar sig i er verksamhet: vilka processer, vad det kostar att bygga och vad det sparar.',
       },
-      h1: 'AI-kartläggning: se var AI lönar sig innan ni bygger',
+      h1: 'AI-kartläggning för företag',
+      promise: 'Se var AI lönar sig innan ni bygger.',
       intro: 'Innan något byggs vill ni veta var AI faktiskt gör skillnad. I en AI-kartläggning går jag igenom hur arbetet görs i dag, uppskattar var timmarna går och rankar möjligheterna efter vad de sparar och vad de kostar att bygga.',
       sections: [
         {
@@ -68,7 +69,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'AI assessment for companies | Anton Wester',
         description: 'An AI assessment shows where AI and automation pay off in your business: which processes, what they cost to build and what they save.',
       },
-      h1: 'AI assessment: see where AI pays before you build',
+      h1: 'AI assessment for companies',
+      promise: 'See where AI pays before you build.',
       intro: 'Before anything is built, you want to know where AI actually makes a difference. In an AI assessment I go through how the work is done today, estimate where the hours go, and rank the opportunities by what they save and what they cost to build.',
       sections: [
         {
@@ -127,7 +129,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'AI-utveckling och AI-agenter | Anton Wester',
         description: 'AI-utveckling för företag: agenter, automation och integrationer som tar över rutinarbete, byggda med tester, loggar och mänskligt godkännande.',
       },
-      h1: 'AI-utveckling: agenter och automation som gör jobbet',
+      h1: 'AI-utveckling och AI-agenter',
+      promise: 'Agenter och automation som gör jobbet.',
       intro: 'När ni vet var AI lönar sig är nästa steg att bygga det på riktigt. Jag utvecklar agenter, automationer och integrationer som tar över avgränsade steg i ert arbete, i er stack och med samma krav på kvalitet som resten av era system.',
       sections: [
         {
@@ -187,7 +190,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'AI development and AI agents | Anton Wester',
         description: 'AI development for companies: agents, automation and integrations that take over routine work, built with tests, logs and human approval.',
       },
-      h1: 'AI development: agents and automation that do the work',
+      h1: 'AI development and AI agents',
+      promise: 'Agents and automation that do the work.',
       intro: 'Once you know where AI pays off, the next step is to build it for real. I develop agents, automations and integrations that take over contained steps of your work, in your stack and to the same quality bar as the rest of your systems.',
       sections: [
         {
@@ -249,7 +253,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'Drift och förvaltning av AI-lösningar | Anton Wester',
         description: 'Drift och förvaltning av AI-lösningar: hosting, övervakning, säkerhet och löpande förbättringar, eller en överlämning till ert team utan inlåsning.',
       },
-      h1: 'Drift och förvaltning av era AI-lösningar',
+      h1: 'Drift och förvaltning',
+      promise: 'För era AI-lösningar, varje dag.',
       intro: 'En AI-lösning är inte klar när den går i drift. Modeller byts ut, priser ändras, data växer och verksamheten förändras. Jag driftar och förvaltar det jag bygger, så att det fortsätter att fungera och blir bättre med tiden.',
       sections: [
         {
@@ -314,7 +319,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'AI hosting and maintenance | Anton Wester',
         description: 'Hosting and maintenance for AI solutions: monitoring, security, updates and steady improvements, or a handover to your team with no lock-in.',
       },
-      h1: 'Hosting and maintenance for your AI solutions',
+      h1: 'Hosting and maintenance',
+      promise: 'For your AI solutions, every day.',
       intro: 'An AI solution is not finished when it goes live. Models get replaced, prices change, data grows and the business moves on. I host and maintain what I build, so it keeps working and gets better over time.',
       sections: [
         {
@@ -381,7 +387,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'Fractional CTO för startups och bolag | Anton Wester',
         description: 'Fractional CTO på deltid: teknisk ledning, arkitekturbeslut, stöd vid rekrytering och en AI-strategi som håller sig nära det som går att bygga.',
       },
-      h1: 'Fractional CTO: teknisk ledning på deltid',
+      h1: 'Fractional CTO',
+      promise: 'Teknisk ledning på deltid.',
       intro: 'Alla bolag behöver inte en heltidsanställd CTO, men nästan alla behöver någon som fattar bra tekniska beslut. Som fractional CTO tar jag det ansvaret på deltid: arkitektur, prioriteringar, rekrytering och hur AI ska användas i produkten och verksamheten.',
       sections: [
         {
@@ -445,7 +452,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         title: 'Fractional CTO for startups and companies | Anton Wester',
         description: 'Fractional CTO, part time: technical leadership, architecture decisions, help with hiring and an AI strategy that stays close to what can be built.',
       },
-      h1: 'Fractional CTO: technical leadership, part time',
+      h1: 'Fractional CTO',
+      promise: 'Technical leadership, part time.',
       intro: 'Not every company needs a full-time CTO, but almost every company needs someone who makes good technical decisions. As a fractional CTO I take on that responsibility part time: architecture, priorities, hiring and how AI should be used in the product and the business.',
       sections: [
         {

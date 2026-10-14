@@ -19,6 +19,7 @@ const { id, heading, items, ground = 'fog2' } = Astro.props;
 <style>
   .faq { padding: var(--section) var(--margin); }
   .faq h2 { grid-column: 1 / 10; margin-bottom: clamp(32px, 4vw, 64px); }
+  @media (max-width: 640px) { .faq h2 { grid-column: 1 / -1; } }
   .list { display: grid; gap: 4px; max-width: 72rem; }
   details { background: var(--gs); }
   summary {

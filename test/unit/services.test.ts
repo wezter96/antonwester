@@ -4,7 +4,7 @@ import { services } from '../../src/content/services';
 import type { ServiceContent } from '../../src/content/types';
 
 const text = (s: ServiceContent) => [
-  s.h1, s.intro, ...s.sections.flatMap((x) => [x.heading, ...x.paragraphs, ...(x.list ?? [])]),
+  s.h1, s.promise, s.intro, ...s.sections.flatMap((x) => [x.heading, ...x.paragraphs, ...(x.list ?? [])]),
   ...s.steps, ...s.fitsWhen, s.firstEngagement, ...s.faq.flatMap((f) => [f.q, f.a]),
 ].join(' ');
 const wordCount = (s: string) => s.split(/\s+/).filter(Boolean).length;

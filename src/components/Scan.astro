@@ -22,7 +22,7 @@ const inputId = `scan-hours-${l}`;
     <h2 class="head">{t.heading}</h2>
     <p class="lead intro">{t.intro}</p>
   </div>
-  <div class="grid tool" data-scan>
+  <div class="grid tool" data-scan data-ui>
     <div class="fns" role="group" aria-label={t.functionsLabel}>
       {fns.map((f, i) => <button class="fn" type="button" data-fn={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.name}</button>)}
     </div>
@@ -93,5 +93,8 @@ const inputId = `scan-hours-${l}`;
   }
   @media (max-width: 640px) {
     .steps :global(.step) { flex-direction: column; align-items: flex-start; }
+  }
+  @media (pointer: coarse), (max-width: 640px) {
+    .steps :global(.seg button), .result input { min-height: 44px; }
   }
 </style>

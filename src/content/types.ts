@@ -15,6 +15,8 @@ export interface ServiceContent {
   name: string;
   seo: Seo;
   h1: string;
+  /** Bold run-in that opens the hero intro. */
+  promise: string;
   intro: string;
   sections: Section[];
   steps: string[];

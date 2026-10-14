@@ -36,8 +36,12 @@ const links = [
   .mark { display: inline-flex; align-items: center; gap: .6em; font-weight: 700; font-stretch: 112%; text-decoration: none; min-height: 44px; }
   ul { display: flex; gap: clamp(16px, 2.4vw, 36px); list-style: none; margin: 0; padding: 0; }
   a { text-decoration: none; }
-  ul a { display: inline-flex; align-items: center; min-height: 44px; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 10px) / 0 1.5px no-repeat; transition: background-size .35s var(--ease-in-out); }
-  ul a:hover, ul a:focus-visible { background-size: 100% 1.5px; }
+  ul a { position: relative; display: inline-flex; align-items: center; min-height: 44px; }
+  ul a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 10px; height: .09em; background: currentColor;
+    transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s var(--ease-in-out);
+  }
+  ul a:hover::after, ul a:focus-visible::after { transform: none; }
   @media (max-width: 760px) {
     .mark span { display: none; }
     li:not(.keep) { display: none; }

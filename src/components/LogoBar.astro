@@ -40,11 +40,11 @@ const t = ui[locale];
   }
   .say::after {
     content: ''; position: absolute; top: 0; bottom: 0; left: 100%; width: clamp(64px, 11vw, 160px); pointer-events: none;
-    background: linear-gradient(90deg, var(--gs) 0%, color-mix(in srgb, var(--gs) 80%, transparent) 30%, color-mix(in srgb, var(--gs) 0%, transparent) 100%);
+    background: linear-gradient(90deg, var(--gs) 0%, color-mix(in srgb, var(--gs) 80%, transparent) 30%, color-mix(in srgb, var(--gs) 0%, transparent) 100%); /* taste-skill-ignore: client-requested fade */
   }
   .axis::after {
     content: ''; position: absolute; top: 0; bottom: 0; right: 0; z-index: 2; width: clamp(48px, 7vw, 120px); pointer-events: none;
-    background: linear-gradient(270deg, var(--gs), color-mix(in srgb, var(--gs) 0%, transparent));
+    background: linear-gradient(270deg, var(--gs), color-mix(in srgb, var(--gs) 0%, transparent)); /* taste-skill-ignore: client-requested fade */
   }
   .track { display: flex; flex: none; animation: drift 52s linear infinite; }
   .axis:hover .track, .axis:focus-within .track { animation-play-state: paused; }
