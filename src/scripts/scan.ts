@@ -13,7 +13,6 @@ interface ScanData {
 
 const MODES: Mode[] = ['you', 'assist', 'agent'];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 
 for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
   const dataEl = tool.parentElement?.querySelector('[data-scan-data]') ?? document.querySelector('[data-scan-data]');
@@ -33,9 +32,30 @@ for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
 
   const renderSteps = (animate: boolean) => {
     const stagger = animate && !reduce;
-    list.innerHTML = steps.map((s, i) => `<li class="step${stagger ? ' out' : ''}" data-step><span>${esc(s.label)}</span><span class="seg" role="group" aria-label="${esc(data.stepModeLabel)}: ${esc(s.label)}">${MODES
-      .map((m) => `<button type="button" data-i="${i}" data-mode="${m}" aria-pressed="${s.mode === m}">${esc(data.modes[m])}</button>`).join('')}</span></li>`).join('');
-    if (stagger) [...list.children].forEach((li, i) => setTimeout(() => li.classList.remove('out'), 30 + i * 55));
+    const items = steps.map((s, i) => {
+      const li = document.createElement('li');
+      li.className = stagger ? 'step out' : 'step';
+      li.dataset.step = '';
+      const label = document.createElement('span');
+      label.textContent = s.label;
+      const seg = document.createElement('span');
+      seg.className = 'seg';
+      seg.setAttribute('role', 'group');
+      seg.setAttribute('aria-label', `${data.stepModeLabel}: ${s.label}`);
+      for (const m of MODES) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.dataset.i = String(i);
+        b.dataset.mode = m;
+        b.setAttribute('aria-pressed', String(s.mode === m));
+        b.textContent = data.modes[m];
+        seg.append(b);
+      }
+      li.append(label, seg);
+      return li;
+    });
+    list.replaceChildren(...items);
+    if (stagger) items.forEach((li, i) => setTimeout(() => li.classList.remove('out'), 30 + i * 55));
   };
   const update = () => {
     const h = Number(hours.value);

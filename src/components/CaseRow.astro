@@ -9,8 +9,8 @@ interface Props { id: CaseId; locale: Locale; flip?: boolean; heading?: 'h2' | '
 const { id, locale, flip = false, heading: H = 'h3' } = Astro.props;
 const c = cases[id][locale];
 const t = ui[locale];
-const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
-const shot = shots[`../assets/shots/${id}.png`]?.default;
+const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.webp', { eager: true });
+const shot = shots[`../assets/shots/${id}.webp`]?.default;
 ---
 <article class:list={['case', 'grid', { flip }]}>
   <div class="shot">

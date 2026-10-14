@@ -20,8 +20,8 @@ const L = t.caseLabels;
 const page: PageRef = { kind: 'case', id };
 const next = cases[CASE_IDS[(CASE_IDS.indexOf(id) + 1) % CASE_IDS.length]][locale];
 const service = services[c.service][locale];
-const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
-const shot = shots[`../assets/shots/${id}.png`]?.default;
+const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.webp', { eager: true });
+const shot = shots[`../assets/shots/${id}.webp`]?.default;
 ---
 <Base head={headForCase(id, locale)} intro>
   <Nav locale={locale} page={page} />

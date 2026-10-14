@@ -1,0 +1,16 @@
+{
+  "ignore": {
+    "paths": [
+      ".reference/**",
+      ".superpowers/**",
+      ".playwright-mcp/**",
+      ".unlighthouse/**",
+      ".taste-skill/**",
+      ".vitest/**",
+      "resume/**",
+      "docs/**",
+      "src/lib/fonts/**",
+      "public/og/**"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 import { chromium } from 'playwright-core';
+import sharp from 'sharp';
 
 const targets = [
   { id: 'lingo', url: 'https://lingo.antonwester.se', wait: 2500 },
@@ -11,7 +12,7 @@ for (const t of targets) {
   try {
     await page.goto(t.url, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForTimeout(t.wait);
-    await page.screenshot({ path: `src/assets/shots/${t.id}.png` });
+    await sharp(await page.screenshot()).webp({ quality: 90, effort: 6 }).toFile(`src/assets/shots/${t.id}.webp`);
     console.log(`captured ${t.id}`);
   } catch (error) {
     console.error(`could not capture ${t.id} from ${t.url}:`, error);

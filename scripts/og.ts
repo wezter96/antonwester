@@ -32,8 +32,8 @@ function card(p: PageRef, l: Locale): string {
     return page(`<div style="grid-area:main;align-self:center"><p class="name fit">Anton Wester</p><p class="tail"><b>${c.h1Tail}</b> ${c.offer}</p></div><div class="foot"><span>antonwester.se</span>${monogram}</div>`, `"main" 1fr "foot" auto / minmax(0, 1fr)`);
   }
   const title = head(p, l).title.split(' | ')[0];
-  const shot = p.kind === 'case' && existsSync(`src/assets/shots/${p.id}.png`) ? `src/assets/shots/${p.id}.png` : null;
-  if (shot) return page(`<h1 class="fit" style="grid-area:title">${title}</h1><img class="shot" src="${dataUrl(shot, 'image/png')}">${foot}`, `"title shot" minmax(0, 1fr) "foot foot" auto / minmax(0, 1fr) minmax(0, 1fr)`);
+  const shot = p.kind === 'case' && existsSync(`src/assets/shots/${p.id}.webp`) ? `src/assets/shots/${p.id}.webp` : null;
+  if (shot) return page(`<h1 class="fit" style="grid-area:title">${title}</h1><img class="shot" src="${dataUrl(shot, 'image/webp')}">${foot}`, `"title shot" minmax(0, 1fr) "foot foot" auto / minmax(0, 1fr) minmax(0, 1fr)`);
   return page(`<h1 class="fit" style="grid-area:title">${title}</h1>${foot}`, `"title" 1fr "foot" auto / minmax(0, 1fr)`);
 }
 
