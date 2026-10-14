@@ -14,7 +14,7 @@ const first = fns[0];
 const total = hoursPerYear(25, first.steps);
 const modes: Mode[] = ['you', 'assist', 'agent'];
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(t.mailSubject)}`;
-const data = JSON.stringify({ functions: fns, modes: t.modes, yearBack: t.yearBack, message: t.message, locale: l }).replace(/</g, '\\u003c');
+const data = JSON.stringify({ functions: fns, modes: t.modes, stepModeLabel: t.stepModeLabel, yearBack: t.yearBack, message: t.message, locale: l }).replace(/</g, '\\u003c');
 const inputId = `scan-hours-${l}`;
 ---
 <section id="scan" class="scan" data-ground="ink">
