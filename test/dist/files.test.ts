@@ -1,5 +1,8 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { allPages, LOCALES, urlFor, SITE_URL } from '../../src/content/routes';
+import { CLIENTS } from '../../src/content/clients';
+import { allPages, LOCALES, ogPath, urlFor, SITE_URL } from '../../src/content/routes';
 import { readText } from './helpers';
 
 describe('sitemap', () => {
@@ -34,5 +37,18 @@ describe('llms.txt', () => {
     expect(t).toContain(`${SITE_URL}/en/`);
     expect(t).toContain(`${SITE_URL}/sv/ai-kartlaggning/`);
     expect(t).toContain(`${SITE_URL}/en/case/openaudit/`);
+  });
+});
+
+describe('assets', () => {
+  it('ships every client logo file', () => {
+    for (const c of CLIENTS) if ('file' in c) expect(existsSync(join('dist', c.file))).toBe(true);
+  });
+  it('ships an OG image for every page and locale', () => {
+    for (const p of allPages()) for (const l of LOCALES) expect(existsSync(join('dist', ogPath(p, l)))).toBe(true);
+  });
+  it('ships the monogram and favicon', () => {
+    expect(existsSync('dist/monogram.svg')).toBe(true);
+    expect(existsSync('dist/favicon.svg')).toBe(true);
   });
 });
