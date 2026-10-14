@@ -1,0 +1,38 @@
+@import '@fontsource-variable/archivo/wdth.css';
+
+/* Arial metrics adjusted toward Archivo (measured with fontkit) so the swap does not shift layout */
+@font-face {
+  font-family: 'Archivo Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 98%;
+  ascent-override: 89.5%;
+  descent-override: 21.4%;
+  line-gap-override: 0%;
+}
+
+@property --ground { syntax: '<color>'; inherits: true; initial-value: #E7E9E4; }
+@property --fg { syntax: '<color>'; inherits: true; initial-value: #0C1E22; }
+@property --soft { syntax: '<color>'; inherits: true; initial-value: #4C5A5B; }
+@property --gs { syntax: '<color>'; inherits: true; initial-value: #DADED7; }
+
+:root {
+  --fog: #E7E9E4; --fog-2: #DADED7; --ink: #0C1E22; --ink-2: #13292E; --ink-3: #1B363C;
+  --muted: #4C5A5B; --muted-ink: #93A6A8; --signal: #FF5A1F;
+
+  --font: 'Archivo Variable', 'Archivo Fallback', system-ui, sans-serif;
+  --step-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --step-sub: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+  --step-head: clamp(2.5rem, 1.2rem + 4.4vw, 5rem);
+
+  --margin: clamp(16px, 2.2vw, 32px);
+  --gutter: clamp(12px, 1.6vw, 24px);
+  --section: clamp(96px, 9vw, 200px);
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+
+  --ground: var(--fog); --fg: var(--ink); --soft: var(--muted); --gs: var(--fog-2);
+}
+:root[data-ground='fog2'] { --ground: var(--fog-2); --fg: var(--ink); --soft: var(--muted); --gs: #CED3CB; }
+:root[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; }
