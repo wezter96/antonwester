@@ -366,7 +366,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       steps: [
         'We pick one task with a clear start and end, and collect about fifty real examples to measure against.',
         'I build the agent with the tools and permissions the task needs, and nothing more.',
-        'The agent runs in shadow mode next to the team until it gets it right often enough.',
+        'The agent runs in shadow mode next to the team until it gets it right often enough.', // taste-skill-ignore: "shadow mode" is copy, not a CSS shadow
         'It takes over step by step, with logs, cost tracking and approvals where they are needed.',
       ],
       fitsWhen: [
@@ -375,13 +375,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'You have tried a chatbot but need something that actually does the work.',
         'You want to use AI but must be able to show what it did and why.',
       ],
-      firstEngagement: 'A typical first engagement is an agent for a single kind of case, such as questions about deliveries or invoices. It can usually run in shadow mode within a couple of weeks, and go live once the numbers hold.',
+      firstEngagement: 'A typical first engagement is an agent for a single kind of case, such as questions about deliveries or invoices. It can usually run in shadow mode within a couple of weeks, and go live once the numbers hold.', // taste-skill-ignore: "shadow mode" is copy, not a CSS shadow
       relatedCases: ['wez', 'openaudit'],
       relatedServices: ['automation', 'development'],
       faq: [
         { q: 'What is the difference between an AI agent and a chatbot?', a: 'A chatbot answers questions in a conversation. An agent has a goal and tools: it can look up data, update a system and take several steps on its own, within the limits you set.' },
         { q: 'Is it safe to let an agent work in our systems?', a: 'Yes, when the agent has only the permissions the task needs, everything is logged and risky steps need approval. That is how I build, and everything can be reviewed afterwards.' },
-        { q: 'What does it cost to run an AI agent?', a: 'It depends on the model and the volume. I measure the cost per case already in shadow mode, so you know what the agent costs to run before it takes over, and I use a smaller model where it is enough.' },
+        { q: 'What does it cost to run an AI agent?', a: 'It depends on the model and the volume. I measure the cost per case already in shadow mode, so you know what the agent costs to run before it takes over, and I use a smaller model where it is enough.' }, // taste-skill-ignore: "shadow mode" is copy, not a CSS shadow
         { q: 'Can the agent use our existing systems?', a: 'Yes. Agents work through APIs and MCP with CRMs, business systems, inboxes and document archives. Where there is no API, I build an integration first.' },
       ],
     },

@@ -35,3 +35,21 @@ describe('home pages', () => {
     expect(readDist('/en/').querySelector('[data-lang-switch]')!.getAttribute('href')).toBe('/');
   });
 });
+
+describe('review fixes', () => {
+  it('shows no placeholder portrait while no portrait file exists', () => {
+    expect(readDist('/').querySelector('#about .ph')).toBeNull();
+    expect(readDist('/en/').querySelector('#about .ph')).toBeNull();
+  });
+  it('keeps the contact link on the page where the page has its own contact section', () => {
+    const nav = readDist('/sv/ai-agenter/').querySelectorAll('header.nav a').map((a) => a.getAttribute('href'));
+    expect(nav).toContain('#contact');
+  });
+  it('names each step in its mode group label', () => {
+    const doc = readDist('/');
+    for (const step of doc.querySelectorAll('[data-scan] [data-step]')) {
+      const label = step.querySelector('span')!.textContent.trim();
+      expect(step.querySelector('.seg')!.getAttribute('aria-label')).toContain(label);
+    }
+  });
+});

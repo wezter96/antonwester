@@ -3,11 +3,13 @@ import Monogram from './Monogram.astro';
 import { otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
 import { ui } from '../content/ui';
 
-interface Props { locale: Locale; page: PageRef }
-const { locale, page } = Astro.props;
+interface Props { locale: Locale; page: PageRef; /** The page has no sections of its own (the 404). */ standalone?: boolean }
+const { locale, page, standalone = false } = Astro.props;
 const t = ui[locale];
 const home = pathFor({ kind: 'home' }, locale);
-const prefix = page.kind === 'home' ? '' : home;
+const prefix = page.kind === 'home' && !standalone ? '' : home;
+// every page except the 404 has its own contact section
+const hrefFor = (id: string) => (id === 'contact' && !standalone ? '#contact' : `${prefix}#${id}`);
 const other = otherLocale(locale);
 const links = [
   ['work', t.nav.work],
@@ -20,7 +22,7 @@ const links = [
   <a class="mark" href={home}><Monogram /><span>Anton Wester</span></a>
   <nav aria-label={t.navLabel}>
     <ul>
-      {links.map(([id, label]) => <li class={id === 'contact' ? 'keep' : ''}><a href={`${prefix}#${id}`}>{label}</a></li>)}
+      {links.map(([id, label]) => <li class={id === 'contact' ? 'keep' : ''}><a href={hrefFor(id)}>{label}</a></li>)}
       <li class="keep"><a data-lang-switch href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
     </ul>
   </nav>

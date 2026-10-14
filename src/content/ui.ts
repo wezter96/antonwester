@@ -10,7 +10,6 @@ export const ui: L10n<Ui> = {
     estimate: 'Räkna på era timmar',
     workedWith: 'Arbetat med',
     portraitAlt: 'Anton Wester',
-    portraitPlaceholder: 'Porträtt',
     scan: {
       heading: 'Var lönar sig AI hos er?',
       intro: 'Välj en del av verksamheten. Justera stegen efter hur det ser ut hos er, ange teamets timmar och ta med siffran till vårt första samtal.',
@@ -57,7 +56,6 @@ export const ui: L10n<Ui> = {
     estimate: 'Estimate your hours',
     workedWith: 'Worked with',
     portraitAlt: 'Anton Wester',
-    portraitPlaceholder: 'Portrait',
     scan: {
       heading: 'Where does AI pay off for you?',
       intro: 'Pick a part of the business. Adjust the steps to match how you work, set your team’s hours, and bring the number to our first call.',

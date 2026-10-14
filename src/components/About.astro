@@ -9,10 +9,12 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const c = home[locale];
 const t = ui[locale];
+// Anton supplies src/assets/portrait.*; until then the bio takes the full width instead of a placeholder
+const hasPortrait = Object.keys(import.meta.glob('../assets/portrait.{jpg,jpeg,png,webp}')).length > 0;
 ---
 <section id="about" class="about grid" data-ground="fog">
-  <div class="pic"><Portrait locale={locale} /></div>
-  <div class="body">
+  {hasPortrait && <div class="pic"><Portrait locale={locale} /></div>}
+  <div class:list={['body', { solo: !hasPortrait }]}>
     <h2 class="head">{c.aboutHeading}</h2>
     <div class="bio">{c.bio.map((p) => <p class="lead">{p}</p>)}</div>
     <h3 class="sub skills-h">{c.expertise.heading}</h3>
@@ -38,6 +40,7 @@ const t = ui[locale];
   .about { padding: var(--section) var(--margin); row-gap: 40px; align-items: start; }
   .pic { grid-column: 1 / 6; }
   .body { grid-column: 7 / 13; }
+  .body.solo { grid-column: 1 / 10; }
   .body h2 { margin-bottom: 28px; }
   .bio { display: grid; gap: 16px; max-width: 48ch; }
   .skills-h { margin-top: clamp(40px, 4vw, 64px); }
@@ -49,13 +52,13 @@ const t = ui[locale];
   td { padding: 11px 12px; vertical-align: top; }
   tr:nth-child(odd) td { background: var(--gs); }
   .years { white-space: nowrap; width: 1%; color: var(--soft); font-variant-numeric: tabular-nums; }
-  .org { font-weight: 700; text-align: right; white-space: nowrap; }
+  td { hyphens: auto; overflow-wrap: anywhere; }
+  .org { font-weight: 700; text-align: right; }
   .stack { max-width: 60ch; color: var(--soft); }
   .links { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
-  @media (max-width: 800px) { .pic, .body { grid-column: 1 / -1; } }
+  @media (max-width: 1000px) { .pic, .body, .body.solo { grid-column: 1 / -1; } }
   @media (max-width: 640px) {
     .skills { grid-template-columns: 1fr; }
-    td { padding: 10px 8px; hyphens: auto; overflow-wrap: anywhere; }
-    .org { white-space: normal; }
+    td { padding: 10px 8px; }
   }
 </style>

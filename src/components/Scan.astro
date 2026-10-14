@@ -30,7 +30,7 @@ const inputId = `scan-hours-${l}`;
       {first.steps.map((s, i) => (
         <li class="step" data-step>
           <span>{s.label}</span>
-          <span class="seg" role="group" aria-label={t.stepModeLabel}>
+          <span class="seg" role="group" aria-label={`${t.stepModeLabel}: ${s.label}`}>
             {modes.map((m) => <button type="button" data-i={i} data-mode={m} aria-pressed={s.mode === m ? 'true' : 'false'}>{t.modes[m]}</button>)}
           </span>
         </li>

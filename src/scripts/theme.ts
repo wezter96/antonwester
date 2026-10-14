@@ -30,3 +30,5 @@ requestAnimationFrame(() => root.classList.add('ground-ready'));
 addEventListener('scroll', () => { if (!queued) queued = requestAnimationFrame(update); }, { passive: true });
 addEventListener('resize', () => { measure(); update(); }, { passive: true });
 addEventListener('load', () => { measure(); update(); });
+// sections move when the layout changes without a resize (FAQ items opening, images loading)
+new ResizeObserver(() => { measure(); update(); }).observe(document.body);

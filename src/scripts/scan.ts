@@ -12,6 +12,7 @@ interface ScanData {
 }
 
 const MODES: Mode[] = ['you', 'assist', 'agent'];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc = (s: string) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 
 for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
@@ -30,8 +31,9 @@ for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
   let shown = hoursPerYear(Number(hours.value), steps);
   let anim = 0;
 
-  const renderSteps = (stagger: boolean) => {
-    list.innerHTML = steps.map((s, i) => `<li class="step${stagger ? ' out' : ''}" data-step><span>${esc(s.label)}</span><span class="seg" role="group" aria-label="${esc(data.stepModeLabel)}">${MODES
+  const renderSteps = (animate: boolean) => {
+    const stagger = animate && !reduce;
+    list.innerHTML = steps.map((s, i) => `<li class="step${stagger ? ' out' : ''}" data-step><span>${esc(s.label)}</span><span class="seg" role="group" aria-label="${esc(data.stepModeLabel)}: ${esc(s.label)}">${MODES
       .map((m) => `<button type="button" data-i="${i}" data-mode="${m}" aria-pressed="${s.mode === m}">${esc(data.modes[m])}</button>`).join('')}</span></li>`).join('');
     if (stagger) [...list.children].forEach((li, i) => setTimeout(() => li.classList.remove('out'), 30 + i * 55));
   };
@@ -41,6 +43,11 @@ for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
     const target = hoursPerYear(h, steps);
     weeks.textContent = fillTemplate(data.yearBack, { weeks: fullTimeWeeks(target) });
     cancelAnimationFrame(anim);
+    if (reduce) {
+      shown = target;
+      out.textContent = `≈ ${formatHours(shown, data.locale)}`;
+      return;
+    }
     const from = shown;
     const t0 = performance.now();
     // screen readers wait for aria-busy to clear, so they announce the final number, not the tween

@@ -37,14 +37,18 @@ function bind(monument: HTMLElement): void {
       const wd = Math.max(68, Math.min(125, rest + lens[i] + ripple.r[i]));
       letters[i].style.fontVariationSettings = `'wdth' ${wd.toFixed(1)}`;
     }
-    if (energy > 0.05 || pointerX !== null) requestAnimationFrame(frame);
-    else { running = false; letters.forEach((l) => { l.style.fontVariationSettings = ''; }); }
+    // stop as soon as everything has settled, even under a resting pointer; the next pointermove restarts it
+    if (energy > 0.05) requestAnimationFrame(frame);
+    else {
+      running = false;
+      if (pointerX === null) letters.forEach((l) => { l.style.fontVariationSettings = ''; });
+    }
   };
   const run = () => { if (!running) { running = true; requestAnimationFrame(frame); } };
 
   area.addEventListener('pointerenter', measure);
   area.addEventListener('pointermove', (e) => { if (!armed()) return; if (!centers.length) measure(); pointerX = e.clientX; run(); });
-  const leave = () => { pointerX = null; };
+  const leave = () => { pointerX = null; run(); };
   area.addEventListener('pointerleave', leave);
   area.addEventListener('pointercancel', leave);
   monument.addEventListener('pointerdown', (e) => { if (!armed()) return; measure(); kickRipple(ripple, centers, e.clientX, area.clientWidth * 0.035); run(); });

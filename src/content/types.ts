@@ -94,7 +94,6 @@ export interface Ui {
   estimate: string;
   workedWith: string;
   portraitAlt: string;
-  portraitPlaceholder: string;
   scan: {
     heading: string;
     intro: string;

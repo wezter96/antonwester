@@ -62,8 +62,12 @@ const t = ui[locale];
   .fm .logo { opacity: 1; }
   .zd { position: relative; font-weight: 600; font-size: calc(var(--logo-u) * 1.5); letter-spacing: -.03em; padding-right: .5em; }
   .zd i { position: absolute; right: .05em; top: .12em; width: .26em; height: .26em; border-radius: 50%; background: currentColor; }
+  /* spec §9: without drift the logos wrap statically, all of them in view */
   @media (prefers-reduced-motion: reduce) {
-    .track { animation: none; }
+    .axis { height: auto; padding-block: clamp(14px, 1.6vw, 24px); }
+    .say::after, .axis::after { display: none; }
+    .track { animation: none; flex: 1 1 0; min-width: 0; }
+    .set { flex: 1 1 auto; flex-wrap: wrap; row-gap: clamp(14px, 1.6vw, 24px); column-gap: clamp(28px, 4vw, 64px); padding-right: var(--margin); }
     .dup { display: none; }
   }
 </style>
