@@ -27,6 +27,7 @@ const t = ui[locale];
   .lead { max-width: 46ch; }
   .lead b { font-weight: 700; }
   .btn { margin-top: clamp(8px, 1.2vw, 16px); }
-  .txt { transition: opacity .8s ease .95s, transform 1s var(--ease-out) .95s; }
-  :global(.pre) .txt { opacity: 0; transform: translateY(12px); }
+  /* painted at once (it holds the LCP text) and only settles */
+  .txt { transition: transform 1s var(--ease-out) .95s; }
+  :global(.pre) .txt { transform: translateY(12px); }
 </style>

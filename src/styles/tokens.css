@@ -33,6 +33,8 @@
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 
   --ground: var(--fog); --fg: var(--ink); --soft: var(--muted); --gs: var(--fog-2);
+  /* signal as text only reads on ink (about 6:1); on fog it falls back to ink */
+  --hot: var(--fg);
 }
 [data-ground='fog2'] { --ground: var(--fog-2); --fg: var(--ink); --soft: var(--muted); --gs: #CED3CB; }
-[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; }
+[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; --hot: var(--signal); }

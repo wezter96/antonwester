@@ -43,7 +43,7 @@ const links = [
   }
   ul a:hover::after, ul a:focus-visible::after { transform: none; }
   @media (max-width: 760px) {
-    .mark span { display: none; }
+    .mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     li:not(.keep) { display: none; }
   }
 </style>

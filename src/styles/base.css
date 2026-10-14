@@ -40,7 +40,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* sections paint their own ground tokens without JS; with JS they inherit the body's, which crossfade */
 [data-ground]:not(:root) { background: var(--ground); color: var(--fg); }
-.js [data-ground] { --ground: inherit; --fg: inherit; --soft: inherit; --gs: inherit; }
+.js [data-ground] { --ground: inherit; --fg: inherit; --soft: inherit; --gs: inherit; --hot: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

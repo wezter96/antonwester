@@ -40,10 +40,11 @@ const c = home[locale];
   .tail { font-weight: 700; }
   .actions { grid-column: 8 / 13; display: flex; justify-content: flex-end; align-items: center; gap: clamp(16px, 2.2vw, 32px); flex-wrap: wrap; }
   .hero :global(.axis) { grid-area: axis; }
-  .lede, .actions { transition: opacity .8s ease, transform 1s var(--ease-out); }
-  .lede { transition-delay: .95s; }
-  .actions { transition-delay: 1.08s; }
-  :global(.pre) .lede, :global(.pre) .actions { opacity: 0; transform: translateY(12px); }
+  /* the offer paints at once (it is the LCP element) and only settles; the actions fade in */
+  .lede { transition: transform 1s var(--ease-out) .95s; }
+  .actions { transition: opacity .8s ease 1.08s, transform 1s var(--ease-out) 1.08s; }
+  :global(.pre) .lede { transform: translateY(12px); }
+  :global(.pre) .actions { opacity: 0; transform: translateY(12px); }
   @media (max-width: 900px) {
     .lede, .actions { grid-column: 1 / -1; }
     .actions { justify-content: flex-start; margin-top: 20px; }
