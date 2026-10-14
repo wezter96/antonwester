@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A, v6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Paper Mono';src:url(/files/papermono.woff2) format('woff2');font-weight:100 800;font-display:swap}
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:#26292b;color:#e9ebe8;font:16px/1.5 system-ui,-apple-system,sans-serif;padding:40px clamp(16px,3vw,48px) 96px}
+  .intro{max-width:1280px;margin:0 auto 28px;display:flex;justify-content:space-between;gap:32px;align-items:flex-end;flex-wrap:wrap}
+  .intro h1{font-size:24px;line-height:1.2;margin:0 0 8px;font-weight:650}
+  .intro p{margin:0;color:#c4c9c6;max-width:76ch}
+  .ctrl{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .ctrl .sep{width:12px}
+  .ctrl button{font:inherit;font-size:14px;background:#3a3e41;color:#e9ebe8;border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+  .ctrl button[aria-pressed=true]{background:#e9ebe8;color:#1b1d1e}
+  .shell{max-width:1280px;margin:0 auto;container-type:inline-size;border-radius:10px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.45)}
+  .device{height:62.5cqw;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+  .legend{max-width:1280px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;font-size:15px;color:#c4c9c6}
+  .legend b{display:block;color:#e9ebe8;font-weight:600;margin-bottom:4px}
+  @media (max-width:900px){.legend{grid-template-columns:1fr 1fr}}
+
+  /* ============ the page ============ */
+  .page{
+    --fog:#E7E9E4; --fog-2:#DADED7; --ink:#0C1E22; --ink-2:#13292E; --ink-3:#1B363C;
+    --muted:#4C5A5B; --muted-ink:#93A6A8; --signal:#FF5A1F;
+    --m:2.2cqw; --gap:1.6cqw;
+    --s-body:1.15cqw; --s-lead:1.6cqw; --s-sub:2.3cqw; --s-head:calc(5.2cqw * var(--head-k,1));
+    --f-text:'Archivo',sans-serif; --f-display:'Archivo',sans-serif; --f-ui:'Archivo',sans-serif; --head-k:1; --base-w:800;
+    font-family:var(--f-text); font-size:var(--s-body); line-height:1.5; color:var(--ink); background:var(--fog);
+    -webkit-font-smoothing:antialiased;
+  }
+  .page a{color:inherit}
+  .page[data-font=mix]{--f-display:'Paper Mono',monospace;--f-ui:'Paper Mono',monospace;--head-k:.82;--base-w:760}
+  .page[data-font=mono]{--f-text:'Paper Mono',monospace;--f-display:'Paper Mono',monospace;--f-ui:'Paper Mono',monospace;--head-k:.82;--base-w:760;--s-body:1.05cqw;--s-lead:1.45cqw}
+  .page :is(.nameline,.scan h2,.work h2,.close h2,.stage,.num,.fn,.case h3,.facts dt,.bigname,.mark){font-family:var(--f-display)}
+  .page :is(.nav ul,.btn,.lnk,.say,.seg button,.result label,.fine,.small-row,.facts dd,.fm){font-family:var(--f-ui)}
+  .page:not([data-font=archivo]) .scan h2,.page:not([data-font=archivo]) .work h2,.page:not([data-font=archivo]) .close h2{letter-spacing:-.05em;line-height:1}
+  .page:not([data-font=archivo]) .stage{letter-spacing:-.05em}
+  .page:not([data-font=archivo]) .nav ul,.page:not([data-font=archivo]) .btn,.page:not([data-font=archivo]) .lnk,.page:not([data-font=archivo]) .say{font-size:.95em;letter-spacing:-.01em}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gap)}
+  .w{font-variation-settings:'wdth' var(--wd,100)}
+  .btn{display:inline-flex;align-items:center;gap:.8cqw;background:var(--signal);color:var(--ink);text-decoration:none;padding:1.05cqw 1.8cqw;position:relative;overflow:hidden;isolation:isolate;cursor:pointer;border:0;font:inherit;font-weight:650}
+  .btn::before{content:'';position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .45s cubic-bezier(.65,0,.35,1);z-index:-1}
+  .btn:hover{color:var(--fog)}
+  .btn:hover::before{transform:none}
+  .on-ink .btn::before{background:var(--fog)}
+  .on-ink .btn:hover{color:var(--ink)}
+  .lnk{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/100% .08em no-repeat;padding-bottom:.15em;transition:background-size .4s cubic-bezier(.65,0,.35,1);font-weight:600}
+  .lnk:hover{background-size:0 .08em;background-position:100% 100%}
+  h2,h3,p{margin:0}
+
+  /* hero */
+  .hero{position:relative;height:62.5cqw;background:var(--fog);overflow:hidden}
+  .nav{position:absolute;inset:2cqw var(--m) auto;display:flex;justify-content:space-between;align-items:center;font-weight:500;z-index:3}
+  .mark{display:flex;align-items:center;gap:.9cqw;font-weight:700;--wd:112;text-decoration:none}
+  .mark svg{width:2.5cqw;height:auto}
+  .nav ul{display:flex;gap:2.4cqw;list-style:none;margin:0;padding:0}
+  .nameline{position:absolute;left:0;right:0;top:42%;transform:translateY(-50%);display:flex;justify-content:center;align-items:baseline;gap:1.3cqw;font-weight:800;text-transform:uppercase;line-height:.8;letter-spacing:-.02em;white-space:nowrap;margin:0;touch-action:pan-y;cursor:default;user-select:none;-webkit-user-select:none}
+  .word{display:flex}
+  .nameline{font-weight:var(--base-w)}
+  .ch{display:inline-block;font-variation-settings:'wdth' 100;transform-origin:50% 100%;transition:font-variation-settings 1.1s cubic-bezier(.16,1,.3,1),font-weight 1.1s cubic-bezier(.16,1,.3,1),opacity .6s ease,transform 1s cubic-bezier(.16,1,.3,1);will-change:transform}
+  .portrait{width:.95em;height:.74em;align-self:baseline;background:#C6CCC5;position:relative;overflow:hidden;transition:clip-path 1.2s cubic-bezier(.65,0,.35,1)}
+  .portrait svg{position:absolute;inset:0;width:100%;height:100%}
+  .portrait span{position:absolute;left:6%;bottom:6%;font-size:.055em;letter-spacing:0;text-transform:none;font-weight:500;color:#4C5A5B}
+  .hfoot{position:absolute;left:var(--m);right:var(--m);bottom:10.4cqw;align-items:end}
+  .lede{grid-column:1/8;font-size:var(--s-lead);line-height:1.35;font-weight:430;max-width:50cqw}
+  .lede strong{font-weight:700}
+  .hactions{grid-column:8/13;display:flex;justify-content:flex-end;align-items:center;gap:2.2cqw;font-weight:600}
+
+  .axis{position:absolute;left:0;right:0;bottom:0;height:7.4cqw;background:var(--fog-2);display:flex;align-items:center;overflow:hidden}
+  .axis .say{position:relative;z-index:2;flex:none;width:11.5cqw;height:100%;display:flex;align-items:center;padding-left:var(--m);background:var(--fog-2);font-weight:650;line-height:1.25;white-space:nowrap}
+  .axis .say::after{content:'';position:absolute;top:0;bottom:0;left:100%;width:11cqw;background:linear-gradient(90deg,var(--fog-2) 0%,rgba(218,222,215,.8) 30%,rgba(218,222,215,0) 100%);pointer-events:none}
+  .axis::after{content:'';position:absolute;top:0;bottom:0;right:0;width:7cqw;background:linear-gradient(270deg,var(--fog-2),rgba(218,222,215,0));pointer-events:none;z-index:2}
+  .track{display:flex;align-items:center;gap:6cqw;padding-right:6cqw;flex:none;animation:drift 52s linear infinite}
+  .axis:hover .track{animation-play-state:paused}
+  @keyframes drift{to{transform:translateX(-50%)}}
+  .logo{flex:none;height:var(--h,2.1cqw);aspect-ratio:var(--r);background:var(--ink);-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat;opacity:.86;transition:opacity .3s}
+  .axis:hover .logo,.axis:hover .fm{opacity:.4}
+  .axis .logo:hover,.axis .fm:hover{opacity:1}
+  .fm{display:flex;align-items:center;gap:.7cqw;flex:none;font-weight:700;font-size:1.45cqw;letter-spacing:-.01em;--wd:88;opacity:.86;white-space:nowrap;transition:opacity .3s}
+  .fm .logo{opacity:1;--h:2cqw}
+  .zd{position:relative;font-size:1.75cqw;font-weight:600;letter-spacing:-.03em;padding-right:.5em}
+  .zd i{position:absolute;right:.05em;top:.12em;width:.26em;height:.26em;border-radius:50%;background:currentColor}
+
+  /* load sequence: plays once */
+  .page.pre .ch{font-variation-settings:'wdth' 62;opacity:0;transform:translateY(18%)}
+  .page:not([data-font=archivo]).pre .ch{font-weight:100}
+  .page.pre .portrait{clip-path:inset(0 50% 0 50%)}
+  .page .portrait{clip-path:inset(0 0 0 0)}
+  .page .lede,.page .hactions,.page .nav,.page .axis{transition:opacity .8s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+  .page.pre .lede,.page.pre .hactions{opacity:0;transform:translateY(1.2cqw)}
+  .page.pre .nav{opacity:0}
+  .page.pre .axis{transform:translateY(100%)}
+
+  /* scan */
+  .scan{background:var(--ink);color:var(--fog);padding:9cqw var(--m) 9cqw}
+  .scan h2{grid-column:1/9;font-size:var(--s-head);line-height:.95;letter-spacing:-.03em;font-weight:800;--wd:108}
+  .scan .intro2{grid-column:1/7;margin-top:2.2cqw;font-size:var(--s-lead);line-height:1.35;color:var(--fog);font-weight:400}
+  .tool{margin-top:6cqw;align-items:start}
+  .fns{grid-column:1/5;display:flex;flex-direction:column;gap:.9cqw;padding-top:.4cqw}
+  .fn{all:unset;cursor:pointer;font-size:var(--s-sub);line-height:1.05;letter-spacing:-.02em;font-weight:500;color:var(--muted-ink);font-variation-settings:'wdth' 72;transition:font-variation-settings .8s cubic-bezier(.16,1,.3,1),color .3s,font-weight .3s;white-space:nowrap}
+  .fn:hover{font-variation-settings:'wdth' 86;color:#C9D4D5}
+  .fn[aria-pressed=true]{font-variation-settings:'wdth' 125;font-weight:800;color:var(--fog)}
+  .fn:focus-visible{outline:2px solid var(--signal);outline-offset:4px}
+  .page:not([data-font=archivo]) .fn{font-weight:300;transition:font-weight .8s cubic-bezier(.16,1,.3,1),color .3s;letter-spacing:-.03em}
+  .page:not([data-font=archivo]) .fn:hover{font-weight:450}
+  .page:not([data-font=archivo]) .fn[aria-pressed=true]{font-weight:800}
+  .steps{grid-column:5/10;list-style:none;margin:0;padding:0;display:grid;gap:.35cqw}
+  .step{display:flex;justify-content:space-between;align-items:center;gap:1.2cqw;padding:1cqw 1.2cqw;background:var(--ink-2);transition:opacity .35s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+  .step.out{opacity:0;transform:translateX(1.2cqw)}
+  .step:nth-child(even){background:var(--ink-3)}
+  .seg{display:flex;flex:none;background:var(--ink);padding:.25cqw;gap:.2cqw}
+  .seg button{all:unset;cursor:pointer;font-size:.95cqw;font-weight:600;padding:.3cqw .75cqw;color:var(--muted-ink);transition:background .25s,color .25s}
+  .seg button[aria-pressed=true]{background:var(--fog);color:var(--ink)}
+  .seg button[data-m=agent][aria-pressed=true]{background:var(--signal);color:var(--ink)}
+  .seg button:focus-visible{outline:2px solid var(--signal)}
+  .result{grid-column:10/13;display:flex;flex-direction:column;gap:1.4cqw}
+  .result label{color:var(--muted-ink);line-height:1.35}
+  .result label b{color:var(--fog);font-weight:650;font-variant-numeric:tabular-nums}
+  .result input{width:100%;accent-color:var(--signal);margin:0}
+  .num{font-size:var(--s-head);line-height:.9;font-weight:800;letter-spacing:-.04em;color:var(--signal);font-variant-numeric:tabular-nums;--wd:112;white-space:nowrap}
+  .num small{display:block;font-size:var(--s-body);font-weight:500;letter-spacing:0;color:var(--fog);margin-top:.8cqw;line-height:1.35;font-variation-settings:'wdth' 100;white-space:normal}
+  .fine{color:var(--muted-ink);line-height:1.45}
+
+  /* approach */
+  .approach{padding:11cqw var(--m) 11cqw;row-gap:4.2cqw;align-items:baseline}
+  .approach h2{display:contents}
+  .stage{grid-column:1/7;font-size:var(--s-head);line-height:.9;font-weight:800;letter-spacing:-.03em}
+  .page:not([data-font=archivo]) .stage:nth-of-type(1){font-weight:200}
+  .page:not([data-font=archivo]) .stage:nth-of-type(2){font-weight:500}
+  .page:not([data-font=archivo]) .stage:nth-of-type(3){font-weight:800}
+  .stage-copy{grid-column:7/12;font-size:var(--s-lead);line-height:1.4;font-weight:400;max-width:40cqw}
+  .stage-copy b{font-weight:700}
+
+  /* work */
+  .work{background:var(--fog-2);padding:10cqw var(--m) 8cqw}
+  .work h2{grid-column:1/9;font-size:var(--s-head);line-height:.95;letter-spacing:-.03em;font-weight:800}
+  .case{margin-top:7cqw;align-items:end}
+  .case img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top left}
+  .case .shot{grid-column:1/8}
+  .case .txt{grid-column:9/13}
+  .case.flip .shot{grid-column:6/13;grid-row:1}
+  .case.flip .txt{grid-column:1/5;grid-row:1}
+  .case h3{font-size:var(--s-sub);line-height:1;font-weight:800;letter-spacing:-.02em;--wd:112;margin-bottom:1.2cqw}
+  .case p{margin-bottom:1.4cqw;max-width:34ch}
+  .facts{margin:0 0 1.8cqw;display:grid;grid-template-columns:auto 1fr;gap:.3cqw 1.2cqw}
+  .facts dt{font-weight:800;font-variant-numeric:tabular-nums;font-variation-settings:'wdth' 112}
+  .facts dd{margin:0;color:var(--muted)}
+  .shot-ph{aspect-ratio:16/10;background:var(--gs,#CDD2CA);display:flex;align-items:flex-end;padding:1.6cqw;color:var(--soft,#4C5A5B);outline:1px dashed currentColor;outline-offset:-1.2cqw}
+  .tag{font-weight:600}
+  .also{grid-column:1/-1;margin-top:7cqw;font-size:var(--s-lead);line-height:1.4;max-width:62cqw}
+  .also b{font-weight:700}
+
+  /* close */
+  .close{background:var(--ink);color:var(--fog);padding:9cqw var(--m) 2.2cqw}
+  .close h2{grid-column:1/9;font-size:var(--s-head);line-height:.95;letter-spacing:-.03em;font-weight:800}
+  .close .row{grid-column:1/-1;margin-top:3.4cqw;display:flex;align-items:center;gap:3cqw}
+  .close .mail{font-size:var(--s-sub);font-weight:600;letter-spacing:-.02em;text-decoration:none}
+  .close .mail:hover{color:var(--signal)}
+  .bigname{display:inline-block;margin:9cqw 0 0;text-transform:uppercase;font-weight:800;line-height:.78;letter-spacing:-.03em;white-space:nowrap;--wd:125;color:var(--fog)}
+  .small-row{display:flex;justify-content:space-between;margin-top:2.4cqw;color:var(--muted-ink)}
+
+  /* soft section transitions: when a section takes over the screen, the whole ground fades to its colour */
+  @property --ground{syntax:'<color>';inherits:true;initial-value:#E7E9E4}
+  @property --fg{syntax:'<color>';inherits:true;initial-value:#0C1E22}
+  @property --soft{syntax:'<color>';inherits:true;initial-value:#4C5A5B}
+  @property --gs{syntax:'<color>';inherits:true;initial-value:#DADED7}
+  @property --gs8{syntax:'<color>';inherits:true;initial-value:rgba(218,222,215,.8)}
+  @property --gs0{syntax:'<color>';inherits:true;initial-value:rgba(218,222,215,0)}
+  .page.blend{background:var(--ground);color:var(--fg);transition:--ground .8s cubic-bezier(.65,0,.35,1),--gs .8s cubic-bezier(.65,0,.35,1),--gs8 .8s cubic-bezier(.65,0,.35,1),--gs0 .8s cubic-bezier(.65,0,.35,1),--fg .45s cubic-bezier(.33,1,.68,1),--soft .45s cubic-bezier(.33,1,.68,1)}
+  .page.blend :is(.hero,.scan,.approach,.work,.close){background:transparent;color:inherit}
+  .page.blend :is(.scan .intro2,.num small,.result label b,.bigname,.fn[aria-pressed=true]){color:inherit}
+  .page.blend :is(.result label,.fine,.small-row,.facts dd){color:var(--soft)}
+  .page.blend .axis,.page.blend .axis .say{background:var(--gs)}
+  .page.blend .axis .say::after{background:linear-gradient(90deg,var(--gs) 0%,var(--gs8) 30%,var(--gs0) 100%)}
+  .page.blend .axis::after{background:linear-gradient(270deg,var(--gs),var(--gs0))}
+  .page.blend .logo{background:var(--fg)}
+  .page.blend .portrait{background:var(--gs)}
+
+  @media (prefers-reduced-motion:reduce){
+    .page *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="intro">
+  <div>
+    <h1>Riktning A, v6: mjuka övergångar, mjuk scroll, Wez</h1>
+    <p>Scrolla i ramen. När du scrollar in i den mörka sektionen tonar hela bakgrunden mjukt till mörkt, och tillbaka när du lämnar den. Knapparna stänger av och sätter på det, så du kan jämföra med hårda kanter. Klicka på en bokstav i namnet för krusningen.</p>
+  </div>
+  <div class="ctrl">
+    <button id="tBlend" aria-pressed="true">Mjuka övergångar</button>
+    <button id="tSmooth" aria-pressed="true">Mjuk scroll</button>
+    <span class="sep"></span>
+    <button data-lang="sv" aria-pressed="true">Svenska</button>
+    <button data-lang="en" aria-pressed="false">English</button>
+    <button id="again">Replay load</button>
+  </div>
+</div>
+
+<div class="shell"><div class="device" id="device">
+<div class="page pre blend" id="page" data-font="archivo">
+
+  <header class="hero" data-ground="fog">
+    <nav class="nav">
+      <a class="mark w" href="#">
+        <svg viewBox="0 0 64 40" aria-hidden="true"><path d="M0 40 L15 0 H23 L38 40 H30 L19 10 L8 40Z" fill="#0C1E22"/><path d="M26 0 H33 L41 22 L49 0 H56 L64 0 L49 40 H43 L37 24 L41 14 L45 24 L54 0Z" fill="#FF5A1F"/></svg>
+        Anton Wester
+      </a>
+      <ul data-k="nav"></ul>
+    </nav>
+
+    <h1 class="nameline" data-fit>
+      <span class="word" data-word>Anton</span>
+      <span class="portrait" aria-hidden="true">
+        <svg viewBox="0 0 100 78" preserveAspectRatio="xMidYMax slice"><circle cx="50" cy="32" r="15" fill="#B3BBB3"/><path d="M18 78 C20 56 34 50 50 50 C66 50 80 56 82 78Z" fill="#B3BBB3"/></svg>
+        <span data-k="portrait"></span>
+      </span>
+      <span class="word" data-word>Wester</span>
+    </h1>
+
+    <div class="hfoot grid">
+      <p class="lede" data-k="lede"></p>
+      <div class="hactions"><a class="lnk" href="#scan" data-k="estimate"></a><a class="btn" href="#" data-k="book"></a></div>
+    </div>
+
+    <div class="axis">
+      <p class="say w" data-k="trusted"></p>
+      <div class="track" id="track"></div>
+    </div>
+  </header>
+
+  <section class="scan on-ink" id="scan" data-ground="ink">
+    <div class="grid">
+      <h2 class="w" data-k="scanH"></h2>
+      <p class="intro2" data-k="scanP"></p>
+    </div>
+    <div class="grid tool">
+      <div class="fns" role="group" id="fns"></div>
+      <ol class="steps" id="steps"></ol>
+      <div class="result">
+        <label for="hrs"><span data-k="hours"></span> <b id="hv">25</b></label>
+        <input id="hrs" type="range" min="2" max="120" value="25">
+        <div class="num w" aria-live="polite"><span id="out">0</span> h<small id="weeks"></small></div>
+        <a class="btn" href="#" data-k="send"></a>
+        <p class="fine" data-k="fine"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach grid" data-ground="fog">
+    <h2>
+      <span class="stage w" style="--wd:62" data-k="s1"></span>
+      <p class="stage-copy" data-k="p1"></p>
+      <span class="stage w" style="--wd:96" data-k="s2"></span>
+      <p class="stage-copy" data-k="p2"></p>
+      <span class="stage w" style="--wd:125" data-k="s3"></span>
+      <p class="stage-copy" data-k="p3"></p>
+    </h2>
+  </section>
+
+  <section class="work" data-ground="fog2">
+    <div class="grid"><h2 class="w" style="--wd:104" data-k="workH"></h2></div>
+    <article class="grid case">
+      <div class="shot"><img src="/files/shot-openaudit.png" alt="openaudit.se" width="1440" height="900"></div>
+      <div class="txt">
+        <h3 class="w">OpenAudit</h3>
+        <p data-k="oaP"></p>
+        <dl class="facts" data-k="oaF"></dl>
+        <a class="lnk" href="https://openaudit.se">openaudit.se</a>
+      </div>
+    </article>
+    <article class="grid case flip">
+      <div class="shot"><img src="/files/shot-sokhem.png" alt="sokhem.se" width="1440" height="900"></div>
+      <div class="txt">
+        <h3 class="w">SökHem</h3>
+        <p data-k="shP"></p>
+        <dl class="facts" data-k="shF"></dl>
+        <a class="lnk" href="https://sokhem.se">sokhem.se</a>
+      </div>
+    </article>
+    <article class="grid case">
+      <div class="shot"><div class="shot-ph" data-k="wezShot"></div></div>
+      <div class="txt">
+        <h3 class="w">Wez</h3>
+        <p data-k="wezP"></p>
+        <dl class="facts" data-k="wezF"></dl>
+        <span class="tag" data-k="wezTag"></span>
+      </div>
+    </article>
+    <p class="also" data-k="also"></p>
+  </section>
+
+  <footer class="close on-ink" data-ground="ink">
+    <div class="grid">
+      <h2 class="w" data-k="closeH"></h2>
+      <div class="row"><a class="btn" href="#" data-k="book"></a><a class="mail lnk" href="#">contact@antonwester.se</a></div>
+    </div>
+    <p class="bigname w" data-fit2>Anton Wester</p>
+    <div class="small-row"><span data-k="org"></span><span data-k="other"></span></div>
+  </footer>
+</div>
+</div></div>
+
+<div class="legend">
+  <div><b>Mjuka övergångar</b>När en sektion tar över skärmen tonar hela bakgrunden till dess färg på 0,8 sekunder, som skymning och gryning, och tillbaka om du scrollar upp. Texten byter färg snabbare än bakgrunden, så den går alltid att läsa och det blir aldrig grumligt grått.</div>
+  <div><b>Mjuk scroll</b>Scrollhjulet får ett mjukt fall, och länkar som ”Räkna på era timmar” glider fram till sin sektion. På riktiga sidan sköts det av Lenis (cirka 4 KB). Touch på mobil behåller sin vanliga känsla, och allt stängs av när besökaren föredrar minskad rörelse.</div>
+  <div><b>Lins + krusning</b>Nu den enda effekten på namnet. En lugn lins när pekaren rör sig, och en våg genom namnet när man klickar.</div>
+  <div><b>Ny text och Wez</b>”Hitta. Bygg. Förvalta.” Du driftar och förbättrar det åt kunden, och överlämning är ett val. Wez ligger som tredje produkt, med en ram där en riktig skärmdump från demoläget ska in.</div>
+</div>
+
+<script>
+(() => {
+  const page = document.getElementById('page');
+  const T = {
+    sv: {
+      nav: '<li>Arbeten</li><li>Arbetssätt</li><li>Om mig</li><li>Kontakt</li><li>English</li>',
+      portrait: 'Ditt porträtt',
+      lede: '<strong>AI-konsult i Göteborg.</strong> Jag hittar var AI och automation lönar sig i er verksamhet, bygger det och underhåller det.',
+      estimate: 'Räkna på era timmar', book: 'Boka ett introsamtal',
+      trusted: 'Arbetat med',
+      scanH: 'Var lönar sig AI hos er?',
+      scanP: 'Välj en del av verksamheten. Justera stegen efter hur det ser ut hos er, ange teamets timmar och ta med siffran till vårt första samtal.',
+      hours: 'Timmar per vecka som teamet lägger på det här idag:',
+      back: n => `tillbaka per år. Ungefär ${n} heltidsveckor.`,
+      send: 'Skicka uppskattningen till mig',
+      fine: 'Era timmar × 46 arbetsveckor × varje stegs andel av tiden. Ett agentsteg räknas som 80 %, ett assisterat som 40 %. Det är en startpunkt, och jag stämmer av den mot riktig data innan något byggs.',
+      s1: 'Hitta.', s2: 'Bygg.', s3: 'Förvalta.',
+      p1: '<b>Jag sitter med dem som gör jobbet</b> och kartlägger vart timmarna tar vägen. Ni får en prioriterad lista över var AI lönar sig, vad det kostar att bygga och vad som ska förbli mänskligt. Kartan är er, oavsett om vi bygger vidare tillsammans.',
+      p2: '<b>Jag bygger det själv, i er stack:</b> agenter, integrationer och gränssnitten teamet ska använda, med tester, övervakning och de skyddsräcken som reglerade branscher kräver.',
+      p3: '<b>Jag driftar och förvaltar det åt er:</b> hosting, övervakning, säkerhet, uppdateringar och löpande förbättringar. Vill ni hellre driva det själva får teamet koden, dokumentationen och utbildningen. Ni väljer, och det finns ingen inlåsning.',
+      workH: 'Jag bygger egna produkter också.',
+      oaP: 'En poängsatt granskning av allt ni levererar: kod, webbplatser, appar, containrar, infrastruktur och moln. Byggd lika mycket för AI-agenter som för människor, och körs via MCP och i CI.',
+      oaF: '<dt>103</dt><dd>granskare inom tio områden</dd><dt>A 100</dt><dd>eget betyg, vid varje push</dd><dt>MIT</dt><dd>fri och öppen källkod</dd>',
+      shP: 'En headhunter för bostäder. Köpare beskriver vad de söker en gång och matchas varje dag. Säljare annonserar gratis, med eller utan mäklare. Jag grundade och byggde den på egen hand.',
+      shF: '<dt>130 000+</dt><dd>bostäder till salu</dd><dt>2,5 milj.</dt><dd>levererade matchningar</dd><dt>750+</dt><dd>områdesguider</dd>',
+      wezShot: 'Skärmdump från Wez demoläge, tas när sidan byggs',
+      wezP: 'Min egen agentmiljö, där ett team av AI-agenter arbetar i mina projekt. Varje anrop, verktygsanrop, filändring, kostnad och godkännande syns medan det händer. Det är så jag bygger, och samma insyn får ni i det jag bygger åt er.',
+      wezF: '<dt>1 300+</dt><dd>commits, i daglig drift</dd><dt>6</dt><dd>agenter: arkitekt, designer, QA och fler</dd><dt>3</dt><dd>klienter: desktop, mobil och CLI</dd>',
+      wezTag: 'Privat projekt, i daglig drift',
+      also: '<b>Dessutom:</b> Lingo, en AI-native plattform för lokalisering, och bidrag till T4 Stack, ett open source-startpaket för typade webb- och mobilappar. Alla får egna case-sidor.',
+      closeH: 'Låt oss hitta era timmar.',
+      org: 'Anton Wester AB, Göteborg', other: 'English',
+      modes: { you: 'Ni', assist: 'Assisterat', agent: 'Agent' },
+      sets: [
+        ['Kundtjänst', [['Läsa och sortera inkommande mejl', 'agent', .25], ['Skriva svarsutkast från era hjälpartiklar', 'agent', .35], ['Kontrollera ton och fakta', 'you', .15], ['Skicka och logga i CRM', 'agent', .10], ['Hantera specialfallen', 'assist', .15]]],
+        ['Ekonomi', [['Matcha fakturor mot ordrar', 'agent', .30], ['Jaga saknade kvitton', 'agent', .20], ['Kontera transaktioner', 'assist', .25], ['Attestera betalningar', 'you', .10], ['Sammanfatta månadsbokslutet', 'assist', .15]]],
+        ['Försäljning', [['Researcha kunden', 'agent', .30], ['Skriva första kontakten', 'assist', .20], ['Kvalificera inkommande leads', 'agent', .20], ['Ta samtalet', 'you', .20], ['Uppdatera CRM efteråt', 'agent', .10]]],
+        ['Administration', [['Sammanfatta långa dokument', 'agent', .25], ['Föra över data mellan system', 'agent', .25], ['Boka möten och skicka påminnelser', 'assist', .15], ['Svara på interna frågor', 'assist', .15], ['Granska och fatta beslut', 'you', .20]]],
+        ['Rapportering', [['Hämta siffror från fem system', 'agent', .35], ['Bygga veckorapporten', 'agent', .25], ['Hitta vad som ändrats och varför', 'assist', .20], ['Bestämma vad ni gör åt det', 'you', .20]]],
+      ],
+    },
+    en: {
+      nav: '<li>Work</li><li>Approach</li><li>About</li><li>Contact</li><li>Svenska</li>',
+      portrait: 'Your portrait',
+      lede: '<strong>AI consultant in Gothenburg.</strong> I find where AI and automation pay off in your business, build it, and maintain it.',
+      estimate: 'Estimate your hours', book: 'Book an intro call',
+      trusted: 'Worked with',
+      scanH: 'Where does AI pay off for you?',
+      scanP: 'Pick a part of the business. Adjust the steps to match how you work, set your team’s hours, and bring the number to our first call.',
+      hours: 'Hours a week your team spends on this today:',
+      back: n => `a year back. About ${n} full-time weeks.`,
+      send: 'Send me this estimate',
+      fine: 'Your hours × 46 working weeks × each step’s share of the time. An agent step counts 80 %, an assisted step 40 %. It’s a starting point, and I check it against real data before anything is built.',
+      s1: 'Find.', s2: 'Build.', s3: 'Run.',
+      p1: '<b>I sit with the people who do the work</b> and map where the hours go. You get a ranked list of where AI pays, what it costs to build, and what should stay human. You keep the map whether or not we build it together.',
+      p2: '<b>I build it myself, in your stack:</b> agents, integrations and the interfaces your team will use, with tests, monitoring and the guardrails regulated businesses need.',
+      p3: '<b>I host and run it for you:</b> monitoring, security, updates and steady improvements. If you would rather run it yourselves, your team gets the code, the docs and the training. Your choice, and no lock-in.',
+      workH: 'I build my own products too.',
+      oaP: 'One scored audit of everything you ship: code, sites, apps, containers, infrastructure and cloud. Built for AI agents as much as for people. It runs over MCP and in CI.',
+      oaF: '<dt>103</dt><dd>auditors across ten areas</dd><dt>A 100</dt><dd>its own score, on every push</dd><dt>MIT</dt><dd>free and open source</dd>',
+      shP: 'A headhunter for homes. Buyers describe what they want once and get matched every day. Sellers list for free, with or without an agent. I founded it and built it alone.',
+      shF: '<dt>130 000+</dt><dd>homes for sale</dd><dt>2.5 M</dt><dd>matches delivered</dd><dt>750+</dt><dd>area guides</dd>',
+      wezShot: 'Screenshot from Wez demo mode, captured during the build',
+      wezP: 'My own agent harness, where a crew of AI agents works in my projects. Every request, tool call, file change, cost and approval is visible while it happens. It is how I build, and you get the same visibility in what I build for you.',
+      wezF: '<dt>1,300+</dt><dd>commits, in daily use</dd><dt>6</dt><dd>agents: architect, designer, QA and more</dd><dt>3</dt><dd>clients: desktop, mobile and CLI</dd>',
+      wezTag: 'Private project, in daily use',
+      also: '<b>Also:</b> Lingo, an AI-native localization platform, and contributions to T4 Stack, an open-source starter for typed web and native apps. Each gets its own case page.',
+      closeH: 'Let’s find your hours.',
+      org: 'Anton Wester AB, Gothenburg', other: 'Svenska',
+      modes: { you: 'You', assist: 'Assisted', agent: 'Agent' },
+      sets: [
+        ['Customer service', [['Read and sort incoming email', 'agent', .25], ['Draft replies from your help docs', 'agent', .35], ['Check tone and facts', 'you', .15], ['Send and log it in the CRM', 'agent', .10], ['Handle the odd cases', 'assist', .15]]],
+        ['Finance', [['Match invoices to orders', 'agent', .30], ['Chase missing receipts', 'agent', .20], ['Code transactions', 'assist', .25], ['Approve payments', 'you', .10], ['Write the month-end summary', 'assist', .15]]],
+        ['Sales', [['Research the account', 'agent', .30], ['Write the first outreach', 'assist', .20], ['Qualify inbound leads', 'agent', .20], ['Run the call', 'you', .20], ['Update the CRM afterwards', 'agent', .10]]],
+        ['Administration', [['Summarise long documents', 'agent', .25], ['Move data between systems', 'agent', .25], ['Book meetings and send reminders', 'assist', .15], ['Answer internal questions', 'assist', .15], ['Review and decide', 'you', .20]]],
+        ['Reporting', [['Pull numbers from five systems', 'agent', .35], ['Build the weekly report', 'agent', .25], ['Spot what changed and why', 'assist', .20], ['Decide what to do about it', 'you', .20]]],
+      ],
+    },
+  };
+  let lang = 'sv';
+
+  // logo axis
+  const logos = [
+    ['ivcevidensia', 3.72, 2.5, 'IVC Evidensia'], ['evinova', 4.34, 2.0, 'Evinova'], ['telia', 2.54, 2.6, 'Telia'],
+    ['far', 2.05, 2.3, 'FAR'], ['sejfa', 2.25, 2.4, 'Sejfa'], ['tiimo', 3.59, 2.1, 'Tiimo', 'png'],
+    ['futurememories', 1, 2, 'Future Memories'], ['zodiapps', 0, 0, 'zodiapps'], ['weapp', 3.47, 1.9, 'weapp'],
+  ];
+  const one = logos.map(([k, r, h, name, ext]) => {
+    const el = `<span class="logo" role="img" aria-label="${name}" style="--src:url(/files/logo-${k}.${ext || 'svg'});--r:${r};--h:${h}cqw"></span>`;
+    if (k === 'zodiapps') return `<span class="fm zd" role="img" aria-label="zodiapps">zodiapps<i></i></span>`;
+    return k === 'futurememories' ? `<span class="fm w">${el}Future Memories</span>` : el;
+  }).join('');
+  document.getElementById('track').innerHTML = one + one.replaceAll('role="img"', 'aria-hidden="true"');
+
+  // name → letters
+  const nameLine = page.querySelector('[data-fit]');
+  nameLine.querySelectorAll('[data-word]').forEach(w => { w.innerHTML = [...w.textContent].map(c => `<span class="ch">${c}</span>`).join(''); });
+  const chars = [...nameLine.querySelectorAll('.ch')];
+  const bigname = page.querySelector('[data-fit2]');
+  const fitAll = () => {
+    const pre = page.classList.contains('pre');
+    page.classList.remove('pre');
+    chars.forEach(c => { c.style.transition = 'none'; c.style.fontVariationSettings = "'wdth' 100"; c.style.fontWeight = ''; c.style.transform = ''; });
+    nameLine.offsetWidth;
+    nameLine.style.fontSize = '100px';
+    const kids = [...nameLine.children], gap = parseFloat(getComputedStyle(nameLine).columnGap) || 0;
+    const w = kids.reduce((a, k) => a + k.getBoundingClientRect().width, 0) + (kids.length - 1) * gap;
+    nameLine.style.fontSize = (100 * page.clientWidth * 0.82 / w) + 'px';
+    chars.forEach(c => { c.style.transition = ''; c.style.fontVariationSettings = ''; });
+    bigname.style.fontSize = '100px';
+    bigname.style.fontSize = (100 * (page.clientWidth - 2 * parseFloat(getComputedStyle(page.querySelector('.close')).paddingLeft)) / bigname.scrollWidth) + 'px';
+    if (pre) page.classList.add('pre');
+  };
+
+  // ---------- hover effects on the name: three to compare ----------
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hero = page.querySelector('.hero');
+  const N = chars.length;
+  const W = new Float32Array(N), V = new Float32Array(N), L = new Float32Array(N), LV = new Float32Array(N);
+  const S = new Float32Array(N), R = new Float32Array(N), RV = new Float32Array(N);
+  let centers = [], running = false, live = false, last = null, pointerX = null, effect = 'hybrid';
+  const measure = () => { centers = chars.map(c => { const r = c.getBoundingClientRect(); return r.left + r.width / 2; }); };
+  const lensAt = (x, i) => { const d = (x - centers[i]) / hero.clientWidth; return 22 * Math.exp(-(d * d) / 0.006); };
+  const clearStyles = () => chars.forEach(c => { c.style.fontVariationSettings = ''; c.style.fontWeight = ''; c.style.transform = ''; });
+  const resetState = () => { [W, V, L, LV, S, R, RV].forEach(a => a.fill(0)); running = false; last = null; };
+
+  // gust (v3): coupled springs with lean
+  const stepGust = () => {
+    let energy = 0;
+    for (let i = 0; i < N; i++) {
+      const nb = (i > 0 ? W[i - 1] : W[i]) + (i < N - 1 ? W[i + 1] : W[i]) - 2 * W[i];
+      V[i] += -0.05 * W[i] - 0.11 * V[i] + 0.15 * nb;
+      LV[i] += -0.06 * L[i] - 0.15 * LV[i];
+    }
+    for (let i = 0; i < N; i++) {
+      W[i] = Math.max(-32, Math.min(25, W[i] + V[i]));
+      L[i] = Math.max(-14, Math.min(14, L[i] + LV[i]));
+      energy += Math.abs(W[i]) + Math.abs(V[i]) + Math.abs(L[i]) + Math.abs(LV[i]);
+      chars[i].style.fontVariationSettings = `'wdth' ${(100 + W[i]).toFixed(1)}`;
+      chars[i].style.fontWeight = Math.round(Math.max(600, Math.min(900, 800 + W[i] * 4)));
+      chars[i].style.transform = `skewX(${(-L[i]).toFixed(2)}deg)`;
+    }
+    if (effect === 'gust' && energy > 0.05) requestAnimationFrame(stepGust); else { running = false; if (effect === 'gust') clearStyles(); }
+  };
+  // lens + ripple: a smoothed lens that follows the pointer, plus a wave that a click sends through the name
+  const stepHybrid = () => {
+    let energy = 0;
+    for (let i = 0; i < N; i++) {
+      const nb = (i > 0 ? R[i - 1] : R[i]) + (i < N - 1 ? R[i + 1] : R[i]) - 2 * R[i];
+      RV[i] += -0.045 * R[i] - 0.07 * RV[i] + 0.22 * nb;
+    }
+    for (let i = 0; i < N; i++) {
+      const target = pointerX === null ? 0 : lensAt(pointerX, i);
+      S[i] += (target - S[i]) * 0.085;
+      R[i] = Math.max(-30, Math.min(25, R[i] + RV[i]));
+      const w = Math.max(-32, Math.min(25, S[i] + R[i]));
+      energy += Math.abs(target - S[i]) + Math.abs(R[i]) + Math.abs(RV[i]);
+      chars[i].style.fontVariationSettings = `'wdth' ${(100 + w).toFixed(1)}`;
+    }
+    if (effect === 'hybrid' && (energy > 0.05 || pointerX !== null)) requestAnimationFrame(stepHybrid);
+    else { running = false; if (effect === 'hybrid' && pointerX === null) clearStyles(); }
+  };
+  const kick = () => {
+    if (running) return;
+    running = true;
+    requestAnimationFrame(effect === 'gust' ? stepGust : stepHybrid);
+  };
+
+  const applyEffectTransitions = () => {
+    chars.forEach(c => {
+      c.style.transitionDelay = '0s';
+      c.style.transition = effect === 'lens' ? "font-variation-settings 1.1s cubic-bezier(.16,1,.3,1)" : 'none';
+    });
+  };
+  const arm = () => { live = !reduce; applyEffectTransitions(); measure(); };
+
+  hero.addEventListener('pointermove', e => {
+    if (!live) return;
+    if (effect === 'lens') {
+      chars.forEach((c, i) => c.style.fontVariationSettings = `'wdth' ${(100 + lensAt(e.clientX, i)).toFixed(1)}`);
+    } else if (effect === 'hybrid') {
+      pointerX = e.clientX; kick();
+    } else if (effect === 'gust' && nameLine.contains(e.target)) {
+      const now = performance.now();
+      if (last) {
+        const dt = Math.max(8, now - last.t), vx = (e.clientX - last.x) / dt, sigma = page.clientWidth * 0.07;
+        for (let i = 0; i < N; i++) {
+          const d = (e.clientX - centers[i]) / sigma, f = Math.exp(-d * d);
+          V[i] += Math.min(12, Math.abs(vx) * 4.5) * f; LV[i] += Math.max(-4, Math.min(4, vx * 2.4)) * f;
+        }
+        kick();
+      }
+      last = { x: e.clientX, t: now };
+    }
+  });
+  hero.addEventListener('pointerleave', () => {
+    last = null; pointerX = null;
+    if (effect === 'lens') chars.forEach(c => c.style.fontVariationSettings = '');
+  });
+  nameLine.addEventListener('pointerdown', e => {
+    if (!live) return;
+    measure();
+    const sigma = page.clientWidth * 0.035;
+    for (let i = 0; i < N; i++) {
+      const d = (e.clientX - centers[i]) / sigma, f = Math.exp(-d * d);
+      if (effect === 'gust') V[i] += 18 * f;
+      if (effect === 'hybrid') RV[i] += 26 * f;
+    }
+    if (effect !== 'lens') kick();
+  });
+  const setEffect = ef => {
+    effect = ef; resetState(); clearStyles(); pointerX = null;
+    if (live) applyEffectTransitions();
+    document.querySelectorAll('button[data-effect]').forEach(b => b.setAttribute('aria-pressed', b.dataset.effect === ef));
+  };
+  document.querySelectorAll('button[data-effect]').forEach(b => b.addEventListener('click', () => setEffect(b.dataset.effect)));
+  addEventListener('resize', () => { fitAll(); if (live) measure(); });
+  document.getElementById('device').addEventListener('scroll', () => { if (live) measure(); }, { passive: true });
+
+  // ---------- language ----------
+  const fns = document.getElementById('fns'), ol = document.getElementById('steps');
+  const hrs = document.getElementById('hrs'), hv = document.getElementById('hv'), out = document.getElementById('out'), weeks = document.getElementById('weeks');
+  let currentIdx = 0, state = [], shown = 0, anim = 0;
+  const weight = { you: 0, assist: .4, agent: .8 };
+  const calc = () => Math.round(hrs.value * 46 * state.reduce((s, st) => s + st.share * weight[st.mode], 0) / 10) * 10;
+  const update = () => {
+    hv.textContent = hrs.value;
+    const target = calc(), from = shown, t0 = performance.now();
+    cancelAnimationFrame(anim);
+    const tick = now => {
+      const k = Math.min(1, (now - t0) / 600), e = 1 - Math.pow(1 - k, 3);
+      shown = Math.round(from + (target - from) * e);
+      out.textContent = '≈ ' + shown.toLocaleString('sv-SE');
+      if (k < 1) anim = requestAnimationFrame(tick);
+    };
+    anim = requestAnimationFrame(tick);
+    weeks.textContent = T[lang].back(Math.round(target / 40));
+  };
+  const renderSteps = (keepModes) => {
+    const src = T[lang].sets[currentIdx][1];
+    state = src.map(([t, mode, share], i) => ({ t, mode: keepModes && state[i] ? state[i].mode : mode, share }));
+    const m = T[lang].modes;
+    ol.innerHTML = state.map((s, i) => `<li class="step${keepModes ? '' : ' out'}"><span>${s.t}</span><span class="seg" role="group">${['you', 'assist', 'agent'].map(k => `<button data-i="${i}" data-m="${k}" aria-pressed="${s.mode === k}">${m[k]}</button>`).join('')}</span></li>`).join('');
+    if (!keepModes) [...ol.children].forEach((li, i) => setTimeout(() => li.classList.remove('out'), 30 + i * 55));
+    update();
+  };
+  const renderFns = () => { fns.innerHTML = T[lang].sets.map(([name], i) => `<button class="fn" data-i="${i}" aria-pressed="${i === currentIdx}">${name}</button>`).join(''); };
+  fns.addEventListener('click', e => {
+    const b = e.target.closest('.fn'); if (!b) return;
+    currentIdx = +b.dataset.i;
+    fns.querySelectorAll('.fn').forEach(x => x.setAttribute('aria-pressed', x === b));
+    renderSteps(false);
+  });
+  ol.addEventListener('click', e => {
+    const b = e.target.closest('.seg button'); if (!b) return;
+    state[b.dataset.i].mode = b.dataset.m;
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    update();
+  });
+  hrs.addEventListener('input', update);
+
+  const applyLang = (l, first) => {
+    lang = l;
+    document.documentElement.lang = l;
+    page.querySelectorAll('[data-k]').forEach(el => { const v = T[l][el.dataset.k]; if (typeof v === 'string') el.innerHTML = v; });
+    nameLine.setAttribute('aria-label', l === 'sv' ? 'Anton Wester, AI-konsult i Göteborg' : 'Anton Wester, AI consultant in Gothenburg');
+    renderFns(); renderSteps(!first);
+    document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === l));
+  };
+  document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+  // ---------- the one load sequence ----------
+  const play = () => {
+    live = false;
+    page.classList.add('pre');
+    chars.forEach(c => { c.style.transition = 'none'; c.style.transitionDelay = '0s'; c.style.fontVariationSettings = ''; c.style.fontWeight = ''; c.style.transform = ''; });
+    W.fill(0); V.fill(0); L.fill(0); LV.fill(0);
+    page.offsetWidth;
+    chars.forEach((c, i) => { c.style.transition = ''; c.style.transitionDelay = (i * 0.055) + 's'; });
+    const set = (sel, d) => page.querySelector(sel).style.transitionDelay = d;
+    set('.portrait', '.45s'); set('.nav', '.2s'); set('.lede', '.95s'); set('.hactions', '1.08s'); set('.axis', '1.2s');
+    requestAnimationFrame(() => requestAnimationFrame(() => page.classList.remove('pre')));
+    setTimeout(arm, 1900);
+  };
+
+  const setFont = f => {
+    page.dataset.font = f;
+    document.querySelectorAll('[data-font]').forEach(b => { if (b !== page) b.setAttribute('aria-pressed', b.dataset.font === f); });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { fitAll(); document.getElementById('device').scrollTop = 0; play(); });
+  };
+  document.querySelectorAll('button[data-font]').forEach(b => b.addEventListener('click', () => setFont(b.dataset.font)));
+  // ---------- soft section transitions ----------
+  const dev = document.getElementById('device');
+  const G = { fog: [231, 233, 228], fog2: [218, 222, 215], ink: [12, 30, 34] };
+  const INK = [12, 30, 34], FOG = [231, 233, 228], SOFT_L = [76, 90, 91], SOFT_D = [147, 166, 168];
+  const secs = [...page.querySelectorAll('[data-ground]')];
+  const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+  const css = (c, a = 1) => `rgba(${c.map(Math.round).join(',')},${a})`;
+  const ss = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+  let tops = [];
+  const measureSecs = () => { const d = dev.getBoundingClientRect().top; tops = secs.map(s => s.getBoundingClientRect().top - d + dev.scrollTop); };
+  const THEME = {
+    fog: { g: G.fog, fg: INK, soft: SOFT_L, gs: mix(G.fog, INK, .06) },
+    fog2: { g: G.fog2, fg: INK, soft: SOFT_L, gs: mix(G.fog2, INK, .06) },
+    ink: { g: G.ink, fg: FOG, soft: SOFT_D, gs: mix(G.ink, FOG, .06) },
+  };
+  let activeTheme = null;
+  const blend = (force) => {
+    if (!page.classList.contains('blend')) return;
+    const line = dev.scrollTop + dev.clientHeight * 0.6;
+    let i = 0;
+    for (let k = 0; k < tops.length; k++) if (tops[k] <= line) i = k;
+    const name = secs[i].dataset.ground;
+    if (name === activeTheme && !force) return;
+    activeTheme = name;
+    const t = THEME[name], st = page.style;
+    st.setProperty('--ground', css(t.g)); st.setProperty('--fg', css(t.fg)); st.setProperty('--soft', css(t.soft));
+    st.setProperty('--gs', css(t.gs)); st.setProperty('--gs8', css(t.gs, .8)); st.setProperty('--gs0', css(t.gs, 0));
+  };
+  let bq = 0;
+  dev.addEventListener('scroll', () => { if (!bq) bq = requestAnimationFrame(() => { bq = 0; blend(); }); }, { passive: true });
+  addEventListener('resize', () => { measureSecs(); blend(); });
+  document.getElementById('tBlend').addEventListener('click', e => {
+    const on = !page.classList.contains('blend');
+    page.classList.toggle('blend', on); e.currentTarget.setAttribute('aria-pressed', on);
+    if (on) { measureSecs(); blend(true); } else ['--ground', '--fg', '--soft', '--gs', '--gs8', '--gs0'].forEach(p => page.style.removeProperty(p));
+  });
+
+  // ---------- smooth scroll (the real site uses Lenis; this is a small stand-in for the frame) ----------
+  let smooth = !reduce, target = null, cur = 0, sraf = 0, ease = 0.09;
+  const maxScroll = () => dev.scrollHeight - dev.clientHeight;
+  const sloop = () => {
+    cur += (target - cur) * ease;
+    if (Math.abs(target - cur) < 0.5) cur = target;
+    dev.scrollTop = cur;
+    if (cur !== target) sraf = requestAnimationFrame(sloop); else { sraf = 0; target = null; ease = 0.09; }
+  };
+  const glideTo = (y, e = 0.09) => {
+    if (target === null) { cur = dev.scrollTop; }
+    target = Math.max(0, Math.min(maxScroll(), y)); ease = e;
+    if (!sraf) sraf = requestAnimationFrame(sloop);
+  };
+  dev.addEventListener('wheel', e => {
+    if (!smooth || e.ctrlKey) return;
+    e.preventDefault();
+    const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    glideTo((target === null ? dev.scrollTop : target) + dy);
+  }, { passive: false });
+  page.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const el = page.querySelector(a.getAttribute('href')); if (!el || a.getAttribute('href') === '#') return;
+    e.preventDefault(); measureSecs();
+    const y = el.getBoundingClientRect().top - dev.getBoundingClientRect().top + dev.scrollTop;
+    smooth ? glideTo(y, 0.06) : (dev.scrollTop = y);
+  }));
+  document.getElementById('tSmooth').addEventListener('click', e => { smooth = !smooth; e.currentTarget.setAttribute('aria-pressed', smooth); });
+
+  document.getElementById('again').addEventListener('click', () => { document.getElementById('device').scrollTop = 0; play(); });
+  applyLang('sv', true);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { fitAll(); play(); measureSecs(); blend(true); setTimeout(() => { measureSecs(); blend(); }, 400); });
+})();
+</script>
+</body>
+</html>

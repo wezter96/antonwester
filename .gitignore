@@ -26,3 +26,5 @@ pnpm-debug.log*
 .reference/
 .superpowers/
 .unlighthouse/
+.playwright-mcp/
+.taste-skill/
