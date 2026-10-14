@@ -11,7 +11,7 @@ const c = home[locale];
 const t = ui[locale];
 ---
 <section id="about" class="about grid" data-ground="fog">
-  <div class="pic"><Portrait size="large" locale={locale} /></div>
+  <div class="pic"><Portrait locale={locale} /></div>
   <div class="body">
     <h2 class="head">{c.aboutHeading}</h2>
     <div class="bio">{c.bio.map((p) => <p class="lead">{p}</p>)}</div>
@@ -44,4 +44,8 @@ const t = ui[locale];
   .stack { max-width: 60ch; color: var(--soft); }
   .links { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
   @media (max-width: 800px) { .pic, .body { grid-column: 1 / -1; } }
+  @media (max-width: 640px) {
+    td { padding: 10px 8px; hyphens: auto; overflow-wrap: anywhere; }
+    .org { white-space: normal; }
+  }
 </style>

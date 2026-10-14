@@ -156,8 +156,8 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         { value: '3', label: 'klienter: desktop, mobil och CLI' },
       ],
       what: [
-        'En lokal agentmiljö där ett team av AI-agenter, med roller som arkitekt, designer och QA, arbetar i mina projekt. Varje anrop, verktygsanrop, filändring, kostnad och godkännande syns medan det händer.',
-        'Det är där jag bygger både kunders lösningar och mina egna produkter.',
+        'Min egen agentmiljö, där ett team av AI-agenter arbetar i mina projekt. Varje anrop, verktygsanrop, filändring, kostnad och godkännande syns medan det händer. Det är så jag bygger, och samma insyn får ni i det jag bygger åt er.',
+        'Agenterna har roller som arkitekt, designer och QA, och miljön körs lokalt. Det är där jag bygger både kunders lösningar och mina egna produkter.',
       ],
       how: [
         'En motor på Bun med agentloop, leverantörer, verktyg och tillstånd i SQLite, skriven med Effect. Klienten är byggd i React, med en desktopapp i Electrobun och mobilklienter i Capacitor.',
@@ -165,7 +165,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'SQLite', 'Electrobun', 'Capacitor', 'MCP', 'Tailscale'],
       proves: [
-        'Det är så jag bygger, och ni får samma insyn i det jag bygger åt er: vad agenterna gjorde, vad det kostade och vem som godkände det.',
+        'I efterhand går det att se vad agenterna gjorde, vad det kostade och vem som godkände det. Den spårbarheten bygger jag in i det jag levererar.',
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',
@@ -189,8 +189,8 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         { value: '3', label: 'clients: desktop, mobile and CLI' },
       ],
       what: [
-        'A local agent harness where a crew of AI agents, with roles such as architect, designer and QA, works in my projects. Every request, tool call, file change, cost and approval is visible while it happens.',
-        'It is where I build both client solutions and my own products.',
+        'My own agent harness, where a crew of AI agents works in my projects. Every request, tool call, file change, cost and approval is visible while it happens. It is how I build, and you get the same visibility in what I build for you.',
+        'The agents have roles such as architect, designer and QA, and the harness runs locally. It is where I build both client solutions and my own products.',
       ],
       how: [
         'An engine on Bun with the agent loop, providers, tools and SQLite state, written with Effect. The client is React, with a desktop app in Electrobun and mobile clients in Capacitor.',
@@ -198,7 +198,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'SQLite', 'Electrobun', 'Capacitor', 'MCP', 'Tailscale'],
       proves: [
-        'It is how I build, and you get the same visibility in what I build for you: what the agents did, what it cost and who approved it.',
+        'Afterwards you can see what the agents did, what it cost and who approved it. I build that traceability into what I deliver.',
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',

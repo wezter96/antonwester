@@ -1,21 +1,20 @@
 ---
 import { lineSizeVw, MONUMENT, type Setting } from '../lib/measure';
-import Portrait from './Portrait.astro';
-import type { Locale } from '../content/routes';
 
 interface Props {
   words: string[];
-  portrait?: boolean;
+  /** Width in em of an empty space between the first and second word, on top of the gap. */
+  spaceEm?: number;
   as?: 'h1' | 'p' | 'div';
   tail?: string;
-  locale: Locale;
+  /** Hide the whole name from assistive tech, for when the page states it elsewhere. */
+  decorative?: boolean;
   setting?: Setting;
   targetVw?: number;
   gapEm?: number;
 }
-const { words, portrait = false, as: Tag = 'h1', tail, locale, setting = MONUMENT, targetVw = 82, gapEm = 0.12 } = Astro.props;
-const PORTRAIT_EM = 0.95;
-const desktop = lineSizeVw(portrait ? [words[0], PORTRAIT_EM, ...words.slice(1)] : words, targetVw, gapEm, setting);
+const { words, spaceEm = 0, as: Tag = 'h1', tail, decorative = false, setting = MONUMENT, targetVw = 82, gapEm = 0.12 } = Astro.props;
+const desktop = lineSizeVw(spaceEm ? [words[0], spaceEm, ...words.slice(1)] : words, targetVw, gapEm, setting);
 const longest = words.reduce((a, b) => (b.length > a.length ? b : a));
 const mobile = lineSizeVw([longest], 88, 0, setting);
 let index = 0;
@@ -24,18 +23,19 @@ const letters = words.map((w) => [...w].map((ch) => ({ ch, delay: index++ * 55 }
 <div
   class="monument-area"
   data-monument-area
-  style={`--mono-d:${desktop}vw;--mono-m:${mobile}vw;--mono-wdth:${setting.wdth};--mono-track:${setting.tracking}em;--mono-gap:${gapEm}em`}
+  aria-hidden={decorative ? 'true' : undefined}
+  style={`--mono-d:${desktop}vw;--mono-m:${mobile}vw;--mono-wdth:${setting.wdth};--mono-track:${setting.tracking}em;--mono-gap:${gapEm}em;--mono-space:${spaceEm}em`}
 >
   <Tag class="monument" data-monument>
     <span class="line" aria-hidden="true">
       {letters.map((word, wi) => (
         <>
-          {wi === 1 && portrait && <span class="slot"><Portrait size="inline" locale={locale} /></span>}
+          {wi === 1 && spaceEm > 0 && <span class="space" />}
           <span class="word">{word.map(({ ch, delay }) => <span class="ch" data-letter style={`transition-delay:${delay}ms`}>{ch}</span>)}</span>
         </>
       ))}
     </span>
-    <span class="sr-only">{words.join(' ')}</span>
+    {!decorative && <span class="sr-only">{words.join(' ')}</span>}
     {tail && <><span class="sr-only">, </span><span class="tail">{tail}</span></>}
   </Tag>
 </div>
@@ -51,11 +51,10 @@ const letters = words.map((w) => [...w].map((ch) => ({ ch, delay: index++ * 55 }
   }
   :global(.intro-done) .ch { transition: none; }
   :global(.pre) .ch { font-variation-settings: 'wdth' 62; opacity: 0; transform: translateY(18%); }
-  .slot { width: .95em; height: .74em; align-self: baseline; overflow: hidden; clip-path: inset(0); transition: clip-path 1.2s var(--ease-in-out) .45s; }
-  :global(.pre) .slot { clip-path: inset(0 50% 0 50%); }
+  .space { width: var(--mono-space); flex: none; }
   .tail { display: block; font-size: var(--step-lead); line-height: 1.35; font-weight: 700; text-transform: none; letter-spacing: 0; }
   @media (max-width: 640px) {
     .line { flex-direction: column; align-items: center; font-size: var(--mono-m); gap: .08em; }
-    .slot { width: calc(100vw - 2 * var(--margin)); height: auto; aspect-ratio: 3 / 2; font-size: 1rem; }
+    .space { display: none; }
   }
 </style>

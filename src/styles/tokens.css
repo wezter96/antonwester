@@ -34,5 +34,5 @@
 
   --ground: var(--fog); --fg: var(--ink); --soft: var(--muted); --gs: var(--fog-2);
 }
-:root[data-ground='fog2'] { --ground: var(--fog-2); --fg: var(--ink); --soft: var(--muted); --gs: #CED3CB; }
-:root[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; }
+[data-ground='fog2'] { --ground: var(--fog-2); --fg: var(--ink); --soft: var(--muted); --gs: #CED3CB; }
+[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; }

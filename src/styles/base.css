@@ -35,10 +35,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .lnk:hover { background-size: 0 .08em; background-position: 100% 100%; }
 
-/* sections paint their own colour without JS; with JS the body ground crossfades instead */
-[data-ground='ink'] { background: var(--ink); color: var(--fog); }
-[data-ground='fog2'] { background: var(--fog-2); color: var(--ink); }
-.js [data-ground] { background: transparent; color: inherit; }
+/* sections paint their own ground tokens without JS; with JS they inherit the body's, which crossfade */
+[data-ground]:not(:root) { background: var(--ground); color: var(--fg); }
+.js [data-ground] { --ground: inherit; --fg: inherit; --soft: inherit; --gs: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
