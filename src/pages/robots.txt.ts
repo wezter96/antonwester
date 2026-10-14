@@ -1,11 +1,5 @@
 import { SITE_URL } from '../content/routes';
 
 export function GET() {
-  const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_URL}/sitemap.xml`].join('\n');
-
-  return new Response(body, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-    },
-  });
+  return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 }
