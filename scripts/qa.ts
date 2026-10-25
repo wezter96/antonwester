@@ -131,6 +131,26 @@ for (const width of [320, 390, 768, 805, 820, 834, 1024, 1440, 2560]) {
   await ctx.close();
 }
 
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const page = await ctx.newPage();
+  await page.goto(`${BASE}/`);
+  await page.click('[data-chat-open]');
+  await page.waitForTimeout(300);
+  check((await page.locator('.log .typing').count()) === 1, 'chat: the bot shows typing dots before it answers');
+  await page.locator('.log .chips button').first().click({ timeout: 3000 });
+  await page.waitForSelector('.log .chips button', { timeout: 3000 });
+  await page.waitForTimeout(500);
+  const shown = await page.evaluate(() => {
+    const log = document.querySelector('.log')!.getBoundingClientRect();
+    const intro = [...document.querySelectorAll('.log .msg.bot')].at(-1)!.getBoundingClientRect();
+    return intro.top >= log.top && intro.bottom <= log.bottom;
+  });
+  check(shown, 'chat: after a topic, its intro stays in view above the questions');
+  check(!(await page.evaluate(() => document.activeElement?.id === 'chat-input')), 'chat: no phone keyboard on open');
+  await ctx.close();
+}
+
 await browser.close();
 if (failures.length) { console.error(`\n${failures.length} QA failure(s)`); process.exit(1); }
 console.log('\nQA passed');
