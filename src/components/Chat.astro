@@ -1,0 +1,92 @@
+---
+import type { Locale } from '../content/routes';
+import { site } from '../content/site';
+import { ui } from '../content/ui';
+import { chatTopics } from '../lib/chat-tree';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = ui[locale].chat;
+// the question tree ships with the page, so picking a question costs nothing and works without the AI
+const data = JSON.stringify({ locale, topics: chatTopics(locale), email: site.email, t }).replace(/</g, '\\u003c');
+---
+<div class="chat" data-chat>
+  <button class="launch" type="button" data-chat-open aria-expanded="false" aria-controls="chat-panel">
+    <span class="agent" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" fill="currentColor" /><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" /></svg></span>
+    <span class="label">{t.open}</span>
+  </button>
+  <section id="chat-panel" class="panel" role="dialog" aria-labelledby="chat-title" hidden>
+    <header>
+      <span class="agent" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z" fill="currentColor" /><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" /></svg></span>
+      <div class="who"><p id="chat-title">{t.title}</p><p class="sub">{t.subtitle}</p></div>
+      <button class="x" type="button" data-chat-close aria-label={t.close}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></button>
+    </header>
+    <div class="log" data-chat-log aria-live="polite"></div>
+    <div class="quick" data-chat-quick></div>
+    <form data-chat-form>
+      <label class="sr-only" for="chat-input">{t.placeholder}</label>
+      <input id="chat-input" type="text" maxlength="600" autocomplete="off" placeholder={t.placeholder} />
+      <button type="submit" aria-label={t.send}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+    </form>
+    <p class="note">{t.note}</p>
+  </section>
+  <script type="application/json" data-chat-data set:html={data}></script>
+</div>
+
+<script>
+  import '../scripts/chat';
+</script>
+
+<style>
+  .chat { --chat-gap: clamp(12px, 2vw, 24px); }
+  .agent { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--fg); color: var(--signal); }
+  .launch {
+    position: fixed; z-index: 6; right: var(--chat-gap); bottom: var(--chat-gap); display: inline-flex; align-items: center; gap: 10px;
+    min-height: 52px; padding: 6px 18px 6px 6px; border: 0; border-radius: 999px; background: var(--fg); color: var(--ground);
+    font-weight: 650; cursor: pointer; box-shadow: 0 8px 24px rgb(12 30 34 / .25); transition: transform .3s var(--ease-out);
+  }
+  .launch .agent { background: var(--ground); }
+  .launch:hover { transform: translateY(-2px); }
+  .chat:has(.panel:not([hidden])) .launch { display: none; }
+  .panel {
+    position: fixed; z-index: 6; right: var(--chat-gap); bottom: var(--chat-gap); width: min(400px, calc(100vw - 2 * var(--chat-gap)));
+    height: min(600px, calc(100dvh - 2 * var(--chat-gap))); display: flex; flex-direction: column;
+    background: var(--ground); color: var(--fg); border: 1px solid color-mix(in srgb, var(--fg) 15%, transparent); border-top: 2px solid var(--rule);
+    box-shadow: 0 16px 48px rgb(12 30 34 / .3); transition: opacity .25s, transform .35s var(--ease-out);
+  }
+  .panel[hidden] { display: none; }
+  @starting-style { .panel { opacity: 0; transform: translateY(12px); } }
+  header { display: flex; align-items: center; gap: 12px; padding: 12px 8px 12px 14px; border-bottom: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+  .who { flex: 1; min-width: 0; line-height: 1.25; }
+  #chat-title { font-weight: 700; }
+  .sub { color: var(--soft); font-size: .875rem; font-weight: 400; }
+  .x { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; color: inherit; cursor: pointer; }
+  .log { position: relative; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+  .log :global(.msg) { max-width: 88%; padding: 10px 14px; line-height: 1.45; }
+  .log :global(.bot) { align-self: flex-start; background: var(--gs); }
+  .log :global(.me) { align-self: flex-end; background: var(--fg); color: var(--ground); }
+  .log :global(.msg small) { display: block; margin-top: 6px; color: var(--soft); font-size: .8125rem; }
+  .log :global(.typing) { color: var(--soft); }
+  .log :global(.msg a) { display: inline-block; margin-top: 8px; font-weight: 650; }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 14px 10px; }
+  .quick:empty { display: none; }
+  .quick :global(button) {
+    min-height: 40px; padding: 6px 12px; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); background: none; color: inherit;
+    font-size: .9375rem; text-align: left; cursor: pointer;
+  }
+  .quick :global(button:hover) { border-color: var(--fg); }
+  .quick :global(button.contact) { background: var(--signal); color: var(--ink); border-color: var(--signal); font-weight: 650; }
+  form { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid color-mix(in srgb, var(--fg) 12%, transparent); }
+  /* 16px or more, so iOS does not zoom in when the field gets focus */
+  input { flex: 1; min-width: 0; min-height: 44px; padding: 0 12px; font-size: 1rem; background: var(--gs); border: 1px solid transparent; }
+  input:focus { outline: none; border-color: var(--fg); }
+  form button { width: 44px; height: 44px; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 0; background: var(--signal); color: var(--ink); cursor: pointer; }
+  form button:disabled { opacity: .5; }
+  .note { padding: 0 14px 12px; color: var(--soft); font-size: .8125rem; }
+  /* on phones the launcher is the icon only, and the panel is a sheet over the lower page */
+  @media (max-width: 640px) {
+    .launch { padding: 6px; }
+    .launch .label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .panel { right: 8px; left: 8px; bottom: 8px; width: auto; height: min(560px, calc(100dvh - 16px)); }
+  }
+</style>

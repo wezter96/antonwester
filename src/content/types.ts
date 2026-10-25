@@ -94,6 +94,11 @@ export interface Ui {
   bookShort: string;
   menu: string;
   darkMode: string;
+  chat: {
+    open: string; title: string; subtitle: string; greeting: string; placeholder: string; send: string; close: string;
+    typing: string; fallback: string; contact: string; aiNote: string; note: string;
+    faqTopic: string; faqIntro: string; readMore: string; otherTopics: string;
+  };
   estimate: string;
   workedWith: string;
   portraitAlt: string;

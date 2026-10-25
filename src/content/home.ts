@@ -21,8 +21,8 @@ export const home: L10n<HomeContent> = {
     alsoLine: '<b>Dessutom:</b> <a href="/sv/case/lingo/">Lingo</a>, en tjänst där AI hjälper företag att översätta sina appar och webbplatser, och bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, en gratis startmall för webb- och mobilappar.',
     aboutHeading: 'Om mig',
     bio: [
-      'Jag har programmerat i över tio år och byggt appar och webbtjänster i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers. Jag har lett ett utvecklingsteam på weapp och varit utvecklare på Telia.',
-      'I dag bygger jag AI-lösningar åt företag, från idé till färdig tjänst som jag sköter.',
+      'Jag har programmerat i över tio år och byggt appar och webbtjänster i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers. Jag har lett utvecklingsteam på weapp och hjälpt flera kunder i egen regi.',
+      'I dag bygger jag AI-lösningar åt företag, från idé till färdig tjänst.',
     ],
     experience: [
       { years: '2024–', role: 'AI-konsult och utvecklare', org: 'Anton Wester AB' },
@@ -42,12 +42,12 @@ export const home: L10n<HomeContent> = {
         { name: 'Synas på Google', detail: 'Snabba sidor som är lätta att hitta, som den här.' },
       ],
     },
-    stack: 'Jag använder AI från bland andra OpenAI (ChatGPT) och Anthropic (Claude), och väljer det som passar uppgiften bäst.',
+    stack: 'Jag använder AI från bland andra OpenAI (ChatGPT) och Anthropic (Claude), och kör även lokala AI-modeller på egen hårdvara. Jag väljer det som passar uppgiften bäst.',
     faq: [
       { q: 'Vad kostar en AI-kartläggning?', a: 'Det beror på hur mycket av verksamheten vi ska titta på. Efter ett första samtal får ni ett fast pris, så ni vet kostnaden innan vi börjar.' },
       { q: 'Hur snabbt kan vi ha något som fungerar?', a: 'Ett litet första steg går ofta att ha igång inom några veckor, till exempel AI som sorterar och svarar på mejl. Större projekt tar längre tid.' },
       { q: 'Hur hanterar du säkerhet, GDPR och EU:s AI-förordning?', a: 'Jag använder bara den data som behövs, och den stannar där den får finnas. Jag skriver ner vad AI gör och vad en människa godkänner. Det gör reglerna lättare att följa.' },
-      { q: 'Vilka AI-verktyg använder du?', a: 'Det som passar uppgiften. Ofta AI från OpenAI (ChatGPT) eller Anthropic (Claude), ibland AI som körs på er egen server. Den kopplas till de system ni redan använder.' },
+      { q: 'Vilka AI-verktyg använder du?', a: 'Det som passar uppgiften. Ofta AI från OpenAI (ChatGPT) eller Anthropic (Claude). Jag kör också lokala AI-modeller på egen hårdvara, och de kan köras på er egen server. Den kopplas till de system ni redan använder.' },
       { q: 'Kan du sköta lösningen åt oss, eller tar vårt team över?', a: 'Båda går. Oftast sköter jag den åt er och håller den säker och uppdaterad. Vill ni ta över får ert team allt som behövs, plus utbildning.' },
       { q: 'Jobbar du på plats eller på distans?', a: 'Jag utgår från Göteborg och kommer gärna ut till er i Västsverige, särskilt i början. Resten sker oftast på distans, och jag tar uppdrag i hela Sverige.' },
     ],
@@ -72,8 +72,8 @@ export const home: L10n<HomeContent> = {
     alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, a service where AI helps companies translate their apps and websites, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, a free starter kit for web and mobile apps.',
     aboutHeading: 'About',
     bio: [
-      'I have been programming for more than ten years and building apps and web services professionally since 2019. I studied computer engineering at Chalmers. I led a development team at weapp and worked as a developer at Telia.',
-      'Today I build AI solutions for companies, from idea to a finished service that I look after.',
+      'I have been programming for more than ten years and building apps and web services professionally since 2019. I studied computer engineering at Chalmers. I have led development teams at weapp and helped several clients through my own company.',
+      'Today I build AI solutions for companies, from idea to a finished service.',
     ],
     experience: [
       { years: '2024–', role: 'AI consultant and developer', org: 'Anton Wester AB' },
@@ -93,12 +93,12 @@ export const home: L10n<HomeContent> = {
         { name: 'Getting found on Google', detail: 'Fast pages that are easy to find, like this one.' },
       ],
     },
-    stack: 'I use AI from OpenAI (ChatGPT), Anthropic (Claude) and others, and pick what fits the task best.',
+    stack: 'I use AI from OpenAI (ChatGPT), Anthropic (Claude) and others, and also run local AI models on my own hardware. I pick what fits the task best.',
     faq: [
       { q: 'What does an AI assessment cost?', a: 'It depends on how much of the business we look at. After a first call you get a fixed price, so you know the cost before we start.' },
       { q: 'How quickly can we have something that works?', a: 'A small first step can often be up and running within a few weeks, for example AI that sorts and answers email. Bigger projects take longer.' },
       { q: 'How do you handle security, GDPR and the EU AI Act?', a: 'I only use the data that is needed, and it stays where it is allowed to be. I write down what AI does and what a person approves. That makes the rules easier to follow.' },
-      { q: 'Which AI tools do you use?', a: 'Whatever fits the task. Often AI from OpenAI (ChatGPT) or Anthropic (Claude), sometimes AI that runs on your own server. It connects to the systems you already use.' },
+      { q: 'Which AI tools do you use?', a: 'Whatever fits the task. Often AI from OpenAI (ChatGPT) or Anthropic (Claude). I also run local AI models on my own hardware, and they can run on your own server. It connects to the systems you already use.' },
       { q: 'Can you look after it for us, or does our team take over?', a: 'Either works. Most often I look after it for you and keep it safe and up to date. If you want to take over, your team gets all it needs, plus training.' },
       { q: 'Do you work on site or remotely?', a: 'I am based in Gothenburg and happy to come to you in western Sweden, above all at the start. The rest is usually remote, and I take on work across Sweden.' },
     ],

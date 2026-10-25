@@ -2,6 +2,7 @@
 import '../styles/tokens.css';
 import '../styles/base.css';
 import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import Chat from '../components/Chat.astro';
 import type { HeadProps } from '../lib/seo';
 import { site } from '../content/site';
 import { ui } from '../content/ui';
@@ -46,6 +47,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add('js');t
   <body>
     <a class="skip" href="#main">{t.skip}</a>
     <slot />
+    <Chat locale={head.locale} />
     <script>
       import '../scripts/theme';
       import '../scripts/smooth';

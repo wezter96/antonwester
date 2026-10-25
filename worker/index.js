@@ -1,5 +1,7 @@
-// antonwester.se: static assets, plus POST /api/contact, which mails the contact form to MAIL_TO through Cloudflare Email Routing.
+// antonwester.se: static assets, POST /api/contact, which mails the contact form to MAIL_TO through Cloudflare Email Routing,
+// and POST /api/chat, the site chat.
 import { EmailMessage } from 'cloudflare:email';
+import { respond } from './chat.js';
 import { buildMessage, readSubmission } from './mail.js';
 
 const FROM = 'form@antonwester.se';
@@ -8,6 +10,7 @@ const ORIGIN = 'https://antonwester.se';
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/chat') return chat(request, env);
     if (url.pathname !== '/api/contact') return env.ASSETS.fetch(request);
     if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
 
@@ -44,3 +47,20 @@ export default {
     return reply(true);
   },
 };
+
+/** POST /api/chat { message, locale, asked } → one chat turn; see worker/chat.js. */
+async function chat(request, env) {
+  if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
+  const origin = request.headers.get('Origin');
+  if (origin && origin !== new URL(request.url).origin) return Response.json({ kind: 'contact' }, { status: 403 });
+  const { success } = await env.CHAT_LIMIT.limit({ key: request.headers.get('CF-Connecting-IP') ?? 'unknown' });
+  if (!success) return Response.json({ kind: 'contact' }, { status: 429 });
+
+  let body;
+  try {
+    const raw = await request.text();
+    if (raw.length > 4000) return Response.json({ kind: 'contact' }, { status: 413 });
+    body = JSON.parse(raw);
+  } catch { return Response.json({ kind: 'contact' }, { status: 400 }); }
+  return Response.json(await respond(body, env), { headers: { 'Cache-Control': 'no-store' } });
+}
