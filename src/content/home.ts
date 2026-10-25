@@ -13,7 +13,7 @@ export const home: L10n<HomeContent> = {
         lead: 'Jag sitter med dem som gör jobbet', body: 'och kartlägger vart timmarna tar vägen. Ni får en prioriterad lista över var AI lönar sig, vad det kostar att bygga och vad som ska förbli mänskligt. Kartan är er, oavsett om vi bygger vidare tillsammans.' },
       { word: 'Bygg.', wdth: 96, service: 'development', linkLabel: 'Om AI-utveckling',
         more: [{ service: 'agents', label: 'AI-agenter' }, { service: 'automation', label: 'AI-automation' }],
-        lead: 'Jag bygger det själv, i er stack:', body: 'agenter, integrationer och gränssnitten teamet ska använda, med tester, övervakning och de skyddsräcken som reglerade branscher kräver.' },
+        lead: 'Jag bygger det själv, i er stack:', body: 'agenter, integrationer och gränssnitten teamet ska använda, med tester, övervakning och de guardrails som reglerade branscher kräver.' },
       { word: 'Förvalta.', wdth: 125, service: 'operations', linkLabel: 'Om drift och förvaltning',
         lead: 'Jag driftar och förvaltar det åt er:', body: 'hosting, övervakning, säkerhet, uppdateringar och löpande förbättringar. Vill ni hellre driva det själva får teamet koden, dokumentationen och utbildningen. Ni väljer, och det finns ingen inlåsning.' },
     ],
@@ -22,7 +22,7 @@ export const home: L10n<HomeContent> = {
     aboutHeading: 'Om mig',
     bio: [
       'Jag har programmerat i över tio år och byggt digitala produkter för webb, iOS och Android i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers, har varit tech lead för cross-platform på weapp och utvecklare på Telia.',
-      'I dag bygger jag AI-lösningar åt företag och driver mina egna plattformar, SökHem och OpenAudit, hela vägen från arkitektur till drift. I världens största chattcommunity för React är jag utsedd till star helper.',
+      'I dag bygger jag AI-lösningar åt företag och driver mina egna plattformar, SökHem och OpenAudit, hela vägen från arkitektur till drift.',
     ],
     experience: [
       { years: '2024–', role: 'AI-konsult och utvecklare', org: 'Anton Wester AB' },
@@ -75,7 +75,7 @@ export const home: L10n<HomeContent> = {
     aboutHeading: 'About',
     bio: [
       'I have been programming for more than ten years and building digital products for web, iOS and Android professionally since 2019. I studied computer engineering at Chalmers, led cross-platform development as tech lead at weapp and worked as a developer at Telia.',
-      'Today I build AI solutions for companies and run my own platforms, SökHem and OpenAudit, from architecture to operations. In the world’s largest React chat community I am recognised as a star helper.',
+      'Today I build AI solutions for companies and run my own platforms, SökHem and OpenAudit, from architecture to operations.',
     ],
     experience: [
       { years: '2024–', role: 'AI consultant and developer', org: 'Anton Wester AB' },

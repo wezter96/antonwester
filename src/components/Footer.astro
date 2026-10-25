@@ -1,6 +1,7 @@
 ---
 import Monument from './Monument.astro';
 import { cities } from '../content/cities';
+import { home } from '../content/home';
 import { CITY_IDS, SERVICE_IDS, otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
 import { services } from '../content/services';
 import { site } from '../content/site';
@@ -19,7 +20,7 @@ const other = otherLocale(locale);
     </nav>
     <nav aria-label={t.footer.cities}>
       <p class="h">{t.footer.cities}</p>
-      <ul>{CITY_IDS.map((id) => <li><a href={pathFor({ kind: 'city', id }, locale)}>{cities[id][locale].h1}</a></li>)}</ul>
+      <ul><li><a href={pathFor({ kind: 'home' }, locale)}>{home[locale].h1Tail.replace(/\.$/, '')}</a></li>{CITY_IDS.map((id) => <li><a href={pathFor({ kind: 'city', id }, locale)}>{cities[id][locale].h1}</a></li>)}</ul>
     </nav>
     <div>
       <p class="h">{site.company}</p>

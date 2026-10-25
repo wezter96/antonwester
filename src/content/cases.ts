@@ -29,7 +29,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       stack: ['React 19', 'TanStack Start', 'Hono', 'oRPC', 'Better Auth', 'BullMQ', 'Postgres/PostGIS', 'Redis', 'Stripe', 'Cloudflare', 'Docker', 'Traefik', 'Prometheus', 'Grafana'],
       proves: [
-        'En person kan grunda, bygga och driva en nationell marknadsplats från början till slut, när AI-agenter står för volymen och skyddsräckena är designade från start.',
+        'En person kan grunda, bygga och driva en nationell marknadsplats från början till slut, när AI-agenter står för volymen och guardrails är designade från start.',
       ],
       service: 'development',
       schemaType: 'WebApplication',
