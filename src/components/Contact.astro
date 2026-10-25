@@ -28,9 +28,6 @@ const c = t.contact;
     data-submit={c.submit}
   >
     <p class="form-h">{c.formHeading}</p>
-    <input type="hidden" name="_subject" value={locale === 'sv' ? 'Förfrågan via antonwester.se' : 'Inquiry via antonwester.se'} />
-    <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="_template" value="table" />
     <input type="hidden" name="estimate" value="" />
     <div class="hp" aria-hidden="true">
       <label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>

@@ -69,7 +69,7 @@ for (const width of [320, 390, 768, 805, 820, 834, 1024, 1440, 2560]) {
 {
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
-  await page.route('https://formsubmit.co/**', (r) => r.fulfill({ status: 500, body: '{}' }));
+  await page.route('**/api/contact', (r) => r.fulfill({ status: 500, body: '{}' }));
   await page.goto(`${BASE}/#contact`);
   await page.fill('input[name=name]', 'Test');
   await page.fill('input[name=email]', 'test@example.com');

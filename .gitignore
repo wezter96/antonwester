@@ -29,3 +29,4 @@ pnpm-debug.log*
 .playwright-mcp/
 .taste-skill/
 .vitest/
+.wrangler

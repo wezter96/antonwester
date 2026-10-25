@@ -17,7 +17,7 @@ for (const form of document.querySelectorAll<HTMLFormElement>('form[data-contact
     try {
       const response = await fetch(ajax, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
       const result = (await response.json()) as { success?: string | boolean };
-      if (!response.ok || String(result.success) === 'false') throw new Error('Formsubmit request failed.');
+      if (!response.ok || String(result.success) === 'false') throw new Error('Contact request failed.');
       form.reset();
       const estimate = form.querySelector<HTMLInputElement>('input[name=estimate]');
       if (estimate) estimate.value = '';

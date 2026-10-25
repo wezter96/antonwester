@@ -26,7 +26,7 @@ describe('home pages', () => {
     });
     it(`${path} has a contact form with the estimate field`, () => {
       const form = doc.querySelector('form[data-contact]')!;
-      expect(form.getAttribute('action')).toBe('https://formsubmit.co/contact@antonwester.se');
+      expect(form.getAttribute('action')).toBe('/api/contact');
       expect(form.querySelector('input[name=estimate]')).not.toBeNull();
     });
   }
