@@ -92,7 +92,7 @@ export interface Ui {
   switchLabel: string;
   book: string;
   bookShort: string;
-  menu: { open: string; close: string };
+  menu: string;
   estimate: string;
   workedWith: string;
   portraitAlt: string;
