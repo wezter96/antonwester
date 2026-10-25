@@ -1,14 +1,13 @@
 ---
 import Monogram from './Monogram.astro';
 import { otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
+import { site } from '../content/site';
 import { ui } from '../content/ui';
 
-interface Props { locale: Locale; page: PageRef; /** The page has no sections of its own (the 404). */ standalone?: boolean }
 const { locale, page, standalone = false } = Astro.props;
 const t = ui[locale];
 const home = pathFor({ kind: 'home' }, locale);
 const prefix = page.kind === 'home' && !standalone ? '' : home;
-// every page except the 404 has its own contact section
 const hrefFor = (id: string) => (id === 'contact' && !standalone ? '#contact' : `${prefix}#${id}`);
 const other = otherLocale(locale);
 const links = [
@@ -20,32 +19,72 @@ const links = [
 ---
 <header class="nav">
   <a class="mark" href={home}><Monogram /><span>Anton Wester</span></a>
-  <nav aria-label={t.navLabel}>
+  <!-- on small screens the menu button on the right, where the thumb is, opens the nav as a popover; no JS needed -->
+  <button class="toggle" type="button" popovertarget="menu">
+    <span class="open">{t.menu.open}</span><span class="close">{t.menu.close}</span>
+  </button>
+  <nav id="menu" popover aria-label={t.navLabel}>
     <ul>
-      {links.map(([id, label]) => <li class={id === 'contact' ? 'keep' : ''}><a href={hrefFor(id)}>{label}</a></li>)}
-      <li class="keep"><a data-lang-switch href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
+      {links.map(([id, label]) => <li><a href={hrefFor(id)}>{label}</a></li>)}
+      <li><a data-lang-switch href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
     </ul>
+    <a class="btn cta" href={site.booking} rel="noopener">{t.bookShort}</a>
   </nav>
 </header>
 
+<script>
+  // an in-page link scrolls under the open menu, so it closes first
+  const menu = document.getElementById('menu');
+  menu?.addEventListener('click', (e) => {
+    if ((e.target as Element).closest('a') && menu.matches(':popover-open')) menu.hidePopover();
+  });
+</script>
+
 <style>
   .nav {
-    position: absolute; z-index: 5; top: clamp(14px, 2vw, 28px); left: var(--margin); right: var(--margin);
+    position: fixed; z-index: 5; top: 0; left: 0; right: 0; padding: clamp(14px, 2vw, 28px) var(--margin);
+    /* the ground follows the section in view, so the bar always matches the page under it */
+    background: var(--ground); color: var(--fg);
     display: flex; justify-content: space-between; align-items: center; gap: 24px; font-weight: 500;
     transition: opacity .8s ease .2s;
   }
   :global(.pre) .nav { opacity: 0; }
   .mark { display: inline-flex; align-items: center; gap: .6em; font-weight: 700; font-stretch: 112%; text-decoration: none; min-height: 44px; }
-  ul { display: flex; gap: clamp(16px, 2.4vw, 36px); list-style: none; margin: 0; padding: 0; }
   a { text-decoration: none; }
+  ul { list-style: none; margin: 0; padding: 0; }
   ul a { position: relative; display: inline-flex; align-items: center; min-height: 44px; }
   ul a::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 10px; height: .09em; background: currentColor;
     transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s var(--ease-in-out);
   }
   ul a:hover::after, ul a:focus-visible::after { transform: none; }
-  @media (max-width: 760px) {
-    .mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    li:not(.keep) { display: none; }
+
+  @media (min-width: 901px) {
+    .toggle { display: none; }
+    /* the popover stays in the bar on wide screens */
+    #menu {
+      display: flex; align-items: center; gap: clamp(20px, 2.6vw, 40px);
+      position: static; inset: auto; margin: 0; padding: 0; border: 0; overflow: visible; width: auto; height: auto;
+      background: none; color: inherit;
+    }
+    ul { display: flex; gap: clamp(16px, 2.4vw, 36px); }
+    .cta { min-height: 44px; padding: .6rem 1.15rem; }
+  }
+
+  @media (max-width: 900px) {
+    .toggle {
+      min-height: 44px; min-width: 44px; padding: 0 2px; margin-right: -2px; background: none; border: 0;
+      font-weight: 650; cursor: pointer;
+    }
+    .close, .nav:has(#menu:popover-open) .open { display: none; }
+    .nav:has(#menu:popover-open) .close { display: inline; }
+    #menu {
+      position: fixed; inset: calc(44px + 2 * clamp(14px, 2vw, 28px)) 0 auto; margin: 0; width: 100%; border: 0;
+      padding: 8px var(--margin) 28px; background: var(--ground); color: var(--fg);
+    }
+    #menu:popover-open { display: grid; gap: 20px; }
+    #menu::backdrop { top: calc(44px + 2 * clamp(14px, 2vw, 28px)); background: rgb(12 30 34 / .4); }
+    ul { display: grid; font-size: var(--step-lead); font-weight: 650; }
+    .cta { justify-content: center; }
   }
 </style>

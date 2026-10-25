@@ -91,6 +91,8 @@ export interface Ui {
   nav: { work: string; approach: string; about: string; contact: string };
   switchLabel: string;
   book: string;
+  bookShort: string;
+  menu: { open: string; close: string };
   estimate: string;
   workedWith: string;
   portraitAlt: string;
