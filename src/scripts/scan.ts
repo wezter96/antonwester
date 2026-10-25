@@ -11,7 +11,7 @@ interface ScanData {
   locale: Locale;
 }
 
-const MODES: Mode[] = ['you', 'assist', 'agent'];
+const MODES: Mode[] = ['agent', 'you'];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
@@ -41,7 +41,7 @@ for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
       const seg = document.createElement('span');
       seg.className = 'seg';
       seg.setAttribute('role', 'group');
-      seg.setAttribute('aria-label', `${data.stepModeLabel}: ${s.label}`);
+      seg.setAttribute('aria-label', `${data.stepModeLabel} ${s.label}`);
       for (const m of MODES) {
         const b = document.createElement('button');
         b.type = 'button';
@@ -86,6 +86,9 @@ for (const tool of document.querySelectorAll<HTMLElement>('[data-scan]')) {
     fnIndex = i;
     steps = data.functions[i].steps.map((s) => ({ ...s }));
     tool.querySelectorAll('[data-fn]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    // in the one-column layout the functions scroll sideways; keep the chosen one in the middle
+    const row = b.parentElement!;
+    if (row.scrollWidth > row.clientWidth) row.scrollTo({ left: b.offsetLeft - (row.clientWidth - b.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
     renderSteps(true);
     update();
   }));

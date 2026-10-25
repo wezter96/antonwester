@@ -1,34 +1,25 @@
-import { activeSection } from './lib/theme-index';
-
 const root = document.documentElement;
-const sections = [...document.querySelectorAll<HTMLElement>('[data-ground]')].filter((s) => s !== root);
-let tops: number[] = [];
-let current = root.dataset.ground ?? 'fog';
-let queued = 0;
-let lastY = scrollY;
-
-const measure = () => { tops = sections.map((s) => s.getBoundingClientRect().top + scrollY); };
-const update = () => {
-  queued = 0;
-  if (!sections.length) return;
-  const ground = sections[activeSection(tops, scrollY + innerHeight * 0.6)].dataset.ground ?? 'fog';
-  // a jump (Home, End, a link without Lenis) cuts to the new ground; only scrolling fades through
-  const jump = Math.abs(scrollY - lastY) > innerHeight * 1.5;
-  lastY = scrollY;
-  if (ground === current) return;
-  current = ground;
-  if (jump) {
-    root.classList.remove('ground-ready');
-    root.dataset.ground = ground;
-    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('ground-ready')));
-  } else root.dataset.ground = ground;
+const system = matchMedia('(prefers-color-scheme: dark)');
+const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : system.matches;
+const sync = () => {
+  const dark = isDark();
+  document.querySelectorAll('[data-theme-toggle]').forEach((b) => b.setAttribute('aria-pressed', String(dark)));
+  document.querySelector('meta[name=theme-color]')?.setAttribute('content', dark ? '#0C1E22' : '#E7E9E4');
 };
 
-measure();
-update();
-requestAnimationFrame(() => root.classList.add('ground-ready'));
-addEventListener('scroll', () => { if (!queued) queued = requestAnimationFrame(update); }, { passive: true });
-addEventListener('resize', () => { measure(); update(); }, { passive: true });
-addEventListener('load', () => { measure(); update(); });
-// sections move when the layout changes without a resize (FAQ items opening, images loading)
-new ResizeObserver(() => { measure(); update(); }).observe(document.body);
+sync();
+// the colours only crossfade after the first paint, so a stored theme does not fade in on load
+requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('ground-ready')));
+system.addEventListener('change', sync);
+document.addEventListener('click', (e) => {
+  if (!(e.target as Element).closest('[data-theme-toggle]')) return;
+  const next = isDark() ? 'light' : 'dark';
+  // a choice that matches the system is no choice; the page follows the system again
+  if ((next === 'dark') === system.matches) delete root.dataset.theme;
+  else root.dataset.theme = next;
+  try {
+    if (root.dataset.theme) localStorage.setItem('theme', root.dataset.theme);
+    else localStorage.removeItem('theme');
+  } catch {}
+  sync();
+});

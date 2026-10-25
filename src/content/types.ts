@@ -5,7 +5,7 @@ export interface Seo { title: string; description: string }
 export interface Faq { q: string; a: string }
 export interface Fact { value: string; label: string }
 export interface Section { heading: string; paragraphs: string[]; list?: string[] }
-export type Mode = 'you' | 'assist' | 'agent';
+export type Mode = 'you' | 'agent';
 export interface ScanStep { label: string; mode: Mode; share: number }
 export interface ScanFunction { id: string; name: string; steps: ScanStep[] }
 
@@ -67,7 +67,7 @@ export type Client =
   | { id: string; name: string; kind: 'symbol-text'; file: string; text: string }
   | { id: string; name: string; kind: 'text'; text: string; dot: boolean };
 
-export interface Stage { word: string; lead: string; body: string; service: ServiceId; linkLabel: string; wdth: number; more?: Array<{ service: ServiceId; label: string }> }
+export interface Stage { word: string; lead: string; body: string; service: ServiceId; linkLabel: string; more?: Array<{ service: ServiceId; label: string }> }
 export interface ExperienceRow { years: string; role: string; org: string }
 
 export interface HomeContent {
@@ -93,6 +93,7 @@ export interface Ui {
   book: string;
   bookShort: string;
   menu: string;
+  darkMode: string;
   estimate: string;
   workedWith: string;
   portraitAlt: string;

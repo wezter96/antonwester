@@ -21,6 +21,9 @@ const links = [
   <a class="mark" href={home}><Monogram /><span>Anton Wester</span></a>
   <!-- on small screens the booking button and the menu button sit on the right, where the thumb is; the menu is a popover, so it opens without JS -->
   <a class="btn bar-cta" href={site.booking} rel="noopener">{t.bookShort}</a>
+  <button class="theme" type="button" data-theme-toggle aria-pressed="false" aria-label={t.darkMode}>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
+  </button>
   <button class="toggle" type="button" popovertarget="menu" aria-label={t.menu}><span class="burger" aria-hidden="true"></span></button>
   <nav id="menu" popover aria-label={t.navLabel}>
     <ul>
@@ -72,7 +75,7 @@ const links = [
   :global(.pre) .nav { opacity: 0; }
   /* a keyboard user tabbing into the bar always sees it */
   .nav[data-hidden]:not(:focus-within) { transform: translateY(-100%); }
-  .mark { display: inline-flex; align-items: center; gap: .6em; font-weight: 700; font-stretch: 112%; text-decoration: none; min-height: 44px; }
+  .mark { display: inline-flex; align-items: center; gap: .6em; font-weight: 700; white-space: nowrap; text-decoration: none; min-height: 44px; }
   a { text-decoration: none; }
   ul { list-style: none; margin: 0; padding: 0; }
   ul a { position: relative; display: inline-flex; align-items: center; min-height: 44px; }
@@ -81,13 +84,18 @@ const links = [
     transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s var(--ease-in-out);
   }
   ul a:hover::after, ul a:focus-visible::after { transform: none; }
+  .theme { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; background: none; border: 0; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .theme svg { transition: transform .6s var(--ease-in-out); }
+  .theme[aria-pressed='true'] svg { transform: rotate(180deg); }
 
   @media (min-width: 901px) {
     .toggle, .bar-cta { display: none; }
+    /* the theme toggle sits last in the bar on wide screens */
+    .theme { order: 1; margin-left: -12px; }
     /* the popover stays in the bar on wide screens */
     #menu {
       display: flex; align-items: center; gap: clamp(20px, 2.6vw, 40px);
-      position: static; inset: auto; margin: 0; padding: 0; border: 0; overflow: visible; width: auto; height: auto;
+      position: static; inset: auto; margin: 0 0 0 auto; padding: 0; border: 0; overflow: visible; width: auto; height: auto;
       background: none; color: inherit;
     }
     ul { display: flex; gap: clamp(16px, 2.4vw, 36px); }
@@ -96,7 +104,7 @@ const links = [
 
   @media (max-width: 900px) {
     .nav { gap: 12px; }
-    .bar-cta { margin-left: auto; min-height: 44px; padding: .55rem 1rem; }
+    .bar-cta { margin-left: auto; min-height: 44px; padding: .55rem 1rem; white-space: nowrap; }
     .toggle { position: relative; width: 44px; height: 44px; margin-right: -10px; padding: 0; background: none; border: 0; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
     /* three lines; the outer two turn into a cross while the menu is open */
     .burger, .burger::before, .burger::after {
@@ -113,12 +121,14 @@ const links = [
 
     /* the menu drops down from the bar; @starting-style gives it a first frame to animate from, and allow-discrete keeps it on screen while it closes */
     #menu {
-      position: fixed; inset: calc(44px + 2 * clamp(14px, 2vw, 28px)) 0 auto; margin: 0; width: 100%; border: 0;
-      padding: 8px var(--margin) 32px; background: var(--ground); color: var(--fg);
+      /* longhands, not inset: Safari dropped the inset shorthand with clamp() and the menu filled the screen */
+      position: fixed; top: calc(44px + 2 * clamp(14px, 2vw, 28px)); bottom: auto; left: 0; right: 0;
+      margin: 0; width: 100%; height: auto; max-height: calc(100dvh - 44px - 2 * clamp(14px, 2vw, 28px)); overflow-y: auto;
+      border: 0; border-bottom: 2px solid var(--rule); padding: 0 var(--margin) 8px; background: var(--ground); color: var(--fg);
       opacity: 0; transform: translateY(-12px); clip-path: inset(0 0 100% 0);
       transition: opacity .3s, transform .4s var(--ease-out), clip-path .4s var(--ease-out), overlay .4s allow-discrete, display .4s allow-discrete;
     }
-    #menu:popover-open { display: grid; gap: 20px; opacity: 1; transform: none; clip-path: inset(0); }
+    #menu:popover-open { display: grid; align-content: start; opacity: 1; transform: none; clip-path: inset(0); }
     #menu::backdrop {
       top: calc(44px + 2 * clamp(14px, 2vw, 28px)); background: rgb(12 30 34 / 0);
       transition: background-color .3s, overlay .4s allow-discrete, display .4s allow-discrete;
@@ -131,12 +141,15 @@ const links = [
       #menu:popover-open::backdrop { background: rgb(12 30 34 / 0); }
       #menu:popover-open li { opacity: 0; transform: translateY(-6px); }
     }
-    ul { display: grid; font-size: var(--step-lead); font-weight: 650; }
+    ul { display: grid; align-content: start; font-size: var(--step-lead); font-weight: 650; }
+    li + li { border-top: 1px solid color-mix(in srgb, var(--fg) 14%, transparent); }
+    ul a { display: flex; width: 100%; min-height: 60px; }
+    ul a::after { display: none; }
     /* the bar has its own booking button on small screens */
     #menu .cta { display: none; }
   }
-  /* the name gives way to the booking button on the narrowest phones */
-  @media (max-width: 380px) {
+  /* the name gives way to the booking button and theme toggle on phones */
+  @media (max-width: 440px) {
     .mark span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   }
 </style>

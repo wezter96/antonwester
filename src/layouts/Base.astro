@@ -10,10 +10,10 @@ interface Props { head: HeadProps; intro?: boolean }
 const { head, intro = false } = Astro.props;
 const t = ui[head.locale];
 const ogLocale = head.locale === 'sv' ? 'sv_SE' : 'en_US';
-const boot = `(function(){var d=document.documentElement;d.classList.add('js');if(d.hasAttribute('data-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('pre');setTimeout(function(){d.classList.remove('pre');d.classList.add('intro-done')},3500)}else{d.classList.add('intro-done')}})();`;
+const boot = `(function(){var d=document.documentElement;d.classList.add('js');try{var m=localStorage.getItem('theme');if(m==='dark'||m==='light')d.dataset.theme=m}catch(e){}if(d.hasAttribute('data-intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('pre');setTimeout(function(){d.classList.remove('pre');d.classList.add('intro-done')},3500)}else{d.classList.add('intro-done')}})();`;
 ---
 <!doctype html>
-<html lang={head.locale} data-ground="fog" data-intro={intro ? '' : undefined}>
+<html lang={head.locale} data-intro={intro ? '' : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

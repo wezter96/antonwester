@@ -116,21 +116,18 @@ for (const width of [320, 390, 768, 805, 820, 834, 1024, 1440, 2560]) {
   await ctx.close();
 }
 
-// 7. The ground follows the sections after the layout changes (FAQ items opened)
+// 7. The nav toggle flips the whole page between light and dark, and the choice survives a reload
 {
-  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, colorScheme: 'light' });
   const page = await ctx.newPage();
   await page.goto(`${BASE}/`);
-  await page.waitForTimeout(1500);
-  await page.evaluate(() => document.querySelectorAll('#faq details').forEach((d) => d.setAttribute('open', '')));
-  await page.waitForTimeout(300);
-  await page.evaluate(() => {
-    const faq = document.querySelector<HTMLElement>('#faq')!;
-    window.scrollTo({ top: faq.getBoundingClientRect().top + scrollY + faq.offsetHeight * 0.75 - innerHeight * 0.6, behavior: 'instant' });
-  });
+  const bg = () => page.evaluate(() => getComputedStyle(document.body).getPropertyValue('--ground').trim());
+  const before = await bg();
+  await page.locator('[data-theme-toggle]').click();
   await page.waitForTimeout(1200);
-  const [ground, faqGround] = await page.evaluate(() => [document.documentElement.dataset.ground, document.querySelector<HTMLElement>('#faq')!.dataset.ground]);
-  check(ground === faqGround, `ground follows the FAQ after it grows (${ground} vs ${faqGround})`);
+  check((await bg()) !== before, `theme toggle changes the ground (${before} -> ${await bg()})`);
+  await page.reload();
+  check((await page.evaluate(() => document.documentElement.dataset.theme)) === 'dark', 'dark choice survives a reload');
   await ctx.close();
 }
 

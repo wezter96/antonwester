@@ -21,8 +21,8 @@ describe('core content', () => {
   });
 
   it('uses the agreed offer sentence', () => {
-    expect(home.sv.offer).toBe('Jag hittar var AI och automation lönar sig i er verksamhet, bygger det och underhåller det.');
-    expect(home.en.offer).toBe('I find where AI and automation pay off in your business, build it, and maintain it.');
+    expect(home.sv.offer).toBe('Jag identifierar var AI och automation skapar värde i er verksamhet och tar hand om både utveckling och underhåll.');
+    expect(home.en.offer).toBe('I identify where AI and automation create value in your business and take care of both development and maintenance.');
   });
 
   it('keeps home SEO inside the length limits', () => {

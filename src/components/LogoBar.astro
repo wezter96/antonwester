@@ -27,6 +27,40 @@ const t = ui[locale];
   </div>
 </div>
 
+<script>
+  // the logos drift on their own and stop while someone scrolls them, then drift on from where they were left
+  const track = document.querySelector<HTMLElement>('.axis .track');
+  const set = track?.querySelector<HTMLElement>('.set');
+  if (track && set && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let x = track.scrollLeft;
+    let heldUntil = 0;
+    let hover = false;
+    let visible = true;
+    let last = 0;
+    const hold = () => { heldUntil = performance.now() + 2000; };
+    for (const e of ['pointerdown', 'touchstart', 'touchend', 'wheel']) track.addEventListener(e, hold, { passive: true });
+    track.addEventListener('pointerenter', (e) => { hover = e.pointerType === 'mouse'; });
+    track.addEventListener('pointerleave', () => { hover = false; });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(track);
+    const tick = (now: number) => {
+      const dt = Math.min(now - (last || now), 50);
+      last = now;
+      if (visible) {
+        // one set width every 52 s, as the CSS drift did
+        const width = set.offsetWidth;
+        if (hover || now < heldUntil || track.matches(':focus-within')) x = track.scrollLeft;
+        else {
+          x += (width / 52000) * dt;
+          if (x >= width) x -= width;
+          track.scrollLeft = x;
+        }
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+</script>
+
 <style>
   .axis {
     --logo-u: clamp(14px, 1.15vw, 18px);
@@ -46,10 +80,10 @@ const t = ui[locale];
     content: ''; position: absolute; top: 0; bottom: 0; right: 0; z-index: 2; width: clamp(48px, 7vw, 120px); pointer-events: none;
     background: linear-gradient(270deg, var(--gs), color-mix(in srgb, var(--gs) 0%, transparent)); /* taste-skill-ignore: client-requested fade */
   }
-  .track { display: flex; flex: none; animation: drift 52s linear infinite; }
-  .axis:hover .track, .axis:focus-within .track { animation-play-state: paused; }
+  /* a native scroller, so a finger or trackpad can move the logos; the script drifts it */
+  .track { display: flex; flex: 1 1 0; min-width: 0; align-self: stretch; align-items: center; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .track::-webkit-scrollbar { display: none; }
   .set { display: flex; align-items: center; gap: clamp(40px, 6vw, 96px); padding-right: clamp(40px, 6vw, 96px); flex: none; }
-  @keyframes drift { to { transform: translateX(-50%); } }
   .item { flex: none; opacity: .86; transition: opacity .3s; }
   .axis:hover .item { opacity: .4; }
   .axis .item:hover { opacity: 1; }
@@ -66,7 +100,7 @@ const t = ui[locale];
   @media (prefers-reduced-motion: reduce) {
     .axis { height: auto; padding-block: clamp(14px, 1.6vw, 24px); }
     .say::after, .axis::after { display: none; }
-    .track { animation: none; flex: 1 1 0; min-width: 0; }
+    .track { overflow: visible; }
     .set { flex: 1 1 auto; flex-wrap: wrap; row-gap: clamp(14px, 1.6vw, 24px); column-gap: clamp(28px, 4vw, 64px); padding-right: var(--margin); }
     .dup { display: none; }
   }

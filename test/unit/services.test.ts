@@ -22,8 +22,10 @@ describe('services', () => {
   for (const id of SERVICE_IDS) {
     for (const l of ['sv', 'en'] as const) {
       const s = services[id][l];
-      it(`${id}/${l} has at least 600 words of copy`, () => {
-        expect(wordCount(text(s))).toBeGreaterThanOrEqual(600);
+      // Plain-language pages are kept short on purpose; only the technical development page stays long.
+      const minWords = id === 'development' ? 600 : 300;
+      it(`${id}/${l} has at least ${minWords} words of copy`, () => {
+        expect(wordCount(text(s))).toBeGreaterThanOrEqual(minWords);
       });
       it(`${id}/${l} carries its search term in title, h1 and description`, () => {
         const term = TERMS[id][l].toLowerCase();

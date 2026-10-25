@@ -1,7 +1,7 @@
 import type { Locale } from '../../content/routes';
 import type { Mode } from '../../content/types';
 
-export const MODE_WEIGHT: Record<Mode, number> = { you: 0, assist: 0.4, agent: 0.8 };
+export const MODE_WEIGHT: Record<Mode, number> = { you: 0, agent: 0.8 };
 export const WORK_WEEKS = 46;
 
 export function hoursPerYear(hoursPerWeek: number, steps: ReadonlyArray<{ mode: Mode; share: number }>): number {

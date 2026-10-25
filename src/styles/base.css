@@ -4,7 +4,7 @@ body {
   margin: 0; font-family: var(--font); font-size: var(--step-body); line-height: 1.5;
   background: var(--ground); color: var(--fg); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-.ground-ready body { transition: --ground .8s var(--ease-in-out), --gs .8s var(--ease-in-out), --fg .45s cubic-bezier(.33,1,.68,1), --soft .45s cubic-bezier(.33,1,.68,1); }
+.ground-ready body { transition: --ground .8s var(--ease-in-out), --gs .8s var(--ease-in-out), --alt .8s var(--ease-in-out), --alt-gs .8s var(--ease-in-out), --fg .45s cubic-bezier(.33,1,.68,1), --soft .45s cubic-bezier(.33,1,.68,1); }
 h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
 a { color: inherit; }
 img, svg { display: block; max-width: 100%; }
@@ -18,10 +18,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .skip { position: absolute; left: -9999px; top: 1rem; z-index: 50; background: var(--ink); color: var(--fog); padding: .7rem 1rem; }
 .skip:focus { left: var(--margin); }
 
-.head { font-size: var(--step-head); line-height: .95; letter-spacing: -.03em; font-weight: 800; font-stretch: 108%; max-width: 18ch; }
+.head { font-size: var(--step-head); line-height: .95; font-weight: 800; max-width: 18ch; }
 .lead { font-size: var(--step-lead); line-height: 1.35; }
-@media (max-width: 640px) { .head { font-stretch: 96%; } }
-.sub { font-size: var(--step-sub); line-height: 1.05; letter-spacing: -.02em; font-weight: 800; font-stretch: 112%; }
+.sub { font-size: var(--step-sub); line-height: 1.05; font-weight: 800; }
 
 .btn {
   display: inline-flex; align-items: center; min-height: 48px; padding: .9rem 1.5rem; background: var(--signal); color: var(--ink);
@@ -38,9 +37,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .lnk:hover::after { transform: scaleX(0); }
 
-/* sections paint their own ground tokens without JS; with JS they inherit the body's, which crossfade */
-[data-ground]:not(:root) { background: var(--ground); color: var(--fg); }
-.js [data-ground] { --ground: inherit; --fg: inherit; --soft: inherit; --gs: inherit; --hot: inherit; }
+/* alternate bands; the tokens come from the body, so they crossfade with the theme */
+[data-ground='fog2'] { background: var(--alt); --gs: var(--alt-gs); }
+[data-ground='tint'] { background: color-mix(in srgb, var(--rule) 9%, var(--ground)); }
+/* a line in the theme's accent between sections, and before the footer */
+[data-ground] + [data-ground], main + [data-ground] { border-top: 2px solid var(--rule); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

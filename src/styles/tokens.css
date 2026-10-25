@@ -14,10 +14,12 @@
 @property --fg { syntax: '<color>'; inherits: true; initial-value: #0C1E22; }
 @property --soft { syntax: '<color>'; inherits: true; initial-value: #4C5A5B; }
 @property --gs { syntax: '<color>'; inherits: true; initial-value: #DADED7; }
+@property --alt { syntax: '<color>'; inherits: true; initial-value: #DADED7; }
+@property --alt-gs { syntax: '<color>'; inherits: true; initial-value: #CED3CB; }
 
 :root {
   --fog: #E7E9E4; --fog-2: #DADED7; --ink: #0C1E22; --ink-2: #13292E; --ink-3: #1B363C;
-  --muted: #4C5A5B; --muted-ink: #93A6A8; --signal: #FF5A1F;
+  --muted: #4C5A5B; --muted-ink: #93A6A8; --signal: #FF5A1F; --lime: #C6F432;
 
   --font: 'Archivo Variable', 'Archivo Fallback', system-ui, sans-serif;
   --step-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
@@ -27,14 +29,26 @@
 
   --margin: clamp(16px, 2.2vw, 32px);
   --gutter: clamp(12px, 1.6vw, 24px);
-  --section: clamp(96px, 9vw, 200px);
+  --section: clamp(72px, 7vw, 128px);
 
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 
   --ground: var(--fog); --fg: var(--ink); --soft: var(--muted); --gs: var(--fog-2);
+  --alt: var(--fog-2); --alt-gs: #CED3CB;
   /* signal as text only reads on ink (about 6:1); on fog it falls back to ink */
   --hot: var(--fg);
+  --rule: var(--signal);
+  color-scheme: light;
 }
-[data-ground='fog2'] { --ground: var(--fog-2); --fg: var(--ink); --soft: var(--muted); --gs: #CED3CB; }
-[data-ground='ink'] { --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30; --hot: var(--signal); }
+/* dark follows the system until the nav toggle sets data-theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30;
+    --alt: var(--ink-2); --alt-gs: var(--ink-3); --hot: var(--signal); --rule: var(--lime); color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --ground: var(--ink); --fg: var(--fog); --soft: var(--muted-ink); --gs: #1A2C30;
+  --alt: var(--ink-2); --alt-gs: var(--ink-3); --hot: var(--signal); --rule: var(--lime); color-scheme: dark;
+}

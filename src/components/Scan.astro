@@ -12,12 +12,12 @@ const t = ui[l].scan;
 const fns = scan[l];
 const first = fns[0];
 const total = hoursPerYear(25, first.steps);
-const modes: Mode[] = ['you', 'assist', 'agent'];
+const modes: Mode[] = ['agent', 'you'];
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(t.mailSubject)}`;
 const data = JSON.stringify({ functions: fns, modes: t.modes, stepModeLabel: t.stepModeLabel, yearBack: t.yearBack, message: t.message, locale: l }).replace(/</g, '\\u003c');
 const inputId = `scan-hours-${l}`;
 ---
-<section id="scan" class="scan" data-ground="ink">
+<section id="scan" class="scan" data-ground="fog2">
   <div class="grid">
     <h2 class="head">{t.heading}</h2>
     <p class="lead intro">{t.intro}</p>
@@ -26,16 +26,19 @@ const inputId = `scan-hours-${l}`;
     <div class="fns" role="group" aria-label={t.functionsLabel}>
       {fns.map((f, i) => <button class="fn" type="button" data-fn={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.name}</button>)}
     </div>
+    <div class="stepcol">
+    <p class="steps-h" aria-hidden="true">{t.stepModeLabel}</p>
     <ol class="steps">
       {first.steps.map((s, i) => (
         <li class="step" data-step>
           <span>{s.label}</span>
-          <span class="seg" role="group" aria-label={`${t.stepModeLabel}: ${s.label}`}>
+          <span class="seg" role="group" aria-label={`${t.stepModeLabel} ${s.label}`}>
             {modes.map((m) => <button type="button" data-i={i} data-mode={m} aria-pressed={s.mode === m ? 'true' : 'false'}>{t.modes[m]}</button>)}
           </span>
         </li>
       ))}
     </ol>
+    </div>
     <div class="result">
       <label for={inputId}>{t.hoursLabel} <b data-hours>25</b></label>
       <input id={inputId} type="range" min="2" max="120" value="25" />
@@ -58,41 +61,46 @@ const inputId = `scan-hours-${l}`;
   .tool { margin-top: clamp(48px, 6vw, 96px); align-items: start; row-gap: 32px; }
   .fns { grid-column: 1 / 5; display: flex; flex-direction: column; align-items: flex-start; gap: clamp(8px, .9vw, 14px); }
   .fn {
-    all: unset; cursor: pointer; font-size: var(--step-sub); line-height: 1.05; letter-spacing: -.02em; font-weight: 500;
-    color: var(--soft); font-variation-settings: 'wdth' 72; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center;
-    transition: font-variation-settings .8s var(--ease-out), color .3s;
+    all: unset; cursor: pointer; font-size: var(--step-lead); line-height: 1.2;
+    color: var(--soft); white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center;
+    font-weight: 600; text-decoration: underline transparent .08em; text-underline-offset: .2em; transition: color .3s, text-decoration-color .3s;
   }
-  .fn:hover { font-variation-settings: 'wdth' 86; color: var(--fg); }
-  .fn[aria-pressed='true'] { font-variation-settings: 'wdth' 125; font-weight: 800; color: var(--fg); }
+  .fn:hover { color: var(--fg); }
+  .fn[aria-pressed='true'] { color: var(--fg); text-decoration-color: var(--signal); }
   .fn:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
-  .steps { grid-column: 5 / 10; list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .stepcol { grid-column: 5 / 10; }
+  .steps-h { color: var(--soft); font-weight: 600; margin-bottom: 10px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
   .steps :global(.step) {
     display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 14px 12px 16px;
-    background: var(--ink-2); color: var(--fog); transition: opacity .35s ease, transform .5s var(--ease-out);
+    background: color-mix(in srgb, var(--fg) 6%, var(--ground)); color: var(--fg); transition: opacity .35s ease, transform .5s var(--ease-out);
   }
-  .steps :global(.step:nth-child(even)) { background: var(--ink-3); }
+  .steps :global(.step:nth-child(even)) { background: color-mix(in srgb, var(--fg) 10%, var(--ground)); }
   .steps :global(.step.out) { opacity: 0; transform: translateX(16px); }
-  .steps :global(.seg) { display: flex; flex: none; background: var(--ink); padding: 3px; gap: 2px; }
+  .steps :global(.seg) { display: flex; flex: none; background: var(--ground); padding: 3px; gap: 2px; }
   .steps :global(.seg button) {
-    all: unset; cursor: pointer; font-size: .8125rem; font-weight: 600; padding: 0 10px; min-height: 32px;
-    display: inline-flex; align-items: center; color: var(--muted-ink); transition: background .25s, color .25s;
+    all: unset; cursor: pointer; font-size: .9375rem; font-weight: 600; padding: 0 12px; min-height: 32px;
+    display: inline-flex; align-items: center; color: var(--soft); transition: background .25s, color .25s;
   }
-  .steps :global(.seg button[aria-pressed='true']) { background: var(--fog); color: var(--ink); }
+  .steps :global(.seg button[aria-pressed='true']) { background: var(--fg); color: var(--ground); }
   .steps :global(.seg button[data-mode='agent'][aria-pressed='true']) { background: var(--signal); color: var(--ink); }
   .steps :global(.seg button:focus-visible) { outline: 2px solid var(--signal); }
-  .result { grid-column: 10 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .result label { color: var(--soft); line-height: 1.35; }
-  .result label b { color: var(--fg); font-variant-numeric: tabular-nums; }
+  .result { grid-column: 10 / 13; container-type: inline-size; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .result label { font-size: var(--step-lead); font-weight: 600; line-height: 1.3; }
+  .result label b { font-weight: 800; color: var(--hot); font-variant-numeric: tabular-nums; }
   .result input { width: 100%; accent-color: var(--signal); margin: 0; min-height: 32px; }
-  .num { font-size: var(--step-head); line-height: .9; font-weight: 800; letter-spacing: -.04em; color: var(--hot); font-variant-numeric: tabular-nums; font-stretch: 112%; white-space: nowrap; }
-  .num small { display: block; font-size: var(--step-body); font-weight: 500; letter-spacing: 0; color: var(--fg); margin-top: 10px; line-height: 1.35; font-stretch: 100%; white-space: normal; }
-  .fine { color: var(--soft); font-size: .875rem; line-height: 1.45; }
+  .num { font-size: min(var(--step-head), 16cqi); line-height: .9; font-weight: 800; color: var(--hot); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .num small { display: block; font-size: var(--step-body); font-weight: 500; color: var(--fg); margin-top: 10px; line-height: 1.35; white-space: normal; }
+  .fine { color: var(--soft); font-size: 1rem; line-height: 1.5; }
   @media (max-width: 1000px) {
-    .fns { grid-column: 1 / -1; flex-direction: row; overflow-x: auto; gap: 24px; padding-bottom: 8px; scrollbar-width: none; }
-    .steps, .result { grid-column: 1 / -1; }
+    .fns { position: relative; grid-column: 1 / -1; flex-direction: row; overflow-x: auto; gap: 24px; padding-bottom: 8px; scrollbar-width: none; }
+    .stepcol, .result { grid-column: 1 / -1; }
+    /* on one column the hours come first, then the part of the business, then its steps */
+    .result { order: -1; }
   }
   @media (max-width: 640px) {
-    .steps :global(.step) { flex-direction: column; align-items: flex-start; }
+    /* label and the two choices stay on one row; the label wraps */
+    .steps :global(.step) { padding: 10px 8px 10px 12px; gap: 10px; line-height: 1.3; }
   }
   @media (pointer: coarse), (max-width: 640px) {
     .steps :global(.seg button), .result input { min-height: 44px; }

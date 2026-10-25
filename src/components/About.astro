@@ -52,13 +52,18 @@ const hasPortrait = Object.keys(import.meta.glob('../assets/portrait.{jpg,jpeg,p
   td { padding: 11px 12px; vertical-align: top; }
   tr:nth-child(odd) td { background: var(--gs); }
   .years { white-space: nowrap; width: 1%; color: var(--soft); font-variant-numeric: tabular-nums; }
-  td { hyphens: auto; overflow-wrap: anywhere; }
+  td { overflow-wrap: break-word; }
   .org { font-weight: 700; text-align: right; }
   .stack { max-width: 60ch; color: var(--soft); }
   .links { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
   @media (max-width: 1000px) { .pic, .body, .body.solo { grid-column: 1 / -1; } }
   @media (max-width: 640px) {
     .skills { grid-template-columns: 1fr; }
-    td { padding: 10px 8px; }
+    /* one row per job: years and employer on top, the role under them */
+    tr { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; padding: 12px; }
+    tr:nth-child(odd) { background: var(--gs); }
+    td, tr:nth-child(odd) td { padding: 0; background: none; }
+    .years { width: auto; }
+    td:not(.years):not(.org) { grid-column: 1 / -1; grid-row: 2; }
   }
 </style>

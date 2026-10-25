@@ -8,7 +8,7 @@ const { locale, inquiry } = Astro.props;
 const t = ui[locale];
 const c = t.contact;
 ---
-<section id="contact" class="close grid" data-ground="ink">
+<section id="contact" class="close grid" data-ground="tint">
   <div class="intro">
     <h2 class="head">{c.heading}</h2>
     <p class="row">
@@ -53,12 +53,12 @@ const c = t.contact;
 </script>
 
 <style>
-  .close { padding: var(--section) var(--margin) clamp(64px, 6vw, 112px); row-gap: clamp(48px, 6vw, 96px); align-items: start; }
+  .close { padding: var(--section) var(--margin); row-gap: clamp(48px, 6vw, 96px); align-items: start; }
   .intro { grid-column: 1 / 7; }
   .row { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); flex-wrap: wrap; margin-top: clamp(24px, 3.4vw, 48px); }
-  .mail { font-size: var(--step-sub); font-weight: 600; letter-spacing: -.02em; }
+  .mail { font-size: var(--step-sub); font-weight: 600; }
   .avail { margin-top: 20px; color: var(--soft); display: flex; align-items: center; gap: 10px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 1px color-mix(in srgb, var(--fg) 25%, transparent); }
   form { grid-column: 8 / 13; display: grid; grid-template-columns: 1fr 1fr; gap: 24px var(--gutter); }
   .form-h { grid-column: 1 / -1; font-size: var(--step-lead); font-weight: 700; }
   label { display: grid; gap: 8px; font-weight: 600; }

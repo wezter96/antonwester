@@ -38,11 +38,11 @@ const shot = shots[`../assets/shots/${id}.webp`]?.default;
   .flip .shot { grid-column: 6 / 13; grid-row: 1; }
   .flip .txt { grid-column: 1 / 5; grid-row: 1; }
   .shot :global(img), .ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
-  .ph { display: flex; align-items: center; justify-content: center; background: var(--gs); color: var(--soft); font-size: var(--step-head); font-weight: 800; font-stretch: 112%; letter-spacing: -.03em; }
+  .ph { display: flex; align-items: center; justify-content: center; background: var(--gs); color: var(--soft); font-size: var(--step-head); font-weight: 800; }
   .sub { margin-bottom: 12px; }
   .desc { margin-bottom: 18px; max-width: 38ch; }
   .facts { margin: 0 0 22px; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
-  .facts dt { font-weight: 800; font-variant-numeric: tabular-nums; font-stretch: 112%; }
+  .facts dt { font-weight: 800; font-variant-numeric: tabular-nums; }
   .facts dd { margin: 0; color: var(--soft); }
   .links { display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline; }
   .private { font-weight: 600; }

@@ -38,7 +38,7 @@ const other = otherLocale(locale);
 </footer>
 
 <style>
-  .foot { padding: clamp(48px, 5vw, 96px) 0 clamp(20px, 2.4vw, 32px); overflow: hidden; }
+  .foot { padding: var(--section) 0 clamp(20px, 2.4vw, 32px); overflow: hidden; }
   .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px var(--gutter); padding: 0 var(--margin) clamp(56px, 7vw, 112px); }
   .h { font-weight: 700; margin-bottom: 12px; }
   ul { list-style: none; margin: 0; padding: 0; display: grid; color: var(--soft); }
