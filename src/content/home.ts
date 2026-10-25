@@ -22,7 +22,7 @@ export const home: L10n<HomeContent> = {
     aboutHeading: 'Om mig',
     bio: [
       'Jag har programmerat i över tio år och byggt digitala produkter för webb, iOS och Android i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers, har varit tech lead för cross-platform på weapp och utvecklare på Telia.',
-      'I dag bygger jag AI-lösningar åt företag och driver mina egna plattformar, SökHem och OpenAudit, hela vägen från arkitektur till drift.',
+      'I dag bygger jag AI-lösningar åt företag, hela vägen från arkitektur till drift.',
     ],
     experience: [
       { years: '2024–', role: 'AI-konsult och utvecklare', org: 'Anton Wester AB' },
@@ -75,7 +75,7 @@ export const home: L10n<HomeContent> = {
     aboutHeading: 'About',
     bio: [
       'I have been programming for more than ten years and building digital products for web, iOS and Android professionally since 2019. I studied computer engineering at Chalmers, led cross-platform development as tech lead at weapp and worked as a developer at Telia.',
-      'Today I build AI solutions for companies and run my own platforms, SökHem and OpenAudit, from architecture to operations.',
+      'Today I build AI solutions for companies, from architecture to operations.',
     ],
     experience: [
       { years: '2024–', role: 'AI consultant and developer', org: 'Anton Wester AB' },
