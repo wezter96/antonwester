@@ -38,6 +38,28 @@ const links = [
   menu?.addEventListener('click', (e) => {
     if ((e.target as Element).closest('a') && menu.matches(':popover-open')) menu.hidePopover();
   });
+
+  // the bar slides away while you scroll down and comes back as soon as you scroll up, as on SökHem
+  const bar = document.querySelector<HTMLElement>('header.nav');
+  // iOS scrolls the page itself to lift a focused field above the keyboard and back when it goes; those scrolls do not count
+  const raisesKeyboard = (el: Element | null) =>
+    el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement ||
+    (el instanceof HTMLInputElement && !['button', 'checkbox', 'radio', 'submit', 'hidden', 'range', 'file'].includes(el.type));
+  let lastY = scrollY;
+  let queued = 0;
+  let keyboardSettlesAt = 0;
+  document.addEventListener('focusout', (e) => { if (raisesKeyboard(e.target as Element)) keyboardSettlesAt = performance.now() + 500; });
+  addEventListener('scroll', () => {
+    if (queued) return;
+    queued = requestAnimationFrame(() => {
+      queued = 0;
+      const delta = scrollY - lastY;
+      lastY = scrollY;
+      if (!bar || raisesKeyboard(document.activeElement) || performance.now() < keyboardSettlesAt) return;
+      if (scrollY < 80 || menu?.matches(':popover-open') || delta < -1) delete bar.dataset.hidden;
+      else if (delta > 1) bar.dataset.hidden = '';
+    });
+  }, { passive: true });
 </script>
 
 <style>
@@ -46,9 +68,11 @@ const links = [
     /* the ground follows the section in view, so the bar always matches the page under it */
     background: var(--ground); color: var(--fg);
     display: flex; justify-content: space-between; align-items: center; gap: 24px; font-weight: 500;
-    transition: opacity .8s ease .2s;
+    transition: opacity .8s ease .2s, transform .4s var(--ease-in-out);
   }
   :global(.pre) .nav { opacity: 0; }
+  /* a keyboard user tabbing into the bar always sees it */
+  .nav[data-hidden]:not(:focus-within) { transform: translateY(-100%); }
   .mark { display: inline-flex; align-items: center; gap: .6em; font-weight: 700; font-stretch: 112%; text-decoration: none; min-height: 44px; }
   a { text-decoration: none; }
   ul { list-style: none; margin: 0; padding: 0; }
