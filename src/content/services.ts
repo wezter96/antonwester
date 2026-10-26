@@ -73,7 +73,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       sections: [
         {
           heading: 'What you get',
-          paragraphs: ['A basis you can make decisions on. It is yours, whether you build with me, with your own team or not at all.'],
+          paragraphs: ['A basis you can make decisions on. It’s yours, whether you build with me, with your own team or not at all.'],
           list: [
             'A picture of which tasks take the most time each week.',
             'A list of where AI pays off, with the time you save and what it costs.',
@@ -84,27 +84,27 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'What I look for',
           paragraphs: [
-            'The best place to start is rarely the most exciting one. Usually it is work done every day: emails being sorted, numbers copied between programs and reports put together by hand.',
+            'The best place to start is rarely the most exciting one. Usually it’s work done every day: emails being sorted, numbers copied between programs and reports put together by hand.',
             'Tasks that take time and are done the same way every time suit AI well. Where a mistake is costly, a person still makes the call.',
           ],
         },
         {
           heading: 'Why start here',
           paragraphs: [
-            'Many AI projects start with a solution and then look for a problem. That gets expensive. I start with where the time goes, and then build only what is worth it. Because I also build myself, I know what things tend to cost.',
+            'Many AI projects start with a solution and then look for a problem. That gets expensive. I start with where the time goes, and then build only what’s worth it. Because I also build myself, I know what things tend to cost.',
           ],
         },
       ],
       steps: [
         'We talk about your business and what feels heaviest today.',
-        'I talk to the people who do the work and see how it is done.',
+        'I talk to the people who do the work and see how it’s done.',
         'I work out where AI can save time and what it costs.',
         'We go through the list together with leadership.',
       ],
       fitsWhen: [
-        'You think AI can help, but do not know where to start.',
+        'You think AI can help, but don’t know where to start.',
         'Several people spend hours every week on the same thing.',
-        'You have tried ChatGPT but not made it part of daily work.',
+        'You’ve tried ChatGPT but not made it part of daily work.',
         'Leadership wants a basis before money is spent.',
       ],
       firstEngagement: 'We usually start with one or two departments. It takes a few weeks, and the result is yours.',
@@ -151,7 +151,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           ],
         },
         {
-          heading: 'I er stack, inte i min',
+          heading: 'I er stack',
           paragraphs: [
             'Jag bygger i den teknik ni redan har när det är rimligt, eller i en lätt och modern stack med TypeScript, Node eller Bun och Postgres när ni börjar från noll. Språkmodellerna väljs efter uppgiften: ibland en stor modell från Anthropic eller OpenAI, ibland en mindre öppen modell som kan köras på er egen server.',
             'Koden är er från första dagen. Den ligger i ert repo, är dokumenterad och går att ta över av ert team eller av en annan leverantör om ni vill.',
@@ -209,11 +209,11 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'Built to last',
           paragraphs: [
             'An agent that works in a demo is easy to build. An agent that works every day for a year takes more. So I build with tests against real examples, logs of every request and tool call, cost tracking per process and clear limits on what the agent may do on its own.',
-            'Steps where a mistake is expensive go through human approval. The agent prepares, a person decides, and everything is kept so you can see afterwards who did what. These are the same principles regulated environments require, and I have built software in such environments, including medical technology.',
+            'Steps where a mistake is expensive go through human approval. The agent prepares, a person decides, and everything is kept so you can see afterwards who did what. These are the same principles regulated environments require, and I’ve built software in such environments, including medical technology.',
           ],
         },
         {
-          heading: 'In your stack, not mine',
+          heading: 'In your stack',
           paragraphs: [
             'I build in the technology you already have when that makes sense, or in a light, modern stack with TypeScript, Node or Bun and Postgres when you start from scratch. Models are chosen per task: sometimes a large model from Anthropic or OpenAI, sometimes a smaller open model that runs on your own server.',
             'The code is yours from day one. It lives in your repository, is documented, and can be taken over by your team or another supplier whenever you like.',
@@ -238,7 +238,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       faq: [
         { q: 'Which AI models do you use?', a: 'Whichever fits the task best in quality, cost and where your data may be processed. I use models from Anthropic, OpenAI and others, and open models that can run on your own server, and I build so the model can be swapped.' },
         { q: 'What happens when the agent gets something wrong?', a: 'Every agent has clear limits on what it may do alone. Risky steps need human approval, everything is logged, and we measure accuracy against real examples before it gets more responsibility.' },
-        { q: 'Can you build in our existing technology?', a: 'Yes, in most cases. I have built in everything from large enterprise environments to new platforms, and I adapt to your stack, your code review routines and your security requirements.' },
+        { q: 'Can you build in our existing technology?', a: 'Yes, in most cases. I’ve built in everything from large enterprise environments to new platforms, and I adapt to your stack, your code review routines and your security requirements.' },
       ],
     },
   },
@@ -252,7 +252,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         description: 'AI-agenter för företag som tar över rutinjobb, som att läsa mejl och svara kunder. Med tydliga gränser och en människa som godkänner.',
       },
       h1: 'AI-agenter för företag',
-      promise: 'Agenter som gör ett jobb, inte en demo.',
+      promise: 'Agenter som gör riktigt jobb.',
       intro: 'En AI-agent är ett program som gör en uppgift från början till slut. Den läser ett mejl, letar upp kunden, skriver ett svar och lägger ärendet rätt. Ni bestämmer vad den får göra, och ni ser allt den gör.',
       sections: [
         {
@@ -310,7 +310,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         description: 'AI agents for companies that take over routine work, such as reading email and answering customers. With clear limits and a person who approves.',
       },
       h1: 'AI agents for companies',
-      promise: 'Agents that do a job, not a demo.',
+      promise: 'Agents that do real work.',
       intro: 'An AI agent is a program that does a task from start to finish. It reads an email, looks up the customer, writes a reply and files the case. You decide what it may do, and you see everything it does.',
       sections: [
         {
@@ -340,13 +340,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       steps: [
         'We pick one task and collect about fifty real examples.',
         'I build the agent and give it only the access it needs.',
-        'It is tested next to the team until it gets it right often enough.',
+        'It’s tested next to the team until it gets it right often enough.',
         'Then it takes over, step by step.',
       ],
       fitsWhen: [
         'The same kind of case comes in many times a week.',
         'Someone moves information between programs by hand.',
-        'A chatbot is not enough; you need something that does the work.',
+        'A chatbot isn’t enough; you need something that does the work.',
         'You must be able to show what the AI did and why.',
       ],
       firstEngagement: 'We usually start with a single kind of case, such as questions about deliveries. The agent can be tested within a couple of weeks and takes over once it gets it right often enough.',
@@ -354,7 +354,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       relatedServices: ['automation', 'development'],
       faq: [
         { q: 'What is the difference between an AI agent and a chatbot?', a: 'A chatbot answers questions. An agent can also do things, such as look up a customer or update a system, within the limits you set.' },
-        { q: 'Is it safe to let an agent work in our systems?', a: 'Yes, if it may only do what it needs, everything is saved and important steps need a yes from a person. That is how I build.' },
+        { q: 'Is it safe to let an agent work in our systems?', a: 'Yes, if it may only do what it needs, everything is saved and important steps need a yes from a person. That’s how I build.' },
         { q: 'What does it cost to run an AI agent?', a: 'It depends on how much it does. I measure the cost per case during the test, so you know before it takes over.' },
         { q: 'Can the agent use the systems we already have?', a: 'Yes. It connects to the programs you already use, such as email, your customer register and your finance system.' },
       ],
@@ -444,11 +444,11 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'Not everything needs AI',
           paragraphs: [
-            'When the information is already in order, ordinary automation is enough. It is cheaper and more predictable. I use AI where it is needed, for text and images, and simple code for the rest.',
+            'When the information is already in order, ordinary automation is enough. It’s cheaper and more predictable. I use AI where it’s needed, for text and images, and simple code for the rest.',
           ],
         },
         {
-          heading: 'It does not guess',
+          heading: 'It doesn’t guess',
           paragraphs: [
             'Everything the automation does is saved. If something goes wrong, the right person hears about it at once. Anything the AI is unsure about goes to a person instead of being guessed.',
             'I can run the automation for you, or hand it over to your team.',
@@ -467,13 +467,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'Your automations break as soon as something looks different.',
         'You want to get more done without hiring.',
       ],
-      firstEngagement: 'We usually start with a single flow, such as incoming invoices. It is usually running within a few weeks.',
+      firstEngagement: 'We usually start with a single flow, such as incoming invoices. It’s usually running within a few weeks.',
       relatedCases: ['sokhem', 'lingo'],
       relatedServices: ['agents', 'assessment'],
       faq: [
         { q: 'What is AI automation?', a: 'Automation that copes with messy input, such as emails, PDFs and free text. The AI reads and understands; ordinary code does the rest.' },
         { q: 'What is best to automate first?', a: 'Work that is done often, in roughly the same way, and takes a lot of time. Invoices, orders and reports usually rank high.' },
-        { q: 'What happens when the automation is unsure?', a: 'Then it does not guess. The case goes to a person who decides.' },
+        { q: 'What happens when the automation is unsure?', a: 'Then it doesn’t guess. The case goes to a person who decides.' },
         { q: 'Do we need to change systems?', a: 'No. The automation connects to the programs you already have.' },
       ],
     },
@@ -505,7 +505,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'Någon som stannar kvar',
           paragraphs: [
-            'Jag driver själv SökHem och OpenAudit, som är igång dygnet runt. Ni får inte en konsult som försvinner efter starten, utan någon som är van att ha ansvaret.',
+            'Jag driver själv SökHem och OpenAudit, som är igång dygnet runt. Jag är van att ha ansvaret och stannar kvar efter starten.',
             'Varje månad får ni veta hur många ärenden som har hanterats, hur ofta en människa behövde gå in, vad det kostade och vad nästa förbättring är.',
           ],
         },
@@ -546,11 +546,11 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       },
       h1: 'Hosting and maintenance',
       promise: 'For your AI solutions, every day.',
-      intro: 'An AI solution is not finished when it starts. AI services change, prices change and your business changes. I make sure what I have built keeps working and gets better over time.',
+      intro: 'An AI solution isn’t finished when it starts. AI services change, prices change and your business changes. I make sure what I’ve built keeps working and gets better over time.',
       sections: [
         {
-          heading: 'What is included',
-          paragraphs: ['You do not need to think about the technical side. I do.'],
+          heading: 'What’s included',
+          paragraphs: ['You don’t need to think about the technical side. I do.'],
           list: [
             'The solution runs on servers in the EU or at your site, depending on where your data may be kept.',
             'I get an alert if something stops working, often before you notice.',
@@ -562,14 +562,14 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'Someone who stays',
           paragraphs: [
-            'I run SökHem and OpenAudit myself, and they are up around the clock. You do not get a consultant who disappears after launch, but someone used to carrying the responsibility.',
+            'I run SökHem and OpenAudit myself, and they’re up around the clock. I’m used to carrying the responsibility, and I stay on after launch.',
             'Every month you learn how many cases were handled, how often a person had to step in, what it cost and what the next improvement is.',
           ],
         },
         {
           heading: 'Or run it yourselves',
           paragraphs: [
-            'If you would rather run it yourselves, your team gets the code, the instructions and the training it needs. You are never locked in to me.',
+            'If you’d rather run it yourselves, your team gets the code, the instructions and the training it needs. You’re never locked in to me.',
           ],
         },
       ],
@@ -590,7 +590,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         { q: 'Where does the solution run?', a: 'Wherever your data may be kept. Usually on servers in the EU, sometimes at your site. We decide that before anything is built.' },
         { q: 'What happens when an AI service changes?', a: 'I test the new version first. We only switch when the result is at least as good.' },
         { q: 'Can we take over later?', a: 'Yes. Everything is yours from the start, and we plan the handover together.' },
-        { q: 'Who owns the data?', a: 'You do. It is not used to train AI, and you take everything with you when the work ends.' },
+        { q: 'Who owns the data?', a: 'You do. It isn’t used to train AI, and you take everything with you when the work ends.' },
       ],
     },
   },
@@ -614,7 +614,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Att välja teknik som håller när bolaget växer.',
             'Att bestämma vad som ska byggas först.',
             'Att anställa rätt utvecklare och få dem igång snabbt.',
-            'Att se var AI hjälper på riktigt, och inte bara låter bra.',
+            'Att se var AI hjälper på riktigt.',
             'Att granska leverantörer och avtal när ni köper utveckling.',
           ],
         },
@@ -667,20 +667,20 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       sections: [
         {
           heading: 'What I help with',
-          paragraphs: ['It depends on where the company is, but it is usually this.'],
+          paragraphs: ['It depends on where the company is, but it’s usually this.'],
           list: [
             'Choosing technology that holds up as the company grows.',
             'Deciding what to build first.',
             'Hiring the right developers and getting them going fast.',
-            'Seeing where AI really helps, not just where it sounds good.',
+            'Seeing where AI really helps.',
             'Reviewing suppliers and contracts when you buy development.',
           ],
         },
         {
           heading: 'Why me',
           paragraphs: [
-            'I have been programming for more than ten years and building products professionally since 2019. As tech lead at weapp I led a team that built apps for the web, iPhone and Android.',
-            'I explain technology so leadership understands it, and business goals so developers understand them. When it is the fastest way, I write the code myself.',
+            'I’ve been programming for more than ten years and building products professionally since 2019. As tech lead at weapp I led a team that built apps for the web, iPhone and Android.',
+            'I explain technology so leadership understands it, and business goals so developers understand them. When it’s the fastest way, I write the code myself.',
           ],
         },
         {
@@ -697,16 +697,16 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'Then we keep working a few days a month.',
       ],
       fitsWhen: [
-        'You are building a digital product but have no technical leader.',
-        'The founders are not technical and need someone to ask.',
+        'You’re building a digital product but have no technical leader.',
+        'The founders aren’t technical and need someone to ask.',
         'You have developers but nobody who sees the whole picture.',
-        'You want to use AI but do not know how to start.',
+        'You want to use AI but don’t know how to start.',
       ],
-      firstEngagement: 'We start with a review and a plan for three months. Then we continue a few days a month for as long as it is needed.',
+      firstEngagement: 'We start with a review and a plan for three months. Then we continue a few days a month for as long as it’s needed.',
       relatedCases: ['sokhem', 'lingo'],
       faq: [
         { q: 'How much time does a fractional CTO spend?', a: 'Usually a few days a month. We change that as the company grows.' },
-        { q: 'Do you write code as well?', a: 'Yes, when that is the best way forward. But the goal is for the team to manage without me.' },
+        { q: 'Do you write code as well?', a: 'Yes, when that’s the best way forward. But the goal is for the team to manage without me.' },
         { q: 'Can you help us hire a full-time CTO?', a: 'Yes. I help with interviews and with choosing the right person, and then hand over.' },
         { q: 'Do you work with companies outside Gothenburg?', a: 'Yes. I like to meet in person at the start, but most of the work runs just as well remotely across Sweden.' },
       ],

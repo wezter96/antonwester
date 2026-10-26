@@ -66,13 +66,13 @@ export const home: L10n<HomeContent> = {
         more: [{ service: 'agents', label: 'AI agents' }, { service: 'automation', label: 'AI automation' }],
         lead: 'I build the solution myself.', body: 'It connects to the systems you already have and is easy for your team to use. I test everything with care, and a person approves what matters.' },
       { word: 'Run.', service: 'operations', linkLabel: 'About hosting and maintenance',
-        lead: 'I look after it for you.', body: 'The solution stays up, safe and up to date, and gets better over time. If you would rather run it yourselves, you get all you need. You are never tied to me.' },
+        lead: 'I look after it for you.', body: 'The solution stays up, safe and up to date, and gets better over time. If you’d rather run it yourselves, you get all you need. You’re never tied to me.' },
     ],
     workHeading: 'My own products, live',
     alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, a service where AI helps companies translate their apps and websites, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, a free starter kit for web and mobile apps.',
     aboutHeading: 'About',
     bio: [
-      'I have been programming for more than ten years and building apps and web services professionally since 2019. I studied computer engineering at Chalmers. I have led development teams at weapp and helped several clients through my own company.',
+      'I’ve been programming for more than ten years and building apps and web services professionally since 2019. I studied computer engineering at Chalmers. I’ve led development teams at weapp and helped several clients through my own company.',
       'Today I build AI solutions for companies, from idea to a finished service.',
     ],
     experience: [
@@ -89,7 +89,7 @@ export const home: L10n<HomeContent> = {
         { name: 'Automation', detail: 'Routine work that runs itself, with a person who approves where it matters.' },
         { name: 'Web and apps', detail: 'Websites and apps for computer, iPhone and Android.' },
         { name: 'Hosting and security', detail: 'Services that stay up day and night, are watched and kept up to date.' },
-        { name: 'Technical leadership', detail: 'I have led development teams and help you pick the right path.' },
+        { name: 'Technical leadership', detail: 'I’ve led development teams and help you pick the right path.' },
         { name: 'Getting found on Google', detail: 'Fast pages that are easy to find, like this one.' },
       ],
     },
@@ -100,7 +100,7 @@ export const home: L10n<HomeContent> = {
       { q: 'How do you handle security, GDPR and the EU AI Act?', a: 'I only use the data that is needed, and it stays where it is allowed to be. I write down what AI does and what a person approves. That makes the rules easier to follow.' },
       { q: 'Which AI tools do you use?', a: 'Whatever fits the task. Often AI from OpenAI (ChatGPT) or Anthropic (Claude). I also run local AI models on my own hardware, and they can run on your own server. It connects to the systems you already use.' },
       { q: 'Can you look after it for us, or does our team take over?', a: 'Either works. Most often I look after it for you and keep it safe and up to date. If you want to take over, your team gets all it needs, plus training.' },
-      { q: 'Do you work on site or remotely?', a: 'I am based in Gothenburg and happy to come to you in western Sweden, above all at the start. The rest is usually remote, and I take on work across Sweden.' },
+      { q: 'Do you work on site or remotely?', a: 'I’m based in Gothenburg and happy to come to you in western Sweden, above all at the start. The rest is usually remote, and I take on work across Sweden.' },
     ],
   },
 };

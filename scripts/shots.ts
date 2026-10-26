@@ -21,11 +21,19 @@ const targets: { id: string; url: string; wait: number; storage?: Record<string,
     },
   },
   {
+    id: 'sokhem',
+    url: 'https://sokhem.se',
+    wait: 2500,
+    prepare: async (page) => {
+      await page.getByRole('button', { name: 'Endast nödvändiga' }).click();
+      await page.waitForTimeout(800);
+    },
+  },
+  {
     id: 'wez',
     url: process.env.WEZ_URL ?? 'http://localhost:5273',
     wait: 4000,
-    // the crew is the point of the case; fold the projects so it shows in the sidebar
-    storage: { 'wez:sidebarSections': JSON.stringify({ projects: false, crew: true }) },
+    // `bun run demo` in the Wez repo; its threads speak as a mock provider, so the board is the view to show
     prepare: async (page) => {
       await page.locator('button.view-tab[aria-label="Board"]').click();
       await page.waitForTimeout(1500);

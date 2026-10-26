@@ -35,7 +35,7 @@ describe('scan maths', () => {
       hoursPerYear: 640, locale: 'sv', template: ui.sv.scan.message,
     });
     expect(msg.split('\n')[0]).toBe('Uppskattning från AI-verktyget: Kundtjänst, 25 timmar per vecka.');
-    expect(msg).toContain('– Kontrollera ton och fakta: Medarbetare');
+    expect(msg).toContain('- Kontrollera ton och fakta: Medarbetare');
     expect(msg).toContain('(16 heltidsveckor)');
   });
 });

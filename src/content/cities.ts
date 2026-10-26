@@ -44,7 +44,7 @@ const defs: Record<CityId, CityDef> = {
     },
     fit: {
       sv: 'Ofta rapporter och dokumentation, som skiftöverlämningar och avvikelser. Det är mycket text och strikta regler. AI gör jobbet, och en människa godkänner.',
-      en: 'Often reports and paperwork, such as shift handovers and deviations. It is a lot of text and strict rules. AI does the work, and a person approves it.',
+      en: 'Often reports and paperwork, such as shift handovers and deviations. It’s a lot of text and strict rules. AI does the work, and a person approves it.',
     },
     neighbours: ['kungalv', 'ale'],
   },
@@ -88,15 +88,15 @@ const defs: Record<CityId, CityDef> = {
     },
     focus: {
       sv: 'I Kungälv finns växande företag som vill använda AI i sina produkter och i vardagen. Ofta saknas någon som vet vad som är värt att göra och som kan bygga det.',
-      en: 'Kungälv has growing companies that want to use AI in their products and daily work. Often nobody knows what is worth doing, or can build it.',
+      en: 'Kungälv has growing companies that want to use AI in their products and daily work. Often nobody knows what’s worth doing, or can build it.',
     },
     description: {
       sv: 'AI-konsult i Kungälv för växande företag som vill ha AI i sin produkt och i vardagen. Jag bedömer vad som är värt att göra och bygger det.',
-      en: 'AI consultant in Kungälv for growing companies that want AI in their product and daily work. I judge what is worth doing, then build it.',
+      en: 'AI consultant in Kungälv for growing companies that want AI in their product and daily work. I judge what’s worth doing, then build it.',
     },
     local: {
       sv: ['Kungälv ligger strax norr om Göteborg. Här finns byråer, konsultbolag och företag med egna appar. Många har idéer om AI, men ingen i teamet har byggt det förut.', 'Där hjälper jag till. Jag väljer ut de AI-funktioner som är värda att bygga, ser till att de är säkra och lär ert team att ta över dem.'],
-      en: ['Kungälv lies just north of Gothenburg. It has agencies, consultancies and companies with their own apps. Many have ideas for AI, but nobody on the team has built it before.', 'That is where I help. I pick the AI features worth building, make sure they are safe, and teach your team to take them over.'],
+      en: ['Kungälv lies just north of Gothenburg. It has agencies, consultancies and companies with their own apps. Many have ideas for AI, but nobody on the team has built it before.', 'That’s where I help. I pick the AI features worth building, make sure they are safe, and teach your team to take them over.'],
     },
     uses: {
       sv: ['AI i en app ni redan har, till exempel sök, sammanfattningar eller en assistent.', 'Offerter, tidrapporter och fakturaunderlag som sköter sig själva.', 'En ärlig bedömning av en idé innan ni lägger pengar på den.'],
@@ -118,7 +118,7 @@ const defs: Record<CityId, CityDef> = {
     },
     focus: {
       sv: 'Partille och östra Göteborg har många tjänsteföretag. Kundfrågor, bokningar och administration tar mycket tid. Där gör AI ofta störst skillnad.',
-      en: 'Partille and eastern Gothenburg have many service businesses. Customer questions, bookings and admin take a lot of time. That is often where AI helps most.',
+      en: 'Partille and eastern Gothenburg have many service businesses. Customer questions, bookings and admin take a lot of time. That’s often where AI helps most.',
     },
     description: {
       sv: 'AI-konsult i Partille. Jag hjälper tjänsteföretag öster om Göteborg att låta AI sköta kundfrågor, bokningar och administration som tar tid i dag.',
@@ -126,7 +126,7 @@ const defs: Record<CityId, CityDef> = {
     },
     local: {
       sv: ['Här finns kliniker, redovisningsbyråer, mäklare och hantverkare. Samma frågor kommer in om och om igen, och bokningar tar tid från det riktiga jobbet.', 'AI hjälper oftast snabbast i kundtjänsten. En assistent svarar på vanliga frågor, bokar tider och lämnar över till en människa när det behövs.'],
-      en: ['There are clinics, accounting firms, estate agents and tradespeople here. The same questions come in again and again, and bookings take time from the real work.', 'AI often helps fastest in customer service. An assistant answers common questions, books times and hands over to a person when needed.'],
+      en: ['There are clinics, accounting firms, estate agents and tradespeople here. The same questions come in again and again, and bookings take time from the real work.', 'AI often helps fastest in customer service. An assistant answers common questions, books appointments and hands over to a person when needed.'],
     },
     uses: {
       sv: ['En assistent på webben och i mejlen som svarar med era egna svar.', 'Bokningar och ombokningar direkt i er kalender.', 'Underlag till fakturor och bokföring, klart utan handarbete.'],
@@ -155,8 +155,8 @@ const defs: Record<CityId, CityDef> = {
       en: 'AI consultant in Trollhättan for car and manufacturing companies. AI finds the right drawing or spec in seconds and drafts quality reports.',
     },
     local: {
-      sv: ['Trollhättan har en lång historia inom fordon, flyg och tillverkning. Företagen här har stora mängder ritningar, specifikationer, testprotokoll och kvalitetsrapporter.', 'Jag gör de dokumenten lätta att söka i. Ni hittar rätt specifikation på sekunder, ser direkt om ett testresultat inte når kraven och får rapporter skrivna åt er.'],
-      en: ['Trollhättan has a long history in cars, aircraft and manufacturing. Companies here have large amounts of drawings, specifications, test protocols and quality reports.', 'I make those documents easy to search. You find the right specification in seconds, see at once if a test result misses the requirements, and get reports written for you.'],
+      sv: ['Fordon, flyg och tillverkning präglar Trollhättan. Företagen här har stora mängder ritningar, specifikationer, testprotokoll och kvalitetsrapporter.', 'Jag gör de dokumenten lätta att söka i. Ni hittar rätt specifikation på sekunder, ser direkt om ett testresultat inte når kraven och får rapporter skrivna åt er.'],
+      en: ['Cars, aircraft and manufacturing shape Trollhättan. Companies here have large amounts of drawings, specifications, test protocols and quality reports.', 'I make those documents easy to search. You find the right specification in seconds, see at once if a test result misses the requirements, and get reports written for you.'],
     },
     uses: {
       sv: ['Ställ en vanlig fråga och få svar ur ritningar och testprotokoll, med källa.', 'Testresultat som jämförs med kraven, med avvikelser markerade.', 'Första utkast till kvalitetsrapporter.'],
@@ -178,7 +178,7 @@ const defs: Record<CityId, CityDef> = {
     },
     focus: {
       sv: 'I Kungsbacka finns många webbutiker. Produkttexter, kundfrågor och returer tar mycket tid. Där kan AI snabbt hjälpa till.',
-      en: 'Kungsbacka has many online shops. Product texts, customer questions and returns take a lot of time. That is where AI can help quickly.',
+      en: 'Kungsbacka has many online shops. Product texts, customer questions and returns take a lot of time. That’s where AI can help quickly.',
     },
     description: {
       sv: 'AI-konsult i Kungsbacka. Jag hjälper webbutiker att låta AI skriva produkttexter, svara på kundfrågor och sortera returer, med en människa som granskar.',
@@ -224,7 +224,7 @@ const defs: Record<CityId, CityDef> = {
     },
     fit: {
       sv: 'Ofta produktinfo, översättningar, kundtjänst och returer. Med många produkter och flera länder växer handarbetet snabbt. Där sparar AI mest.',
-      en: 'Often product info, translations, customer service and returns. With many products and several countries the manual work grows fast. That is where AI saves the most.',
+      en: 'Often product info, translations, customer service and returns. With many products and several countries the manual work grows fast. That’s where AI saves the most.',
     },
     neighbours: ['partille', 'kungsbacka'],
   },
@@ -246,7 +246,7 @@ const defs: Record<CityId, CityDef> = {
     },
     local: {
       sv: ['Varberg och Hallandskusten lever mycket på besökare: hotell, restauranger, campingar och evenemang. Under högsäsong hinner få svara på alla frågor och bokningar.', 'Jag bygger det som tar toppen av trycket: en assistent som svarar gäster dygnet runt, bokningar som sköter sig själva och planering utifrån hur säsongen brukar bli.'],
-      en: ['Varberg and the Halland coast live largely on visitors: hotels, restaurants, campsites and events. In peak season few have time to answer every question and booking.', 'I build what takes the peak off the pressure: an assistant that answers guests around the clock, bookings that run themselves, and planning based on how the season usually goes.'],
+      en: ['Varberg and the Halland coast live largely on visitors: hotels, restaurants, campsites and events. In peak season few have time to answer every question and booking.', 'I build what eases the peak-season load: an assistant that answers guests around the clock, bookings that run themselves, and planning based on how the season usually goes.'],
     },
     uses: {
       sv: ['En assistent som svarar gäster om öppettider, priser och lediga platser, på flera språk.', 'Bokningar, avbokningar och bekräftelser som sköts automatiskt.', 'Bemanning inför högsäsong, planerad utifrån tidigare års bokningar.'],
@@ -254,7 +254,7 @@ const defs: Record<CityId, CityDef> = {
     },
     fit: {
       sv: 'Ofta bokningar, gästfrågor och planering. Under högsäsong tar tiden slut först där, och där hjälper en AI-assistent mest.',
-      en: 'Often bookings, guest questions and planning. In peak season that is where time runs out first, and where an AI assistant helps most.',
+      en: 'Often bookings, guest questions and planning. In peak season that’s where time runs out first, and where an AI assistant helps most.',
     },
     neighbours: ['kungsbacka', 'boras'],
   },
@@ -289,7 +289,7 @@ function build(id: CityId, l: Locale): CityContent {
       : [
           { q: `Do you take on AI consulting work in ${name}?`, a: `Yes. I work with companies in ${name} and ${region}, on site or remotely. We usually start by finding where AI saves the most time.` },
           { q: `Which AI projects suit companies in ${name}?`, a: d.fit.en },
-          { q: `Can you work on site in ${name}?`, a: `Yes. I work ${d.deliveryMode.en}. I like to do the assessment on site, because that is where the work is easiest to see.` },
+          { q: `Can you work on site in ${name}?`, a: `Yes. I work ${d.deliveryMode.en}. I like to do the assessment on site, because that’s where the work is easiest to see.` },
         ],
   };
 }

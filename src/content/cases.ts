@@ -122,7 +122,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       what: [
         'A free tool that checks what you build: code, websites, apps and servers. You get one report with a score and a list of what to fix.',
-        'If several tools find the same problem, it shows only once. The tool never runs anything it checks, so it is safe to use.',
+        'If several tools find the same problem, it shows only once. The tool never runs anything it checks, so it’s safe to use.',
       ],
       how: [
         'Built on Bun with 37 built-in checks and well-known free tools such as Semgrep, Trivy, gitleaks, Lighthouse and axe-core.',
