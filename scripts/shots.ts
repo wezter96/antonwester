@@ -4,21 +4,9 @@ import sharp from 'sharp';
 const targets: { id: string; url: string; wait: number; storage?: Record<string, string>; prepare?: (page: Page) => Promise<void> }[] = [
   {
     id: 'lingo',
-    // a local Lingo with its seeded demo data; the signed-in app shows more than the public login page
-    url: `${process.env.LINGO_URL ?? 'http://localhost:3101'}/login`,
-    wait: 1500,
-    prepare: async (page) => {
-      await page.getByLabel(/e-?mail/i).fill('admin@lingo.dev');
-      await page.getByLabel(/password/i).fill('password');
-      await page.getByRole('button', { name: /sign in/i }).click();
-      await page.waitForURL(/dashboard/);
-      await page.getByRole('dialog').getByRole('button', { name: /close/i }).click();
-      await page.getByRole('link', { name: 'Projects' }).first().click();
-      await page.getByText('Lingo Web', { exact: true }).first().click();
-      await page.getByText('Translation Queue', { exact: true }).first().click();
-      await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(1500);
-    },
+    // the public landing page, signed out
+    url: process.env.LINGO_URL ?? 'https://lingo.antonwester.se',
+    wait: 2500,
   },
   {
     id: 'sokhem',
