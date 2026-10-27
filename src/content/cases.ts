@@ -219,17 +219,19 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       url: 'https://lingo.antonwester.se',
       privateLabel: null,
       facts: [
-        { value: 'AI', label: 'gör första översättningen' },
+        { value: 'AI', label: 'fyller i saknade översättningar' },
         { value: 'Egen server', label: 'körs hos er' },
-        { value: 'SDK, API, CLI', label: 'för utvecklare' },
+        { value: 'SDK, API, CLI, MCP', label: 'för utvecklare och AI-agenter' },
       ],
       what: [
         'En plattform där team sköter alla översättningar på ett ställe. AI skriver första versionen, och människor läser och godkänner innan något publiceras.',
+        'När en ny text läggs till fyller AI i de språk som saknas, inom en minut. Ni väljer per projekt om AI:s översättningar godkänns direkt eller väntar på granskning. Editorn föreslår också tidigare översättningar av liknande texter.',
       ],
       how: [
-        'Byggd i React och TypeScript med Bun och Hono. Utvecklare hämtar översättningarna direkt in i koden via en SDK, ett API eller ett CLI.',
+        'Byggd i React och TypeScript med Bun och Hono, och Postgres för data. Utvecklare hämtar översättningarna direkt in i koden via en SDK, ett API eller ett CLI, med färdiga typer för varje version.',
+        'AI-agenter som Claude Code kan sköta Lingo via MCP: granska, godkänna och lägga till nycklar. Standardmodellen för översättning körs på min egen AI-server.',
       ],
-      stack: ['React', 'TypeScript', 'Bun', 'Hono'],
+      stack: ['React', 'TypeScript', 'Bun', 'Hono', 'Postgres'],
       proves: [
         'Hur en produktidé och bra verktyg för utvecklare kan bli en plattform, där AI gör grovjobbet och människor behåller kontrollen.',
       ],
@@ -250,17 +252,19 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       url: 'https://lingo.antonwester.se',
       privateLabel: null,
       facts: [
-        { value: 'AI', label: 'writes the first translation' },
+        { value: 'AI', label: 'fills in missing translations' },
         { value: 'Your server', label: 'runs on your own systems' },
-        { value: 'SDK, API, CLI', label: 'for developers' },
+        { value: 'SDK, API, CLI, MCP', label: 'for developers and AI agents' },
       ],
       what: [
         'A platform where teams handle all their translations in one place. AI writes the first version, and people read and approve it before anything goes live.',
+        'When a new text is added, AI fills in the missing languages within a minute. Per project, you choose whether AI translations are approved at once or wait for review. The editor also suggests earlier translations of similar texts.',
       ],
       how: [
-        'Built in React and TypeScript with Bun and Hono. Developers pull translations straight into their code through an SDK, an API or a CLI.',
+        'Built in React and TypeScript with Bun and Hono, with Postgres for data. Developers pull translations straight into their code through an SDK, an API or a CLI, with ready-made types for each version.',
+        'AI agents such as Claude Code can run Lingo over MCP: review, approve and add keys. The default translation model runs on my own AI server.',
       ],
-      stack: ['React', 'TypeScript', 'Bun', 'Hono'],
+      stack: ['React', 'TypeScript', 'Bun', 'Hono', 'Postgres'],
       proves: [
         'How a product idea and good developer tools can become one platform, where AI does the heavy lifting and people keep control.',
       ],
