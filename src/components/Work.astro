@@ -1,7 +1,7 @@
 ---
 import CaseRow from './CaseRow.astro';
 import { home } from '../content/home';
-import type { Locale } from '../content/routes';
+import { CASE_IDS, type Locale } from '../content/routes';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -9,9 +9,7 @@ const c = home[locale];
 ---
 <section id="work" class="work" data-ground="fog2">
   <div class="grid"><h2 class="head">{c.workHeading}</h2></div>
-  <CaseRow id="openaudit" locale={locale} />
-  <CaseRow id="sokhem" locale={locale} flip />
-  <CaseRow id="wez" locale={locale} />
+  {CASE_IDS.map((id, i) => <CaseRow id={id} locale={locale} flip={i % 2 === 1} />)}
   <p class="also lead" set:html={c.alsoLine} />
 </section>
 

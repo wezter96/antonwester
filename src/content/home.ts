@@ -18,7 +18,7 @@ export const home: L10n<HomeContent> = {
         lead: 'Jag sköter det åt er.', body: 'Lösningen hålls igång, säker och uppdaterad, och blir bättre med tiden. Vill ni hellre sköta den själva får ni allt som behövs. Ni är aldrig bundna till mig.' },
     ],
     workHeading: 'Egna produkter i drift',
-    alsoLine: '<b>Dessutom:</b> <a href="/sv/case/lingo/">Lingo</a>, en tjänst där AI hjälper företag att översätta sina appar och webbplatser, och bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, en gratis startmall för webb- och mobilappar.',
+    alsoLine: '<b>Dessutom:</b> bidrag till <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, en gratis startmall för webb- och mobilappar.',
     aboutHeading: 'Om mig',
     bio: [
       'Jag har programmerat i över tio år och byggt appar och webbtjänster i yrket sedan 2019. Jag är högskoleingenjör i datateknik från Chalmers. Jag har lett utvecklingsteam på weapp och hjälpt flera kunder i egen regi.',
@@ -69,7 +69,7 @@ export const home: L10n<HomeContent> = {
         lead: 'I look after it for you.', body: 'The solution stays up, safe and up to date, and gets better over time. If you’d rather run it yourselves, you get all you need. You’re never tied to me.' },
     ],
     workHeading: 'My own products, live',
-    alsoLine: '<b>Also:</b> <a href="/en/case/lingo/">Lingo</a>, a service where AI helps companies translate their apps and websites, and contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, a free starter kit for web and mobile apps.',
+    alsoLine: '<b>Also:</b> contributions to <a href="https://t4stack.com/" rel="noopener">T4 Stack</a>, a free starter kit for web and mobile apps.',
     aboutHeading: 'About',
     bio: [
       'I’ve been programming for more than ten years and building apps and web services professionally since 2019. I studied computer engineering at Chalmers. I’ve led development teams at weapp and helped several clients through my own company.',

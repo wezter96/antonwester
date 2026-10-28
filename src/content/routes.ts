@@ -5,7 +5,8 @@ export const SITE_URL = 'https://antonwester.se';
 export const SERVICE_IDS = ['assessment', 'development', 'agents', 'automation', 'operations', 'cto'] as const;
 export type ServiceId = (typeof SERVICE_IDS)[number];
 
-export const CASE_IDS = ['sokhem', 'openaudit', 'wez', 'lingo'] as const;
+// every case gets its own page and a row on the home page, in this order
+export const CASE_IDS = ['openaudit', 'sokhem', 'wez', 'lingo'] as const;
 export type CaseId = (typeof CASE_IDS)[number];
 
 export const CITY_IDS = [
