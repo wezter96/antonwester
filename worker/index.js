@@ -1,16 +1,20 @@
 // antonwester.se: static assets, POST /api/contact, which mails the contact form to MAIL_TO through Cloudflare Email Routing,
-// and POST /api/chat, the site chat.
+// POST /api/chat, the site chat, and the booking API (GET /api/booking/slots, POST /api/booking, see worker/booking.js).
 import { EmailMessage } from 'cloudflare:email';
 import { respond } from './chat.js';
-import { buildMessage, readSubmission } from './mail.js';
-
-const FROM = 'form@antonwester.se';
-const ORIGIN = 'https://antonwester.se';
+import { book, slots } from './booking.js';
+import { buildMessage, FROM, ORIGIN, readSubmission } from './mail.js';
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/api/chat') return chat(request, env);
+    if (url.pathname === '/api/booking/slots' || url.pathname === '/api/booking') {
+      const isSlots = url.pathname === '/api/booking/slots';
+      const method = isSlots ? 'GET' : 'POST';
+      if (request.method !== method) return new Response('Method not allowed', { status: 405, headers: { Allow: method } });
+      return isSlots ? slots(request, env) : book(request, env, (from, to, raw) => env.MAIL.send(new EmailMessage(from, to, raw)));
+    }
     if (url.pathname !== '/api/contact') return env.ASSETS.fetch(request);
     if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
 

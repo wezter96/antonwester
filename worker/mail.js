@@ -1,5 +1,8 @@
 // Turns a contact form submission into a plain-text email, or says why it cannot.
 
+export const FROM = 'form@antonwester.se';
+export const ORIGIN = 'https://antonwester.se';
+
 const LIMITS = { name: 200, email: 254, company: 200, inquiry: 200, estimate: 4000, message: 5000 };
 const LABELS = { name: 'Namn', email: 'E-post', company: 'Företag', inquiry: 'Gäller', estimate: 'Uppskattning', message: 'Meddelande' };
 
