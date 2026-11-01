@@ -48,7 +48,9 @@ function start(root: HTMLElement): void {
     script.onload = () => {
       try {
         widget = window.turnstile!.render($('turnstile'), {
-          sitekey: siteKey, language: locale, theme: document.documentElement.dataset.theme ?? 'auto', 'error-callback': showDown,
+          sitekey: siteKey, language: locale, theme: document.documentElement.dataset.theme ?? 'auto',
+          // can be a passing error that Turnstile retries, so the calendar and what's typed stay; true marks it handled
+          'error-callback': () => { say(formStatus, t.verify, 'error'); return true; },
         });
       } catch (err) {
         console.error('Turnstile failed.', err);
@@ -106,7 +108,7 @@ function start(root: HTMLElement): void {
   }
 
   /** `message` stays in the status line after the load, for the visitor who just lost a time. */
-  async function load(message = ''): Promise<void> {
+  async function load(message = '', skipEmpty = false): Promise<void> {
     const asked = ++latest;
     form.hidden = true;
     down.hidden = true;
@@ -129,6 +131,10 @@ function start(root: HTMLElement): void {
       if (!response.ok) return showDown();
       const { slots } = (await response.json()) as { slots: string[] };
       if (asked !== latest) return;
+      if (skipEmpty && !slots.length && week < last) {
+        week = addWeeks(week, 1);
+        return load();
+      }
       render(slots);
       say(status, message || (slots.length ? '' : t.empty), message ? 'error' : '');
     } catch (err) {
@@ -185,5 +191,6 @@ function start(root: HTMLElement): void {
   });
 
   say($('zone'), fillTemplate(t.zone, { zone: timeZone.replaceAll('_', ' ') }));
-  void load();
+  // from Friday evening to Sunday the current week has no times left, so the first view moves on, once
+  void load('', true);
 }
