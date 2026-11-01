@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { allPages, LOCALES, urlFor } from '../../src/content/routes';
-import { headForCase, headForCity, headForHome, headForService, personLd, professionalServiceLd, serviceLd } from '../../src/lib/seo';
+import { headForBook, headForCase, headForCity, headForHome, headForService, personLd, professionalServiceLd, serviceLd } from '../../src/lib/seo';
 import type { PageRef } from '../../src/content/routes';
 
 const headFor = (p: PageRef, l: 'sv' | 'en') =>
-  p.kind === 'home' ? headForHome(l) : p.kind === 'service' ? headForService(p.id, l) : p.kind === 'case' ? headForCase(p.id, l) : headForCity(p.id, l);
+  p.kind === 'home' ? headForHome(l) : p.kind === 'book' ? headForBook(l) : p.kind === 'service' ? headForService(p.id, l) : p.kind === 'case' ? headForCase(p.id, l) : headForCity(p.id, l);
 
 describe('heads', () => {
   for (const page of allPages()) {

@@ -2,8 +2,7 @@
 import LogoBar from './LogoBar.astro';
 import Monument from './Monument.astro';
 import { home } from '../content/home';
-import type { Locale } from '../content/routes';
-import { site } from '../content/site';
+import { bookingUrl, type Locale } from '../content/routes';
 import { ui } from '../content/ui';
 
 interface Props { locale: Locale }
@@ -19,7 +18,7 @@ const c = home[locale];
       <p class="offer">{c.offer}</p>
     </div>
     <div class="actions">
-      <a class="btn" href={site.booking} rel="noopener">{t.book}</a>
+      <a class="btn" href={bookingUrl(locale)}>{t.book}</a>
     </div>
   </div>
   <LogoBar locale={locale} />

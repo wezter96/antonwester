@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   CITY_IDS, LEGACY_REDIRECTS, LOCALES, SITE_URL, allPages, alternatesFor, astroRedirects,
-  ogPath, otherLocale, pageKey, pathFor, slugPages, urlFor,
+  bookingUrl, ogPath, otherLocale, pageKey, pathFor, slugPages, urlFor,
 } from '../../src/content/routes';
 
 describe('route registry', () => {
@@ -17,10 +17,10 @@ describe('route registry', () => {
     }
   });
 
-  it('has 38 unique canonical URLs, all ending in a slash', () => {
+  it('has 40 unique canonical URLs, all ending in a slash', () => {
     const urls = allPages().flatMap((p) => LOCALES.map((l) => urlFor(p, l)));
-    expect(urls).toHaveLength(38);
-    expect(new Set(urls).size).toBe(38);
+    expect(urls).toHaveLength(40);
+    expect(new Set(urls).size).toBe(40);
     for (const u of urls) {
       expect(u.startsWith(`${SITE_URL}/`)).toBe(true);
       expect(u.endsWith('/')).toBe(true);
@@ -58,6 +58,14 @@ describe('route registry', () => {
   it('switches language to the twin page', () => {
     const page = { kind: 'case', id: 'wez' } as const;
     expect(pathFor(page, otherLocale('sv'))).toBe('/en/case/wez/');
+  });
+
+  it('puts the booking page at /sv/boka/ and /en/book/', () => {
+    expect(pathFor({ kind: 'book' }, 'sv')).toBe('/sv/boka/');
+    expect(pathFor({ kind: 'book' }, 'en')).toBe('/en/book/');
+    expect(bookingUrl('sv')).toBe('/sv/boka/');
+    expect(allPages()).toContainEqual({ kind: 'book' });
+    expect(pageKey({ kind: 'book' })).toBe('book');
   });
 
   it('names one OG image per page and locale', () => {

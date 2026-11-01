@@ -1,7 +1,6 @@
 ---
 import Monogram from './Monogram.astro';
-import { otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
-import { site } from '../content/site';
+import { bookingUrl, otherLocale, pathFor, type Locale, type PageRef } from '../content/routes';
 import { ui } from '../content/ui';
 
 const { locale, page, standalone = false } = Astro.props;
@@ -20,7 +19,7 @@ const links = [
 <header class="nav">
   <a class="mark" href={home}><Monogram /><span>Anton Wester</span></a>
   <!-- on small screens the booking button and the menu button sit on the right, where the thumb is; the menu is a popover, so it opens without JS -->
-  <a class="btn bar-cta" href={site.booking} rel="noopener">{t.bookShort}</a>
+  <a class="btn bar-cta" href={bookingUrl(locale)}>{t.bookShort}</a>
   <button class="theme" type="button" data-theme-toggle aria-pressed="false" aria-label={t.darkMode}>
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
   </button>
@@ -30,7 +29,7 @@ const links = [
       {links.map(([id, label], i) => <li style={`--i:${i}`}><a href={hrefFor(id)}>{label}</a></li>)}
       <li style={`--i:${links.length}`}><a data-lang-switch href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
     </ul>
-    <a class="btn cta" href={site.booking} rel="noopener">{t.bookShort}</a>
+    <a class="btn cta" href={bookingUrl(locale)}>{t.bookShort}</a>
   </nav>
 </header>
 

@@ -1,5 +1,5 @@
 ---
-import type { Locale } from '../content/routes';
+import { bookingUrl, type Locale } from '../content/routes';
 import { site } from '../content/site';
 import { ui } from '../content/ui';
 
@@ -12,7 +12,7 @@ const c = t.contact;
   <div class="intro">
     <h2 class="head">{c.heading}</h2>
     <p class="row">
-      <a class="btn" href={site.booking} rel="noopener">{t.book}</a>
+      <a class="btn" href={bookingUrl(locale)}>{t.book}</a>
       <a class="mail lnk" href={`mailto:${site.email}`}>{site.email}</a>
     </p>
     <p class="avail"><span class="dot" aria-hidden="true"></span>{c.availability}</p>

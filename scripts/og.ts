@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { chromium, type Page } from 'playwright-core';
 import { home } from '../src/content/home';
 import { allPages, LOCALES, ogPath, type Locale, type PageRef } from '../src/content/routes';
-import { headForCase, headForCity, headForHome, headForService } from '../src/lib/seo';
+import { headForBook, headForCase, headForCity, headForHome, headForService } from '../src/lib/seo';
 
 const require = createRequire(import.meta.url);
 const dataUrl = (file: string, type: string) => `data:${type};base64,${readFileSync(file).toString('base64')}`;
@@ -11,7 +11,7 @@ const font = dataUrl(require.resolve('@fontsource-variable/archivo/files/archivo
 const monogram = readFileSync('public/monogram.svg', 'utf8');
 const favicon = readFileSync('public/favicon.svg', 'utf8');
 const head = (p: PageRef, l: Locale) =>
-  p.kind === 'home' ? headForHome(l) : p.kind === 'service' ? headForService(p.id, l) : p.kind === 'case' ? headForCase(p.id, l) : headForCity(p.id, l);
+  p.kind === 'home' ? headForHome(l) : p.kind === 'book' ? headForBook(l) : p.kind === 'service' ? headForService(p.id, l) : p.kind === 'case' ? headForCase(p.id, l) : headForCity(p.id, l);
 
 const CSS = `@font-face{font-family:A;src:url(${font}) format('woff2');font-weight:100 900}
 *{margin:0;box-sizing:border-box}

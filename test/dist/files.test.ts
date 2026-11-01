@@ -14,7 +14,7 @@ describe('sitemap', () => {
     expect(xml).not.toContain(`${SITE_URL}/sv/</loc>`);
   });
   it('includes hreflang alternates for each URL', () => {
-    expect(xml.match(/xhtml:link/g)!.length).toBe(38 * 3);
+    expect(xml.match(/xhtml:link/g)!.length).toBe(40 * 3);
   });
 });
 

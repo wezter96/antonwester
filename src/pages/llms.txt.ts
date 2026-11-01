@@ -23,7 +23,7 @@ export function GET() {
     '## Contact',
     '',
     `- Email: ${site.email}`,
-    `- Book a call: ${site.booking}`,
+    `- Book a call: ${urlFor({ kind: 'book' }, 'en')}`,
     `- LinkedIn: ${site.linkedin}`,
     '',
     '## Pages',

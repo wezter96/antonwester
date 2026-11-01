@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Booking from '../components/Booking.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import type { Locale, PageRef } from '../content/routes';
+import { ui } from '../content/ui';
+import { headForBook } from '../lib/seo';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = ui[locale];
+const page: PageRef = { kind: 'book' };
+---
+<Base head={headForBook(locale)}>
+  <Nav locale={locale} page={page} standalone />
+  <main id="main">
+    <PageHero locale={locale} h1={t.book} intro={t.booking.meta} book={false} />
+    <Booking locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>

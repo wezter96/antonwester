@@ -16,6 +16,7 @@ export type CityId = (typeof CITY_IDS)[number];
 
 export type PageRef =
   | { kind: 'home' }
+  | { kind: 'book' }
   | { kind: 'service'; id: ServiceId }
   | { kind: 'case'; id: CaseId }
   | { kind: 'city'; id: CityId };
@@ -35,6 +36,8 @@ export function pathFor(page: PageRef, locale: Locale): string {
   switch (page.kind) {
     case 'home':
       return locale === 'sv' ? '/' : '/en/';
+    case 'book':
+      return locale === 'sv' ? '/sv/boka/' : '/en/book/';
     case 'service':
       return `/${locale}/${SERVICE_SLUGS[page.id][locale]}/`;
     case 'case':
@@ -45,6 +48,7 @@ export function pathFor(page: PageRef, locale: Locale): string {
 }
 
 export const urlFor = (page: PageRef, locale: Locale): string => `${SITE_URL}${pathFor(page, locale)}`;
+export const bookingUrl = (locale: Locale): string => pathFor({ kind: 'book' }, locale);
 export const otherLocale = (locale: Locale): Locale => (locale === 'sv' ? 'en' : 'sv');
 
 export interface Alternate {
@@ -63,6 +67,7 @@ export function alternatesFor(page: PageRef): Alternate[] {
 export function allPages(): PageRef[] {
   return [
     { kind: 'home' },
+    { kind: 'book' },
     ...SERVICE_IDS.map((id): PageRef => ({ kind: 'service', id })),
     ...CASE_IDS.map((id): PageRef => ({ kind: 'case', id })),
     ...CITY_IDS.map((id): PageRef => ({ kind: 'city', id })),
@@ -87,7 +92,7 @@ export function astroRedirects(): Record<string, string> {
 }
 
 export function pageKey(page: PageRef): string {
-  return page.kind === 'home' ? 'home' : `${page.kind}-${page.id}`;
+  return 'id' in page ? `${page.kind}-${page.id}` : page.kind;
 }
 
 export const ogPath = (page: PageRef, locale: Locale): string => `/og/${pageKey(page)}-${locale}.png`;

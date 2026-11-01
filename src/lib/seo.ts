@@ -7,6 +7,7 @@ import {
 } from '../content/routes';
 import { services } from '../content/services';
 import { site } from '../content/site';
+import { ui } from '../content/ui';
 import type { Faq } from '../content/types';
 
 export type Ld = Record<string, unknown>;
@@ -106,6 +107,12 @@ export function headForHome(l: Locale): HeadProps {
   const url = urlFor({ kind: 'home' }, l);
   const c = home[l];
   return base({ kind: 'home' }, l, c.seo.title, c.seo.description, [homeCrumb(l)], [professionalServiceLd(l, url), faqLd(url, c.faq)]);
+}
+
+export function headForBook(l: Locale): HeadProps {
+  const page: PageRef = { kind: 'book' };
+  const c = ui[l].booking;
+  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: ui[l].book, url: urlFor(page, l) }], []);
 }
 
 export function headForService(id: ServiceId, l: Locale): HeadProps {

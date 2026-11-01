@@ -2,6 +2,7 @@
 // site's own content, then "ask Anton" when no model answers.
 import { cases } from '../src/content/cases';
 import { home } from '../src/content/home';
+import { urlFor } from '../src/content/routes';
 import { services } from '../src/content/services';
 import { site } from '../src/content/site';
 import { isSmallTalk, matchQuestion } from '../src/lib/chat-match';
@@ -33,7 +34,7 @@ export function systemPrompt(locale) {
     `${site.company}, Göteborg. ${h.h1Tail} ${h.offer}`,
     ...h.approach.map((s) => `${s.word} ${s.lead} ${s.body}`),
     h.stack,
-    `E-post: ${site.email}. Boka ett introsamtal: ${site.booking}`,
+    `E-post: ${site.email}. Boka ett introsamtal: ${urlFor({ kind: 'book' }, locale)}`,
     '',
     ...Object.values(services).map((s) => `## ${s[locale].name}\n${s[locale].promise} ${s[locale].intro}\n${s[locale].firstEngagement}\n${s[locale].faq.map((f) => `F: ${f.q}\nS: ${f.a}`).join('\n')}`),
     '',

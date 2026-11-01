@@ -6,7 +6,7 @@ const START = '2026-11-04T08:00:00.000Z'; // Wednesday 09:00 Stockholm
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 
 type Opts = { siteverify?: Response; existingRaw?: unknown[]; busy?: { start: string; end: string }[]; existing?: string[]; turnstile?: boolean; google?: 'down'; turnstileDown?: boolean };
-let calls: { url: string; init?: RequestInit }[];
+let calls: { url: string; init: RequestInit | undefined }[];
 
 function setup(o: Opts = {}) {
   calls = [];
