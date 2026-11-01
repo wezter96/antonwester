@@ -5,7 +5,7 @@ const NOW = new Date('2026-11-02T10:00:00.000Z'); // Monday
 const START = '2026-11-04T08:00:00.000Z'; // Wednesday 09:00 Stockholm
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });
 
-type Opts = { busy?: { start: string; end: string }[]; existing?: string[]; turnstile?: boolean; google?: 'down'; turnstileDown?: boolean };
+type Opts = { siteverify?: Response; existingRaw?: unknown[]; busy?: { start: string; end: string }[]; existing?: string[]; turnstile?: boolean; google?: 'down'; turnstileDown?: boolean };
 let calls: { url: string; init?: RequestInit }[];
 
 function setup(o: Opts = {}) {
@@ -14,12 +14,13 @@ function setup(o: Opts = {}) {
     calls.push({ url, init });
     if (url.includes('turnstile')) {
       if (o.turnstileDown) throw new Error('net');
-      return json({ success: o.turnstile ?? true });
+      return o.siteverify ?? json({ success: o.turnstile ?? true });
     }
     if (o.google === 'down') throw new Error('net');
     if (url.includes('oauth2')) return json({ access_token: 'tok' });
     if (url.includes('freeBusy')) return json({ calendars: { primary: { busy: o.busy ?? [] } } });
     if (init?.method === 'POST') return json({});
+    if (o.existingRaw) return json({ items: o.existingRaw });
     return json({ items: (o.existing ?? []).map((email) => ({ attendees: [{ email }] })) });
   }));
 }
@@ -29,6 +30,7 @@ const env = (limited = false) => ({
   BOOK_LIMIT: { limit: async () => ({ success: !limited }) },
   SLOTS_LIMIT: { limit: async () => ({ success: !limited }) },
   TURNSTILE_SECRET: 's',
+  OWNER_EMAIL: 'Owner@gmail.com',
   MAIL_TO: 'anton@example.se',
   GOOGLE_CLIENT_ID: 'i', GOOGLE_CLIENT_SECRET: 's', GOOGLE_REFRESH_TOKEN: 'r',
 });
@@ -154,6 +156,50 @@ describe('book', () => {
     setup();
     await run(post({ locale: 'fr' }));
     expect(JSON.parse(writes()[0].init!.body as string).summary).toBe('Samtal med Anton Wester');
+  });
+});
+
+describe('fix round 1', () => {
+  it('events with no guest count toward the cap', async () => {
+    setup({ existingRaw: Array.from({ length: 10 }, () => ({})) });
+    expect(await run(post())).toEqual({ status: 409, result: 'full' });
+    expect(writes()).toHaveLength(0);
+  });
+
+  it.each([['owner@GMAIL.com'], ['Anton@Example.se']])('refuses the owner address %s before any Google call', async (email) => {
+    setup();
+    expect(await run(post({ email }))).toEqual({ status: 400, result: 'invalid' });
+    expect(calls.filter((c) => !c.url.includes('turnstile'))).toHaveLength(0);
+  });
+
+  it('still checks MAIL_TO when OWNER_EMAIL is missing', async () => {
+    setup();
+    const e = { ...env(), OWNER_EMAIL: undefined };
+    expect(await run(post({ email: 'ANTON@example.se' }), e as never)).toEqual({ status: 400, result: 'invalid' });
+  });
+
+  it('siteverify non-2xx gives unavailable and is logged', async () => {
+    setup({ siteverify: json({}, 500) });
+    expect(await run(post())).toEqual({ status: 502, result: 'unavailable' });
+    expect(console.error).toHaveBeenCalled();
+  });
+
+  it.each(['invalid-input-secret', 'missing-input-secret'])('%s gives unavailable and a clear log', async (code) => {
+    setup({ siteverify: json({ success: false, 'error-codes': [code] }) });
+    expect(await run(post())).toEqual({ status: 502, result: 'unavailable' });
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining('TURNSTILE_SECRET'));
+  });
+
+  it('an unset TURNSTILE_SECRET gives unavailable without calling siteverify', async () => {
+    setup();
+    expect(await run(post(), { ...env(), TURNSTILE_SECRET: undefined } as never)).toEqual({ status: 502, result: 'unavailable' });
+    expect(calls).toHaveLength(0);
+    expect(console.error).toHaveBeenCalled();
+  });
+
+  it('a visitor failure still gives invalid', async () => {
+    setup({ siteverify: json({ success: false, 'error-codes': ['timeout-or-duplicate'] }) });
+    expect(await run(post())).toEqual({ status: 400, result: 'invalid' });
   });
 });
 

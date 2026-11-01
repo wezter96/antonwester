@@ -53,6 +53,14 @@ export async function book(request, env, send) {
   // a filled honeypot is a bot; it gets the same answer as a person so it learns nothing
   if (submission.spam) return answer('booked', 200);
 
+  const email = submission.fields.email.toLowerCase();
+  // the owner as attendee would book Anton with himself
+  if ([env.OWNER_EMAIL, env.MAIL_TO].some((owner) => owner && owner.toLowerCase() === email)) return answer('invalid', 400);
+
+  if (!env.TURNSTILE_SECRET) {
+    console.error('TURNSTILE_SECRET is not set');
+    return answer('unavailable', 502);
+  }
   try {
     const check = await fetch(TURNSTILE, {
       method: 'POST',
@@ -62,7 +70,14 @@ export async function book(request, env, send) {
         remoteip: ip(request),
       }),
     });
-    if (!check.ok || !(await check.json()).success) return answer('invalid', 400);
+    if (!check.ok) throw new Error(`turnstile failed: ${check.status}`);
+    const verdict = await check.json();
+    const codes = verdict['error-codes'] ?? [];
+    if (codes.includes('invalid-input-secret') || codes.includes('missing-input-secret')) {
+      console.error('TURNSTILE_SECRET is wrong or missing, siteverify refused it');
+      return answer('unavailable', 502);
+    }
+    if (!verdict.success) return answer('invalid', 400);
   } catch (error) {
     unavailable(error);
     return answer('unavailable', 502);
@@ -73,7 +88,6 @@ export async function book(request, env, send) {
   if (!isBookable(start, now)) return answer('invalid', 400);
 
   const locale = form.get('locale') === 'en' ? 'en' : 'sv';
-  const email = submission.fields.email.toLowerCase();
   const from = new Date(start).getTime();
   try {
     const existing = await siteBookings(env, now.toISOString());

@@ -61,8 +61,8 @@ export async function siteBookings(env, nowIso) {
   });
   const data = await call(env, `/calendar/v3/calendars/primary/events?${query}`);
   return (data.items ?? [])
-    .map((event) => event.attendees?.find((a) => !a.self)?.email?.toLowerCase())
-    .filter(Boolean);
+    // one entry per event, null without a guest, so the cap counts every event
+    .map((event) => event.attendees?.find((a) => !a.self)?.email?.toLowerCase() ?? null);
 }
 
 export async function createBooking(env, { start, email, locale }) {

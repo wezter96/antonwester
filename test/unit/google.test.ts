@@ -70,10 +70,13 @@ describe('siteBookings', () => {
         items: [
           { attendees: [{ email: 'Self@x.se', self: true }, { email: 'Guest@Example.COM' }] },
           { attendees: [{ email: 'Other@Example.com' }] },
+          { attendees: [{ email: 'Self@x.se', self: true }] },
+          {},
         ],
       }),
     );
-    expect(await siteBookings(env, '2026-11-01T00:00:00Z')).toEqual(['guest@example.com', 'other@example.com']);
+    // one entry per event, null when no guest, so every event counts toward the cap
+    expect(await siteBookings(env, '2026-11-01T00:00:00Z')).toEqual(['guest@example.com', 'other@example.com', null, null]);
     const url = new URL(f.mock.calls[1][0]);
     expect(url.pathname).toBe('/calendar/v3/calendars/primary/events');
     expect(url.searchParams.get('privateExtendedProperty')).toBe('source=site');
