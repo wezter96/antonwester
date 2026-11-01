@@ -75,6 +75,7 @@ const mail = `mailto:${site.email}`;
 
   /* columns follow the data: five days, or six when a far time zone adds one */
   .days { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--gutter); min-height: 180px; align-content: start; }
+  .days[aria-busy='false']:empty { min-height: 0; }
   .days :global(h3) { padding-bottom: 8px; border-bottom: 2px solid var(--alt-gs); margin-bottom: 8px; font-size: 1rem; font-weight: 700; }
   .days :global(.wd) { text-transform: capitalize; display: block; }
   .days :global(small) { display: block; color: var(--soft); font-weight: 400; font-size: .875rem; }
@@ -111,7 +112,8 @@ const mail = `mailto:${site.email}`;
   .done:focus { outline: none; }
   .done .lead::first-letter { text-transform: uppercase; }
   @media (max-width: 640px) {
-    .days { grid-auto-flow: row; min-height: 320px; }
+    .days { grid-auto-flow: row; }
+    .days[aria-busy='true'] { min-height: 320px; }
     /* a stacked day reads as one line of times, and a day with none takes little room */
     .days :global(.day) { display: flex; flex-wrap: wrap; gap: 6px; }
     .days :global(h3) { flex: 0 0 100%; margin-bottom: 2px; }

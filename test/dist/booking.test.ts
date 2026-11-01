@@ -8,7 +8,7 @@ describe('booking pages', () => {
   it.each(['/sv/boka/', '/en/book/'])('%s holds the booking widget and the address without JS', (path) => {
     const doc = readDist(path);
     expect(doc.querySelector('[data-booking]')).not.toBeNull();
-    expect(doc.querySelector(`a[href="mailto:${site.email}"]`)).not.toBeNull();
+    expect(doc.querySelector(`.nojs a[href="mailto:${site.email}"]`)).not.toBeNull();
   });
 
   it('links every button to the page for its locale', () => {
