@@ -7,7 +7,6 @@ export const site = {
   cv: '/anton-wester-resume.pdf',
   formAction: '/api/contact',
   formAjax: '/api/contact',
-  // Cloudflare's always-pass test key: replace with the real widget's site key before deploy
-  turnstileSiteKey: '1x00000000000000000000AA',
+  turnstileSiteKey: '0x4AAAAAAFv-7rcjuI8kMUfL',
   umamiId: '159f3935-55d2-40cc-8794-84a30e0fc443',
 } as const;
