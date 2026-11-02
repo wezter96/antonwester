@@ -36,7 +36,7 @@ export const privacy: Record<Locale, PrivacyContent> = {
       },
       {
         h: 'Chatten',
-        p: ['Din fråga i chatten skickas till Cloudflare Workers AI, som skriver svaret.'],
+        p: ['Har chatten inget färdigt svar skickas din fråga till en AI-tjänst som skriver svaret. Först provas Google Gemini, sedan Groq, sedan Vercel AI Gateway och sist Cloudflare Workers AI. En tjänst får frågan bara om de före den inte svarade.'],
       },
       {
         h: 'Statistik',
@@ -75,7 +75,7 @@ export const privacy: Record<Locale, PrivacyContent> = {
       },
       {
         h: 'The chat',
-        p: ['Your question in the chat is sent to Cloudflare Workers AI, which writes the answer.'],
+        p: ['When the chat has no ready-made answer, your question is sent to an AI service that writes the reply. It tries Google Gemini first, then Groq, then Vercel AI Gateway, and Cloudflare Workers AI last. Each one is asked only if the ones before it fail to answer.'],
       },
       {
         h: 'Statistics',
