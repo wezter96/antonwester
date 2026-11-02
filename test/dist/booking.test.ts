@@ -11,6 +11,13 @@ describe('booking pages', () => {
     expect(doc.querySelector(`.nojs a[href="mailto:${site.email}"]`)).not.toBeNull();
   });
 
+  it.each(['/sv/integritet/', '/en/privacy/'])('%s exists and the footer and booking form link to it', (path) => {
+    expect(readDist(path).querySelector('h1')).not.toBeNull();
+    const l = path.startsWith('/sv') ? '/sv/boka/' : '/en/book/';
+    expect(readDist(l).querySelector(`footer a[href="${path}"]`)).not.toBeNull();
+    expect(readDist(l).querySelector(`.privacy a[href="${path}"]`)).not.toBeNull();
+  });
+
   it('links every button to the page for its locale', () => {
     expect(readDist('/').querySelector('.hero a.btn')!.getAttribute('href')).toBe('/sv/boka/');
     expect(readDist('/en/').querySelector('.hero a.btn')!.getAttribute('href')).toBe('/en/book/');

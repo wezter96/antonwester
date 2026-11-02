@@ -144,6 +144,7 @@ export interface Ui {
     fields: { message: string };
     placeholders: { message: string };
     privacy: string;
+    privacyLink: string;
     submit: string;
     sending: string;
     verify: string;
@@ -155,7 +156,7 @@ export interface Ui {
     booked: string;
     bookedBody: string;
   };
-  footer: { org: string; services: string; cities: string; cv: string };
+  footer: { org: string; services: string; cities: string; cv: string; privacy: string };
   caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string };
   serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string; related: string };
   cityLabels: { nearby: string; delivery: string; services: string; neighbours: string; useCases: string; products: string };

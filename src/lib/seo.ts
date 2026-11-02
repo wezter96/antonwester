@@ -1,6 +1,7 @@
 import { cases } from '../content/cases';
 import { cities } from '../content/cities';
 import { home } from '../content/home';
+import { privacy } from '../content/privacy';
 import {
   CITY_IDS, SITE_URL, SERVICE_IDS, alternatesFor, ogPath, urlFor,
   type Alternate, type CaseId, type CityId, type Locale, type PageRef, type ServiceId,
@@ -113,6 +114,12 @@ export function headForBook(l: Locale): HeadProps {
   const page: PageRef = { kind: 'book' };
   const c = ui[l].booking;
   return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: ui[l].book, url: urlFor(page, l) }], []);
+}
+
+export function headForPrivacy(l: Locale): HeadProps {
+  const page: PageRef = { kind: 'privacy' };
+  const c = privacy[l];
+  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url: urlFor(page, l) }], []);
 }
 
 export function headForService(id: ServiceId, l: Locale): HeadProps {

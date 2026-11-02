@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import { privacy } from '../content/privacy';
+import type { Locale, PageRef } from '../content/routes';
+import { headForPrivacy } from '../lib/seo';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = privacy[locale];
+const page: PageRef = { kind: 'privacy' };
+---
+<Base head={headForPrivacy(locale)}>
+  <Nav locale={locale} page={page} standalone />
+  <main id="main">
+    <PageHero locale={locale} h1={c.h1} intro={c.intro} book={false} />
+    <section class="doc" data-ground="fog2">
+      {c.sections.map((s) => <><h2 class="sub">{s.h}</h2>{s.p.map((p) => <p>{p}</p>)}</>)}
+      <p class="date">{c.updated}</p>
+    </section>
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<style>
+  .doc { padding: var(--section) var(--margin); display: grid; gap: 16px; justify-items: start; }
+  .doc h2 { margin-top: 24px; }
+  .doc p { max-width: 62ch; }
+  .date { color: var(--soft); font-size: .875rem; margin-top: 24px; }
+</style>
+
+<script>
+  import '../scripts/motion';
+</script>

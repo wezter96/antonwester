@@ -17,10 +17,10 @@ describe('route registry', () => {
     }
   });
 
-  it('has 40 unique canonical URLs, all ending in a slash', () => {
+  it('has 42 unique canonical URLs, all ending in a slash', () => {
     const urls = allPages().flatMap((p) => LOCALES.map((l) => urlFor(p, l)));
-    expect(urls).toHaveLength(40);
-    expect(new Set(urls).size).toBe(40);
+    expect(urls).toHaveLength(42);
+    expect(new Set(urls).size).toBe(42);
     for (const u of urls) {
       expect(u.startsWith(`${SITE_URL}/`)).toBe(true);
       expect(u.endsWith('/')).toBe(true);

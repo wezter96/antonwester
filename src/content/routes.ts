@@ -17,6 +17,7 @@ export type CityId = (typeof CITY_IDS)[number];
 export type PageRef =
   | { kind: 'home' }
   | { kind: 'book' }
+  | { kind: 'privacy' }
   | { kind: 'service'; id: ServiceId }
   | { kind: 'case'; id: CaseId }
   | { kind: 'city'; id: CityId };
@@ -38,6 +39,8 @@ export function pathFor(page: PageRef, locale: Locale): string {
       return locale === 'sv' ? '/' : '/en/';
     case 'book':
       return locale === 'sv' ? '/sv/boka/' : '/en/book/';
+    case 'privacy':
+      return locale === 'sv' ? '/sv/integritet/' : '/en/privacy/';
     case 'service':
       return `/${locale}/${SERVICE_SLUGS[page.id][locale]}/`;
     case 'case':
@@ -68,6 +71,7 @@ export function allPages(): PageRef[] {
   return [
     { kind: 'home' },
     { kind: 'book' },
+    { kind: 'privacy' },
     ...SERVICE_IDS.map((id): PageRef => ({ kind: 'service', id })),
     ...CASE_IDS.map((id): PageRef => ({ kind: 'case', id })),
     ...CITY_IDS.map((id): PageRef => ({ kind: 'city', id })),
