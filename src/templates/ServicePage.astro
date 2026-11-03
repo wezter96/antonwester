@@ -51,6 +51,7 @@ const inquiry = t.contact.inquiries.includes(s.name) ? s.name : services.develop
         <div class="col">
           <p class="lead">{s.firstEngagement}</p>
           <p>{L.homeLead} <a class="lnk" href={pathFor({ kind: 'home' }, locale)}>{L.homeLink}</a>.</p>
+          <p><a class="lnk" href={pathFor({ kind: 'prices' }, locale)}>{t.footer.prices}</a></p>
         </div>
       </div>
       {s.relatedServices && (

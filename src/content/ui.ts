@@ -92,7 +92,15 @@ export const ui: L10n<Ui> = {
       booked: 'Klart, tiden är bokad.',
       bookedBody: 'Inbjudan med Meet-länken kommer från Google till din e-post. Hör av dig om den inte dyker upp inom några minuter.',
     },
-    footer: { org: 'Anton Wester AB, Göteborg', services: 'Tjänster', cities: 'AI-konsult nära dig', cv: 'Ladda ner CV', privacy: 'Integritet' },
+    about: {
+      seo: {
+        title: 'Om Anton Wester, AI-konsult i Göteborg',
+        description: 'Anton Wester är AI-konsult i Göteborg och högskoleingenjör från Chalmers. Han har lett utvecklingsteam och bygger nu AI-lösningar åt företag.',
+      },
+      h1: 'Om Anton Wester',
+      intro: 'Jag driver Anton Wester AB i Göteborg. Jag hittar var AI sparar tid, bygger lösningen själv och sköter den efteråt.',
+    },
+    footer: { org: 'Anton Wester AB, Göteborg', services: 'Tjänster', cities: 'AI-konsult nära dig', cv: 'Ladda ner CV', privacy: 'Integritet', about: 'Om Anton', prices: 'Priser' },
     caseLabels: { what: 'Vad det är', how: 'Hur det är byggt', proves: 'Vad det visar', stack: 'Teknik', next: 'Nästa case', service: 'Relaterad tjänst' },
     serviceLabels: { what: 'Vad ni får', steps: 'Så går det till', fits: 'Passar när', first: 'Ett typiskt första uppdrag', cases: 'Exempel', faq: 'Vanliga frågor', homeLead: 'Läs mer om hur jag arbetar som', homeLink: 'AI-konsult i Göteborg', related: 'Närliggande tjänster' },
     cityLabels: { nearby: 'Närliggande orter', delivery: 'Så jobbar jag', services: 'Tjänster', neighbours: 'Även i', useCases: 'Var AI kan göra nytta i {city}', products: 'Mina egna produkter' },
@@ -189,7 +197,15 @@ export const ui: L10n<Ui> = {
       booked: 'Done, your time is booked.',
       bookedBody: 'The invite with the Meet link comes from Google to your email. Let me know if it hasn’t shown up within a few minutes.',
     },
-    footer: { org: 'Anton Wester AB, Gothenburg', services: 'Services', cities: 'AI consultant near you', cv: 'Download CV', privacy: 'Privacy' },
+    about: {
+      seo: {
+        title: 'About Anton Wester, AI consultant in Gothenburg',
+        description: 'Anton Wester is an AI consultant in Gothenburg with a computer engineering degree from Chalmers. He has led dev teams and now builds AI for companies.',
+      },
+      h1: 'About Anton Wester',
+      intro: 'I run Anton Wester AB in Gothenburg. I find where AI saves time, build the solution myself and look after it afterwards.',
+    },
+    footer: { org: 'Anton Wester AB, Gothenburg', services: 'Services', cities: 'AI consultant near you', cv: 'Download CV', privacy: 'Privacy', about: 'About Anton', prices: 'Prices' },
     caseLabels: { what: 'What it is', how: 'How it’s built', proves: 'What it shows', stack: 'Stack', next: 'Next case', service: 'Related service' },
     serviceLabels: { what: 'What you get', steps: 'How it runs', fits: 'A good fit when', first: 'A typical first engagement', cases: 'Examples', faq: 'Questions', homeLead: 'Read more about how I work as an', homeLink: 'AI consultant in Gothenburg', related: 'Related services' },
     cityLabels: { nearby: 'Nearby', delivery: 'How I work', services: 'Services', neighbours: 'Also in', useCases: 'Where AI helps in {city}', products: 'My own products' },

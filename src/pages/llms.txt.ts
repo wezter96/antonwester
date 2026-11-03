@@ -23,6 +23,8 @@ export function GET() {
     '## Contact',
     '',
     `- Email: ${site.email}`,
+    `- About Anton: ${urlFor({ kind: 'about' }, 'en')}`,
+    `- Prices (from SEK 25,000 excl. VAT): ${urlFor({ kind: 'prices' }, 'en')}`,
     `- Book a call: ${urlFor({ kind: 'book' }, 'en')}`,
     `- LinkedIn: ${site.linkedin}`,
     '',

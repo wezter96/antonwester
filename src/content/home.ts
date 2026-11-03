@@ -44,7 +44,7 @@ export const home: L10n<HomeContent> = {
     },
     stack: 'Jag använder AI från bland andra OpenAI (ChatGPT) och Anthropic (Claude), och kör även lokala AI-modeller på egen hårdvara. Jag väljer det som passar uppgiften bäst.',
     faq: [
-      { q: 'Vad kostar en AI-kartläggning?', a: 'Det beror på hur mycket av verksamheten vi ska titta på. Efter ett första samtal får ni ett fast pris, så ni vet kostnaden innan vi börjar.' },
+      { q: 'Vad kostar en AI-kartläggning?', a: 'Från 25 000 kr utan moms. Priset beror på hur mycket av verksamheten vi ska titta på. Efter ett första samtal får ni ett fast pris, så ni vet kostnaden innan vi börjar.' },
       { q: 'Hur snabbt kan vi ha något som fungerar?', a: 'Ett litet första steg går ofta att ha igång inom några veckor, till exempel AI som sorterar och svarar på mejl. Större projekt tar längre tid.' },
       { q: 'Hur hanterar du säkerhet, GDPR och EU:s AI-förordning?', a: 'Jag använder bara den data som behövs, och den stannar där den får finnas. Jag skriver ner vad AI gör och vad en människa godkänner. Det gör reglerna lättare att följa.' },
       { q: 'Vilka AI-verktyg använder du?', a: 'Det som passar uppgiften. Ofta AI från OpenAI (ChatGPT) eller Anthropic (Claude). Jag kör också lokala AI-modeller på egen hårdvara, och de kan köras på er egen server. Den kopplas till de system ni redan använder.' },
@@ -95,7 +95,7 @@ export const home: L10n<HomeContent> = {
     },
     stack: 'I use AI from OpenAI (ChatGPT), Anthropic (Claude) and others, and also run local AI models on my own hardware. I pick what fits the task best.',
     faq: [
-      { q: 'What does an AI assessment cost?', a: 'It depends on how much of the business we look at. After a first call you get a fixed price, so you know the cost before we start.' },
+      { q: 'What does an AI assessment cost?', a: 'From SEK 25,000 excluding VAT. The price depends on how much of the business we look at. After a first call you get a fixed price, so you know the cost before we start.' },
       { q: 'How quickly can we have something that works?', a: 'A small first step can often be up and running within a few weeks, for example AI that sorts and answers email. Bigger projects take longer.' },
       { q: 'How do you handle security, GDPR and the EU AI Act?', a: 'I only use the data that is needed, and it stays where it is allowed to be. I write down what AI does and what a person approves. That makes the rules easier to follow.' },
       { q: 'Which AI tools do you use?', a: 'Whatever fits the task. Often AI from OpenAI (ChatGPT) or Anthropic (Claude). I also run local AI models on my own hardware, and they can run on your own server. It connects to the systems you already use.' },

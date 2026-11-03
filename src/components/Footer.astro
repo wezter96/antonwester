@@ -30,6 +30,8 @@ const other = otherLocale(locale);
         <li><a href={site.linkedin} rel="noopener">LinkedIn</a></li>
         <li><a href={site.github} rel="noopener">GitHub</a></li>
         <li><a href={site.cv} download>{t.footer.cv}</a></li>
+        <li><a href={pathFor({ kind: 'about' }, locale)}>{t.footer.about}</a></li>
+        <li><a href={pathFor({ kind: 'prices' }, locale)}>{t.footer.prices}</a></li>
         <li><a href={pathFor({ kind: 'privacy' }, locale)}>{t.footer.privacy}</a></li>
         <li><a href={pathFor(page, other)} hreflang={other} lang={other}>{t.switchLabel}</a></li>
       </ul>

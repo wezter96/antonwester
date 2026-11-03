@@ -2,6 +2,7 @@
 // site's own content, then "ask Anton" when no model answers.
 import { cases } from '../src/content/cases';
 import { home } from '../src/content/home';
+import { prices } from '../src/content/prices';
 import { urlFor } from '../src/content/routes';
 import { services } from '../src/content/services';
 import { site } from '../src/content/site';
@@ -39,6 +40,9 @@ export function systemPrompt(locale) {
     ...Object.values(services).map((s) => `## ${s[locale].name}\n${s[locale].promise} ${s[locale].intro}\n${s[locale].firstEngagement}\n${s[locale].faq.map((f) => `F: ${f.q}\nS: ${f.a}`).join('\n')}`),
     '',
     ...Object.values(cases).map((c) => `## ${c[locale].name}: ${c[locale].tagline}\n${c[locale].what.join(' ')}`),
+    '',
+    `## ${prices[locale].h1} (${prices[locale].intro})`,
+    ...prices[locale].rows.map((r) => `${r.name}: ${r.price}. ${r.detail}`),
     '',
     '## Vanliga frågor',
     ...h.faq.map((f) => `F: ${f.q}\nS: ${f.a}`),

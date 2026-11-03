@@ -1,6 +1,7 @@
 import { cases } from '../content/cases';
 import { cities } from '../content/cities';
 import { home } from '../content/home';
+import { prices } from '../content/prices';
 import { privacy } from '../content/privacy';
 import {
   CITY_IDS, SITE_URL, SERVICE_IDS, alternatesFor, ogPath, urlFor,
@@ -120,6 +121,35 @@ export function headForPrivacy(l: Locale): HeadProps {
   const page: PageRef = { kind: 'privacy' };
   const c = privacy[l];
   return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url: urlFor(page, l) }], []);
+}
+
+export function headForAbout(l: Locale): HeadProps {
+  const page: PageRef = { kind: 'about' };
+  const url = urlFor(page, l);
+  const c = ui[l].about;
+  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url }],
+    [{ '@context': CTX, '@type': 'ProfilePage', '@id': `${url}#profile`, url, inLanguage: lang(l), mainEntity: { '@id': PERSON } }]);
+}
+
+export function headForPrices(l: Locale): HeadProps {
+  const page: PageRef = { kind: 'prices' };
+  const url = urlFor(page, l);
+  const c = prices[l];
+  const unitCode = { month: 'MON', hour: 'HUR' } as const;
+  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url }], [
+    {
+      '@context': CTX, '@type': 'OfferCatalog', '@id': `${url}#prices`, name: c.h1, url,
+      itemListElement: c.rows.map((r) => ({
+        '@type': 'Offer', name: r.name, description: r.detail, seller: { '@id': ORG },
+        ...(r.service ? { itemOffered: { '@id': `${urlFor({ kind: 'service', id: r.service }, l)}#service` } } : {}),
+        priceSpecification: {
+          '@type': r.unit ? 'UnitPriceSpecification' : 'PriceSpecification', minPrice: r.min, priceCurrency: 'SEK', valueAddedTaxIncluded: false,
+          ...(r.unit ? { unitCode: unitCode[r.unit] } : {}),
+        },
+      })),
+    },
+    faqLd(url, c.faq),
+  ]);
 }
 
 export function headForService(id: ServiceId, l: Locale): HeadProps {

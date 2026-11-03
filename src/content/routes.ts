@@ -18,6 +18,8 @@ export type PageRef =
   | { kind: 'home' }
   | { kind: 'book' }
   | { kind: 'privacy' }
+  | { kind: 'about' }
+  | { kind: 'prices' }
   | { kind: 'service'; id: ServiceId }
   | { kind: 'case'; id: CaseId }
   | { kind: 'city'; id: CityId };
@@ -41,6 +43,10 @@ export function pathFor(page: PageRef, locale: Locale): string {
       return locale === 'sv' ? '/sv/boka/' : '/en/book/';
     case 'privacy':
       return locale === 'sv' ? '/sv/integritet/' : '/en/privacy/';
+    case 'about':
+      return locale === 'sv' ? '/sv/om/' : '/en/about/';
+    case 'prices':
+      return locale === 'sv' ? '/sv/priser/' : '/en/prices/';
     case 'service':
       return `/${locale}/${SERVICE_SLUGS[page.id][locale]}/`;
     case 'case':
@@ -72,6 +78,8 @@ export function allPages(): PageRef[] {
     { kind: 'home' },
     { kind: 'book' },
     { kind: 'privacy' },
+    { kind: 'about' },
+    { kind: 'prices' },
     ...SERVICE_IDS.map((id): PageRef => ({ kind: 'service', id })),
     ...CASE_IDS.map((id): PageRef => ({ kind: 'case', id })),
     ...CITY_IDS.map((id): PageRef => ({ kind: 'city', id })),

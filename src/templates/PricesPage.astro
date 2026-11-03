@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import { prices, WEBNU_URL } from '../content/prices';
+import { pathFor, type Locale, type PageRef } from '../content/routes';
+import { ui } from '../content/ui';
+import { headForPrices } from '../lib/seo';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = prices[locale];
+const page: PageRef = { kind: 'prices' };
+---
+<Base head={headForPrices(locale)}>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} h1={c.h1} intro={c.intro} />
+    <section class="copy" data-ground="fog">
+      <dl class="rows">
+        {c.rows.map((r) => (
+          <div class="row grid">
+            <dt class="sub">{r.service ? <a class="lnk" href={pathFor({ kind: 'service', id: r.service }, locale)}>{r.name}</a> : r.name}</dt>
+            <dd class="price lead"><b>{r.price}</b></dd>
+            <dd class="detail">{r.detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+    <section class="copy" data-ground="fog2">
+      {c.sections.map((s) => (
+        <div class="block grid">
+          <h2 class="sub">{s.heading}</h2>
+          <div class="col">
+            {s.paragraphs.map((p) => <p>{p}</p>)}
+            {s.list && <ol>{s.list.map((li) => <li>{li}</li>)}</ol>}
+          </div>
+        </div>
+      ))}
+      <div class="block grid">
+        <h2 class="sub">{c.webnu.heading}</h2>
+        <div class="col">
+          <p>{c.webnu.text}</p>
+          <p><a class="lnk" href={WEBNU_URL}>{c.webnu.link}</a></p>
+        </div>
+      </div>
+    </section>
+    <Faq id="faq" heading={ui[locale].serviceLabels.faq} items={c.faq} />
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<style>
+  .copy { padding: var(--section) var(--margin); display: grid; gap: clamp(48px, 6vw, 96px); }
+  .rows { margin: 0; display: grid; gap: clamp(32px, 4vw, 56px); }
+  .row { row-gap: 8px; align-items: baseline; }
+  .row dt { grid-column: 1 / 5; }
+  .row dd { margin: 0; }
+  .price { grid-column: 5 / 8; }
+  .detail { grid-column: 8 / 13; max-width: 48ch; color: var(--soft); }
+  .block { row-gap: 20px; align-items: start; }
+  .block h2 { grid-column: 1 / 4; }
+  .col { grid-column: 4 / 11; max-width: 62ch; display: grid; gap: 1em; }
+  ol { margin: 0; padding-left: 1.2em; display: grid; gap: .5em; }
+  @media (max-width: 900px) {
+    .row dt, .price, .detail, .block h2, .col { grid-column: 1 / -1; }
+  }
+</style>
+
+<script>
+  import '../scripts/motion';
+</script>
