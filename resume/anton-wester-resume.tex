@@ -1,0 +1,225 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Random Stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{navyBlue}{RGB}{0,0,128}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.7in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-13pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{0pt}]
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Commands  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-4pt}}
+  }
+}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubheadingContinue}[2]{
+  \vspace{-3pt}
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{0pt}}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, topsep=2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Heading  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+\begin{tabular}{ c c }
+    % PROFILE PICTURE (skipped if the file is missing so the document still builds)
+    \IfFileExists{profile_pic_round.png}{%
+      \raisebox{-0.2\height}{\includegraphics[width=0.15\linewidth]{profile_pic_round.png}}%
+    }{}
+&
+    % NAME
+    \begin{tabular}[b]{@{}l@{}}
+        {\Huge\scshape \color{navyBlue}Anton Wester} \\
+        \hspace{2pt}{Tech Lead and Full-Stack Engineer}  \\
+        % SUBHEADING
+        \small
+        % EMAIL and GITHUB
+        \href{mailto:contact@antonwester.se}{\raisebox{-0.2\height}\faEnvelope\  \underline{contact@antonwester.se}} ~
+        \href{https://github.com/wezter96}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/wezter96}} \\
+        % LINKEDIN and WEBSITE
+        \href{https://www.linkedin.com/in/anton-wester-93a26011b/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/anton-wester-93a26011b}} ~
+        \href{https://antonwester.se}{\raisebox{-0.2\height}\faGlobe\ \underline{antonwester.se}} \\
+    \end{tabular}
+\end{tabular}
+\end{center}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Introduction  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-20pt}
+\section {\color{navyBlue}About me}
+Tech Lead and Full-Stack Engineer with 7+ years in React and TypeScript across web, iOS and Android. Leads frontend architecture and migrations across teams: sets the technical direction, builds the shared platform and design system, and brings the developers along. Most recently led a platform transformation at Evinova (AstraZeneca). Star helper in the world's largest React chat community.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Experience  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\color{navyBlue}Experience}
+    \resumeSubHeadingListStart
+
+        % COMPANY 1
+        \resumeSubheading
+        {Anton Wester AB - Independent Software Consultant}{Gothenburg}
+            {Full-Stack Engineer, Med Tech Platform @Evinova (AstraZeneca)}{10/2024 - Present}
+            \resumeItemListStart
+                \resumeItem{Led the transformation of a regulated med tech product for web, iOS and Android: re-architected web, mobile and server, and migrated step by step from legacy systems into one shared TypeScript monorepo (React, Next.js, React Native/Expo, Node.js, Nx/Turborepo).}
+                \resumeItem{Set the technical direction for several teams and guided them onto shared ways of working.}
+                \resumeItem{Built the shared design system and component library with Storybook.}
+                \resumeItem{Set up the test automation foundation (team velocity +20\%), cut CI times by 60\% and mobile bundle size by 20\%.}
+            \resumeItemListEnd
+
+            % POSITION 2
+            \resumeSubheadingContinue
+            {Full-Stack Developer, AI Products for Lawyers}{03/2026 - Present}
+            \resumeItemListStart
+                \resumeItem{Designed and built LLM features for daily legal workflows such as document translation, legal text summaries and chat-based course evaluation. Cut manual review time per document by 80\%.}
+            \resumeItemListEnd
+
+        % COMPANY 2
+        \resumeSubheading
+        {We App}{Gothenburg}
+            % POSITION 1
+            {Tech Lead - Cross Platform}{10/2022 - 10/2024}
+            \resumeItemListStart
+                \resumeItem{Led the cross-platform group and set the architecture and technical direction for its projects.}
+                \resumeItem{Architected and led the development of an all-in-one planning and productivity universal application for web and mobile, replacing and expanding an existing Android application.}
+                \resumeItem{Built an Expo template that standardized new projects, saving about 200 hours each. Still in use.}
+                \resumeItem{Built a smart digital home insurance app, from client and server architecture to self-hosted monitoring and A/B testing.}
+            \resumeItemListEnd
+
+            % POSITION 2
+            \resumeSubheadingContinue
+            {Software Engineer}{05/2021 - 10/2022}
+            \resumeItemListStart
+                \resumeItem{Delivered React and React Native projects, from responsive websites to mobile apps with chat and courses.}
+            \resumeItemListEnd
+
+        % COMPANY 3
+        \resumeSubheading
+        {Telia}{Gothenburg}
+            % POSITION 1
+            {Software Developer}{08/2019 - 05/2021}
+            \resumeItemListStart
+                \resumeItem{Cleared a 200-issue bug queue alongside sprint work, and took part in migrating the web client from Angular to Vue.}
+            \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PROJECTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\color{navyBlue}Projects}
+    \resumeSubHeadingListStart
+
+        % Project 1 -- own startup
+        \resumeProjectHeading
+        {S\"okHem - AI-native real estate platform - \href{https://sokhem.se/}{\raisebox{-0.2\height}\ \underline{sokhem.se}}}
+        % Date
+        {04/2026 - Present}
+        \resumeItemListStart
+            \resumeItem{Founded and solo-built a buyer-driven property matching platform: a monorepo with SSR web (React 19, TanStack Start), API (Hono, oRPC, Better Auth) and background workers (BullMQ).}
+            \resumeItem{Postgres/PostGIS, Redis and Stripe; self-hosted with Docker, Traefik and Dokploy, monitored with Grafana.}
+        \resumeItemListEnd
+
+        % Project 2 -- open source
+        \resumeProjectHeading
+        {OpenAudit - Open source audit tool - \href{https://openaudit.se/}{\raisebox{-0.2\height}\ \underline{openaudit.se}}}
+        % Date
+        {10/2026}
+        \resumeItemListStart
+            \resumeItem{MIT-licensed tool that audits code, sites, apps, containers and cloud in one scored report, from the terminal, CI or an AI agent over MCP. 37 built-in auditors and 52 wrapped open-source scanners.}
+        \resumeItemListEnd
+
+        % Project 3
+        \resumeProjectHeading
+        {Lingo - \href{https://lingo.antonwester.se/}{\raisebox{-0.2\height}\ \underline{lingo.antonwester.se}}}
+        % Date
+        {03/2026}
+        \resumeItemListStart
+            \resumeItem{AI-powered full-stack platform that automates internationalization and translation management for software projects.}
+        \resumeItemListEnd
+
+
+    \resumeSubHeadingListEnd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Technical Skills  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\color{navyBlue}Technical Skills}
+
+    \vspace{-9pt}
+    \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+        % LEADERSHIP
+        \textbf{Leadership}{: Technical direction across teams, frontend architecture, legacy migration and consolidation, design systems, shared ways of working.} \\
+        % LANGUAGES
+        \textbf{Languages}{: TypeScript, JavaScript, Java, Kotlin, Swift, Dart, C, SQL, CSS, HTML, GraphQL.} \\
+        % TECHNOLOGIES
+        \textbf{Technologies/Frameworks}{: React, Next.js, React Native, Expo, TanStack, Astro, Node.js, Bun, Hono, Vue, Angular, PostgreSQL, Redis.} \\
+        % AI
+        \textbf{AI}{: LLM integration (Claude, OpenAI), agent and tool orchestration, prompt evaluation, AI-assisted engineering.} \\
+        % TOOLS
+        \textbf{Developer Tools}{: Nx, Turborepo, Storybook, Playwright, Git, GitHub, Docker, Kubernetes, Azure, Cloudflare, Supabase.}
+    }}
+    \end{itemize}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Education  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\color{navyBlue}Education}
+  \resumeSubHeadingListStart
+
+    % MAIN INFORMATION
+    \resumeSubheading
+    {Chalmers University of Technology}{Gothenburg}
+    {Bachelor of Science in Computer Science and Engineering}{08/2016 - 06/2019}
+
+  \resumeSubHeadingListEnd
+
+\end{document}
