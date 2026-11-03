@@ -45,7 +45,7 @@ export const personLd = (l: Locale): Ld => ({
   worksFor: { '@id': ORG },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Chalmers University of Technology' },
   knowsAbout: [
-    'AI agents', 'LLM integration', 'Process automation', 'Workflow automation', 'Model Context Protocol', 'TypeScript', 'React', 'React Native',
+    'AI agents', 'LLM integration', 'Local LLMs', 'Retrieval-augmented generation', 'Model fine-tuning', 'Process automation', 'Workflow automation', 'Model Context Protocol', 'TypeScript', 'React', 'React Native',
     'Full-stack web development', 'Mobile app development', 'Software architecture', 'DevOps', 'Test automation', 'Search engine optimization',
   ],
   sameAs: [site.linkedin, site.github, 'https://openaudit.se', 'https://sokhem.se'],

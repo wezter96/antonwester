@@ -36,6 +36,8 @@ export const home: L10n<HomeContent> = {
       items: [
         { name: 'AI i det dagliga arbetet', detail: 'AI som läser, skriver och sorterar åt er, kopplad till de system ni redan har.' },
         { name: 'Automation', detail: 'Rutinjobb som sköter sig själva, med en människa som godkänner där det behövs.' },
+        { name: 'AI på egen server', detail: 'Öppna AI-modeller som körs hos er, så att känslig data aldrig lämnar huset.' },
+        { name: 'Svar ur era dokument', detail: 'AI som svarar ur manualer, avtal och rutiner och visar var svaret står.' },
         { name: 'Webb och appar', detail: 'Webbplatser och appar för dator, iPhone och Android.' },
         { name: 'Drift och säkerhet', detail: 'Tjänster som är igång dygnet runt, övervakas och hålls uppdaterade.' },
         { name: 'Teknisk ledning', detail: 'Jag har lett utvecklingsteam och hjälper er välja rätt väg.' },
@@ -87,6 +89,8 @@ export const home: L10n<HomeContent> = {
       items: [
         { name: 'AI in everyday work', detail: 'AI that reads, writes and sorts for you, linked to the systems you already have.' },
         { name: 'Automation', detail: 'Routine work that runs itself, with a person who approves where it matters.' },
+        { name: 'AI on your own server', detail: 'Open AI models that run at your place, so sensitive data never leaves the building.' },
+        { name: 'Answers from your documents', detail: 'AI that answers from manuals, contracts and routines and shows where the answer is.' },
         { name: 'Web and apps', detail: 'Websites and apps for computer, iPhone and Android.' },
         { name: 'Hosting and security', detail: 'Services that stay up day and night, are watched and kept up to date.' },
         { name: 'Technical leadership', detail: 'I’ve led development teams and help you pick the right path.' },

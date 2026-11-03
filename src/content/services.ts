@@ -141,6 +141,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Agenter som sammanfattar, översätter och jämför långa dokument och flaggar det som behöver en människas bedömning.',
             'Rapporter som byggs automatiskt av siffror från flera system, med en sammanfattning av vad som har ändrats.',
             'Integrationer mot CRM, affärssystem och dokumentarkiv via API:er och MCP, så att agenterna arbetar i de verktyg ni redan har.',
+            'Svar ur era egna manualer, avtal och rutiner, med en länk till källan så att den som frågar kan kontrollera.',
+            'En AI-chatt på er webbplats som svarar besökare utifrån er egen text. Chatten på den här sidan är ett exempel.',
           ],
         },
         {
@@ -155,6 +157,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           paragraphs: [
             'Jag bygger i den teknik ni redan har när det är rimligt, eller i en lätt och modern stack med TypeScript, Node eller Bun och Postgres när ni börjar från noll. Språkmodellerna väljs efter uppgiften: ibland en stor modell från Anthropic eller OpenAI, ibland en mindre öppen modell som kan köras på er egen server.',
             'Koden är er från första dagen. Den ligger i ert repo, är dokumenterad och går att ta över av ert team eller av en annan leverantör om ni vill.',
+          ],
+        },
+        {
+          heading: 'AI på er egen server',
+          paragraphs: [
+            'Viss data får inte lämna företaget, som patientuppgifter, avtal eller ritningar. Då kan AI-modellen köras på en server hos er. Inget skickas till OpenAI eller någon annan molntjänst.',
+            'Jag kör själv öppna modeller på egen hårdvara varje dag och vet vad de klarar. En lokal modell räcker ofta för att sortera, sammanfatta och söka i dokument. För svårare uppgifter jämför jag den mot en stor modell innan vi väljer.',
           ],
         },
       ],
@@ -203,6 +212,8 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Agents that summarise, translate and compare long documents and flag what needs a person’s judgement.',
             'Reports built automatically from numbers in several systems, with a summary of what has changed.',
             'Integrations with your CRM, business system and document stores through APIs and MCP, so agents work in the tools you already have.',
+            'Answers from your own manuals, contracts and routines, with a link to the source so whoever asked can check.',
+            'An AI chat on your website that answers visitors from your own text. The chat on this site is one example.',
           ],
         },
         {
@@ -217,6 +228,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           paragraphs: [
             'I build in the technology you already have when that makes sense, or in a light, modern stack with TypeScript, Node or Bun and Postgres when you start from scratch. Models are chosen per task: sometimes a large model from Anthropic or OpenAI, sometimes a smaller open model that runs on your own server.',
             'The code is yours from day one. It lives in your repository, is documented, and can be taken over by your team or another supplier whenever you like.',
+          ],
+        },
+        {
+          heading: 'AI on your own server',
+          paragraphs: [
+            'Some data may not leave the company, such as patient records, contracts or drawings. Then the AI model can run on a server at your place. Nothing is sent to OpenAI or any other cloud service.',
+            'I run open models on my own hardware every day and know what they can do. A local model is often enough to sort, summarise and search documents. For harder tasks I compare it with a large model before we choose.',
           ],
         },
       ],
@@ -275,7 +293,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'Ni har kontrollen',
           paragraphs: [
             'Agenten får bara göra det uppgiften kräver. Allt den gör sparas, så ni kan se vad den gjorde och varför. Steg som rör pengar, avtal eller kunder kan kräva att en människa säger ja först.',
-            'Ni ser också vad varje ärende kostar och hur ofta agenten gör rätt. Data som måste stanna i EU stannar där.',
+            'Ni ser också vad varje ärende kostar och hur ofta agenten gör rätt. Data som måste stanna i EU stannar där, och får den inte lämna huset kan agenten köra på en AI-modell på er egen server.',
           ],
         },
       ],
@@ -333,7 +351,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'You stay in control',
           paragraphs: [
             'The agent may only do what the task needs. Everything it does is saved, so you can see what it did and why. Steps that touch money, contracts or customers can require a person to say yes first.',
-            'You also see what each case costs and how often the agent gets it right. Data that must stay in the EU stays there.',
+            'You also see what each case costs and how often the agent gets it right. Data that must stay in the EU stays there, and if it may not leave the building, the agent can run on an AI model on your own server.',
           ],
         },
       ],
