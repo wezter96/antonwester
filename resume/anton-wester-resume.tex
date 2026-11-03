@@ -2,11 +2,11 @@
 \documentclass[letterpaper,11pt]{article}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
+\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{xcolor}
 \definecolor{navyBlue}{RGB}{0,0,128}
 \usepackage{verbatim}
 \usepackage{enumitem}
@@ -18,7 +18,7 @@
 \usepackage{multicol}
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
-\input{glyphtounicode}
+\ifdefined\pdfgentounicode\input{glyphtounicode}\fi
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
 \fancyfoot{}
@@ -39,7 +39,7 @@
   \vspace{-13pt}\scshape\raggedright\large\bfseries
 }{}{0em}{}[\color{black}\titlerule \vspace{0pt}]
 % Ensure that generate pdf is machine readable/ATS parsable
-\pdfgentounicode=1
+\ifdefined\pdfgentounicode\pdfgentounicode=1\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Commands  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\resumeItem}[1]{
@@ -87,7 +87,7 @@
     % NAME
     \begin{tabular}[b]{@{}l@{}}
         {\Huge\scshape \color{navyBlue}Anton Wester} \\
-        \hspace{2pt}{Tech Lead and Full-Stack Engineer}  \\
+        \hspace{2pt}{AI Engineer and Tech Lead}  \\
         % SUBHEADING
         \small
         % EMAIL and GITHUB
@@ -103,7 +103,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Introduction  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-20pt}
 \section {\color{navyBlue}About me}
-Tech Lead and Full-Stack Engineer with 7+ years in React and TypeScript across web, iOS and Android. Leads frontend architecture and migrations across teams: sets the technical direction, builds the shared platform and design system, and brings the developers along. Most recently led a platform transformation at Evinova (AstraZeneca). Star helper in the world's largest React chat community.
+AI Engineer and Tech Lead with 7+ years in React and TypeScript across web, iOS and Android. Builds AI into real products, from idea to production: LLM features, agents, MCP automation of work and processes, and fine-tuned models. Leads frontend architecture and migrations across teams: sets the technical direction, builds the shared platform and design system, and brings the developers along. Most recently led a platform transformation at Evinova (AstraZeneca). Star helper in the world's largest React chat community.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Experience  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\color{navyBlue}Experience}
@@ -198,14 +198,14 @@ Tech Lead and Full-Stack Engineer with 7+ years in React and TypeScript across w
     \vspace{-9pt}
     \begin{itemize}[leftmargin=0in, label={}]
     \small{\item{
+        % AI
+        \textbf{AI}{: LLM and AI service integration (Claude, OpenAI, Gemini), fine-tuning and training of models, local models on own GPU hardware, MCP servers and agents that automate work and processes, prompt evaluation, AI-assisted engineering.} \\
         % LEADERSHIP
         \textbf{Leadership}{: Technical direction across teams, frontend architecture, legacy migration and consolidation, design systems, shared ways of working.} \\
         % LANGUAGES
         \textbf{Languages}{: TypeScript, JavaScript, Java, Kotlin, Swift, Dart, C, SQL, CSS, HTML, GraphQL.} \\
         % TECHNOLOGIES
         \textbf{Technologies/Frameworks}{: React, Next.js, React Native, Expo, TanStack, Astro, Node.js, Bun, Hono, Vue, Angular, PostgreSQL, Redis.} \\
-        % AI
-        \textbf{AI}{: LLM integration (Claude, OpenAI), agent and tool orchestration, prompt evaluation, AI-assisted engineering.} \\
         % TOOLS
         \textbf{Developer Tools}{: Nx, Turborepo, Storybook, Playwright, Git, GitHub, Docker, Kubernetes, Azure, Cloudflare, Supabase.}
     }}
