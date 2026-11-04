@@ -158,6 +158,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       what: [
         'Mitt eget verktyg där ett team av AI-agenter arbetar i mina projekt. Jag ser allt de gör medan det händer: varje steg, varje ändrad fil, vad det kostar och vem som godkände det.',
         'Agenterna har roller, som arkitekt, designer och testare. Här bygger jag både kunders lösningar och mina egna produkter.',
+        'I röstläget pratar jag med agenterna i stället för att skriva, och de svarar med tal.',
       ],
       how: [
         'En motor på Bun, skriven med Effect, som sparar sitt tillstånd i SQLite. Appar för dator och mobil i React.',
@@ -191,6 +192,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       what: [
         'My own tool where a team of AI agents works on my projects. I see everything they do as it happens: every step, every changed file, what it costs and who approved it.',
         'The agents have roles, such as architect, designer and tester. This is where I build both client solutions and my own products.',
+        'In voice mode I talk to the agents instead of typing, and they answer in speech.',
       ],
       how: [
         'An engine on Bun, written with Effect, that keeps its state in SQLite. Desktop and mobile apps in React.',

@@ -155,7 +155,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'I er stack',
           paragraphs: [
-            'Jag bygger i den teknik ni redan har när det är rimligt, eller i en lätt och modern stack med TypeScript, Node eller Bun och Postgres när ni börjar från noll. Språkmodellerna väljs efter uppgiften: ibland en stor modell från Anthropic eller OpenAI, ibland en mindre öppen modell som kan köras på er egen server.',
+            'Jag bygger i den teknik ni redan har när det är rimligt, eller i en lätt och modern stack med TypeScript, Node eller Bun och Postgres när ni börjar från noll. Språkmodellerna väljs efter uppgiften: ibland en stor modell från Anthropic eller OpenAI, ibland en mindre öppen modell som kan köras på er egen server. Räcker inte en färdig modell finjusterar jag en öppen modell på era egna texter, så att den skriver och svarar som ni. Det gör jag just nu åt en kund.',
             'Koden är er från första dagen. Den ligger i ert repo, är dokumenterad och går att ta över av ert team eller av en annan leverantör om ni vill.',
           ],
         },
@@ -226,7 +226,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         {
           heading: 'In your stack',
           paragraphs: [
-            'I build in the technology you already have when that makes sense, or in a light, modern stack with TypeScript, Node or Bun and Postgres when you start from scratch. Models are chosen per task: sometimes a large model from Anthropic or OpenAI, sometimes a smaller open model that runs on your own server.',
+            'I build in the technology you already have when that makes sense, or in a light, modern stack with TypeScript, Node or Bun and Postgres when you start from scratch. Models are chosen per task: sometimes a large model from Anthropic or OpenAI, sometimes a smaller open model that runs on your own server. When a ready-made model isn’t enough, I fine-tune an open model on your own texts so it writes and answers the way you do. I’m doing that for a client right now.',
             'The code is yours from day one. It lives in your repository, is documented, and can be taken over by your team or another supplier whenever you like.',
           ],
         },
@@ -287,6 +287,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Gå igenom avtal och offerter och flagga det som bryter mot era regler.',
             'Förbereda offerter och uppföljningar, så att säljaren bara läser och skickar.',
             'Svara på frågor om era rutiner och visa var svaret kommer ifrån.',
+            'Ta emot frågor med rösten och svara med tal, så att ingen behöver skriva.',
           ],
         },
         {
@@ -345,6 +346,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Go through contracts and quotes and flag anything that breaks your rules.',
             'Prepare quotes and follow-ups, so the seller only reads and sends.',
             'Answer questions about your routines and show where the answer comes from.',
+            'Take questions by voice and answer in speech, so nobody has to type.',
           ],
         },
         {
