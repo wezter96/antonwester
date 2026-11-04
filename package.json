@@ -9,7 +9,6 @@
     "astro": "astro",
     "typecheck": "astro sync && tsc --noEmit",
     "test": "vitest run test/unit",
-    "test:dist": "astro build && vitest run test/dist",
     "shots": "tsx scripts/shots.ts",
     "og": "tsx scripts/og.ts",
     "qa": "tsx scripts/qa.ts",

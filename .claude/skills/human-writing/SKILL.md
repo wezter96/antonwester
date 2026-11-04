@@ -21,7 +21,7 @@ is the one page allowed to be technical.
 
 **Meaning survives exactly.** Every fact, number, name, link, id and placeholder (`{weeks}`, `{step}`) stays.
 **Zero edits is a valid result.** Fix what is wrong; don't rewrite good text into different text. Texts the owner
-chose word for word (the hero offer, the bio) are pinned in `test/unit/content-core.test.ts`.
+chose word for word (the hero offer, the bio) stay word for word.
 
 ## 3. Voice rules
 
@@ -64,10 +64,11 @@ Read the whole section first, edit in place, keep sv and en in step (separate te
 one sub-agent per file, each told that zero edits is valid. Then:
 
 ```bash
-npx vitest run test/unit/voice.test.ts
+rg -n '[–—]|dessutom|sömlös|möjliggör|seamless|leverage|delve|unlock' src/content worker/chat.js
 ```
 
-It checks dashes, banned phrases and emoji in `src/content/*` and the chat prompt. Rhythm and staging need a read:
+It finds dashes and the most common banned phrases (the year spans in the experience table are fine). Check the
+rest of section 4 and emoji by eye. Rhythm and staging need a read:
 go through the diff once more and ask "would a consultant say this to a client across the table?"
 
 ## Where the text lives

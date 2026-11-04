@@ -19,3 +19,9 @@ Never guess at Effect patterns - check the guide first.
 The Effect repository is cloned to `.reference/effect` for reference. 
 Use this to explore APIs, find usage examples, and understand implementation 
 details when the documentation isn't enough.
+
+## Tests
+
+Keep tests only for code logic: `worker/` (booking, calendar, mail, chat), `src/lib` and `src/scripts/lib`.
+Do not write, commit or push tests for site content, pages, routes, SEO or copy. Check those changes with
+`pnpm typecheck`, `pnpm build` and a look at the page in a browser.
