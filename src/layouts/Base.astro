@@ -29,7 +29,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add('js');t
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={head.ogType ?? 'website'} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={head.title} />
     <meta property="og:description" content={head.description} />
@@ -39,6 +39,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add('js');t
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={head.ogImageAlt} />
     <meta property="og:locale" content={ogLocale} />
+    {head.feed && <link rel="alternate" type="application/rss+xml" title={head.feed.title} href={head.feed.href} />}
     <meta name="twitter:card" content="summary_large_image" />
     <script is:inline set:html={boot}></script>
     {head.jsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}

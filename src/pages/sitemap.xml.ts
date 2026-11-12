@@ -6,7 +6,7 @@ export function GET() {
   const urls = allPages().flatMap((page) =>
     LOCALES.map((l) => {
       const alts = alternatesFor(page).map((a) => `    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}" />`).join('\n');
-      const priority = page.kind === 'home' ? '1.0' : page.kind === 'service' || page.kind === 'book' ? '0.9' : '0.7';
+      const priority = page.kind === 'home' ? '1.0' : page.kind === 'service' || page.kind === 'book' ? '0.9' : page.kind === 'guide' || page.kind === 'guideIndex' ? '0.8' : '0.7';
       return `  <url>\n    <loc>${esc(urlFor(page, l))}</loc>\n    <priority>${priority}</priority>\n${alts}\n  </url>`;
     }),
   );

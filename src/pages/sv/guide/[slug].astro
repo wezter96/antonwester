@@ -1,0 +1,13 @@
+---
+import GuidePage from '../../../templates/GuidePage.astro';
+import { guidePages } from '../../../content/guides';
+import type { GuideId } from '../../../content/routes';
+
+export function getStaticPaths() {
+  return guidePages('sv').map(({ slug, guide }) => ({ params: { slug }, props: { id: guide.id } }));
+}
+
+const { id } = Astro.props as { id: GuideId };
+---
+
+<GuidePage id={id} locale="sv" />

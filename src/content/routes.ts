@@ -9,6 +9,9 @@ export type ServiceId = (typeof SERVICE_IDS)[number];
 export const CASE_IDS = ['openaudit', 'sokhem', 'wez', 'lingo'] as const;
 export type CaseId = (typeof CASE_IDS)[number];
 
+export const GUIDE_IDS = ['mcp-server', 'ai-agents', 'rag', 'local-ai', 'ai-automation', 'ai-evaluation'] as const;
+export type GuideId = (typeof GUIDE_IDS)[number];
+
 export const CITY_IDS = [
   'stenungsund', 'ale', 'kungalv', 'partille', 'trollhattan', 'kungsbacka', 'boras', 'varberg',
 ] as const;
@@ -20,8 +23,10 @@ export type PageRef =
   | { kind: 'privacy' }
   | { kind: 'about' }
   | { kind: 'prices' }
+  | { kind: 'guideIndex' }
   | { kind: 'service'; id: ServiceId }
   | { kind: 'case'; id: CaseId }
+  | { kind: 'guide'; id: GuideId }
   | { kind: 'city'; id: CityId };
 
 export type SlugPage = Extract<PageRef, { kind: 'service' | 'city' }>;
@@ -33,6 +38,15 @@ export const SERVICE_SLUGS: Record<ServiceId, Record<Locale, string>> = {
   automation: { sv: 'ai-automation', en: 'ai-automation' },
   operations: { sv: 'drift-och-forvaltning', en: 'hosting-and-maintenance' },
   cto: { sv: 'fractional-cto', en: 'fractional-cto' },
+};
+
+export const GUIDE_SLUGS: Record<GuideId, Record<Locale, string>> = {
+  'mcp-server': { sv: 'bygg-en-mcp-server', en: 'build-an-mcp-server' },
+  'ai-agents': { sv: 'ai-agenter-som-fungerar', en: 'ai-agents-that-work' },
+  rag: { sv: 'ai-som-svarar-ur-dokument', en: 'ai-answers-from-documents' },
+  'local-ai': { sv: 'lokala-ai-modeller', en: 'local-ai-models' },
+  'ai-automation': { sv: 'automatisera-rutiner-med-ai', en: 'automate-routine-work-with-ai' },
+  'ai-evaluation': { sv: 'testa-ai-innan-produktion', en: 'test-ai-before-production' },
 };
 
 export function pathFor(page: PageRef, locale: Locale): string {
@@ -47,10 +61,14 @@ export function pathFor(page: PageRef, locale: Locale): string {
       return locale === 'sv' ? '/sv/om/' : '/en/about/';
     case 'prices':
       return locale === 'sv' ? '/sv/priser/' : '/en/prices/';
+    case 'guideIndex':
+      return locale === 'sv' ? '/sv/guide/' : '/en/guide/';
     case 'service':
       return `/${locale}/${SERVICE_SLUGS[page.id][locale]}/`;
     case 'case':
       return `/${locale}/case/${page.id}/`;
+    case 'guide':
+      return `/${locale}/guide/${GUIDE_SLUGS[page.id][locale]}/`;
     case 'city':
       return `/${locale}/${page.id}/`;
   }
@@ -80,8 +98,10 @@ export function allPages(): PageRef[] {
     { kind: 'privacy' },
     { kind: 'about' },
     { kind: 'prices' },
+    { kind: 'guideIndex' },
     ...SERVICE_IDS.map((id): PageRef => ({ kind: 'service', id })),
     ...CASE_IDS.map((id): PageRef => ({ kind: 'case', id })),
+    ...GUIDE_IDS.map((id): PageRef => ({ kind: 'guide', id })),
     ...CITY_IDS.map((id): PageRef => ({ kind: 'city', id })),
   ];
 }

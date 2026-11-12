@@ -20,6 +20,12 @@ Swedish routes:
 - `/sv/kungalv/`
 - `/sv/partille/`
 
+Guides:
+
+- `/sv/guide/` and `/en/guide/`
+- `/sv/guide/<slug>/` and `/en/guide/<slug>/`
+- RSS at `/sv/guide/rss.xml` and `/en/guide/rss.xml`
+
 ## Commands
 
 - `npm run dev` starts the Astro dev server.

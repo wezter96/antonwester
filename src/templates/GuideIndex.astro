@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import { guides, guideUi } from '../content/guides';
+import { GUIDE_IDS, pathFor, type Locale, type PageRef } from '../content/routes';
+import { headForGuides } from '../lib/seo';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = guideUi[locale];
+const page: PageRef = { kind: 'guideIndex' };
+const date = new Intl.DateTimeFormat(locale === 'sv' ? 'sv-SE' : 'en-GB', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+const list = GUIDE_IDS.map((id) => guides[id][locale]).sort((a, b) => b.published.localeCompare(a.published));
+---
+
+<Base head={headForGuides(locale)}>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} h1={t.indexTitle} intro={t.indexIntro} book={false} />
+    <section class="guides" data-ground="fog">
+      <div class="grid"><p class="eyebrow">{t.allGuides}</p></div>
+      <ol class="list">
+        {list.map((g, i) => (
+          <li>
+            <article class="item">
+              <p class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
+              <div class="txt">
+                <h2 class="sub"><a href={pathFor({ kind: 'guide', id: g.id }, locale)}>{g.h1}</a></h2>
+                <p class="intro">{g.intro}</p>
+              </div>
+              <p class="meta">
+                <span>{g.readingMinutes} {t.minRead}</span>
+                <time datetime={g.published}>{date.format(new Date(`${g.published}T12:00:00Z`))}</time>
+              </p>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>
+
+<style>
+  .guides { padding: var(--section) var(--margin); }
+  .eyebrow { grid-column: 1 / -1; margin-bottom: 20px; color: var(--soft); font-weight: 600; }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--rule); }
+  .item {
+    display: grid; grid-template-columns: 4rem minmax(0, 1fr) 9rem; gap: var(--gutter);
+    padding: clamp(24px, 3.4vw, 44px) 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+    align-items: start;
+  }
+  .num { color: var(--soft); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .txt h2 { max-width: 28ch; }
+  .txt h2 a { text-decoration: none; }
+  .txt h2 a:hover { text-decoration: underline; text-underline-offset: .12em; }
+  .intro { margin-top: 12px; max-width: 62ch; color: var(--soft); }
+  .meta { display: grid; gap: 6px; justify-items: end; color: var(--soft); font-size: .875rem; text-align: right; }
+  @media (max-width: 760px) {
+    .item { grid-template-columns: 3rem minmax(0, 1fr); }
+    .meta { grid-column: 2; justify-items: start; text-align: left; }
+  }
+</style>

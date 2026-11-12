@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import { guides, guideUi } from '../content/guides';
+import { pathFor, type GuideId, type Locale, type PageRef } from '../content/routes';
+import { services } from '../content/services';
+import { headForGuide } from '../lib/seo';
+
+interface Props { id: GuideId; locale: Locale }
+const { id, locale } = Astro.props;
+const g = guides[id][locale];
+const t = guideUi[locale];
+const page: PageRef = { kind: 'guide', id };
+const date = new Intl.DateTimeFormat(locale === 'sv' ? 'sv-SE' : 'en-GB', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+const related = g.relatedGuides.map((guideId) => guides[guideId][locale]);
+const sectionId = (i: number) => `section-${i + 1}`;
+---
+
+<Base head={headForGuide(id, locale)}>
+  <Nav locale={locale} page={page} />
+  <main id="main">
+    <PageHero locale={locale} h1={g.h1} promise={g.promise} intro={g.intro} book={false} />
+    <section class="article" data-ground="fog">
+      <div class="grid">
+        <aside class="side">
+          <p class="meta">{t.by}</p>
+          <p class="meta"><span>{t.published}</span> <time datetime={g.published}>{date.format(new Date(`${g.published}T12:00:00Z`))}</time></p>
+          {g.updated && (
+            <p class="meta"><span>{t.updated}</span> <time datetime={g.updated}>{date.format(new Date(`${g.updated}T12:00:00Z`))}</time></p>
+          )}
+          <p class="meta">{g.readingMinutes} {t.minRead}</p>
+          <nav class="toc" aria-label={t.contents}>
+            <p class="label">{t.contents}</p>
+            <ol>
+              {g.sections.map((section, i) => (
+                <li><a href={`#${sectionId(i)}`}>{section.heading}</a></li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+
+        <div class="body">
+          {g.sections.map((section, i) => (
+            <section id={sectionId(i)} class="section">
+              <h2 class="sub">{section.heading}</h2>
+              {section.paragraphs.map((p) => <p>{p}</p>)}
+              {section.list && <ul>{section.list.map((item) => <li>{item}</li>)}</ul>}
+              {section.steps && <ol class="steps">{section.steps.map((step) => <li>{step}</li>)}</ol>}
+              {section.code && (
+                <figure class="code">
+                  <figcaption>{section.code.title ?? t.code}</figcaption>
+                  <pre><code>{section.code.code}</code></pre>
+                </figure>
+              )}
+            </section>
+          ))}
+
+          <div class="services">
+            <p class="label">{t.relatedServices}</p>
+            <p>{g.relatedServices.map((serviceId) => (
+              <a class="lnk" href={pathFor({ kind: 'service', id: serviceId }, locale)}>{services[serviceId][locale].name}</a>
+            ))}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="more" data-ground="fog2">
+      <div class="grid"><h2 class="sub">{t.related}</h2></div>
+      <div class="related">
+        {related.map((next) => (
+          <a class="card" href={pathFor({ kind: 'guide', id: next.id }, locale)}>
+            <span class="card-meta">{next.readingMinutes} {t.minRead}</span>
+            <span class="card-title">{next.h1}</span>
+            <span class="card-intro">{next.promise}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <Faq id="faq" heading={t.faq} items={g.faq} ground="fog" />
+    <Contact locale={locale} />
+  </main>
+  <Footer locale={locale} page={page} />
+</Base>
+
+<script>
+  import '../scripts/motion';
+</script>
+
+<style>
+  .article { padding: var(--section) var(--margin); }
+  .side { grid-column: 1 / 4; align-self: start; display: grid; gap: 4px; position: sticky; top: 112px; }
+  .meta { color: var(--soft); font-size: .875rem; }
+  .meta span { color: var(--fg); font-weight: 600; }
+  .toc { margin-top: 28px; border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); padding-top: 16px; }
+  .label { color: var(--soft); font-size: .8125rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .toc ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; font-size: .9375rem; line-height: 1.3; }
+  .toc a { color: var(--soft); text-decoration: none; }
+  .toc a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: .15em; }
+  .body { grid-column: 4 / 11; max-width: 68ch; }
+  .section + .section { margin-top: clamp(36px, 4vw, 56px); }
+  .section h2 { margin-bottom: 18px; text-wrap: balance; }
+  .section p, .section li { font-size: var(--step-body); line-height: 1.55; }
+  .section p + p { margin-top: 1em; }
+  .section ul, .section ol { margin: 1.2em 0 0; padding-left: 1.25em; display: grid; gap: .55em; }
+  .steps { list-style: none; padding: 0; counter-reset: step; gap: 12px; }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 1.5em 1fr; gap: 12px; align-items: baseline; }
+  .steps li::before { content: counter(step); font-weight: 800; font-variant-numeric: tabular-nums; }
+  .code { margin: 1.5em 0 0; background: var(--ink); color: var(--fog); border: 1px solid color-mix(in srgb, var(--fog) 18%, transparent); }
+  .code figcaption { padding: 10px 16px; border-bottom: 1px solid color-mix(in srgb, var(--fog) 18%, transparent); color: var(--muted-ink); font-size: .8125rem; }
+  .code pre { margin: 0; padding: 18px 16px; overflow-x: auto; }
+  .code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8125rem; line-height: 1.6; white-space: pre; }
+  .services { margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); padding-top: 20px; }
+  .services p:last-child { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
+  .more { padding: var(--section) var(--margin); }
+  .more h2 { grid-column: 1 / -1; margin-bottom: clamp(24px, 3vw, 40px); }
+  .related { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
+  .card { display: grid; gap: 10px; padding: clamp(20px, 2.4vw, 28px); background: var(--gs); text-decoration: none; align-content: start; }
+  .card:hover { outline: 1px solid var(--fg); outline-offset: -1px; }
+  .card-meta { color: var(--soft); font-size: .8125rem; }
+  .card-title { font-size: var(--step-lead); font-weight: 700; line-height: 1.18; text-wrap: balance; }
+  .card-intro { color: var(--soft); }
+  @media (max-width: 900px) {
+    .side, .body { grid-column: 1 / -1; }
+    .side { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .toc { grid-column: 1 / -1; }
+    .related { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .side { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,6 +1,7 @@
 import { cases } from '../content/cases';
+import { guides } from '../content/guides';
 import { home } from '../content/home';
-import { CASE_IDS, SERVICE_IDS, urlFor } from '../content/routes';
+import { CASE_IDS, GUIDE_IDS, SERVICE_IDS, urlFor } from '../content/routes';
 import { services } from '../content/services';
 import { site } from '../content/site';
 
@@ -15,6 +16,12 @@ export function GET() {
     '## Services',
     '',
     ...SERVICE_IDS.map((id) => `- [${services[id].sv.name}](${urlFor({ kind: 'service', id }, 'sv')}) / [${services[id].en.name}](${urlFor({ kind: 'service', id }, 'en')}): ${services[id].en.seo.description}`),
+    '',
+    '## Guides',
+    '',
+    ...GUIDE_IDS.map((id) => `- [${guides[id].en.h1}](${urlFor({ kind: 'guide', id }, 'en')}) / [${guides[id].sv.h1}](${urlFor({ kind: 'guide', id }, 'sv')}): ${guides[id].en.seo.description}`),
+    '',
+    `- [All guides](${urlFor({ kind: 'guideIndex' }, 'en')}) / [Alla guider](${urlFor({ kind: 'guideIndex' }, 'sv')})`,
     '',
     '## Own products',
     '',

@@ -7,12 +7,14 @@ const { locale, page, standalone = false } = Astro.props;
 const t = ui[locale];
 const home = pathFor({ kind: 'home' }, locale);
 const prefix = page.kind === 'home' && !standalone ? '' : home;
-const hrefFor = (id: string) => (id === 'contact' && !standalone ? '#contact' : `${prefix}#${id}`);
+const hrefFor = (id: string) =>
+  id === 'guides' ? pathFor({ kind: 'guideIndex' }, locale) : id === 'contact' && !standalone ? '#contact' : `${prefix}#${id}`;
 const other = otherLocale(locale);
 const links = [
   ['work', t.nav.work],
   ['approach', t.nav.approach],
   ['about', t.nav.about],
+  ['guides', t.nav.guides],
   ['contact', t.nav.contact],
 ] as const;
 ---

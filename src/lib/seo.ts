@@ -1,11 +1,12 @@
 import { cases } from '../content/cases';
 import { cities } from '../content/cities';
+import { guides, guideUi } from '../content/guides';
 import { home } from '../content/home';
 import { prices } from '../content/prices';
 import { privacy } from '../content/privacy';
 import {
-  CITY_IDS, SITE_URL, SERVICE_IDS, alternatesFor, ogPath, urlFor,
-  type Alternate, type CaseId, type CityId, type Locale, type PageRef, type ServiceId,
+  CITY_IDS, GUIDE_IDS, SITE_URL, SERVICE_IDS, alternatesFor, ogPath, urlFor,
+  type Alternate, type CaseId, type CityId, type GuideId, type Locale, type PageRef, type ServiceId,
 } from '../content/routes';
 import { services } from '../content/services';
 import { site } from '../content/site';
@@ -23,6 +24,8 @@ export interface HeadProps {
   ogImageAlt: string;
   jsonLd: Ld[];
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  feed?: { href: string; title: string };
 }
 export interface Crumb { name: string; url: string }
 
@@ -88,6 +91,15 @@ export const faqLd = (url: string, faqs: Faq[]): Ld => ({
   mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 });
 
+export const blogPostingLd = (o: {
+  url: string; name: string; description: string; locale: Locale; image: string; published: string; updated: string;
+}): Ld => ({
+  '@context': CTX, '@type': 'BlogPosting', '@id': `${o.url}#article`, headline: o.name, description: o.description,
+  datePublished: o.published, dateModified: o.updated, inLanguage: lang(o.locale), image: o.image,
+  author: { '@id': PERSON }, publisher: { '@id': ORG }, mainEntityOfPage: { '@id': `${o.url}#webpage` },
+  isPartOf: { '@type': 'Blog', '@id': `${SITE_URL}${o.locale === 'sv' ? '/sv/guide/' : '/en/guide/'}#guides` },
+});
+
 export const softwareLd = (o: { url: string; name: string; description: string; schemaType: string; applicationCategory: string; productUrl: string | null; license: string | null }): Ld => ({
   '@context': CTX, '@type': o.schemaType, '@id': `${o.url}#product`, name: o.name, description: o.description,
   applicationCategory: o.applicationCategory, operatingSystem: 'Web', author: { '@id': PERSON },
@@ -102,6 +114,41 @@ function base(page: PageRef, l: Locale, title: string, description: string, crum
     title, description, locale: l, canonical: url, alternates: alternatesFor(page), ogImage: image, ogImageAlt: title,
     jsonLd: [organizationLd(), personLd(l), websiteLd(), webPageLd({ url, title, description, locale: l, image }), breadcrumbLd(url, crumbs), ...extra],
   };
+}
+
+export function headForGuides(l: Locale): HeadProps {
+  const page: PageRef = { kind: 'guideIndex' };
+  const url = urlFor(page, l);
+  const c = guideUi[l];
+  const head = base(page, l, c.indexSeo.title, c.indexSeo.description, [homeCrumb(l), { name: c.indexTitle, url }], [{
+    '@context': CTX, '@type': 'CollectionPage', '@id': `${url}#guides`, url, name: c.indexTitle, description: c.indexSeo.description,
+    inLanguage: lang(l), isPartOf: { '@id': WEBSITE },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: GUIDE_IDS.map((id, i) => ({
+        '@type': 'ListItem', position: i + 1, url: urlFor({ kind: 'guide', id }, l), name: guides[id][l].h1,
+      })),
+    },
+  }]);
+  return { ...head, feed: { href: `${url}rss.xml`, title: `${c.indexTitle} – RSS` } };
+}
+
+export function headForGuide(id: GuideId, l: Locale): HeadProps {
+  const page: PageRef = { kind: 'guide', id };
+  const url = urlFor(page, l);
+  const g = guides[id][l];
+  const c = guideUi[l];
+  const indexUrl = urlFor({ kind: 'guideIndex' }, l);
+  const head = base(page, l, g.seo.title, g.seo.description, [
+    homeCrumb(l), { name: c.indexTitle, url: indexUrl }, { name: g.h1, url },
+  ], [
+    blogPostingLd({
+      url, name: g.h1, description: g.seo.description, locale: l, image: `${SITE_URL}${ogPath(page, l)}`,
+      published: g.published, updated: g.updated ?? g.published,
+    }),
+    faqLd(url, g.faq),
+  ]);
+  return { ...head, ogType: 'article', feed: { href: `${indexUrl}rss.xml`, title: `${c.indexTitle} – RSS` } };
 }
 const homeCrumb = (l: Locale): Crumb => ({ name: l === 'sv' ? 'Start' : 'Home', url: urlFor({ kind: 'home' }, l) });
 

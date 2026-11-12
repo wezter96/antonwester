@@ -1,10 +1,48 @@
-import type { CaseId, CityId, Locale, ServiceId } from './routes';
+import type { CaseId, CityId, GuideId, Locale, ServiceId } from './routes';
 
 export type L10n<T> = Record<Locale, T>;
 export interface Seo { title: string; description: string }
 export interface Faq { q: string; a: string }
 export interface Fact { value: string; label: string }
 export interface Section { heading: string; paragraphs: string[]; list?: string[] }
+export interface GuideCode { title?: string; language: string; code: string }
+export interface GuideSection {
+  heading: string;
+  paragraphs: string[];
+  list?: string[];
+  steps?: string[];
+  code?: GuideCode;
+}
+export interface GuideContent {
+  id: GuideId;
+  seo: Seo;
+  h1: string;
+  promise: string;
+  intro: string;
+  published: string;
+  updated?: string;
+  readingMinutes: number;
+  sections: GuideSection[];
+  faq: Faq[];
+  relatedServices: ServiceId[];
+  relatedGuides: GuideId[];
+}
+export interface GuideUi {
+  indexTitle: string;
+  indexIntro: string;
+  indexSeo: Seo;
+  by: string;
+  published: string;
+  updated: string;
+  minRead: string;
+  contents: string;
+  related: string;
+  relatedServices: string;
+  allGuides: string;
+  backToGuides: string;
+  faq: string;
+  code: string;
+}
 export type Mode = 'you' | 'agent';
 export interface ScanStep { label: string; mode: Mode; share: number }
 export interface ScanFunction { id: string; name: string; steps: ScanStep[] }
@@ -88,7 +126,7 @@ export interface HomeContent {
 export interface Ui {
   skip: string;
   navLabel: string;
-  nav: { work: string; approach: string; about: string; contact: string };
+  nav: { work: string; approach: string; about: string; guides: string; contact: string };
   switchLabel: string;
   book: string;
   bookShort: string;
@@ -157,7 +195,7 @@ export interface Ui {
     bookedBody: string;
   };
   about: { seo: { title: string; description: string }; h1: string; intro: string };
-  footer: { org: string; services: string; cities: string; cv: string; privacy: string; about: string; prices: string };
+  footer: { org: string; services: string; cities: string; guides: string; cv: string; privacy: string; about: string; prices: string };
   caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string };
   serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string; related: string };
   cityLabels: { nearby: string; delivery: string; services: string; neighbours: string; useCases: string; products: string };
