@@ -138,6 +138,74 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       license: 'MIT',
     },
   },
+  webnu: {
+    sv: {
+      id: 'webnu',
+      name: 'WebNu',
+      tagline: 'hemsidor från en mjukvarufabrik',
+      h1: 'WebNu: hemsidor från en mjukvarufabrik',
+      seo: {
+        title: 'WebNu: hemsidor för småföretag | Anton Wester',
+        description: 'WebNu bygger hemsidor åt småföretag, och ni ser sidan innan ni betalar. Byggt av Anton Wester i en egen mjukvarufabrik där AI-agenter skriver koden.',
+      },
+      url: 'https://webnu.se',
+      privateLabel: null,
+      facts: [
+        { value: '495 kr', label: 'i månaden, allt ingår' },
+        { value: '100', label: 'i Lighthouse, i egna tester' },
+        { value: '0', label: 'kakor och spårare' },
+      ],
+      what: [
+        'WebNu bygger hemsidor åt småföretag, som trafikskolor, mäklare och hantverkare. Ni ser er nya sida innan ni betalar. Gillar ni den inte kostar den ingenting.',
+        'Text, bilder och färger ändrar ni själva i en studio. Till sidan går det att lägga AI-chatt, bokning, betalning och en blogg som skrivs åt er.',
+      ],
+      how: [
+        'WebNu byggs i min mjukvarufabrik: ett kodförråd med 65 domäner där AI-agenter skriver mycket av koden. Varje ändring går igenom automatiska kontroller innan den når produktion, och vart och ett av de 282 kraven är kopplat till testet som visar att det håller.',
+        'Studion är skriven i React med Effect och Postgres i botten. Sidor sparas som versioner, och bara den version som någon har granskat kan publiceras. Agenter får skriva utkast men aldrig publicera.',
+      ],
+      stack: ['Bun', 'Effect', 'TypeScript', 'React', 'TanStack Start', 'Postgres', 'MCP', 'Docker'],
+      proves: [
+        'Med en egen fabrik kan en person bygga och driva hemsidor åt många kunder. Samma regler och kontroller tar jag med in i kunders projekt.',
+      ],
+      service: 'development',
+      schemaType: 'WebApplication',
+      applicationCategory: 'BusinessApplication',
+      license: null,
+    },
+    en: {
+      id: 'webnu',
+      name: 'WebNu',
+      tagline: 'websites from a software factory',
+      h1: 'WebNu: websites from a software factory',
+      seo: {
+        title: 'WebNu: websites for small businesses | Anton Wester',
+        description: 'WebNu builds websites for small businesses, and you see the site before you pay. Built by Anton Wester in his own software factory, where AI agents write the code.',
+      },
+      url: 'https://webnu.se',
+      privateLabel: null,
+      facts: [
+        { value: 'SEK 495', label: 'a month, everything included' },
+        { value: '100', label: 'in Lighthouse, in our own tests' },
+        { value: '0', label: 'cookies and trackers' },
+      ],
+      what: [
+        'WebNu builds websites for small businesses such as driving schools, estate agents and tradespeople. You see your new site before you pay. If you don’t like it, it costs nothing.',
+        'You change text, images and colours yourself in a studio. The site can also get an AI chat, booking, payments and a blog that’s written for you.',
+      ],
+      how: [
+        'WebNu is built in my software factory: one repo with 65 domains, where AI agents write much of the code. Every change goes through automatic checks before it reaches production, and each of the 282 requirements is linked to the test that shows it holds.',
+        'The studio is written in React, with Effect and Postgres underneath. Pages are saved as versions, and only a version someone has reviewed can be published. Agents may write drafts but never publish.',
+      ],
+      stack: ['Bun', 'Effect', 'TypeScript', 'React', 'TanStack Start', 'Postgres', 'MCP', 'Docker'],
+      proves: [
+        'With a factory of my own, one person can build and run websites for many clients. I bring the same rules and checks into client projects.',
+      ],
+      service: 'development',
+      schemaType: 'WebApplication',
+      applicationCategory: 'BusinessApplication',
+      license: null,
+    },
+  },
   wez: {
     sv: {
       id: 'wez',

@@ -51,7 +51,7 @@ export const personLd = (l: Locale): Ld => ({
     'AI agents', 'LLM integration', 'Local LLMs', 'Retrieval-augmented generation', 'Model fine-tuning', 'Process automation', 'Workflow automation', 'Model Context Protocol', 'TypeScript', 'React', 'React Native',
     'Full-stack web development', 'Mobile app development', 'Software architecture', 'DevOps', 'Test automation', 'Search engine optimization',
   ],
-  sameAs: [site.linkedin, site.github, 'https://openaudit.se', 'https://sokhem.se'],
+  sameAs: [site.linkedin, site.github, 'https://openaudit.se', 'https://sokhem.se', 'https://webnu.se'],
 });
 
 export const websiteLd = (): Ld => ({

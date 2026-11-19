@@ -18,6 +18,11 @@ const targets: { id: string; url: string; wait: number; storage?: Record<string,
     },
   },
   {
+    id: 'webnu',
+    url: 'https://webnu.se',
+    wait: 2500,
+  },
+  {
     id: 'wez',
     url: process.env.WEZ_URL ?? 'http://localhost:5273',
     wait: 4000,
