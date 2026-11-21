@@ -1,225 +1,151 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Random Stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[letterpaper,11pt]{article}
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
+% ATS rules for this file: one column, A4, no icons, no photo, no tables for text,
+% standard section names, MM/YYYY dates. Check with: pdftotext -layout anton-wester-resume.pdf -
+\documentclass[a4paper,11pt]{article}
+\usepackage[a4paper,margin=0.6in,top=0.45in,bottom=0.45in]{geometry}
+\usepackage{fontspec}
 \usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{tikz}
-\usepackage{graphicx}
 \usepackage{titlesec}
-\usepackage{marvosym}
-\definecolor{navyBlue}{RGB}{0,0,128}
-\usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
 \usepackage[english]{babel}
-\usepackage{tabularx}
-\usepackage{fontawesome5}
-\usepackage{multicol}
-\setlength{\multicolsep}{-3.0pt}
-\setlength{\columnsep}{-1pt}
-\ifdefined\pdfgentounicode\input{glyphtounicode}\fi
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.6in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1.19in}
-\addtolength{\topmargin}{-.8in}
-\addtolength{\textheight}{1.7in}
+\definecolor{accent}{RGB}{12,30,34}
+\pagestyle{empty}
 \urlstyle{same}
-\raggedbottom
 \raggedright
+\setlength{\parindent}{0pt}
 \setlength{\tabcolsep}{0in}
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-13pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{0pt}]
-% Ensure that generate pdf is machine readable/ATS parsable
-\ifdefined\pdfgentounicode\pdfgentounicode=1\fi
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Commands  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-4pt}}
-  }
-}
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-3pt}\item
-    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \textbf{\small #2} \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-\newcommand{\resumeSubheadingContinue}[2]{
-  \vspace{-3pt}
-    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-\newcommand{\resumeProjectHeading}[2]{
-  \vspace{-3pt}\item
-    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & {\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{0pt}}
-\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=0pt, topsep=2pt]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+\titleformat{\section}{\vspace{-4pt}\large\bfseries\color{accent}}{}{0em}{}[\titlerule\vspace{-2pt}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Heading  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\role}[4]{%
+  \vspace{4pt}
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textbf{\small #2} \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-2pt}}
+\newcommand{\project}[2]{%
+  \vspace{4pt}
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \small #2 \\
+  \end{tabular*}\vspace{-2pt}}
+\newenvironment{points}{\begin{itemize}[leftmargin=0.18in, itemsep=1pt, topsep=2pt, parsep=0pt]\small}{\end{itemize}}
+\newcommand{\tools}[1]{{\small\textit{Tools: #1}}\par}
+
 \begin{document}
 
 \begin{center}
-\begin{tabular}{ c c }
-    % PROFILE PICTURE (skipped if the file is missing so the document still builds)
-    \IfFileExists{profile_pic_round.png}{%
-      \raisebox{-0.2\height}{\includegraphics[width=0.15\linewidth]{profile_pic_round.png}}%
-    }{}
-&
-    % NAME
-    \begin{tabular}[b]{@{}l@{}}
-        {\Huge\scshape \color{navyBlue}Anton Wester} \\
-        \hspace{2pt}{AI Engineer and Tech Lead}  \\
-        % SUBHEADING
-        \small
-        % EMAIL and GITHUB
-        \href{mailto:contact@antonwester.se}{\raisebox{-0.2\height}\faEnvelope\  \underline{contact@antonwester.se}} ~
-        \href{https://github.com/wezter96}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/wezter96}} \\
-        % LINKEDIN and WEBSITE
-        \href{https://www.linkedin.com/in/anton-wester-93a26011b/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/anton-wester-93a26011b}} ~
-        \href{https://antonwester.se}{\raisebox{-0.2\height}\faGlobe\ \underline{antonwester.se}} \\
-    \end{tabular}
-\end{tabular}
+  {\Huge\bfseries\color{accent} Anton Wester}\par\vspace{3pt}
+  {\large AI Engineer | Tech Lead | AI Consultant | Fractional CTO}\par\vspace{3pt}
+  \small Gothenburg, Sweden  |  \href{mailto:contact@antonwester.se}{contact@antonwester.se}  |  \href{https://antonwester.se}{antonwester.se}  |  \href{https://www.linkedin.com/in/anton-wester/}{linkedin.com/in/anton-wester}  |  \href{https://github.com/wezter96}{github.com/wezter96}
 \end{center}
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Introduction  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-20pt}
-\section {\color{navyBlue}About me}
-AI Engineer and Tech Lead with 7+ years in React and TypeScript across web, iOS and Android. Builds AI into real products, from idea to production: LLM features, agents, MCP automation of work and processes, and fine-tuned models. Leads frontend architecture and migrations across teams: sets the technical direction, builds the shared platform and design system, and brings the developers along. Most recently led a platform transformation at Evinova (AstraZeneca). Star helper in the world's largest React chat community.
+\section{Summary}
+\small
+AI Engineer and Tech Lead with 7+ years in software development. I help companies put AI to work: I find where it saves the most time, build the solution, and keep it running in production. I build LLM features, AI agents, RAG and MCP servers that connect language models to the tools, data and business systems a company already has, with secure authentication, GDPR and monitoring built in.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Experience  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\color{navyBlue}Experience}
-    \resumeSubHeadingListStart
+I have led architecture and a multi-team platform transformation of a regulated med tech product at Evinova (AstraZeneca), and I founded, built and run my own AI products end to end, from architecture and hosting to payments and operations. Available for AI consulting, AI engineering, tech lead and fractional CTO engagements in Sweden and remote.
 
-        % COMPANY 1
-        \resumeSubheading
-        {Anton Wester AB - Independent Software Consultant}{Gothenburg}
-            {Full-Stack Engineer, Med Tech Platform @Evinova (AstraZeneca)}{10/2024 - Present}
-            \resumeItemListStart
-                \resumeItem{Led the transformation of a regulated med tech product for web, iOS and Android: re-architected web, mobile and server, and migrated step by step from legacy systems into one shared TypeScript monorepo (React, Next.js, React Native/Expo, Node.js, Nx/Turborepo).}
-                \resumeItem{Set the technical direction for several teams and guided them onto shared ways of working.}
-                \resumeItem{Built the shared design system and component library with Storybook.}
-                \resumeItem{Set up the test automation foundation (team velocity +20\%), cut CI times by 60\% and mobile bundle size by 20\%.}
-            \resumeItemListEnd
+\section{Selected Results}
+\begin{points}
+  \item Cut manual review time per document by 80\% with LLM features for legal work (translation, summaries, course evaluation).
+  \item Led the re-architecture of a regulated med tech platform (Evinova, AstraZeneca) into one TypeScript monorepo; cut CI times by 60\%, mobile bundle size by 20\% and raised team velocity by 20\%.
+  \item Built and run SökHem alone: an AI-native property platform with 130,000+ homes for sale, 2.5 million matches delivered and 750+ area guides.
+  \item Built Wez, a team of 6 AI agents with human approval for risky actions, used daily for 1,300+ code changes across desktop, mobile and terminal apps.
+  \item Built an Expo project template at We App that saved about 200 hours on each new project.
+\end{points}
 
-            % POSITION 2
-            \resumeSubheadingContinue
-            {Full-Stack Developer, AI Products for Lawyers}{03/2026 - Present}
-            \resumeItemListStart
-                \resumeItem{Designed and built LLM features for daily legal workflows such as document translation, legal text summaries and chat-based course evaluation. Cut manual review time per document by 80\%.}
-            \resumeItemListEnd
+\section{Core Competencies}
+\small
+\textbf{AI and LLM:} Generative AI, Large Language Models (LLM), AI agents and agentic workflows, Model Context Protocol (MCP) servers and clients, Retrieval-Augmented Generation (RAG), prompt engineering, LLM evaluation, fine-tuning and benchmarking, local LLMs (Ollama) on own GPU hardware, voice AI and speech, AI automation.\par\vspace{2pt}
+\textbf{Leadership and strategy:} AI strategy and use-case assessment, technical leadership across teams, software architecture, technical roadmap, legacy migration and platform consolidation, build and operate from idea to production, developer experience, mentoring, stakeholder communication.\par\vspace{2pt}
+\textbf{Security and compliance:} OAuth 2.1 with PKCE, machine-to-machine (M2M) tokens, on-behalf-of delegation, least privilege, secrets management, zero-trust networking, data-leak guards, log redaction, GDPR.
 
-        % COMPANY 2
-        \resumeSubheading
-        {We App}{Gothenburg}
-            % POSITION 1
-            {Tech Lead - Cross Platform}{10/2022 - 10/2024}
-            \resumeItemListStart
-                \resumeItem{Led the cross-platform group and set the architecture and technical direction for its projects.}
-                \resumeItem{Architected and led the development of an all-in-one planning and productivity universal application for web and mobile, replacing and expanding an existing Android application.}
-                \resumeItem{Built an Expo template that standardized new projects, saving about 200 hours each. Still in use.}
-                \resumeItem{Built a smart digital home insurance app, from client and server architecture to self-hosted monitoring and A/B testing.}
-            \resumeItemListEnd
+\section{Professional Experience}
 
-            % POSITION 2
-            \resumeSubheadingContinue
-            {Software Engineer}{05/2021 - 10/2022}
-            \resumeItemListStart
-                \resumeItem{Delivered React and React Native projects, from responsive websites to mobile apps with chat and courses.}
-            \resumeItemListEnd
+\role{Founder, AI Consultant and AI Engineer}{06/2024 -- Present}{Anton Wester AB, Gothenburg}{Independent consulting}
+\begin{points}
+  \item Helps companies find where AI saves the most time, then builds, hosts and maintains the solution.
+  \item Designed and built LLM features for daily legal work (03/2026 -- present): document translation, summaries of legal text and chat-based course evaluation. Cut manual review time per document by 80\%.
+  \item Built WebNu, a website service for small businesses built in an own AI software factory: one repository with 65 domains where AI agents write much of the code, and each of the 282 requirements is linked to the test that proves it.
+\end{points}
+\tools{TypeScript, LLM APIs (Claude, OpenAI, Gemini), MCP, Effect, React, TanStack Start, PostgreSQL, Docker}
 
-        % COMPANY 3
-        \resumeSubheading
-        {Telia}{Gothenburg}
-            % POSITION 1
-            {Software Developer}{08/2019 - 05/2021}
-            \resumeItemListStart
-                \resumeItem{Cleared a 200-issue bug queue alongside sprint work, and took part in migrating the web client from Angular to Vue.}
-            \resumeItemListEnd
+\role{Full-Stack Engineer and Technical Lead, Med Tech Platform}{10/2024 -- Present}{Evinova (AstraZeneca), via Anton Wester AB}{Gothenburg}
+\begin{points}
+  \item Led the transformation of a regulated med tech product for web, iOS and Android: re-architected web, mobile and server, and migrated step by step from legacy systems into one shared TypeScript monorepo.
+  \item Set the technical direction for several teams and guided them onto shared ways of working.
+  \item Built the shared design system and component library with Storybook.
+  \item Set up the test automation foundation (team velocity +20\%), and cut CI times by 60\% and bundle size by 20\%.
+  \item Worked with machine-to-machine (M2M) tokens for authentication between systems.
+\end{points}
+\tools{TypeScript, React, Next.js, React Native, Expo, Node.js, Nx, Turborepo, Storybook, Playwright}
 
-    \resumeSubHeadingListEnd
+\role{Founder and AI Engineer, Wez}{09/2026 -- Present}{Own product: a team of AI agents with visible work and human approval}{Gothenburg}
+\begin{points}
+  \item Built an agent engine where 6 AI agents with roles (architect, designer, tester) work on real projects with local and cloud models; every step, changed file, cost and approval is visible.
+  \item Built an MCP client with OAuth sign-in for remote MCP servers (PKCE, protected-resource discovery, scopes, token refresh), so agents act with the signed-in user's own delegated, scoped token stored in the OS keychain.
+  \item Built an MCP server that lets other agents such as Claude Code hand work to the team; tools are scoped, and every tool call is validated before it runs.
+  \item Built guards that stop agents from sending credentials to the network, block cloud metadata endpoints, and always ask a person before payments, passwords or access grants.
+  \item Runs across a Mac, a mini PC and a GPU server joined over Tailscale, with the access policy kept as code.
+\end{points}
+\tools{TypeScript, Effect, Bun, React, SQLite, MCP, OAuth 2.1, Ollama, Claude, Tailscale}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PROJECTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\color{navyBlue}Projects}
-    \resumeSubHeadingListStart
+\role{Founder and Developer, SökHem}{04/2026 -- Present}{Own product: AI-native property matching platform, sokhem.se}{Gothenburg}
+\begin{points}
+  \item Founded, built and run the product alone, as the only technical owner: 130,000+ homes for sale, 2.5 million matches delivered and 750+ area guides.
+  \item Monorepo with SSR web (React 19, TanStack Start), API (Hono, oRPC, Better Auth), background workers (BullMQ) and an MCP server for AI assistants.
+  \item Self-hosted with Docker Compose, Traefik and Dokploy; metrics, logs and alerts with Prometheus, Grafana and OpenObserve; origin locked to Cloudflare, admin behind Cloudflare Tunnel and Access.
+  \item Secrets from Infisical with a read-only machine identity; personal data stored in Sweden under GDPR, with logs that redact passwords, tokens and e-mail addresses.
+  \item Integrations with external data sources and AI APIs, with per-user rate limits and backoff on upstream rate limits.
+\end{points}
+\tools{TypeScript, React, Hono, PostgreSQL, PostGIS, Redis, Stripe, Docker, Cloudflare, Infisical, Grafana}
 
-        % Project 1 -- own startup
-        \resumeProjectHeading
-        {S\"okHem - AI-native real estate platform - \href{https://sokhem.se/}{\raisebox{-0.2\height}\ \underline{sokhem.se}}}
-        % Date
-        {04/2026 - Present}
-        \resumeItemListStart
-            \resumeItem{Founded and solo-built a buyer-driven property matching platform: a monorepo with SSR web (React 19, TanStack Start), API (Hono, oRPC, Better Auth) and background workers (BullMQ).}
-            \resumeItem{Postgres/PostGIS, Redis and Stripe; self-hosted with Docker, Traefik and Dokploy, monitored with Grafana.}
-        \resumeItemListEnd
+\role{Tech Lead, Cross Platform}{10/2022 -- 10/2024}{We App}{Gothenburg}
+\begin{points}
+  \item Led the cross-platform group and set the architecture and technical direction for its projects.
+  \item Architected and led the development of an all-in-one planning and productivity app for web and mobile, replacing and expanding an existing Android app.
+  \item Built an Expo template that standardized new projects and saved about 200 hours on each. Still in use.
+  \item Built a smart home insurance app, from client and server architecture to self-hosted monitoring and A/B testing.
+\end{points}
+\tools{TypeScript, React, React Native, Expo, Node.js}
 
-        % Project 2 -- open source
-        \resumeProjectHeading
-        {OpenAudit - Open source audit tool - \href{https://openaudit.se/}{\raisebox{-0.2\height}\ \underline{openaudit.se}}}
-        % Date
-        {10/2026}
-        \resumeItemListStart
-            \resumeItem{MIT-licensed tool that audits code, sites, apps, containers and cloud in one scored report, from the terminal, CI or an AI agent over MCP. 37 built-in auditors and 52 wrapped open-source scanners.}
-        \resumeItemListEnd
+\role{Software Engineer}{05/2021 -- 10/2022}{We App}{Gothenburg}
+\begin{points}
+  \item Delivered React and React Native projects, from responsive websites to mobile apps with chat and courses.
+\end{points}
 
-        % Project 3
-        \resumeProjectHeading
-        {Lingo - \href{https://lingo.antonwester.se/}{\raisebox{-0.2\height}\ \underline{lingo.antonwester.se}}}
-        % Date
-        {03/2026}
-        \resumeItemListStart
-            \resumeItem{AI-powered full-stack platform that automates internationalization and translation management for software projects.}
-        \resumeItemListEnd
+\role{Software Developer}{08/2019 -- 05/2021}{Telia}{Gothenburg}
+\begin{points}
+  \item Cleared a 200-issue bug queue alongside sprint work; helped migrate the web client from Angular to Vue.
+\end{points}
 
+\section{Projects}
 
-    \resumeSubHeadingListEnd
+\project{OpenAudit -- open-source audit tool, openaudit.se}{10/2026}
+\begin{points}
+  \item MIT-licensed tool that audits code, sites, apps, containers and cloud in one scored report, from the terminal, CI or an AI agent over MCP (stdio and Streamable HTTP). 103 checks across 10 areas.
+\end{points}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Technical Skills  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\color{navyBlue}Technical Skills}
+\project{Lingo -- AI-native localization platform, lingo.antonwester.se}{03/2026}
+\begin{points}
+  \item AI fills in missing translations; self-hosted, with an SDK, API, CLI and MCP server for developers and AI agents.
+\end{points}
 
-    \vspace{-9pt}
-    \begin{itemize}[leftmargin=0in, label={}]
-    \small{\item{
-        % AI
-        \textbf{AI}{: LLM and AI service integration (Claude, OpenAI, Gemini), fine-tuning and training of models, local models on own GPU hardware, RAG with sources, voice agents and voice cloning, MCP servers and agents that automate work and processes, prompt evaluation, AI-assisted engineering.} \\
-        % LEADERSHIP
-        \textbf{Leadership}{: Technical direction across teams, frontend architecture, legacy migration and consolidation, design systems, shared ways of working.} \\
-        % LANGUAGES
-        \textbf{Languages}{: TypeScript, JavaScript, Java, Kotlin, Swift, Dart, C, SQL, CSS, HTML, GraphQL.} \\
-        % TECHNOLOGIES
-        \textbf{Technologies/Frameworks}{: React, Next.js, React Native, Expo, TanStack, Astro, Node.js, Bun, Hono, Vue, Angular, PostgreSQL, Redis.} \\
-        % TOOLS
-        \textbf{Developer Tools}{: Nx, Turborepo, Storybook, Playwright, Git, GitHub, Docker, Kubernetes, Azure, Cloudflare, Supabase.}
-    }}
-    \end{itemize}
+\section{Technical Skills}
+\small
+\textbf{AI:} Claude, OpenAI, Gemini, Ollama, MCP SDK, RAG, AI agents, fine-tuning, LLM evaluation, voice AI.\par\vspace{2pt}
+\textbf{Languages:} TypeScript, JavaScript, SQL, GraphQL, Java, Kotlin, Swift.\par\vspace{2pt}
+\textbf{Backend:} Node.js, Bun, Hono, oRPC, Effect, Better Auth, BullMQ, PostgreSQL, PostGIS, Redis, SQLite.\par\vspace{2pt}
+\textbf{Frontend and mobile:} React, Next.js, React Native, Expo, TanStack, Astro, Storybook.\par\vspace{2pt}
+\textbf{Cloud and DevOps:} Docker, Kubernetes, Traefik, Dokploy, Cloudflare (Workers, Tunnel, Access), Microsoft Azure, AWS, CI/CD, GitHub Actions, Nx, Turborepo, Playwright.\par\vspace{2pt}
+\textbf{Security and monitoring:} OAuth 2.1, Tailscale, Infisical, Prometheus, Grafana, OpenObserve.
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%  Education  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\color{navyBlue}Education}
-  \resumeSubHeadingListStart
+\section{Education}
+\role{Bachelor of Science in Computer Science and Engineering}{08/2016 -- 06/2019}{Chalmers University of Technology}{Gothenburg}
 
-    % MAIN INFORMATION
-    \resumeSubheading
-    {Chalmers University of Technology}{Gothenburg}
-    {Bachelor of Science in Computer Science and Engineering}{08/2016 - 06/2019}
-
-  \resumeSubHeadingListEnd
+\section{Languages and Community}
+\small \textbf{Languages:} Swedish (native), English (fluent).\par\vspace{2pt}
+\textbf{Community:} Ambassador for OpenSverige, Sweden's largest AI Discord community. Star helper in Reactiflux, the world's largest React chat community.
 
 \end{document}
