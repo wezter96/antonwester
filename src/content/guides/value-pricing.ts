@@ -9,9 +9,9 @@ export const valuePricing: L10n<GuideContent> = {
         'Därför tar jag betalt för vad en AI-lösning ger er och inte per timme. Så räknar vi värdet, så sätts priset och när modellen inte passar.',
     },
     h1: 'Värdebaserat pris: därför säljer jag inte timmar',
-    promise: 'Sparar jag er 100 kr och ni betalar 25 kr för det, har ni tjänat 75 kr.',
+    promise: 'Priset utgår från det värde lösningen skapar för er och ligger klart under det.',
     intro:
-      'Så ser jag på pris. Vi räknar först ut vad lösningen sparar eller tjänar åt er, och sedan sätter vi ett pris som är en mindre del av det. Ni vet vad ni får och vad det kostar innan vi börjar.',
+      'Innan vi börjar räknar vi tillsammans ut vad lösningen sparar eller tjänar åt er under ett år. Priset sätts som en mindre del av det värdet. Ger lösningen 100 000 kr och kostar 25 000 kr, får ni tillbaka fyra kronor för varje krona ni investerar.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
@@ -91,9 +91,9 @@ export const valuePricing: L10n<GuideContent> = {
         'Why I charge for what an AI solution does for you and not by the hour. How we work out the value, how the price is set and when the model doesn’t fit.',
     },
     h1: 'Value-based pricing: why I don’t sell hours',
-    promise: 'If I save you SEK 100 and you pay SEK 25 for it, you’re SEK 75 ahead.',
+    promise: 'The price starts from the value the solution creates for you and sits well below it.',
     intro:
-      'That’s how I look at price. First we work out what the solution saves or earns you, then we set a price that’s a smaller part of that. You know what you get and what it costs before we start.',
+      'Before we start, we work out together what the solution saves or earns you in a year. The price is set as a smaller share of that value. If the solution brings in SEK 100,000 and costs SEK 25,000, you get four kronor back for every krona you invest.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
