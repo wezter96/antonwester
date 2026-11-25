@@ -182,7 +182,7 @@ export function headForPrices(l: Locale): HeadProps {
   const page: PageRef = { kind: 'prices' };
   const url = urlFor(page, l);
   const c = prices[l];
-  const unitCode = { month: 'MON', hour: 'HUR' } as const;
+  const unitCode = { month: 'MON' } as const;
   return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url }], [
     {
       '@context': CTX, '@type': 'OfferCatalog', '@id': `${url}#prices`, name: c.h1, url,

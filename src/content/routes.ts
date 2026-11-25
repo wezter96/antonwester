@@ -9,7 +9,7 @@ export type ServiceId = (typeof SERVICE_IDS)[number];
 export const CASE_IDS = ['openaudit', 'sokhem', 'webnu', 'wez', 'lingo'] as const;
 export type CaseId = (typeof CASE_IDS)[number];
 
-export const GUIDE_IDS = ['mcp-server', 'ai-agents', 'rag', 'local-ai', 'ai-automation', 'ai-evaluation'] as const;
+export const GUIDE_IDS = ['mcp-server', 'ai-agents', 'rag', 'local-ai', 'ai-automation', 'ai-evaluation', 'value-pricing'] as const;
 export type GuideId = (typeof GUIDE_IDS)[number];
 
 export const CITY_IDS = [
@@ -47,6 +47,7 @@ export const GUIDE_SLUGS: Record<GuideId, Record<Locale, string>> = {
   'local-ai': { sv: 'lokala-ai-modeller', en: 'local-ai-models' },
   'ai-automation': { sv: 'automatisera-rutiner-med-ai', en: 'automate-routine-work-with-ai' },
   'ai-evaluation': { sv: 'testa-ai-innan-produktion', en: 'test-ai-before-production' },
+  'value-pricing': { sv: 'vardebaserat-pris', en: 'value-based-pricing' },
 };
 
 export function pathFor(page: PageRef, locale: Locale): string {

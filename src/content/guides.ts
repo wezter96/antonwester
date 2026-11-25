@@ -6,6 +6,7 @@ import { aiEvaluation } from './guides/ai-evaluation';
 import { localAi } from './guides/local-ai';
 import { mcpServer } from './guides/mcp-server';
 import { rag } from './guides/rag';
+import { valuePricing } from './guides/value-pricing';
 
 export const guideUi: L10n<GuideUi> = {
   sv: {
@@ -59,6 +60,7 @@ export const guides: Record<GuideId, L10n<GuideContent>> = {
   'local-ai': localAi,
   'ai-automation': aiAutomation,
   'ai-evaluation': aiEvaluation,
+  'value-pricing': valuePricing,
 };
 
 export function guidePages(locale: Locale): Array<{ slug: string; guide: GuideContent }> {
