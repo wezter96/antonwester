@@ -47,7 +47,7 @@ export const prices: Record<Locale, PricesContent> = {
         heading: 'Vad som styr priset',
         paragraphs: [
           'Vad lösningen är värd för er. Lägger en person två timmar om dagen på ett flöde är det ungefär 440 timmar om året. Med 600 kr i timmen är flödet värt 264 000 kr om året, och priset hamnar så att lösningen har betalat sig inom första året.',
-          'Med AI-agenter bygger jag på dagar det som förr tog månader. Därför säger timmarna lite om vad ni får, och därför räknar jag inte dem.',
+          'Sparar lösningen er 100 kr och ni betalar 25 kr för den, har ni tjänat 75 kr. Hur många timmar jag lägger påverkar inte det.',
           'AI-tjänsterna kostar också pengar att köra, och den kostnaden ingår inte ovan. Jag mäter den under testet, så att ni vet den innan lösningen tar över.',
         ],
       },
@@ -96,7 +96,7 @@ export const prices: Record<Locale, PricesContent> = {
         heading: 'What sets the price',
         paragraphs: [
           'What the solution is worth to you. If a person spends two hours a day on a flow, that’s about 440 hours a year. At SEK 600 an hour the flow is worth SEK 264,000 a year, and the price is set so the solution pays for itself within the first year.',
-          'With AI agents I build in days what used to take months. That’s why the hours say little about what you get, and why I don’t count them.',
+          'If the solution saves you SEK 100 and you pay SEK 25 for it, you’re SEK 75 ahead. How many hours I spend doesn’t change that.',
           'AI services also cost money to run, and that cost isn’t included above. I measure it during the test, so you know it before the solution takes over.',
         ],
       },

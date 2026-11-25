@@ -9,9 +9,9 @@ export const valuePricing: L10n<GuideContent> = {
         'Därför tar jag betalt för vad en AI-lösning ger er och inte per timme. Så räknar vi värdet, så sätts priset och när modellen inte passar.',
     },
     h1: 'Värdebaserat pris: därför säljer jag inte timmar',
-    promise: 'Ni betalar för vad lösningen gör för er. Hur länge jag sitter vid datorn är min sak.',
+    promise: 'Sparar jag er 100 kr och ni betalar 25 kr för det, har ni tjänat 75 kr.',
     intro:
-      'Timpris var rimligt när en utvecklare skrev varje rad själv. Med AI-agenter bygger jag på dagar det som förr tog ett team flera månader. Då säger timmarna nästan ingenting om vad ni får.',
+      'Så ser jag på pris. Vi räknar först ut vad lösningen sparar eller tjänar åt er, och sedan sätter vi ett pris som är en mindre del av det. Ni vet vad ni får och vad det kostar innan vi börjar.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
@@ -91,9 +91,9 @@ export const valuePricing: L10n<GuideContent> = {
         'Why I charge for what an AI solution does for you and not by the hour. How we work out the value, how the price is set and when the model doesn’t fit.',
     },
     h1: 'Value-based pricing: why I don’t sell hours',
-    promise: 'You pay for what the solution does for you. How long I sit at the computer is my business.',
+    promise: 'If I save you SEK 100 and you pay SEK 25 for it, you’re SEK 75 ahead.',
     intro:
-      'An hourly rate made sense when a developer wrote every line by hand. With AI agents I build in days what used to take a team months. The hours tell you almost nothing about what you get.',
+      'That’s how I look at price. First we work out what the solution saves or earns you, then we set a price that’s a smaller part of that. You know what you get and what it costs before we start.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
