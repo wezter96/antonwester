@@ -11,7 +11,7 @@ export const valuePricing: L10n<GuideContent> = {
     h1: 'Värdebaserat pris: därför säljer jag inte timmar',
     promise: 'Priset utgår från det värde lösningen skapar för er och ligger klart under det.',
     intro:
-      'Innan vi börjar räknar vi tillsammans ut vad lösningen sparar eller tjänar åt er under ett år. Priset sätts som en mindre del av det värdet. Ger lösningen 100 000 kr och kostar 25 000 kr, får ni tillbaka fyra kronor för varje krona ni investerar.',
+      'Innan vi börjar räknar vi tillsammans ut vad lösningen sparar eller tjänar åt er. Priset sätts som en mindre del av det värdet, så att investeringen lönar sig för er.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
@@ -42,7 +42,7 @@ export const valuePricing: L10n<GuideContent> = {
         heading: 'Så räknar vi',
         paragraphs: [
           'Vi börjar med era egna siffror. Säg att en person lägger två timmar om dagen på att sortera och besvara mejl. Det blir ungefär 440 timmar om året. Kostar en timme er 600 kr med lön och avgifter är flödet värt 264 000 kr om året.',
-          'Priset hamnar klart under det värdet, så att lösningen har betalat sig inom det första året. Allt efter det är er vinst.',
+          'Priset hamnar klart under det värdet. Skillnaden är er vinst.',
         ],
         list: [
           'Tid som går fri för annat arbete.',
@@ -93,7 +93,7 @@ export const valuePricing: L10n<GuideContent> = {
     h1: 'Value-based pricing: why I don’t sell hours',
     promise: 'The price starts from the value the solution creates for you and sits well below it.',
     intro:
-      'Before we start, we work out together what the solution saves or earns you in a year. The price is set as a smaller share of that value. If the solution brings in SEK 100,000 and costs SEK 25,000, you get four kronor back for every krona you invest.',
+      'Before we start, we work out together what the solution saves or earns you. The price is set as a smaller share of that value, so the investment pays off for you.',
     published: '2026-11-25',
     readingMinutes: 5,
     sections: [
@@ -124,7 +124,7 @@ export const valuePricing: L10n<GuideContent> = {
         heading: 'How we work it out',
         paragraphs: [
           'We start with your own numbers. Say a person spends two hours a day sorting and answering email. That’s about 440 hours a year. If an hour costs you SEK 600 with salary and fees, the flow is worth SEK 264,000 a year.',
-          'The price lands well below that value, so the solution has paid for itself within the first year. Everything after that is your gain.',
+          'The price lands well below that value. The difference is your gain.',
         ],
         list: [
           'Time freed up for other work.',
