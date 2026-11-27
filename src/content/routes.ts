@@ -6,7 +6,7 @@ export const SERVICE_IDS = ['assessment', 'development', 'agents', 'automation',
 export type ServiceId = (typeof SERVICE_IDS)[number];
 
 // every case gets its own page and a row on the home page, in this order
-export const CASE_IDS = ['openaudit', 'sokhem', 'webnu', 'wez', 'lingo'] as const;
+export const CASE_IDS = ['openaudit', 'sokhem', 'webnu', 'wez', 'copyset'] as const;
 export type CaseId = (typeof CASE_IDS)[number];
 
 export const GUIDE_IDS = ['mcp-server', 'ai-agents', 'rag', 'local-ai', 'ai-automation', 'ai-evaluation', 'value-pricing'] as const;
@@ -116,6 +116,8 @@ export function slugPages(locale: Locale): Array<{ slug: string; page: SlugPage 
 
 export const LEGACY_REDIRECTS: Record<string, string> = {
   '/sv/': '/',
+  '/sv/case/lingo/': '/sv/case/copyset/',
+  '/en/case/lingo/': '/en/case/copyset/',
   ...Object.fromEntries(CITY_IDS.map((id) => [`/${id}/`, `/sv/${id}/`])),
 };
 

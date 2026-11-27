@@ -430,7 +430,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'Ni vill hinna mer utan att anställa.',
       ],
       firstEngagement: 'Oftast börjar vi med ett enda flöde, till exempel fakturor som kommer in. Det brukar vara igång inom några veckor.',
-      relatedCases: ['sokhem', 'lingo'],
+      relatedCases: ['sokhem', 'copyset'],
       relatedServices: ['agents', 'assessment'],
       faq: [
         { q: 'Vad är AI-automation?', a: 'Automation som klarar rörigt underlag, som mejl, PDF:er och fritext. AI:n läser och förstår, vanlig kod gör resten.' },
@@ -488,7 +488,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'You want to get more done without hiring.',
       ],
       firstEngagement: 'We usually start with a single flow, such as incoming invoices. It’s usually running within a few weeks.',
-      relatedCases: ['sokhem', 'lingo'],
+      relatedCases: ['sokhem', 'copyset'],
       relatedServices: ['agents', 'assessment'],
       faq: [
         { q: 'What is AI automation?', a: 'Automation that copes with messy input, such as emails, PDFs and free text. The AI reads and understands; ordinary code does the rest.' },
@@ -665,7 +665,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'Ni vill använda AI men vet inte hur ni ska börja.',
       ],
       firstEngagement: 'Vi börjar med en genomgång och en plan för tre månader. Sedan fortsätter vi några dagar i månaden så länge det behövs.',
-      relatedCases: ['sokhem', 'lingo'],
+      relatedCases: ['sokhem', 'copyset'],
       faq: [
         { q: 'Hur mycket tid lägger en fractional CTO?', a: 'Oftast några dagar i månaden. Vi ändrar det när bolaget växer.' },
         { q: 'Skriver du kod också?', a: 'Ja, när det är bästa sättet att komma vidare. Men målet är att teamet ska klara sig utan mig.' },
@@ -723,7 +723,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         'You want to use AI but don’t know how to start.',
       ],
       firstEngagement: 'We start with a review and a plan for three months. Then we continue a few days a month for as long as it’s needed.',
-      relatedCases: ['sokhem', 'lingo'],
+      relatedCases: ['sokhem', 'copyset'],
       faq: [
         { q: 'How much time does a fractional CTO spend?', a: 'Usually a few days a month. We change that as the company grows.' },
         { q: 'Do you write code as well?', a: 'Yes, when that’s the best way forward. But the goal is for the team to manage without me.' },

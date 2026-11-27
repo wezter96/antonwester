@@ -3,9 +3,9 @@ import sharp from 'sharp';
 
 const targets: { id: string; url: string; wait: number; storage?: Record<string, string>; prepare?: (page: Page) => Promise<void> }[] = [
   {
-    id: 'lingo',
+    id: 'copyset',
     // the public landing page, signed out
-    url: process.env.LINGO_URL ?? 'https://lingo.antonwester.se',
+    url: process.env.COPYSET_URL ?? 'https://copyset.antonwester.se',
     wait: 2500,
   },
   {

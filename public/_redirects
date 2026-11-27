@@ -1,6 +1,10 @@
 # Real 301s on Cloudflare. Generated from LEGACY_REDIRECTS in src/content/routes.ts; test/unit/cloudflare.test.ts keeps them in step.
 /sv/ / 301
 /sv / 301
+/sv/case/lingo/ /sv/case/copyset/ 301
+/sv/case/lingo /sv/case/copyset/ 301
+/en/case/lingo/ /en/case/copyset/ 301
+/en/case/lingo /en/case/copyset/ 301
 /stenungsund/ /sv/stenungsund/ 301
 /stenungsund /sv/stenungsund/ 301
 /ale/ /sv/ale/ 301
