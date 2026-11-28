@@ -312,8 +312,78 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'Studion är skriven i React med Effect och Postgres i botten. Sidor sparas som versioner, och bara den version som någon har granskat kan publiceras. Agenter får skriva utkast men aldrig publicera.',
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'TanStack Start', 'Postgres', 'MCP', 'Docker'],
+      sections: [
+        {
+          heading: 'Problemet',
+          paragraphs: [
+            'För ett litet företag blir en hemsida ofta antingen dyr att bygga eller svår att ändra själv, och ofta betalar man innan man har sett något. WebNu bygger sidan först. Ni ser den innan ni betalar, och sedan kostar den 495 kr i månaden med allt inkluderat.',
+            'För att det ska gå ihop måste en sida gå snabbt att bygga, och den måste fortsätta fungera utan att någon sitter och passar den. Det är ett tekniskt problem lika mycket som ett affärsproblem. Därför är varje del av WebNu byggd för att en person ska kunna sköta många sidor, med samma byggblock, samma kontroller och samma drift för alla kunder.',
+          ],
+        },
+        {
+          heading: 'En sida är ett dokument med versioner',
+          paragraphs: [
+            'Varje sida är ett dokument av block, som rubrik, text, bild och bokning. En ändring sparas som en lista över vad som ändrades, och varje version sparas. Tidigare versioner kan aldrig skrivas över, och en gammal version går att återställa som ett nytt utkast.',
+            'Sparar två personer samtidigt får den som sparar sist en konflikt i stället för att skriva över den andras ändring. Sidans titel och beskrivning för sökmotorer ligger i samma dokument, så de versioneras och publiceras tillsammans med sidan. Sajtkartan för sökmotorer byggs av de publicerade sidorna.',
+          ],
+        },
+        {
+          heading: 'Publicering kräver en människa',
+          paragraphs: [
+            'En sida publiceras bara i exakt den version någon har granskat. Servern jämför versionens hash och kontrollerar att alla block finns i den version av sajten som körs. Ett block som sajten inte känner till kan alltså inte publiceras och ge en trasig sida.',
+            'Att publicera kräver ägarbehörighet och en inloggad människa. Agenter får skriva utkast men aldrig publicera, och det gäller oavsett vad agenten blir ombedd att göra.',
+          ],
+        },
+        {
+          heading: 'Mjukvarufabriken',
+          paragraphs: [
+            'WebNu byggs i min mjukvarufabrik, ett kodförråd där flera produkter delar samma grund. Koden ligger i sju lager, och varje lager får bara använda lagren under sig. Det kontrolleras vid varje ändring, så en grundläggande del kan aldrig börja bero på en app som bygger på den.',
+            'Kraven står i klartext i egna filer, och vart och ett av de 282 kraven är kopplat till testet som visar att det håller. Vissa mått får bara bli bättre. Antalet lintvarningar är ett exempel: en ändring som lägger till fler stoppas.',
+            'Ny kod går direkt till huvudgrenen genom samma kontroller varje gång: regler, lagergränser, krav, typer, lint, tester och databasens behörighetsregler. Det finns inga pull requests att vänta på, men inget kommer in innan kontrollerna är gröna.',
+          ],
+        },
+        {
+          heading: 'Agenter som ser vad en ändring påverkar',
+          paragraphs: [
+            'I fabriken finns en karta över hela kodbasen: kodförråd, domäner, krav och hur de hänger ihop. Innan en agent ändrar något kan den se vad ändringen påverkar. Nya produkter skapas från samma mall och får grunden som versionerade paket, så en förbättring av grunden når alla produkter.',
+            'Fält med känsliga uppgifter är märkta i koden och lagras krypterade med en nyckel per företag. Kontrollerna vid varje ändring ser till att ett fält som är märkt som känsligt också lagras krypterat. Tas ett företag bort raderas nyckeln, och då går uppgifterna inte längre att läsa.',
+          ],
+        },
+        {
+          heading: 'En grund, flera produkter',
+          paragraphs: [
+            'WebNu delar grund med Copyset: samma inloggning, samma databas och samma sätt att låta agenter arbeta via MCP. Varje företag är en egen arbetsyta, och databasen ser till att ett företag bara ser sina egna rader.',
+            'Händelser i systemet skrivs till en utkorg i databasen i samma transaktion som ändringen och skickas vidare av bakgrundsjobb. Är en mottagare nere en stund försvinner ingenting.',
+          ],
+        },
+        {
+          heading: 'Snabb och utan spårare',
+          paragraphs: [
+            'Sidorna får 100 i Lighthouse i mina egna tester och har inga kakor eller spårare. Besökarna slipper en kakruta, och ni slipper fundera på vilka uppgifter sidan samlar in.',
+          ],
+        },
+      ],
       proves: [
         'Med en egen fabrik kan en person bygga och driva hemsidor åt många kunder. Samma regler och kontroller tar jag med in i kunders projekt.',
+        'För er som köper utveckling visar WebNu varför reglerna behöver ligga i koden. Det är de automatiska kontrollerna som gör att AI-agenter kan skriva mycket av koden utan att kvaliteten sjunker, och de fortsätter att gälla när ingen tittar.',
+      ],
+      faq: [
+        {
+          q: 'Vad kostar en hemsida från WebNu?',
+          a: '495 kr i månaden, allt ingår. Ni ser sidan innan ni betalar, och gillar ni den inte kostar den ingenting.',
+        },
+        {
+          q: 'Kan vi ändra sidan själva?',
+          a: 'Ja. Text, bilder och färger ändrar ni i studion. Varje ändring sparas som en ny version, och ni väljer när den publiceras.',
+        },
+        {
+          q: 'Kan AI skriva på vår sida?',
+          a: 'Agenter kan skriva utkast. En sida publiceras bara i en version som en människa har granskat, och att publicera kräver ägarbehörighet.',
+        },
+        {
+          q: 'Vi behöver mer än en hemsida. Kan du hjälpa till?',
+          a: 'Ja. Då är AI-utveckling rätt väg. Jag bygger AI-lösningar och integrationer med samma kontroller som i WebNu, från 60 000 kr utan moms.',
+        },
       ],
       service: 'development',
       schemaType: 'WebApplication',
@@ -345,8 +415,78 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'The studio is written in React, with Effect and Postgres underneath. Pages are saved as versions, and only a version someone has reviewed can be published. Agents may write drafts but never publish.',
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'TanStack Start', 'Postgres', 'MCP', 'Docker'],
+      sections: [
+        {
+          heading: 'The problem',
+          paragraphs: [
+            'For a small business, a website is often either expensive to build or hard to change yourself, and you often pay before you’ve seen anything. WebNu builds the site first. You see it before you pay, and then it costs SEK 495 a month with everything included.',
+            'For that to add up, a site has to be quick to build and keep working without anyone looking after it. That’s a technical problem as much as a business one. So every part of WebNu is built for one person to look after many sites, with the same building blocks, the same checks and the same operations for every client.',
+          ],
+        },
+        {
+          heading: 'A page is a document with versions',
+          paragraphs: [
+            'Every page is a document made of blocks, such as heading, text, image and booking. A change is saved as a list of what changed, and every version is kept. Earlier versions can never be overwritten, and an old version can be restored as a new draft.',
+            'If two people save at once, whoever saves last gets a conflict instead of overwriting the other’s change. The page’s title and description for search engines live in the same document, so they’re versioned and published along with the page. The sitemap for search engines is built from the published pages.',
+          ],
+        },
+        {
+          heading: 'Publishing takes a person',
+          paragraphs: [
+            'A page is only published in exactly the version someone reviewed. The server compares the version’s hash and checks that every block exists in the version of the site that’s running. A block the site doesn’t know can’t be published and break the page.',
+            'Publishing takes owner rights and a signed-in person. Agents may write drafts but never publish, whatever the agent is asked to do.',
+          ],
+        },
+        {
+          heading: 'The software factory',
+          paragraphs: [
+            'WebNu is built in my software factory, one repository where several products share the same foundation. The code sits in seven layers, and each layer may only use the layers below it. That’s checked on every change, so a basic part can never start depending on an app built on top of it.',
+            'The requirements are written in plain words in their own files, and each of the 282 requirements is linked to the test that shows it holds. Some measures may only get better. The number of lint warnings is one: a change that adds more is stopped.',
+            'New code goes straight to the main branch through the same checks every time: rules, layer boundaries, requirements, types, lint, tests and the database’s access rules. There are no pull requests to wait for, but nothing gets in until the checks are green.',
+          ],
+        },
+        {
+          heading: 'Agents that see what a change affects',
+          paragraphs: [
+            'The factory holds a map of the whole codebase: repositories, domains, requirements and how they connect. Before an agent changes something, it can see what the change affects. New products are created from the same template and get the foundation as versioned packages, so an improvement to the foundation reaches every product.',
+            'Fields with sensitive data are marked in the code and stored encrypted with a key per company. The checks on every change make sure a field marked as sensitive is also stored encrypted. When a company is deleted its key is deleted, and the data can no longer be read.',
+          ],
+        },
+        {
+          heading: 'One foundation, several products',
+          paragraphs: [
+            'WebNu shares its foundation with Copyset: the same sign-in, the same database and the same way of letting agents work over MCP. Each company is its own workspace, and the database makes sure a company only sees its own rows.',
+            'Events in the system are written to an outbox in the database in the same transaction as the change, and background jobs pass them on. If a receiver is down for a while, nothing is lost.',
+          ],
+        },
+        {
+          heading: 'Fast and without trackers',
+          paragraphs: [
+            'The pages score 100 in Lighthouse in my own tests and have no cookies or trackers. Visitors don’t get a cookie banner, and you don’t have to worry about what data the site collects.',
+          ],
+        },
+      ],
       proves: [
         'With a factory of my own, one person can build and run websites for many clients. I bring the same rules and checks into client projects.',
+        'If you buy development, WebNu shows why the rules need to live in the code. The automatic checks are what let AI agents write much of the code without quality dropping, and they keep applying when nobody’s watching.',
+      ],
+      faq: [
+        {
+          q: 'What does a WebNu website cost?',
+          a: 'SEK 495 a month, everything included. You see the site before you pay, and if you don’t like it, it costs nothing.',
+        },
+        {
+          q: 'Can we change the site ourselves?',
+          a: 'Yes. You change text, images and colours in the studio. Every change is saved as a new version, and you choose when it’s published.',
+        },
+        {
+          q: 'Can AI write on our site?',
+          a: 'Agents can write drafts. A page is only published in a version a person has reviewed, and publishing takes owner rights.',
+        },
+        {
+          q: 'We need more than a website. Can you help?',
+          a: 'Yes. Then AI development is the right path. I build AI solutions and integrations with the same checks as in WebNu, from SEK 60,000 excluding VAT.',
+        },
       ],
       service: 'development',
       schemaType: 'WebApplication',
@@ -432,7 +572,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       h1: 'Copyset: företagsstyrd lokalisering där AI gör första utkastet',
       seo: {
         title: 'Copyset: Enterprise lokaliserings-CMS | Anton Wester',
-        description: 'Copyset samlar alla produkttexter och översättningar på era egna servrar—med fyra-ögon-granskning, självreparerande AI, paketdiffar, white-label Studio och SHA-256-granskningskedja.',
+        description: 'Copyset samlar produkttexter och översättningar på era egna servrar, med fyra-ögon-granskning, AI som rättar sina egna fel, paketdiffar, white-label Studio och en SHA-256-kedjad logg.',
       },
       url: 'https://copyset.antonwester.se',
       privateLabel: null,
@@ -443,15 +583,95 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       what: [
         'Ett självvärdat lokaliserings-CMS för produkt-, innehålls- och utvecklingsteam. AI skriver första utkastet mot godkänt översättningsminne och företagets ordlistor, och fyra-ögon-granskning säkerställer att en människa godkänner innan något går live.',
-        'Inför varje release ser teamet en fullständig paketdiff per språk, QA-kontroller för ICU och platshållare samt förhandsvisning direkt i Storybook—med omedelbar återställning i ett klick.',
+        'Inför varje release ser teamet en fullständig paketdiff per språk, QA-kontroller för ICU och platshållare samt förhandsvisning direkt i Storybook. Går något fel återställs förra versionen med ett klick.',
       ],
       how: [
         'Byggd i React och TypeScript med Bun, Hono och Postgres. Texter släpps atomiskt som versionerade paket till S3/CDN, npm, Git eller REST API, med genererade TypeScript-typer och kryptografiskt kedjad granskningslogg.',
         'AI-agenter som Claude Code kan arbeta med Copyset via MCP: granska, föreslå utkast och lägga till nycklar, medan styrningen i kärnan garanterar att AI-utkast aldrig självgodkänns.',
       ],
       stack: ['React', 'TypeScript', 'Bun', 'Hono', 'Postgres'],
+      sections: [
+        {
+          heading: 'Problemet',
+          paragraphs: [
+            'I många produkter ligger texterna i filer i kodförrådet. Den som vill ändra en knapptext eller rätta en översättning behöver en utvecklare, och utvecklarna blir en flaskhals för något som inte är kod. Alternativet är ofta en molntjänst för översättning, och då ligger företagets texter hos någon annan.',
+            'Copyset ger texterna ett eget hem på er egen server. Produktteamet skriver och granskar i en studio, utvecklarna hämtar färdiga paket och AI gör grovjobbet med första utkastet.',
+          ],
+        },
+        {
+          heading: 'En text har fyra lägen',
+          paragraphs: [
+            'Varje översättning är ett utkast, väntar på granskning, är godkänd eller är publicerad. Övergångarna står i en tabell i koden, och servern tillåter bara de övergångar som står där. Varje språk har också ett eget läge: öppet, där ändringar godkänns direkt, granskat eller låst.',
+            'När källtexten ändras markeras översättningarna som inaktuella, så att ingen publicerar en översättning av en text som inte längre finns. Ändrar två personer samma text samtidigt får den ena en konflikt i stället för att skriva över den andra.',
+          ],
+        },
+        {
+          heading: 'AI skriver utkast, en människa godkänner',
+          paragraphs: [
+            'AI översätter med företagets godkända översättningsminne, ordlistor och stilguide. Klarar svaret inte kvalitetskontrollen får modellen en chans att rätta det. Det som kommer in är fortfarande ett utkast.',
+            'Ändringar från AI-agenter och API-nycklar godkänns aldrig automatiskt, inte ens i ett öppet språk. Att godkänna är inget verktyg som AI kan anropa, och fyra-ögon-regeln gör att den som skrev en text inte kan godkänna den själv.',
+            'Via MCP kan en agent som Claude Code lista nycklar, läsa översättningar, spara utkast och be om granskning. Publicera kan den inte.',
+          ],
+        },
+        {
+          heading: 'Kontroller innan något går ut',
+          paragraphs: [
+            'Samma kvalitetskontroll körs i studion, i kommandoraden, via MCP och på servern när en text sparas, godkänns eller publiceras. Den letar efter det här.',
+          ],
+          list: [
+            'ICU-syntax som inte går att tolka.',
+            'Platshållare som saknas eller tillkommer jämfört med källtexten.',
+            'Texter som är längre än vad som får plats, till exempel i en knapp.',
+            'Tomma texter och fel blanksteg.',
+            'Ord från företagets ordlista och ord som inte får översättas.',
+          ],
+        },
+        {
+          heading: 'Inför varje release',
+          paragraphs: [
+            'Innan något publiceras ser teamet en förhandsvisning med nytt versionsnummer, en diff per språk och antalet fel. Publiceringen stoppas om tillgänglighetstestet med axe hittar fel i förhandsvisningen. Företaget kan också välja att stoppa den när en text har blockerande kvalitetsfel.',
+            'En publicering är en ögonblicksbild av de godkända texterna, löst per språk längs en kedja av reserver: exakt språk, angivna reserver, region, språk och till sist standardspråket. Paketet sparas en gång, och databasen hindrar att det ändras. Att gå tillbaka är att flytta pekaren till ett tidigare paket i en enda transaktion.',
+            'Appar hämtar paketen när de byggs eller medan de körs. Går Copyset inte att nå behåller appen det senast hämtade paketet.',
+          ],
+        },
+        {
+          heading: 'Byggt för utvecklare',
+          paragraphs: [
+            'Utvecklarna arbetar med Copyset från kommandoraden: hämta texter, skicka nya nycklar och källtexter till granskning, publicera och se status. Inställningarna ligger i en fil i projektet och nyckeln i en miljövariabel. När appen byggs skrivs en fil per språk, tillsammans med en låsfil som visar vilken version som används.',
+            'En app kan också hämta det senaste paketet medan den körs, för att rätta en text utan att bygga om. Har inget ändrats svarar servern att paketet är detsamma, så anropet kostar nästan ingenting.',
+            'För granskning finns en signerad länk som gäller i tio minuter. Den visar utkastet på plats i appen, så att granskaren ser texten där den ska stå innan den godkänns.',
+          ],
+        },
+        {
+          heading: 'Spårbarhet',
+          paragraphs: [
+            'Historiken för varje text kan bara fyllas på, aldrig skrivas om. Granskningsloggen är kedjad med SHA-256 per projekt: varje rad bär en hash av raden före, så en ändring i efterhand syns. Loggen kan exporteras för arkivering.',
+            'Varje företag ser bara sina egna rader. Databasen filtrerar på företag med radnivåsäkerhet, och servern kontrollerar också projektet i varje anrop.',
+          ],
+        },
+      ],
       proves: [
-        'Hur en produktidé och starka utvecklarverktyg blir en enterprise-plattform där AI gör grovjobbet och företaget behåller full kontroll, spårbarhet och eget varumärke.',
+        'Hur en produktidé och starka utvecklarverktyg blir en plattform där AI gör grovjobbet och företaget behåller kontrollen, spårbarheten och sitt eget varumärke.',
+        'För den som köper AI-lösningar visar Copyset hur ansvaret kan fördelas. AI gör det som går snabbt att kontrollera, en människa fattar beslutet, och regeln om vem som får godkänna ligger i koden.',
+        'Samma uppdelning bygger jag in när AI ska skriva något åt er, vare sig det är svar till kunder, översättningar eller texter på en webbplats.',
+      ],
+      faq: [
+        {
+          q: 'Kan Copyset köras på vår egen server?',
+          a: 'Ja. Copyset är byggt för att köras på er egen server, så att texterna stannar hos er.',
+        },
+        {
+          q: 'Kan AI publicera texter i Copyset?',
+          a: 'Nej. AI-agenter och API-nycklar kan skriva utkast och be om granskning. Att godkänna och publicera kräver en människa.',
+        },
+        {
+          q: 'Hur får våra appar texterna?',
+          a: 'Som versionerade paket som hämtas när appen byggs eller medan den körs, med genererade TypeScript-typer. Paketen kan levereras via npm, Git, S3 eller ett REST-API.',
+        },
+        {
+          q: 'Vad skiljer Copyset från en översättningstjänst i molnet?',
+          a: 'Copyset körs på er egen server, så texterna, historiken och granskningsloggen ligger hos er. Reglerna för vem som får godkänna och publicera bestämmer ni.',
+        },
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',
@@ -465,7 +685,7 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       h1: 'Copyset: enterprise copy governance where AI writes the first draft',
       seo: {
         title: 'Copyset: Enterprise Copy Governance & Localization | Anton Wester',
-        description: 'Copyset keeps product copy and translations on your own servers—with four-eyes review, self-repairing AI, package diffs, white-label Studio, and a SHA-256 audit chain.',
+        description: 'Copyset keeps product copy and translations on your own servers, with four-eyes review, AI that repairs its own mistakes, package diffs, a white-label Studio and a SHA-256 audit chain.',
       },
       url: 'https://copyset.antonwester.se',
       privateLabel: null,
@@ -476,15 +696,95 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
       ],
       what: [
         'A self-hosted localization CMS for product, content and engineering teams. AI writes the first draft using approved translation memory and company word lists, while four-eyes review ensures a human approves before anything ships.',
-        'Before every release, teams inspect a full versioned package diff per locale, automated ICU and placeholder QA gates, and live Storybook component previews—with one-click rollback.',
+        'Before every release, teams inspect a full versioned package diff per locale, automated ICU and placeholder QA gates, and live Storybook component previews. If something goes wrong, one click rolls back to the previous version.',
       ],
       how: [
         'Built in React and TypeScript with Bun, Hono and Postgres. Releases ship atomically to S3/CDN, npm, Git or REST API, complete with generated TypeScript types and a SHA-256 hash-chained audit ledger.',
         'AI agents such as Claude Code can work with Copyset over MCP to add keys and draft copy, while runtime governance guarantees AI output never self-approves.',
       ],
       stack: ['React', 'TypeScript', 'Bun', 'Hono', 'Postgres'],
+      sections: [
+        {
+          heading: 'The problem',
+          paragraphs: [
+            'In many products the copy lives in files in the repository. Anyone who wants to change a button label or fix a translation needs a developer, and the developers become a bottleneck for something that isn’t code. The alternative is often a cloud translation service, and then the company’s copy lives with someone else.',
+            'Copyset gives the copy a home of its own on your server. The product team writes and reviews in a studio, developers pull finished packages and AI does the heavy lifting of the first draft.',
+          ],
+        },
+        {
+          heading: 'A text has four states',
+          paragraphs: [
+            'Every translation is a draft, waiting for review, approved or published. The transitions are listed in a table in the code, and the server only allows the ones listed there. Each language also has its own mode: open, where changes are approved at once, reviewed, or locked.',
+            'When the source text changes, its translations are marked as outdated, so nobody publishes a translation of text that no longer exists. If two people change the same text at once, one gets a conflict instead of overwriting the other.',
+          ],
+        },
+        {
+          heading: 'AI drafts, a person approves',
+          paragraphs: [
+            'AI translates with the company’s approved translation memory, word lists and style guide. If the answer fails the quality check, the model gets one chance to fix it. What comes in is still a draft.',
+            'Changes from AI agents and API keys are never approved automatically, not even in an open language. Approving isn’t a tool AI can call, and the four-eyes rule means whoever wrote a text can’t approve it themselves.',
+            'Over MCP, an agent such as Claude Code can list keys, read translations, save drafts and ask for review. It can’t publish.',
+          ],
+        },
+        {
+          heading: 'Checks before anything ships',
+          paragraphs: [
+            'The same quality check runs in the studio, in the command line, over MCP and on the server when a text is saved, approved or published. It looks for this.',
+          ],
+          list: [
+            'ICU syntax that can’t be parsed.',
+            'Placeholders that are missing or added compared with the source text.',
+            'Text longer than fits, for example in a button.',
+            'Empty text and stray whitespace.',
+            'Words from the company glossary and words that must not be translated.',
+          ],
+        },
+        {
+          heading: 'Before every release',
+          paragraphs: [
+            'Before anything is published, the team sees a preview with the new version number, a diff per language and the number of errors. Publishing stops if the axe accessibility test finds problems in the preview. The company can also choose to stop it when a text has blocking quality errors.',
+            'A publish is a snapshot of the approved texts, resolved per language along a fallback chain: exact language, declared fallbacks, region, language and finally the default language. The package is stored once, and the database prevents it from changing. Rolling back means moving the pointer to an earlier package in a single transaction.',
+            'Apps pull the packages when they build or while they run. If Copyset can’t be reached, the app keeps the last package it pulled.',
+          ],
+        },
+        {
+          heading: 'Built for developers',
+          paragraphs: [
+            'Developers work with Copyset from the command line: pull copy, push new keys and source strings for review, publish and check status. Settings live in a file in the project and the key in an environment variable. When the app builds, it writes one file per language along with a lock file that shows which version is in use.',
+            'An app can also fetch the latest package while it runs, to fix a text without rebuilding. If nothing has changed, the server answers that the package is the same, so the call costs almost nothing.',
+            'For review there’s a signed link that’s valid for ten minutes. It shows the draft in place in the app, so the reviewer sees the text where it belongs before approving it.',
+          ],
+        },
+        {
+          heading: 'Traceability',
+          paragraphs: [
+            'The history of every text can only grow, never be rewritten. The audit log is chained with SHA-256 per project: each row carries a hash of the row before, so a change after the fact shows. The log can be exported for archiving.',
+            'Each company sees only its own rows. The database filters by company with row-level security, and the server also checks the project in every call.',
+          ],
+        },
+      ],
       proves: [
-        'How a product idea and sharp developer tooling become an enterprise platform where AI does the heavy lifting while teams keep full governance, auditability and brand ownership.',
+        'How a product idea and sharp developer tooling become a platform where AI does the heavy lifting while teams keep full governance, auditability and brand ownership.',
+        'If you’re buying AI solutions, Copyset shows how responsibility can be split. AI does what’s quick to check, a person makes the decision, and the rule about who may approve lives in the code.',
+        'I build the same split in whenever AI writes something for you, whether it’s replies to customers, translations or copy on a website.',
+      ],
+      faq: [
+        {
+          q: 'Can Copyset run on our own server?',
+          a: 'Yes. Copyset is built to run on your own server, so your copy stays with you.',
+        },
+        {
+          q: 'Can AI publish copy in Copyset?',
+          a: 'No. AI agents and API keys can write drafts and ask for review. Approving and publishing takes a person.',
+        },
+        {
+          q: 'How do our apps get the copy?',
+          a: 'As versioned packages pulled when the app builds or while it runs, with generated TypeScript types. Packages can be delivered through npm, Git, S3 or a REST API.',
+        },
+        {
+          q: 'How is Copyset different from a cloud translation service?',
+          a: 'Copyset runs on your own server, so the copy, the history and the audit log stay with you. You decide the rules for who may approve and publish.',
+        },
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',
