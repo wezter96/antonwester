@@ -38,6 +38,34 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Många AI-projekt börjar med en lösning och letar sedan efter ett problem. Det blir dyrt. Jag börjar med var tiden går och bygger sedan bara det som är värt det. Eftersom jag också bygger själv vet jag vad saker brukar kosta.',
           ],
         },
+        {
+          heading: 'Så räknar vi på varje förslag',
+          paragraphs: [
+            'Varje punkt på listan har en uppskattning av tiden den sparar, räknad på era egna siffror. Lägger en person två timmar om dagen på ett flöde är det ungefär 440 timmar om året. Bredvid står vad det kostar att bygga, ungefär vad AI-tjänsten kostar att köra och vad som kan gå fel.',
+            'Det gör listan lätt att prioritera. Ett flöde som sparar mycket tid och är enkelt att bygga hamnar högst. Ett som kräver stora ändringar i era system hamnar längre ner, även om det är det mest spännande.',
+          ],
+        },
+        {
+          heading: 'Vad jag behöver från er',
+          paragraphs: ['Kartläggningen går fort när underlaget finns. Det här brukar räcka.'],
+          list: [
+            'Ett par timmar med dem som gör jobbet i varje flöde.',
+            'Exempel på det som kommer in, som mejl, fakturor, ärenden eller dokument. Gärna avidentifierade.',
+            'Någon som vet vilka system ni har och vilka av dem som har ett API.',
+            'En person i ledningen som tar emot resultatet och bestämmer nästa steg.',
+          ],
+        },
+        {
+          heading: 'Vad det kostar',
+          paragraphs: [
+            'En AI-kartläggning kostar från 25 000 kr utan moms, och priset är fast. Det beror på hur många avdelningar och flöden vi tittar på. Efter ett första samtal får ni ett pris för just er kartläggning, så ni vet kostnaden innan vi börjar.',
+            'Räknat i timmar motsvarar det ungefär 10 till 20 timmar för en senior konsult. Skillnaden är att priset står fast även om jobbet tar längre tid.',
+          ],
+        },
+        {
+          heading: 'Samma ordning som i OpenAudit',
+          paragraphs: ['OpenAudit, mitt gratisverktyg för granskning av kod och webbplatser, bygger på samma ordning: mät först, sätt betyg och åtgärda sedan det som spelar störst roll. En kartläggning gör samma sak för era arbetsflöden.'],
+        },
       ],
       steps: [
         'Vi pratar om er verksamhet och vad som känns tyngst i dag.',
@@ -53,10 +81,12 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'Oftast börjar vi med en eller två avdelningar. Det tar några veckor, och resultatet är ert.',
       relatedCases: ['openaudit', 'wez'],
+      relatedServices: ['development', 'automation'],
       faq: [
         { q: 'Hur lång tid tar en AI-kartläggning?', a: 'Oftast några veckor för en avdelning. Fler avdelningar tar längre tid.' },
         { q: 'Måste vi bygga med dig efteråt?', a: 'Nej. Listan är er. Ni kan bygga med mig, med eget team eller med någon annan.' },
         { q: 'Måste vår data vara i ordning först?', a: 'Nej. Att se vilken data ni har och hur den kan användas säkert är en del av jobbet.' },
+        { q: 'Vad kostar en AI-kartläggning?', a: 'Från 25 000 kr utan moms, och priset är fast. Ni får priset efter ett första samtal, så ni vet kostnaden innan vi börjar.' },
       ],
     },
     en: {
@@ -94,6 +124,34 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Many AI projects start with a solution and then look for a problem. That gets expensive. I start with where the time goes, and then build only what’s worth it. Because I also build myself, I know what things tend to cost.',
           ],
         },
+        {
+          heading: 'How each suggestion is worked out',
+          paragraphs: [
+            'Every item on the list has an estimate of the time it saves, based on your own numbers. If a person spends two hours a day on a flow, that’s about 440 hours a year. Next to it is what it costs to build, roughly what the AI service costs to run and what can go wrong.',
+            'That makes the list easy to prioritise. A flow that saves a lot of time and is simple to build goes to the top. One that needs big changes to your systems goes further down, even if it’s the most exciting one.',
+          ],
+        },
+        {
+          heading: 'What I need from you',
+          paragraphs: ['The assessment moves fast when the material is there. This is usually enough.'],
+          list: [
+            'A couple of hours with the people who do the work in each flow.',
+            'Examples of what comes in, such as emails, invoices, tickets or documents. Anonymised is fine.',
+            'Someone who knows which systems you have and which of them have an API.',
+            'A person in leadership who receives the result and decides the next step.',
+          ],
+        },
+        {
+          heading: 'What it costs',
+          paragraphs: [
+            'An AI assessment costs from SEK 25,000 excluding VAT, and the price is fixed. It depends on how many departments and flows we look at. After a first call you get a price for your assessment, so you know the cost before we start.',
+            'Counted in hours, that’s roughly 10 to 20 hours of a senior consultant’s time. The difference is that the price stays fixed even if the work takes longer.',
+          ],
+        },
+        {
+          heading: 'The same order as OpenAudit',
+          paragraphs: ['OpenAudit, my free tool for auditing code and websites, follows the same order: measure first, score, then fix what matters most. An assessment does the same for your workflows.'],
+        },
       ],
       steps: [
         'We talk about your business and what feels heaviest today.',
@@ -109,10 +167,12 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'We usually start with one or two departments. It takes a few weeks, and the result is yours.',
       relatedCases: ['openaudit', 'wez'],
+      relatedServices: ['development', 'automation'],
       faq: [
         { q: 'How long does an AI assessment take?', a: 'Usually a few weeks for one department. More departments take longer.' },
         { q: 'Do we have to build with you afterwards?', a: 'No. The list is yours. You can build with me, with your own team or with someone else.' },
         { q: 'Does our data need to be in order first?', a: 'No. Seeing what data you have and how it can be used safely is part of the job.' },
+        { q: 'What does an AI assessment cost?', a: 'From SEK 25,000 excluding VAT, and the price is fixed. You get the price after a first call, so you know the cost before we start.' },
       ],
     },
   },
@@ -297,6 +357,31 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Ni ser också vad varje ärende kostar och hur ofta agenten gör rätt. Data som måste stanna i EU stannar där, och får den inte lämna huset kan agenten köra på en AI-modell på er egen server.',
           ],
         },
+        {
+          heading: 'Vad ni får när agenten är klar',
+          paragraphs: ['Agenten är er, och allt runt den följer med.'],
+          list: [
+            'Agenten, i ert kodförråd och er från första dagen.',
+            'Riktiga testfall från er verksamhet som körs vid varje ändring.',
+            'En logg över varje steg agenten tar och vad det kostade.',
+            'En lista över vad agenten får göra själv och vad som kräver ett ja från en människa.',
+            'Ett sätt att stänga av den direkt.',
+          ],
+        },
+        {
+          heading: 'Så ser det ut i mina egna produkter',
+          paragraphs: [
+            'I Wez, mitt eget AI-team, syns varje steg, ändrad fil, kostnad och godkännande medan agenterna arbetar. I WebNu får agenter skriva utkast men aldrig publicera. I Copyset kan ett utkast från AI aldrig godkänna sig självt, och att godkänna är inte ens ett verktyg som AI kan anropa.',
+            'Gränserna ligger i koden. En instruktion i prompten går att prata bort, men en regel i koden gäller vad agenten än blir ombedd att göra.',
+          ],
+        },
+        {
+          heading: 'Vad det kostar',
+          paragraphs: [
+            'Att bygga en första agent ingår i AI-utveckling, från 60 000 kr utan moms, med fast pris per steg. Priset sätts efter vad agenten är värd för er. Till det kommer kostnaden för AI-tjänsten, som beror på hur många ärenden agenten hanterar. Den mäter jag per ärende under testet.',
+            'Ska jag sköta agenten efteråt ingår det i drift och förvaltning, från 5 000 kr i månaden.',
+          ],
+        },
       ],
       steps: [
         'Vi väljer en uppgift och samlar ett femtiotal riktiga exempel.',
@@ -318,6 +403,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         { q: 'Är det säkert att låta en agent arbeta i våra system?', a: 'Ja, om den bara får göra det den behöver, allt sparas och viktiga steg kräver ett ja från en människa. Så bygger jag.' },
         { q: 'Vad kostar det att köra en AI-agent?', a: 'Det beror på hur mycket den gör. Jag mäter kostnaden per ärende under testet, så att ni vet innan den tar över.' },
         { q: 'Kan agenten använda de system vi redan har?', a: 'Ja. Den kopplas till de program ni redan använder, som e-post, kundregister och ekonomisystem.' },
+        { q: 'Hur lång tid tar det att bygga en AI-agent?', a: 'En agent för en enda sorts ärende kan oftast testas inom ett par veckor. Den tar över när den gör rätt tillräckligt ofta på riktiga fall.' },
       ],
     },
     en: {
@@ -356,6 +442,31 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'You also see what each case costs and how often the agent gets it right. Data that must stay in the EU stays there, and if it may not leave the building, the agent can run on an AI model on your own server.',
           ],
         },
+        {
+          heading: 'What you get when the agent is done',
+          paragraphs: ['The agent is yours, and everything around it comes with it.'],
+          list: [
+            'The agent, in your repository and yours from day one.',
+            'Real test cases from your business that run on every change.',
+            'A log of every step the agent takes and what it cost.',
+            'A list of what the agent may do on its own and what needs a yes from a person.',
+            'A way to switch it off at once.',
+          ],
+        },
+        {
+          heading: 'What it looks like in my own products',
+          paragraphs: [
+            'In Wez, my own AI team, every step, changed file, cost and approval is visible while the agents work. In WebNu, agents may write drafts but never publish. In Copyset, an AI draft can never approve itself, and approving isn’t even a tool AI can call.',
+            'The limits live in the code. An instruction in a prompt can be talked around, but a rule in the code holds whatever the agent is asked to do.',
+          ],
+        },
+        {
+          heading: 'What it costs',
+          paragraphs: [
+            'Building a first agent is part of AI development, from SEK 60,000 excluding VAT, with a fixed price per step. The price is set by what the agent is worth to you. On top comes the cost of the AI service, which depends on how many cases the agent handles. I measure it per case during the test.',
+            'If I run the agent afterwards, that’s part of hosting and maintenance, from SEK 5,000 a month.',
+          ],
+        },
       ],
       steps: [
         'We pick one task and collect about fifty real examples.',
@@ -377,6 +488,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         { q: 'Is it safe to let an agent work in our systems?', a: 'Yes, if it may only do what it needs, everything is saved and important steps need a yes from a person. That’s how I build.' },
         { q: 'What does it cost to run an AI agent?', a: 'It depends on how much it does. I measure the cost per case during the test, so you know before it takes over.' },
         { q: 'Can the agent use the systems we already have?', a: 'Yes. It connects to the programs you already use, such as email, your customer register and your finance system.' },
+        { q: 'How long does it take to build an AI agent?', a: 'An agent for a single kind of case can usually be tested within a couple of weeks. It takes over once it gets real cases right often enough.' },
       ],
     },
   },
@@ -407,6 +519,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'Allt behöver inte AI',
           paragraphs: [
             'När uppgifterna redan är ordnade räcker vanlig automation. Den är billigare och mer förutsägbar. Jag använder AI där det behövs, för text och bilder, och enkel kod för resten.',
+            'Ett bra test är att fråga om en ny medarbetare skulle behöva tolka något för att göra steget. Behövs ingen tolkning räcker vanlig kod, och den är både billigare att köra och lättare att felsöka.',
           ],
         },
         {
@@ -414,6 +527,27 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           paragraphs: [
             'Allt automationen gör sparas. Om något går fel får rätt person veta det direkt. Det som AI:n är osäker på hamnar hos en människa i stället för att gissas.',
             'Jag kan sköta automationen åt er, eller lämna över den till ert team.',
+          ],
+        },
+        {
+          heading: 'Ett exempel: fakturor som kommer in',
+          paragraphs: [
+            'En faktura kommer som PDF i mejlen. AI läser av leverantör, belopp, förfallodatum och referens. Koden kontrollerar att summan stämmer, att leverantören finns och att fakturan inte redan är inlagd. Sedan skapas ett utkast i ekonomisystemet. Är något oklart går fakturan till en människa, med originalet bredvid.',
+            'AI:n skapar aldrig betalningen. Den föreslår, och systemet avgör om förslaget är säkert nog att gå vidare.',
+          ],
+        },
+        {
+          heading: 'Byggt för att köras två gånger',
+          paragraphs: [
+            'Ett automatiskt flöde kommer förr eller senare att köras två gånger, för att nätverket tappade ett svar eller någon tryckte igen. Varje skrivning har därför en unik nyckel, så att samma faktura inte blir två. Steg som misslyckas försöker igen, och det som ger upp sparas där en människa ser det.',
+            'Så är bakgrundsjobben byggda i SökHem, där matchning, notiser och inläsning av bostäder körs i köer dygnet runt.',
+          ],
+        },
+        {
+          heading: 'Vad det kostar',
+          paragraphs: [
+            'AI-automation ingår i AI-utveckling, från 60 000 kr utan moms och med fast pris per steg. Priset utgår från vad flödet är värt för er. Två timmar om dagen är ungefär 440 timmar om året, och det är där vi börjar räkna.',
+            'Kostnaden för AI-tjänsten kommer till och mäts på era egna dokument under testet. Ska jag sköta flödet efteråt ingår det i drift och förvaltning, från 5 000 kr i månaden.',
           ],
         },
       ],
@@ -437,6 +571,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         { q: 'Vad passar bäst att automatisera först?', a: 'Jobb som görs ofta, på ungefär samma sätt, och som tar mycket tid. Fakturor, beställningar och rapporter brukar ligga högt.' },
         { q: 'Vad händer när automationen är osäker?', a: 'Då gissar den inte. Fallet går till en människa som bestämmer.' },
         { q: 'Behöver vi byta system?', a: 'Nej. Automationen kopplas till de program ni redan har.' },
+        { q: 'Vad kostar AI-automation?', a: 'Ett första flöde ingår i AI-utveckling, från 60 000 kr utan moms och med fast pris per steg. Kostnaden för AI-tjänsten kommer till, och jag mäter den under testet.' },
       ],
     },
     en: {
@@ -465,6 +600,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'Not everything needs AI',
           paragraphs: [
             'When the information is already in order, ordinary automation is enough. It’s cheaper and more predictable. I use AI where it’s needed, for text and images, and simple code for the rest.',
+            'A good test is to ask whether a new employee would need to interpret anything to do the step. If no interpretation is needed, ordinary code is enough, and it’s both cheaper to run and easier to debug.',
           ],
         },
         {
@@ -472,6 +608,27 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           paragraphs: [
             'Everything the automation does is saved. If something goes wrong, the right person hears about it at once. Anything the AI is unsure about goes to a person instead of being guessed.',
             'I can run the automation for you, or hand it over to your team.',
+          ],
+        },
+        {
+          heading: 'An example: incoming invoices',
+          paragraphs: [
+            'An invoice arrives as a PDF by email. AI reads the supplier, amount, due date and reference. Code checks that the total adds up, that the supplier exists and that the invoice isn’t already entered. Then a draft is created in the finance system. If something is unclear, the invoice goes to a person, with the original alongside.',
+            'The AI never creates the payment. It suggests, and the system decides whether the suggestion is safe enough to go on.',
+          ],
+        },
+        {
+          heading: 'Built to run twice',
+          paragraphs: [
+            'An automated flow will sooner or later run twice, because the network dropped a response or someone pressed the button again. So every write has a unique key, and the same invoice doesn’t become two. Steps that fail try again, and anything that gives up is kept where a person can see it.',
+            'That’s how the background jobs in SökHem are built, where matching, notifications and loading listings run in queues around the clock.',
+          ],
+        },
+        {
+          heading: 'What it costs',
+          paragraphs: [
+            'AI automation is part of AI development, from SEK 60,000 excluding VAT with a fixed price per step. The price starts from what the flow is worth to you. Two hours a day is about 440 hours a year, and that’s where we start counting.',
+            'The cost of the AI service comes on top and is measured on your own documents during the test. If I run the flow afterwards, that’s part of hosting and maintenance, from SEK 5,000 a month.',
           ],
         },
       ],
@@ -495,6 +652,7 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
         { q: 'What is best to automate first?', a: 'Work that is done often, in roughly the same way, and takes a lot of time. Invoices, orders and reports usually rank high.' },
         { q: 'What happens when the automation is unsure?', a: 'Then it doesn’t guess. The case goes to a person who decides.' },
         { q: 'Do we need to change systems?', a: 'No. The automation connects to the programs you already have.' },
+        { q: 'What does AI automation cost?', a: 'A first flow is part of AI development, from SEK 60,000 excluding VAT with a fixed price per step. The cost of the AI service comes on top, and I measure it during the test.' },
       ],
     },
   },
@@ -535,6 +693,31 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'Vill ni sköta det själva får ert team koden, instruktionerna och den utbildning som behövs. Ni är aldrig låsta till mig.',
           ],
         },
+        {
+          heading: 'Så sköter jag mina egna tjänster',
+          paragraphs: [
+            'SökHem körs dygnet runt med en läsreplik av databasen, nattliga säkerhetskopior som sparas utanför servern, containrar som startas om automatiskt och en extern tjänst som larmar om sajten slutar svara. Grafana visar svarstider, fel och hur långa köerna är.',
+            'Det är samma uppsättning ni får, anpassad efter vad ni har och var er data får finnas.',
+          ],
+        },
+        {
+          heading: 'När en AI-modell byts',
+          paragraphs: [
+            'AI-leverantörerna släpper nya modeller och slutar med gamla. Innan vi byter kör jag era testfall på den nya modellen och jämför med den gamla. Vi byter bara när resultatet är minst lika bra, och kostnaden per ärende räknas om.',
+            'Lösningar jag bygger kan också prova nästa leverantör om den första inte svarar. Chatten på den här sidan gör så, med tre leverantörer i rad innan frågan går vidare till mig.',
+          ],
+        },
+        {
+          heading: 'Vad det kostar',
+          paragraphs: ['Drift och förvaltning kostar från 5 000 kr i månaden utan moms. Priset beror på hur mycket som ska skötas. Kostnaden för servrar och AI-tjänster kommer till, och den ser ni i månadsrapporten.'],
+        },
+        {
+          heading: 'Säkerhet och data',
+          paragraphs: [
+            'API-nycklar och lösenord ligger i en separat hemlighetshantering och aldrig i koden. Lösningen får bara åtkomst till de system och den data den behöver, och åtkomsten går att dra tillbaka på ett ställe.',
+            'Beroenden uppdateras löpande, och koden granskas med OpenAudit för kända sårbarheter och läckta hemligheter. När något går fel rättar jag det och berättar i nästa rapport vad som hände och vad som är ändrat.',
+          ],
+        },
       ],
       steps: [
         'Vi går igenom era krav på säkerhet och var data får finnas.',
@@ -549,11 +732,14 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'Oftast sköter jag lösningen jag har byggt åt er och skickar en kort rapport varje månad.',
       relatedCases: ['sokhem', 'openaudit'],
+      relatedServices: ['development', 'agents'],
       faq: [
         { q: 'Var körs lösningen?', a: 'Där er data får finnas. Oftast på servrar i EU, ibland hos er. Det bestämmer vi innan något byggs.' },
         { q: 'Vad händer när en AI-tjänst ändras?', a: 'Jag testar den nya versionen först. Vi byter bara när resultatet är minst lika bra.' },
         { q: 'Kan vi ta över driften senare?', a: 'Ja. Allt är ert från start, och vi planerar överlämningen tillsammans.' },
         { q: 'Vem äger datan?', a: 'Ni. Den används inte för att träna AI, och ni får med er allt när uppdraget slutar.' },
+        { q: 'Vad kostar drift och förvaltning?', a: 'Från 5 000 kr i månaden utan moms. Kostnaden för servrar och AI-tjänster kommer till och syns i månadsrapporten.' },
+        { q: 'Vad står i månadsrapporten?', a: 'Hur många ärenden lösningen har hanterat, hur ofta en människa behövde gå in, vad det kostade och vad nästa förbättring är. Har något gått fel står det också vad som hände och vad som är ändrat.' },
       ],
     },
     en: {
@@ -592,6 +778,31 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
             'If you’d rather run it yourselves, your team gets the code, the instructions and the training it needs. You’re never locked in to me.',
           ],
         },
+        {
+          heading: 'How I run my own services',
+          paragraphs: [
+            'SökHem runs around the clock with a read replica of the database, nightly backups kept off the server, containers that restart automatically and an external service that alerts if the site stops answering. Grafana shows response times, errors and queue lengths.',
+            'That’s the setup you get, adapted to what you have and where your data may be kept.',
+          ],
+        },
+        {
+          heading: 'When an AI model changes',
+          paragraphs: [
+            'AI providers release new models and retire old ones. Before we switch, I run your test cases on the new model and compare with the old one. We only switch when the result is at least as good, and the cost per case is worked out again.',
+            'Solutions I build can also try the next provider if the first one doesn’t answer. The chat on this site does that, with three providers in turn before the question goes on to me.',
+          ],
+        },
+        {
+          heading: 'What it costs',
+          paragraphs: ['Hosting and maintenance costs from SEK 5,000 a month excluding VAT. The price depends on how much there is to look after. Servers and AI services come on top, and you see that cost in the monthly report.'],
+        },
+        {
+          heading: 'Security and data',
+          paragraphs: [
+            'API keys and passwords live in a separate secrets store, never in the code. The solution only gets access to the systems and data it needs, and that access can be withdrawn in one place.',
+            'Dependencies are kept up to date, and the code is checked with OpenAudit for known vulnerabilities and leaked secrets. When something goes wrong, I fix it and tell you in the next report what happened and what has changed.',
+          ],
+        },
       ],
       steps: [
         'We go through your needs for security and where data may be kept.',
@@ -606,11 +817,14 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'Usually I run the solution I built for you and send a short report every month.',
       relatedCases: ['sokhem', 'openaudit'],
+      relatedServices: ['development', 'agents'],
       faq: [
         { q: 'Where does the solution run?', a: 'Wherever your data may be kept. Usually on servers in the EU, sometimes at your site. We decide that before anything is built.' },
         { q: 'What happens when an AI service changes?', a: 'I test the new version first. We only switch when the result is at least as good.' },
         { q: 'Can we take over later?', a: 'Yes. Everything is yours from the start, and we plan the handover together.' },
         { q: 'Who owns the data?', a: 'You do. It isn’t used to train AI, and you take everything with you when the work ends.' },
+        { q: 'What does hosting and maintenance cost?', a: 'From SEK 5,000 a month excluding VAT. Servers and AI services come on top and show in the monthly report.' },
+        { q: 'What’s in the monthly report?', a: 'How many cases the solution handled, how often a person had to step in, what it cost and what the next improvement is. If something went wrong, it also says what happened and what has changed.' },
       ],
     },
   },
@@ -649,6 +863,32 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'Hur det brukar se ut',
           paragraphs: [
             'Oftast några dagar i månaden, med fasta möten och hjälp däremellan. När bolaget är redo hjälper jag er att anställa en CTO på heltid och lämnar över.',
+            'Mellan mötena svarar jag på frågor från teamet och ledningen, granskar större ändringar och är med när något viktigt ska bestämmas.',
+          ],
+        },
+        {
+          heading: 'Vad ni får',
+          paragraphs: ['Det konkreta resultatet av de första månaderna brukar vara det här.'],
+          list: [
+            'En plan för de närmaste tre månaderna, med vad som ska byggas och i vilken ordning.',
+            'Tekniska beslut som är nedskrivna, så att teamet vet varför.',
+            'Hjälp att skriva annonser, intervjua och välja utvecklare.',
+            'Granskning av kod, arkitektur och leverantörers offerter.',
+            'En bild av var AI kan spara tid i bolaget, och vad det kostar.',
+          ],
+        },
+        {
+          heading: 'Erfarenhet från egna produkter',
+          paragraphs: [
+            'Jag bygger och driver egna produkter, som SökHem och WebNu. Jag har alltså själv fattat de beslut ni står inför: vilken teknik som håller, vad som ska byggas först, hur driften ska se ut och hur AI-agenter kan skriva kod utan att kvaliteten sjunker.',
+            'Innan dess var jag tech lead på weapp och utvecklare på Telia. Den erfarenheten tar jag med in i ert team, oavsett om ni har två utvecklare eller ingen alls.',
+          ],
+        },
+        {
+          heading: 'Vad det kostar',
+          paragraphs: [
+            'Fractional CTO kostar från 40 000 kr i månaden utan moms för en dag i veckan. Ett månadspris gör det lätt att budgetera, och behöver ni mer tid en period ändrar vi det.',
+            'Som jämförelse kostar en senior konsult ofta 1 200 till 2 500 kr i timmen. Med ett månadspris vet ni vad ledningen kostar, och ni betalar inte för varje fråga mellan mötena.',
           ],
         },
       ],
@@ -666,11 +906,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'Vi börjar med en genomgång och en plan för tre månader. Sedan fortsätter vi några dagar i månaden så länge det behövs.',
       relatedCases: ['sokhem', 'copyset'],
+      relatedServices: ['assessment', 'development'],
       faq: [
         { q: 'Hur mycket tid lägger en fractional CTO?', a: 'Oftast några dagar i månaden. Vi ändrar det när bolaget växer.' },
         { q: 'Skriver du kod också?', a: 'Ja, när det är bästa sättet att komma vidare. Men målet är att teamet ska klara sig utan mig.' },
         { q: 'Kan du hjälpa oss att anställa en CTO på heltid?', a: 'Ja. Jag hjälper till med intervjuer och med att välja rätt person, och lämnar sedan över.' },
         { q: 'Jobbar du med bolag utanför Göteborg?', a: 'Ja. Jag träffar er gärna på plats i början, men det mesta fungerar på distans i hela Sverige.' },
+        { q: 'Vad kostar en fractional CTO?', a: 'Från 40 000 kr i månaden utan moms för en dag i veckan. Behöver ni mer eller mindre tid ändrar vi det.' },
       ],
     },
     en: {
@@ -707,6 +949,32 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
           heading: 'What it usually looks like',
           paragraphs: [
             'Usually a few days a month, with set meetings and help in between. When the company is ready, I help you hire a full-time CTO and hand over.',
+            'Between meetings I answer questions from the team and leadership, review larger changes and take part when something important is decided.',
+          ],
+        },
+        {
+          heading: 'What you get',
+          paragraphs: ['The concrete result of the first months is usually this.'],
+          list: [
+            'A plan for the next three months, with what to build and in which order.',
+            'Technical decisions written down, so the team knows why.',
+            'Help writing job ads, interviewing and choosing developers.',
+            'Reviews of code, architecture and suppliers’ quotes.',
+            'A picture of where AI can save time in the company, and what it costs.',
+          ],
+        },
+        {
+          heading: 'Experience from my own products',
+          paragraphs: [
+            'I build and run my own products, such as SökHem and WebNu. So I’ve made the decisions you’re facing myself: which technology holds up, what to build first, how operations should look and how AI agents can write code without quality dropping.',
+            'Before that I was a tech lead at weapp and a developer at Telia. I bring that experience into your team, whether you have two developers or none at all.',
+          ],
+        },
+        {
+          heading: 'What it costs',
+          paragraphs: [
+            'Fractional CTO costs from SEK 40,000 a month excluding VAT for one day a week. A monthly price is easy to budget, and if you need more time for a period, we change it.',
+            'For comparison, a senior consultant often costs SEK 1,200 to 2,500 an hour. With a monthly price you know what the leadership costs, and you don’t pay for every question between meetings.',
           ],
         },
       ],
@@ -724,11 +992,13 @@ export const services: Record<ServiceId, L10n<ServiceContent>> = {
       ],
       firstEngagement: 'We start with a review and a plan for three months. Then we continue a few days a month for as long as it’s needed.',
       relatedCases: ['sokhem', 'copyset'],
+      relatedServices: ['assessment', 'development'],
       faq: [
         { q: 'How much time does a fractional CTO spend?', a: 'Usually a few days a month. We change that as the company grows.' },
         { q: 'Do you write code as well?', a: 'Yes, when that’s the best way forward. But the goal is for the team to manage without me.' },
         { q: 'Can you help us hire a full-time CTO?', a: 'Yes. I help with interviews and with choosing the right person, and then hand over.' },
         { q: 'Do you work with companies outside Gothenburg?', a: 'Yes. I like to meet in person at the start, but most of the work runs just as well remotely across Sweden.' },
+        { q: 'What does a fractional CTO cost?', a: 'From SEK 40,000 a month excluding VAT for one day a week. If you need more or less time, we change it.' },
       ],
     },
   },
