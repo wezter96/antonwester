@@ -244,8 +244,59 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'Körs från terminalen, i CI via en GitHub Action, i Docker eller av en AI-agent via MCP. Rapporten kommer som HTML, JSON, SARIF, Markdown eller CSV.',
       ],
       stack: ['Bun', 'TypeScript', 'MCP', 'Docker', 'GitHub Actions', 'SARIF'],
+      sections: [
+        {
+          heading: 'Problemet',
+          paragraphs: [
+            'Den som vill granska ett projekt ordentligt behöver många verktyg: ett för hemligheter i koden, ett för sårbara beroenden, ett för tillgänglighet och ett för prestanda. Varje verktyg har sitt eget format, och samma problem dyker upp i flera rapporter.',
+            'OpenAudit kör dem tillsammans och ger en rapport med ett betyg. Betyget räknas likadant varje gång, så det syns när något blir bättre eller sämre.',
+          ],
+        },
+        {
+          heading: 'Vad den granskar',
+          paragraphs: [
+            'Målet kan vara en mapp med kod, en webbplats, en körande webbapp, en containerbild, infrastruktur som kod eller en mobilapp. OpenAudit känner av vad målet innehåller, som Node, Python, Docker, Terraform, Kubernetes, GitHub Actions, Android eller iOS, och kör de granskningar som passar.',
+            'Områdena är bland annat säkerhet, tillgänglighet, prestanda, SEO, integritet, goda vanor och leveranskedjan, alltså de beroenden ni bygger på.',
+          ],
+        },
+        {
+          heading: 'Byggd för CI',
+          paragraphs: [
+            'I en pipeline kan OpenAudit stoppa en ändring när ett fynd når en viss allvarlighetsgrad. Kraschar en granskning som skulle ha hittat ett fel räknas det som ett misslyckande, så ett projekt kan inte passera för att ett verktyg gick sönder.',
+            'Med en tidigare rapport som baslinje räknas bara nya fynd, och granskningen går att begränsa till filer som ändrats sedan en viss gren. Då går det att börja använda verktyget i ett gammalt projekt utan att först rätta allt. Resultatet kan sparas som SARIF, så att fynden syns direkt i GitHub.',
+          ],
+        },
+        {
+          heading: 'Byggd för AI-agenter',
+          paragraphs: [
+            'I JSON-läget får ett skript eller en agent bara rapporten, utan annan utskrift. Via MCP kan Claude Code, Cursor, Codex och andra agenter köra granskningar och kontrollera sina egna rättningar. En agent som har byggt något kan alltså granska resultatet innan en människa tittar.',
+            'En AI-sammanfattning som prioriterar fynden kan läggas till. Misslyckas den skriver verktyget en varning och fortsätter, så rapporten är aldrig beroende av en AI-tjänst.',
+          ],
+        },
+        {
+          heading: 'Säker att köra',
+          paragraphs: [
+            'Saknas ett externt verktyg hoppas den granskningen över, och rapporten säger varför. I offlineläge görs inga anrop utom till själva målet. Verktyget har öppen källkod under MIT-licensen, så det går att läsa exakt vad varje kontroll gör.',
+          ],
+        },
+      ],
       proves: [
         'Samma arbetssätt som jag använder hos kunder: mät, sätt betyg och åtgärda. AI-agenter är en del av arbetet från början.',
+        'För er betyder det att ett uppdrag börjar med en mätning. En AI-kartläggning följer samma ordning: först en bild av hur det ser ut i dag, sedan en prioriterad lista över vad som är värt att göra.',
+      ],
+      faq: [
+        {
+          q: 'Kostar OpenAudit något?',
+          a: 'Nej. Det är gratis och har öppen källkod under MIT-licensen.',
+        },
+        {
+          q: 'Kan OpenAudit granska vår webbplats?',
+          a: 'Ja. Den granskar både kod och webbplatser som är i drift, till exempel säkerhetsrubriker, tillgänglighet, prestanda och SEO.',
+        },
+        {
+          q: 'Kan du granska vårt system åt oss?',
+          a: 'Ja. Hör av er, så går vi igenom vad som ska granskas och vad det kostar. Ni får ett fast pris innan jag börjar.',
+        },
       ],
       service: 'assessment',
       schemaType: 'SoftwareApplication',
@@ -277,8 +328,59 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'Runs from the terminal, in CI through a GitHub Action, in Docker or from an AI agent over MCP. Reports come as HTML, JSON, SARIF, Markdown or CSV.',
       ],
       stack: ['Bun', 'TypeScript', 'MCP', 'Docker', 'GitHub Actions', 'SARIF'],
+      sections: [
+        {
+          heading: 'The problem',
+          paragraphs: [
+            'Auditing a project properly takes many tools: one for secrets in the code, one for vulnerable dependencies, one for accessibility and one for performance. Each tool has its own format, and the same problem turns up in several reports.',
+            'OpenAudit runs them together and gives one report with one score. The score is calculated the same way every time, so you can see when things get better or worse.',
+          ],
+        },
+        {
+          heading: 'What it checks',
+          paragraphs: [
+            'The target can be a folder of code, a website, a running web app, a container image, infrastructure as code or a mobile app. OpenAudit detects what the target contains, such as Node, Python, Docker, Terraform, Kubernetes, GitHub Actions, Android or iOS, and runs the audits that apply.',
+            'The areas include security, accessibility, performance, SEO, privacy, best practices and the supply chain, meaning the dependencies you build on.',
+          ],
+        },
+        {
+          heading: 'Built for CI',
+          paragraphs: [
+            'In a pipeline, OpenAudit can stop a change when a finding reaches a given severity. If an audit that would have found a problem crashes, that counts as a failure, so a project can’t pass because a tool broke.',
+            'With an earlier report as a baseline, only new findings count, and the audit can be limited to files changed since a given branch. That makes it possible to start using the tool in an old project without fixing everything first. Results can be saved as SARIF, so findings show up directly in GitHub.',
+          ],
+        },
+        {
+          heading: 'Built for AI agents',
+          paragraphs: [
+            'In JSON mode a script or an agent gets only the report, with no other output. Over MCP, Claude Code, Cursor, Codex and other agents can run audits and check their own fixes. An agent that has built something can audit the result before a person looks.',
+            'An AI summary that prioritises the findings can be added. If it fails, the tool prints a warning and carries on, so the report never depends on an AI service.',
+          ],
+        },
+        {
+          heading: 'Safe to run',
+          paragraphs: [
+            'If an external tool is missing, that audit is skipped and the report says why. In offline mode no requests are made except to the target itself. The tool is open source under the MIT licence, so you can read exactly what each check does.',
+          ],
+        },
+      ],
       proves: [
         'The same way I work for clients: measure, score and fix. AI agents are part of the work from the start.',
+        'For you, that means an engagement starts with a measurement. An AI assessment follows the same order: first a picture of how things are today, then a prioritised list of what’s worth doing.',
+      ],
+      faq: [
+        {
+          q: 'Does OpenAudit cost anything?',
+          a: 'No. It’s free and open source under the MIT licence.',
+        },
+        {
+          q: 'Can OpenAudit check our website?',
+          a: 'Yes. It checks both code and live websites, such as security headers, accessibility, performance and SEO.',
+        },
+        {
+          q: 'Can you audit our system for us?',
+          a: 'Yes. Get in touch and we’ll go through what to audit and what it costs. You get a fixed price before I start.',
+        },
       ],
       service: 'assessment',
       schemaType: 'SoftwareApplication',
@@ -521,8 +623,60 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'Claude Code eller Codex kan styra teamet via MCP. Flera agenter kan arbeta samtidigt utan att krocka, och flera datorer kan dela på arbetet över Tailscale.',
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'SQLite', 'MCP', 'Tailscale'],
+      sections: [
+        {
+          heading: 'Varför jag byggde det',
+          paragraphs: [
+            'När AI-agenter skriver kod är det svåra sällan att få dem att skriva. Det svåra är att veta vad de har gjort. Vilka filer ändrades, vilka kommandon kördes, vad kostade det och vem sa ja? Wez är byggt för att allt det ska gå att läsa medan det händer.',
+            'Agenterna körs på min egen dator, mot de AI-leverantörer jag redan betalar för eller de abonnemang jag redan har. Inget går via en mellanhand.',
+          ],
+        },
+        {
+          heading: 'Allt sparas',
+          paragraphs: [
+            'Motorn sparar sitt tillstånd i SQLite: trådar, uppgifter på tavlan, godkännanden, behörigheter och en logg över varje anrop till en modell. Nycklarna till AI-leverantörerna ligger i operativsystemets nyckelring och aldrig i en inställningsfil.',
+            'I efterhand går det därför att svara på varför något hände: vilken modell som fick vilken fråga, vilket verktyg som anropades och vad resultatet blev.',
+          ],
+        },
+        {
+          heading: 'Flera agenter utan krockar',
+          paragraphs: [
+            'Varje uppgift får en egen kopia av kodförrådet i en egen katalog. Två agenter kan inte skriva över varandras filer, och krockar syns först när en ändring ska in i huvudgrenen, där de går att lösa. Agenter som delar katalog turas om med lås på filnivå.',
+            'En ny uppgift startar bara om datorn har kapacitet. Annars väntar den, så att inte allt blir långsamt. En katalog med osparat arbete tas aldrig bort automatiskt, eftersom den kan vara den enda kopian av en agents arbete.',
+            'När en uppgift är klar läggs den ovanpå den senaste huvudgrenen, och kontrollerna körs igen innan den får komma in.',
+          ],
+        },
+        {
+          heading: 'Kostnaden syns och styrs',
+          paragraphs: [
+            'Varje anrop loggas med vad det kostade. Hur länge en konversation ligger kvar i modellens cache är ett eget designbeslut, uppmätt på riktiga konversationer, eftersom en förlorad cache gör nästa anrop dyrare.',
+            'Gränserna för när en lång konversation ska kortas har jag provat mot mina egna trådar och räknat på vad de kostar. Det är samma sorts mätning jag gör hos kunder innan en AI-lösning tar över ett flöde.',
+          ],
+        },
+        {
+          heading: 'Fler datorer',
+          paragraphs: [
+            'Wez kan köras som tjänst på Linux- och Windowsdatorer som kopplas ihop över Tailscale. Flera datorer kan då dela på arbetet, och jag följer allt från datorn, mobilen eller terminalen.',
+          ],
+        },
+      ],
       proves: [
         'I efterhand syns vad agenterna gjorde, vad det kostade och vem som godkände det. Samma insyn bygger jag in i det jag levererar.',
+        'För den som köper AI-lösningar räcker det inte att agenterna klarar jobbet. Ni behöver också kunna se vad de gjorde. Lösningar jag bygger loggar vad AI:n gjorde, vad det kostade och vem som godkände, så att ni kan svara på det när någon frågar.',
+      ],
+      faq: [
+        {
+          q: 'Kan vi köpa Wez?',
+          a: 'Nej. Wez är mitt eget verktyg och används i mitt arbete. Insynen det ger bygger jag in i det jag levererar till er.',
+        },
+        {
+          q: 'Vilka AI-modeller använder Wez?',
+          a: 'Modeller från flera leverantörer, via de API-nycklar och abonnemang jag redan har. Claude Code och Codex kan också styra teamet via MCP.',
+        },
+        {
+          q: 'Vad betyder Wez för oss som kunder?',
+          a: 'Att jag kan bygga snabbt utan att tappa kontrollen. Ni betalar ett fast pris per steg, så farten som agenterna ger kommer er till godo utan att ni betalar för timmar.',
+        },
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',
@@ -555,8 +709,60 @@ export const cases: Record<CaseId, L10n<CaseContent>> = {
         'Claude Code or Codex can steer the team over MCP. Several agents can work at once without clashing, and several computers can share the work over Tailscale.',
       ],
       stack: ['Bun', 'Effect', 'TypeScript', 'React', 'SQLite', 'MCP', 'Tailscale'],
+      sections: [
+        {
+          heading: 'Why I built it',
+          paragraphs: [
+            'When AI agents write code, the hard part is rarely getting them to write. It’s knowing what they did. Which files changed, which commands ran, what did it cost and who said yes? Wez is built so all of that can be read as it happens.',
+            'The agents run on my own computer, against the AI providers I already pay for or the subscriptions I already have. Nothing goes through a middleman.',
+          ],
+        },
+        {
+          heading: 'Everything is kept',
+          paragraphs: [
+            'The engine keeps its state in SQLite: threads, cards on the board, approvals, permissions and a log of every call to a model. The keys to the AI providers live in the operating system’s keychain, never in a settings file.',
+            'So afterwards you can answer why something happened: which model got which question, which tool was called and what the result was.',
+          ],
+        },
+        {
+          heading: 'Several agents without clashes',
+          paragraphs: [
+            'Every task gets its own copy of the repository in its own folder. Two agents can’t overwrite each other’s files, and clashes only show when a change is about to enter the main branch, where they can be resolved. Agents that share a folder take turns with file-level locks.',
+            'A new task only starts if the computer has capacity. Otherwise it waits, so everything doesn’t slow down. A folder with unsaved work is never removed automatically, because it may be the only copy of an agent’s work.',
+            'When a task is done, it’s placed on top of the latest main branch and the checks run again before it gets in.',
+          ],
+        },
+        {
+          heading: 'Cost you can see and steer',
+          paragraphs: [
+            'Every call is logged with what it cost. How long a conversation stays in the model’s cache is a design decision of its own, measured on real conversations, because a lost cache makes the next call more expensive.',
+            'I’ve tested the limits for when a long conversation should be shortened against my own threads and worked out what they cost. It’s the same kind of measuring I do for clients before an AI solution takes over a flow.',
+          ],
+        },
+        {
+          heading: 'More computers',
+          paragraphs: [
+            'Wez can run as a service on Linux and Windows machines joined over Tailscale. Several computers can then share the work, and I follow everything from the desktop, the phone or the terminal.',
+          ],
+        },
+      ],
       proves: [
         'Afterwards you can see what the agents did, what it cost and who approved it. I build the same insight into what I deliver.',
+        'If you’re buying AI solutions, it isn’t enough that the agents can do the job. You also need to see what they did. Solutions I build log what the AI did, what it cost and who approved it, so you can answer when someone asks.',
+      ],
+      faq: [
+        {
+          q: 'Can we buy Wez?',
+          a: 'No. Wez is my own tool and is used in my work. I build the insight it gives into what I deliver to you.',
+        },
+        {
+          q: 'Which AI models does Wez use?',
+          a: 'Models from several providers, through the API keys and subscriptions I already have. Claude Code and Codex can also steer the team over MCP.',
+        },
+        {
+          q: 'What does Wez mean for us as clients?',
+          a: 'That I can build fast without losing control. You pay a fixed price per step, so the speed the agents bring works in your favour without you paying for hours.',
+        },
       ],
       service: 'development',
       schemaType: 'SoftwareApplication',
