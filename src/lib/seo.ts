@@ -213,7 +213,7 @@ export function headForCase(id: CaseId, l: Locale): HeadProps {
   const url = urlFor(page, l);
   const c = cases[id][l];
   return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.name, url }],
-    [softwareLd({ url, name: c.name, description: c.seo.description, schemaType: c.schemaType, applicationCategory: c.applicationCategory, productUrl: c.url, license: c.license })]);
+    [softwareLd({ url, name: c.name, description: c.seo.description, schemaType: c.schemaType, applicationCategory: c.applicationCategory, productUrl: c.url, license: c.license }), ...(c.faq ? [faqLd(url, c.faq)] : [])]);
 }
 
 export function headForCity(id: CityId, l: Locale): HeadProps {

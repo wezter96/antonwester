@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
 import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import PageHero from '../components/PageHero.astro';
@@ -44,6 +45,15 @@ const shot = shots[`../assets/shots/${id}.webp`]?.default;
           <p><b>{L.stack}:</b> {c.stack.join(', ')}.</p>
         </div>
       </div>
+      {c.sections?.map((s) => (
+        <div class="block grid">
+          <h2 class="sub">{s.heading}</h2>
+          <div class="col long">
+            {s.paragraphs.map((p) => <p>{p}</p>)}
+            {s.list && <ul>{s.list.map((li) => <li>{li}</li>)}</ul>}
+          </div>
+        </div>
+      ))}
       <div class="block grid">
         <h2 class="sub">{L.proves}</h2>
         <div class="col">
@@ -55,10 +65,12 @@ const shot = shots[`../assets/shots/${id}.webp`]?.default;
         <p class="col links">
           {c.url ? <a class="lnk" href={c.url} rel="noopener">{c.url.replace(/^https:\/\//, '')}</a> : <span class="private">{c.privateLabel}</span>}
           <a class="lnk" href={pathFor({ kind: 'service', id: c.service }, locale)}>{L.service}: {service.name}</a>
+          <a class="lnk" href={pathFor({ kind: 'prices' }, locale)}>{L.prices}</a>
           <a class="lnk" href={pathFor({ kind: 'case', id: next.id }, locale)}>{L.next}: {next.name}</a>
         </p>
       </div>
     </section>
+    {c.faq && <Faq id="faq" heading={L.faq} items={c.faq} />}
     <Contact locale={locale} />
   </main>
   <Footer locale={locale} page={page} />
@@ -76,6 +88,8 @@ const shot = shots[`../assets/shots/${id}.webp`]?.default;
   .block { row-gap: 20px; align-items: start; }
   .block h2 { grid-column: 1 / 4; }
   .col { grid-column: 4 / 11; max-width: 52ch; display: grid; gap: 1em; font-size: var(--step-lead); line-height: 1.4; }
+  .col.long { font-size: var(--step-body); line-height: 1.55; }
+  .col ul { margin: 0; padding-left: 1.2em; display: grid; gap: .5em; }
   .facts, .links { font-size: var(--step-body); }
   .facts { margin: 1em 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
   .facts dt { font-weight: 800; font-variant-numeric: tabular-nums; }

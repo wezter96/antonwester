@@ -82,7 +82,10 @@ export interface CaseContent {
   what: string[];
   how: string[];
   stack: string[];
+  /** Deeper sections between "how" and "proves": the problem, the architecture, the trade-offs. */
+  sections?: Section[];
   proves: string[];
+  faq?: Faq[];
   service: ServiceId;
   schemaType: 'SoftwareApplication' | 'WebApplication';
   applicationCategory: string;
@@ -200,7 +203,7 @@ export interface Ui {
   };
   about: { seo: { title: string; description: string }; h1: string; intro: string };
   footer: { org: string; services: string; cities: string; guides: string; cv: string; privacy: string; about: string; prices: string };
-  caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string };
+  caseLabels: { what: string; how: string; proves: string; stack: string; next: string; service: string; prices: string; faq: string };
   serviceLabels: { what: string; steps: string; fits: string; first: string; cases: string; faq: string; homeLead: string; homeLink: string; related: string };
   cityLabels: { nearby: string; delivery: string; services: string; neighbours: string; useCases: string; products: string };
   notFound: { title: string; body: string; home: string };
