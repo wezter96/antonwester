@@ -7,6 +7,7 @@ import Nav from '../components/Nav.astro';
 import PageHero from '../components/PageHero.astro';
 import { guides, guideUi } from '../content/guides';
 import { pathFor, type GuideId, type Locale, type PageRef } from '../content/routes';
+import { cases } from '../content/cases';
 import { services } from '../content/services';
 import { headForGuide } from '../lib/seo';
 
@@ -65,9 +66,20 @@ const sectionId = (i: number) => `section-${i + 1}`;
 
           <div class="services">
             <p class="label">{t.relatedServices}</p>
-            <p>{g.relatedServices.map((serviceId) => (
-              <a class="lnk" href={pathFor({ kind: 'service', id: serviceId }, locale)}>{services[serviceId][locale].name}</a>
-            ))}</p>
+            <p class="links">
+              {g.relatedServices.map((serviceId) => (
+                <a class="lnk" href={pathFor({ kind: 'service', id: serviceId }, locale)}>{services[serviceId][locale].name}</a>
+              ))}
+              <a class="lnk" href={pathFor({ kind: 'prices' }, locale)}>{t.prices}</a>
+            </p>
+            {g.relatedCases && (
+              <>
+                <p class="label">{t.relatedCases}</p>
+                <p class="links">{g.relatedCases.map((caseId) => (
+                  <a class="lnk" href={pathFor({ kind: 'case', id: caseId }, locale)}>{cases[caseId][locale].name}</a>
+                ))}</p>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -120,7 +132,8 @@ const sectionId = (i: number) => `section-${i + 1}`;
   .code pre { margin: 0; padding: 18px 16px; overflow-x: auto; }
   .code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8125rem; line-height: 1.6; white-space: pre; }
   .services { margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent); padding-top: 20px; }
-  .services p:last-child { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
+  .services .links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
+  .services .links + .label { margin-top: 20px; }
   .more { padding: var(--section) var(--margin); }
   .more h2 { grid-column: 1 / -1; margin-bottom: clamp(24px, 3vw, 40px); }
   .related { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }

@@ -25,6 +25,8 @@ export interface GuideContent {
   sections: GuideSection[];
   faq: Faq[];
   relatedServices: ServiceId[];
+  /** Cases that show the guide's advice in a real product. */
+  relatedCases?: CaseId[];
   relatedGuides: GuideId[];
 }
 export interface GuideUi {
@@ -38,6 +40,8 @@ export interface GuideUi {
   contents: string;
   related: string;
   relatedServices: string;
+  relatedCases: string;
+  prices: string;
   allGuides: string;
   backToGuides: string;
   faq: string;

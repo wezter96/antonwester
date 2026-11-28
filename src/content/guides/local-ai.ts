@@ -4,16 +4,17 @@ export const localAi: L10n<GuideContent> = {
   sv: {
     id: 'local-ai',
     seo: {
-      title: 'Lokala AI-modeller: när de är värda det | Anton Wester',
+      title: 'Ska företaget köra AI på egen server? | Anton Wester',
       description:
         'När ska företaget köra AI på egen server? Hårdvara, modeller, kostnad, kvalitet och hybrid drift. En praktisk genomgång av Anton Wester.',
     },
-    h1: 'Lokala AI-modeller: när de är värda det',
+    h1: 'Ska företaget köra AI på egen server?',
     promise: 'Lokal AI är ett driftbeslut, inte ett ideologiskt.',
     intro:
-      'Egen hårdvara löser dataskydd och ibland kostnad. Men den löser inte kvalitet, uppdateringar eller någon annans ansvar klockan tre på natten.',
-    published: '2026-09-30',
-    readingMinutes: 7,
+      'Kör AI på egen server när data inte får lämna huset, när arbetet måste fungera utan internet eller när volymen är så hög och jämn att ett API blir dyrt. Annars är en extern modell oftast billigare och bättre. Ofta blir det en blandning: känsliga delar lokalt, resten via ett API.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'När lokal AI är rätt',
@@ -57,10 +58,25 @@ export const localAi: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Bygg så att modellen går att byta',
+        paragraphs: [
+          'Det viktigaste beslutet är inte vilken modell ni börjar med. Det är att koden inte ska bero på den. Lägg anropen till modellen bakom ett eget gränssnitt och använd ett format som flera modeller förstår. Många servrar för öppna modeller svarar i samma format som OpenAI:s API, och det gör bytet mycket enklare.',
+          'Chatten på den här webbplatsen är byggd så. Den pratar med tre leverantörer genom samma OpenAI-kompatibla anrop och går vidare till nästa om en inte svarar. Att lägga till en lokal modell i kedjan är samma sak: en adress, ett modellnamn och en nyckel till.',
+          'Har ni testfallen sparade går det sedan att jämföra en ny modell med den gamla på er egen data innan ni byter.',
+        ],
+      },
+      {
         heading: 'Räkna på helheten',
         paragraphs: [
           'Jämför inte bara priset per token. Ta med hårdvara, el, plats, backup, uppdateringar och tiden för någon som håller det igång. Jämför med API-kostnaden för samma volym och samma kvalitetskrav.',
           'Om volymen är låg och kraven måttliga vinner ofta API:t. Om datan inte får lämna huset vinner det lokala även när det kostar mer, men då ska ni veta att ni betalar för kontroll.',
+        ],
+      },
+      {
+        heading: 'Vad det kostar att komma igång',
+        paragraphs: [
+          'Servern ingår inte i mitt pris. Den köper eller hyr ni, så att den är er. Själva bygget ingår i AI-utveckling, från 60 000 kr utan moms, och driften av en lokal modell ingår i drift och förvaltning, från 5 000 kr i månaden. Där ingår övervakning, uppdateringar och tester innan en ny modell ersätter den gamla.',
+          'Jag kör själv öppna modeller på egen hårdvara varje dag. Innan ni köper något kör jag gärna era testfall på en lokal modell och på en extern, så att ni ser skillnaden i kvalitet och svarstid på er egen data. Då fattar ni beslutet på riktiga siffror.',
         ],
       },
     ],
@@ -84,16 +100,17 @@ export const localAi: L10n<GuideContent> = {
   en: {
     id: 'local-ai',
     seo: {
-      title: 'Local AI models: when they are worth it | Anton Wester',
+      title: 'Should your company run AI on its own server? | Anton Wester',
       description:
         'When should a company run AI on its own server? Hardware, models, cost, quality and hybrid operations. A practical guide by Anton Wester.',
     },
-    h1: 'Local AI models: when they are worth it',
+    h1: 'Should your company run AI on its own server?',
     promise: 'Local AI is an operations decision, not an ideology.',
     intro:
-      'Own hardware solves data protection and sometimes cost. It does not solve quality, updates or who is responsible at three in the morning.',
-    published: '2026-09-30',
-    readingMinutes: 7,
+      'Run AI on your own server when data may not leave the building, when the work has to function without internet, or when the volume is so high and steady that an API gets expensive. Otherwise an external model is usually cheaper and better. Often it ends up a mix: sensitive parts local, the rest through an API.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'When local AI is right',
@@ -137,10 +154,25 @@ export const localAi: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Build so the model can be swapped',
+        paragraphs: [
+          'The most important decision isn’t which model you start with. It’s that the code doesn’t depend on it. Put the calls to the model behind an interface of your own and use a format several models understand. Many servers for open models answer in the same format as OpenAI’s API, which makes switching much easier.',
+          'The chat on this site is built that way. It talks to three providers through the same OpenAI-compatible call and moves on to the next if one doesn’t answer. Adding a local model to the chain is the same thing: one more address, model name and key.',
+          'With your test cases saved, you can then compare a new model with the old one on your own data before you switch.',
+        ],
+      },
+      {
         heading: 'Do the full maths',
         paragraphs: [
           'Do not compare only price per token. Include hardware, electricity, space, backup, updates and the time of someone keeping it running. Compare with API cost for the same volume and the same quality requirement.',
           'If volume is low and requirements are moderate, the API usually wins. If data may not leave the building, local wins even when it costs more, but then you should know you are paying for control.',
+        ],
+      },
+      {
+        heading: 'What it costs to get started',
+        paragraphs: [
+          'The server isn’t included in my price. You buy or rent it, so it’s yours. The build itself is part of AI development, from SEK 60,000 excluding VAT, and running a local model is part of hosting and maintenance, from SEK 5,000 a month. That covers monitoring, updates and tests before a new model replaces the old one.',
+          'I run open models on my own hardware every day. Before you buy anything, I’m happy to run your test cases on a local model and an external one, so you see the difference in quality and response time on your own data. Then you make the decision on real numbers.',
         ],
       },
     ],

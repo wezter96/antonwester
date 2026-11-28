@@ -4,16 +4,17 @@ export const aiEvaluation: L10n<GuideContent> = {
   sv: {
     id: 'ai-evaluation',
     seo: {
-      title: 'Testa AI innan den får kunder | Anton Wester',
+      title: 'Hur testar man AI innan den möter kunder? | Anton Wester',
       description:
         'Så testar du AI-system med riktiga fall, tydliga kriterier och regressionstester. En praktisk guide om utvärdering av AI från Anton Wester.',
     },
-    h1: 'Testa AI innan den får kunder',
+    h1: 'Hur testar man AI innan den möter kunder?',
     promise: 'En demo är inte ett test.',
     intro:
-      'Ett bra AI-system har en uppsättning fall som går att köra om och om igen. Utan den vet ni bara att det fungerade den dagen någon råkade titta.',
-    published: '2026-09-02',
-    readingMinutes: 7,
+      'Samla 30 till 50 riktiga fall från verksamheten och skriv ner vad ett bra svar måste innehålla. Kör samma fall varje gång ni byter modell, prompt eller verktyg, och jämför med förra versionen. Mät mer än om svaret stämmer: källor, beteende, kostnad och tid. Släpp sedan till en liten grupp först.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'Samla riktiga fall först',
@@ -58,10 +59,30 @@ export const aiEvaluation: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Koppla varje krav till ett test',
+        paragraphs: [
+          'I WebNu, min tjänst för hemsidor åt småföretag, finns 282 skrivna krav. Vart och ett är kopplat till testet som visar att det håller, och varje ändring går igenom de automatiska kontrollerna innan den når produktion. Det gäller även kod som AI-agenter har skrivit.',
+          'Samma idé fungerar för ett AI-system. Skriv kravet i klartext, till exempel ”svaret får aldrig lova ett leveransdatum”, och koppla det till de fall som prövar det. När ett test inte går igenom ser ni vilket krav som bröts, och inte bara att något blev sämre.',
+        ],
+      },
+      {
+        heading: 'Ett betyg vid varje ändring',
+        paragraphs: [
+          'OpenAudit, mitt granskningsverktyg med öppen källkod, kör 103 kontroller inom tio områden och ger resultatet ett betyg. Verktyget granskar sig självt vid varje ändring och ska hålla A 100. Ett betyg som räknas likadant varje gång gör det lätt att se när något går bakåt.',
+          'För ett AI-system kan betyget vara andelen fall som går igenom, uppdelat på korrekthet, källor och beteende. Bestäm en gräns som en ändring måste klara för att få gå ut, och låt den gälla även när ändringen ser liten ut.',
+        ],
+      },
+      {
         heading: 'Vad ni inte kan testa er till',
         paragraphs: [
           'Tester säger inte allt om hur systemet känns i vardagen. De säger inte heller om människor litar på det eller om det sparar tid. Det behöver ni mäta med riktiga användare.',
           'Men utan tester blir den frågan omöjlig att svara på. Först när kvaliteten är mätbar går det att se om tiden som sparas är värd något.',
+        ],
+      },
+      {
+        heading: 'Vad det kostar',
+        paragraphs: [
+          'Testfallen och mätningen är en del av allt jag bygger och ingår i priset för AI-utveckling, från 60 000 kr utan moms. Har ni redan ett AI-system i drift kan vi börja med att bygga testfallen för det och mäta var det står i dag. Då vet ni vad som behöver bli bättre innan någon bygger mer.',
         ],
       },
     ],
@@ -80,21 +101,23 @@ export const aiEvaluation: L10n<GuideContent> = {
       },
     ],
     relatedServices: ['assessment', 'operations'],
+    relatedCases: ['webnu', 'openaudit'],
     relatedGuides: ['ai-agents', 'rag'],
   },
   en: {
     id: 'ai-evaluation',
     seo: {
-      title: 'Test AI before it meets customers | Anton Wester',
+      title: 'How do you test AI before it meets customers? | Anton Wester',
       description:
         'How to test AI systems with real cases, clear criteria and regression tests. A practical guide to AI evaluation by Anton Wester.',
     },
-    h1: 'Test AI before it meets customers',
+    h1: 'How do you test AI before it meets customers?',
     promise: 'A demo is not a test.',
     intro:
-      'A good AI system has a set of cases you can run again and again. Without it, you only know it worked on the day someone happened to look.',
-    published: '2026-09-02',
-    readingMinutes: 7,
+      'Collect 30 to 50 real cases from the business and write down what a good answer must contain. Run the same cases every time you change model, prompt or tool, and compare with the previous version. Measure more than whether the answer is right: sources, behaviour, cost and time. Then release to a small group first.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'Collect real cases first',
@@ -139,10 +162,30 @@ export const aiEvaluation: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Link every requirement to a test',
+        paragraphs: [
+          'In WebNu, my website service for small businesses, there are 282 written requirements. Each one is linked to the test that shows it holds, and every change goes through the automatic checks before it reaches production. That applies to code written by AI agents too.',
+          'The same idea works for an AI system. Write the requirement in plain words, such as “the answer must never promise a delivery date”, and link it to the cases that test it. When a test fails you see which requirement broke, not just that something got worse.',
+        ],
+      },
+      {
+        heading: 'A score on every change',
+        paragraphs: [
+          'OpenAudit, my open-source audit tool, runs 103 checks across ten areas and gives the result a score. The tool audits itself on every change and has to stay at A 100. A score that’s calculated the same way every time makes it easy to see when something slips.',
+          'For an AI system the score can be the share of cases that pass, split into correctness, sources and behaviour. Decide on a threshold a change must clear before it ships, and keep it even when the change looks small.',
+        ],
+      },
+      {
         heading: 'What tests cannot tell you',
         paragraphs: [
           'Tests do not say everything about how the system feels in daily work. They do not say whether people trust it or whether it saves time. You need real users to measure that.',
           'But without tests, that question becomes impossible to answer. Only when quality is measurable can you see whether the time saved is worth anything.',
+        ],
+      },
+      {
+        heading: 'What it costs',
+        paragraphs: [
+          'The test cases and the measuring are part of everything I build and are included in the price of AI development, from SEK 60,000 excluding VAT. If you already have an AI system running, we can start by building the test cases for it and measuring where it stands today. Then you know what needs to improve before anyone builds more.',
         ],
       },
     ],
@@ -161,6 +204,7 @@ export const aiEvaluation: L10n<GuideContent> = {
       },
     ],
     relatedServices: ['assessment', 'operations'],
+    relatedCases: ['webnu', 'openaudit'],
     relatedGuides: ['ai-agents', 'rag'],
   },
 };

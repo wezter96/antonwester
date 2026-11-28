@@ -27,11 +27,11 @@ export const WEBNU_URL = 'https://webnu.se/';
 export const prices: Record<Locale, PricesContent> = {
   sv: {
     seo: {
-      title: 'Priser för AI-konsult i Göteborg | Anton Wester',
-      description: 'Vad kostar en AI-konsult? AI-kartläggning från 25 000 kr, AI-utveckling från 60 000 kr och fractional CTO från 40 000 kr i månaden. Pris efter värde.',
+      title: 'Vad kostar en AI-konsult? Priser i Göteborg | Anton Wester',
+      description: 'Vad kostar en AI-konsult? Ofta 1 200 till 2 500 kr i timmen. Jag tar fast pris per steg: AI-kartläggning från 25 000 kr, AI-utveckling från 60 000 kr.',
     },
-    h1: 'Priser',
-    intro: 'Jag tar betalt för vad lösningen ger er, inte för mina timmar. Vi räknar på vad den sparar eller tjänar, och priset hamnar klart under det. Innan vi börjar får ni ett fast pris för varje steg. Alla priser är utan moms.',
+    h1: 'Vad kostar en AI-konsult?',
+    intro: 'En AI-konsult i Sverige tar ofta mellan 1 200 och 2 500 kr i timmen. Jag säljer inte timmar. Ni får ett fast pris per steg, satt efter vad lösningen sparar eller tjänar åt er: AI-kartläggning från 25 000 kr, AI-utveckling från 60 000 kr och fractional CTO från 40 000 kr i månaden. Alla priser är utan moms.',
     rows: [
       { service: 'assessment', name: 'AI-kartläggning', price: 'från 25 000 kr', min: 25000,
         detail: 'Fast pris. Jag sitter med dem som gör jobbet och ger er en lista över var AI sparar mest tid, vad det kostar att bygga och var ni ska börja.' },
@@ -52,6 +52,25 @@ export const prices: Record<Locale, PricesContent> = {
         ],
       },
       {
+        heading: 'Jämfört med timpris',
+        paragraphs: [
+          'En senior konsult i Sverige kostar ofta mellan 1 200 och 2 500 kr i timmen, och AI-specialister ligger oftast i den övre halvan. Med ett timpris vet ni vad en timme kostar, men inte vad hela jobbet kommer att kosta.',
+          'Räknat i timmar motsvarar en AI-kartläggning från 25 000 kr ungefär 10 till 20 konsulttimmar. Skillnaden är att mitt pris är fast. Tar jobbet längre tid än jag räknat med betalar ni inte mer.',
+          'Jämför ni offerter från flera konsulter: be om totalpriset för ett avgränsat steg och om en beskrivning av vad som ska vara klart när steget är slut. Det är lättare att jämföra än timpriser.',
+        ],
+      },
+      {
+        heading: 'Vad som ingår i ett steg',
+        paragraphs: ['Det fasta priset gäller ett avgränsat steg med ett tydligt resultat. I ett byggsteg ingår det här.'],
+        list: [
+          'Koden, i ert kodförråd och er från första dagen.',
+          'Tester mot riktiga exempel från er verksamhet.',
+          'Loggar över vad lösningen gör, och gränser för vad den får göra själv.',
+          'En mätning av vad AI-tjänsten kostar att köra vid er volym.',
+          'Dokumentation, så att ert team eller en annan leverantör kan ta över.',
+        ],
+      },
+      {
         heading: 'Så går ett uppdrag till',
         paragraphs: [],
         list: [
@@ -68,6 +87,7 @@ export const prices: Record<Locale, PricesContent> = {
       link: 'Till WebNu',
     },
     faq: [
+      { q: 'Vad kostar en AI-konsult i timmen?', a: 'I Sverige oftast mellan 1 200 och 2 500 kr i timmen för en senior konsult. Jag tar inte timpris. Ni får ett fast pris per steg, från 25 000 kr för en AI-kartläggning.' },
       { q: 'Varför inte timpris?', a: 'Ett timpris belönar den som är långsam. Med pris efter värde vet ni kostnaden innan vi börjar, och tar jobbet längre tid än jag räknat med är det min sak.' },
       { q: 'Kan vi få en tech lead i teamet under lång tid?', a: 'Ja. Då sätter vi ett månadspris utifrån vad teamet ska leverera.' },
       { q: 'Vad ingår inte i priset?', a: 'Kostnaden för AI-tjänsterna och för servrar, om lösningen behöver egna. Den får ni veta innan vi bygger.' },
@@ -76,11 +96,11 @@ export const prices: Record<Locale, PricesContent> = {
   },
   en: {
     seo: {
-      title: 'Prices for an AI consultant in Gothenburg | Anton Wester',
-      description: 'What does an AI consultant cost? AI assessment from SEK 25,000, AI development from SEK 60,000 and fractional CTO from SEK 40,000 a month. Priced on value.',
+      title: 'What does an AI consultant cost? Prices | Anton Wester',
+      description: 'What does an AI consultant cost? In Sweden often SEK 1,200 to 2,500 an hour. I charge a fixed price per step: AI assessment from SEK 25,000.',
     },
-    h1: 'Prices',
-    intro: 'I charge for what the solution gives you, not for my hours. We work out what it saves or earns, and the price lands well below that. Before we start you get a fixed price for each step. All prices exclude VAT.',
+    h1: 'What does an AI consultant cost?',
+    intro: 'An AI consultant in Sweden often charges between SEK 1,200 and 2,500 an hour. I don’t sell hours. You get a fixed price per step, set by what the solution saves or earns you: AI assessment from SEK 25,000, AI development from SEK 60,000 and fractional CTO from SEK 40,000 a month. All prices exclude VAT.',
     rows: [
       { service: 'assessment', name: 'AI assessment', price: 'from SEK 25,000', min: 25000,
         detail: 'Fixed price. I sit with the people who do the work and give you a list of where AI saves the most time, what it costs to build and where to start.' },
@@ -101,6 +121,25 @@ export const prices: Record<Locale, PricesContent> = {
         ],
       },
       {
+        heading: 'Compared with an hourly rate',
+        paragraphs: [
+          'A senior consultant in Sweden often costs between SEK 1,200 and 2,500 an hour, and AI specialists are usually in the upper half. With an hourly rate you know what an hour costs, but not what the whole job will cost.',
+          'Counted in hours, an AI assessment from SEK 25,000 is roughly 10 to 20 consultant hours. The difference is that my price is fixed. If the work takes longer than I planned, you don’t pay more.',
+          'If you’re comparing quotes from several consultants, ask for the total price of a defined step and a description of what will be done when the step ends. That’s easier to compare than hourly rates.',
+        ],
+      },
+      {
+        heading: 'What a step includes',
+        paragraphs: ['The fixed price covers a defined step with a clear result. A build step includes this.'],
+        list: [
+          'The code, in your repository and yours from day one.',
+          'Tests against real examples from your business.',
+          'Logs of what the solution does, and limits on what it may do on its own.',
+          'A measurement of what the AI service costs to run at your volume.',
+          'Documentation, so your team or another supplier can take over.',
+        ],
+      },
+      {
         heading: 'How an engagement runs',
         paragraphs: [],
         list: [
@@ -117,6 +156,7 @@ export const prices: Record<Locale, PricesContent> = {
       link: 'Go to WebNu',
     },
     faq: [
+      { q: 'What does an AI consultant cost per hour?', a: 'In Sweden usually between SEK 1,200 and 2,500 an hour for a senior consultant. I don’t charge by the hour. You get a fixed price per step, from SEK 25,000 for an AI assessment.' },
       { q: 'Why not an hourly rate?', a: 'An hourly rate rewards being slow. With value-based pricing you know the cost before we start, and if the work takes longer than I planned, that’s on me.' },
       { q: 'Can I get a tech lead in the team for a long time?', a: 'Yes. Then we set a monthly price based on what the team will deliver.' },
       { q: 'What isn’t included?', a: 'The cost of the AI services, and of servers if the solution needs its own. You’ll know it before I build.' },

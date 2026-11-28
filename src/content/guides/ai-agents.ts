@@ -4,16 +4,17 @@ export const aiAgents: L10n<GuideContent> = {
   sv: {
     id: 'ai-agents',
     seo: {
-      title: 'AI-agenter som fungerar i produktion | Anton Wester',
+      title: 'Hur bygger man AI-agenter som fungerar? | Anton Wester',
       description:
         'Så bygger du AI-agenter som går att lita på: smala uppgifter, tydliga verktyg, gränser, godkännanden och loggning. Praktiska råd från AI-konsulten Anton Wester.',
     },
-    h1: 'AI-agenter som fungerar i produktion',
+    h1: 'Hur bygger man AI-agenter som fungerar i produktion?',
     promise: 'En agent är ett program med en loop, inte en anställd.',
     intro:
-      'Den svåra delen är inte att få modellen att anropa ett verktyg. Det är att få den att sluta i tid, göra rätt när något går fel och lämna spår efter sig.',
-    published: '2026-10-28',
-    readingMinutes: 8,
+      'Ge agenten ett smalt jobb med ett tydligt slut, bara de verktyg jobbet kräver och ett max antal steg. Låt en människa godkänna allt som rör pengar, kunder eller avtal, och logga varje steg. Testa sedan på 30 till 50 riktiga fall innan agenten får ta över något på riktigt.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'Vad en agent faktiskt är',
@@ -57,6 +58,21 @@ export const aiAgents: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Så ser det ut i mina egna system',
+        paragraphs: [
+          'Wez är verktyget där mina egna AI-agenter arbetar. Teamet har sex agenter med var sin roll, som arkitekt, designer och testare. Varje steg, varje ändrad fil, vad det kostade och vem som godkände det syns medan det händer och finns kvar efteråt. Flera agenter kan arbeta samtidigt utan att krocka.',
+          'I WebNu får agenter skriva utkast till sidor men aldrig publicera. Bara en version som en människa har granskat kan gå ut. I Copyset gäller samma sak för översättningar: AI gör första utkastet, och systemet tillåter inte att ett AI-utkast godkänner sig självt. Regeln ligger i koden. En instruktion i prompten hade gått att prata bort.',
+          'Chatten på den här webbplatsen är en enklare variant. Först svarar ett frågeträd som inte kostar något. Räcker inte det får en kedja av språkmodeller svara, och de ser bara webbplatsens egen text. Svarar ingen modell går frågan vidare till mig.',
+        ],
+      },
+      {
+        heading: 'Vad det kostar att köra',
+        paragraphs: [
+          'Varje steg i en agent är ett anrop till en modell, och varje anrop kostar. Mät kostnaden per ärende redan i testet, på riktiga fall. Då vet ni vad agenten kostar i månaden vid er volym innan den tar över, och ni ser om en mindre och billigare modell räcker för vissa steg.',
+          'Att bygga en första agent ingår i AI-utveckling, från 60 000 kr utan moms och med fast pris per steg. Kostnaden för AI-tjänsten kommer utöver det och mäts under testet.',
+        ],
+      },
+      {
         heading: 'När du inte ska bygga en agent',
         paragraphs: [
           'Om flödet är känt och görs likadant varje gång är vanlig automation bättre. Om svaret måste vara exakt är en databasfråga bättre. Om en människa ändå ska granska varje steg är det ofta gränssnittet, inte agenten, som behöver bli bättre.',
@@ -79,21 +95,23 @@ export const aiAgents: L10n<GuideContent> = {
       },
     ],
     relatedServices: ['agents', 'automation'],
+    relatedCases: ['wez', 'webnu', 'copyset'],
     relatedGuides: ['mcp-server', 'ai-evaluation'],
   },
   en: {
     id: 'ai-agents',
     seo: {
-      title: 'AI agents that work in production | Anton Wester',
+      title: 'How do you build AI agents that work? | Anton Wester',
       description:
         'How to build AI agents you can trust: narrow tasks, clear tools, limits, approvals and logging. Practical advice from AI consultant Anton Wester.',
     },
-    h1: 'AI agents that work in production',
+    h1: 'How do you build AI agents that work in production?',
     promise: 'An agent is a program with a loop, not an employee.',
     intro:
-      'The hard part is not getting the model to call a tool. It is getting it to stop in time, do the right thing when something fails and leave a trail behind.',
-    published: '2026-10-28',
-    readingMinutes: 8,
+      'Give the agent a narrow job with a clear end, only the tools the job needs and a maximum number of steps. Have a person approve anything that touches money, customers or contracts, and log every step. Then test on 30 to 50 real cases before the agent takes over anything for real.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'What an agent actually is',
@@ -137,6 +155,21 @@ export const aiAgents: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'What it looks like in my own systems',
+        paragraphs: [
+          'Wez is the tool where my own AI agents work. The team has six agents, each with a role such as architect, designer or tester. Every step, every changed file, what it cost and who approved it is visible as it happens and stays there afterwards. Several agents can work at once without clashing.',
+          'In WebNu, agents may write drafts of pages but never publish. Only a version a person has reviewed can go out. Copyset applies the same rule to translations: AI writes the first draft, and the system won’t let an AI draft approve itself. The rule lives in the code. An instruction in the prompt could be talked around.',
+          'The chat on this site is a simpler version. First a question tree answers, which costs nothing. If that isn’t enough, a chain of language models answers, and they only see the site’s own text. If no model answers, the question goes on to me.',
+        ],
+      },
+      {
+        heading: 'What it costs to run',
+        paragraphs: [
+          'Every step an agent takes is a call to a model, and every call costs money. Measure the cost per case during the test, on real cases. Then you know what the agent costs a month at your volume before it takes over, and you can see whether a smaller, cheaper model is enough for some steps.',
+          'Building a first agent is part of AI development, from SEK 60,000 excluding VAT with a fixed price per step. The cost of the AI service comes on top and is measured during the test.',
+        ],
+      },
+      {
         heading: 'When not to build an agent',
         paragraphs: [
           'If the flow is known and does the same thing every time, ordinary automation is better. If the answer must be exact, a database query is better. If a person will review every step anyway, it is often the interface, not the agent, that needs improving.',
@@ -159,6 +192,7 @@ export const aiAgents: L10n<GuideContent> = {
       },
     ],
     relatedServices: ['agents', 'automation'],
+    relatedCases: ['wez', 'webnu', 'copyset'],
     relatedGuides: ['mcp-server', 'ai-evaluation'],
   },
 };

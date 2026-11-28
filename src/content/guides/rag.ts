@@ -4,16 +4,17 @@ export const rag: L10n<GuideContent> = {
   sv: {
     id: 'rag',
     seo: {
-      title: 'AI som svarar ur era dokument | Anton Wester',
+      title: 'Hur får man AI att svara ur egna dokument? | Anton Wester',
       description:
         'Så bygger du AI som svarar ur manualer, avtal och rutiner med källor. Chunkning, behörigheter, citat och tester. Praktisk guide av Anton Wester.',
     },
-    h1: 'AI som svarar ur era dokument',
+    h1: 'Hur får man AI att svara ur företagets egna dokument?',
     promise: 'Ett bra svar börjar med rätt utdrag, inte med en bättre prompt.',
     intro:
-      'RAG handlar mindre om modellen än om vilka dokument som hittas, vem som får se dem och hur svaret visar var det kom ifrån.',
-    published: '2026-10-14',
-    readingMinutes: 8,
+      'Låt systemet först söka fram de stycken i era manualer, avtal och rutiner som handlar om frågan, och låt sedan modellen svara bara utifrån dem, med en källa. Behörigheter ska ligga i sökningen, inte i prompten. Saknas underlaget ska svaret vara ett ärligt nej. Tekniken kallas RAG.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'Frågan avgör om RAG behövs',
@@ -58,10 +59,30 @@ export const rag: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Håll dokumenten aktuella',
+        paragraphs: [
+          'Ett RAG-system är bara så bra som dokumenten i det. När en rutin ändras måste den gamla versionen bort ur sökningen eller märkas som ersatt. Läs in dokumenten på nytt när de ändras, och spara när varje stycke senast lästes in. Då går det att se om ett svar bygger på något inaktuellt.',
+          'Utse en ägare för varje dokumentsamling. Den som äger rutinen ansvarar också för att den stämmer i systemet. Här brister det oftare i rutinerna än i tekniken.',
+        ],
+      },
+      {
+        heading: 'När allt får plats behövs ingen sökning',
+        paragraphs: [
+          'Chatten på antonwester.se svarar ur webbplatsens egen text: tjänster, priser, case och vanliga frågor. Underlaget är så litet att allt får plats i instruktionen till modellen, så där finns ingen sökning alls. Först svarar ett frågeträd byggt av sidornas frågor och svar, och det kostar ingenting. Räcker inte det svarar en kedja av språkmodeller. Svarar ingen modell går frågan till mig.',
+          'Principerna är desamma som i ett större system. Modellen svarar ur ett avgränsat underlag, den får säga att den inte vet, och det finns en människa att lämna över till. Sökning behövs först när dokumenten är för många för att skickas med varje gång.',
+        ],
+      },
+      {
         heading: 'Testa med frågor ni faktiskt får',
         paragraphs: [
           'Samla 30–50 frågor från support, sälj och drift. Skriv ner vilket dokument svaret finns i och vad ett korrekt svar måste innehålla. Kör samma uppsättning varje gång du byter chunkning, modell eller sökning.',
           'Mät om rätt dokument hittades, om svaret stämde och om källan pekade rätt. De tre sakerna fångar olika fel. En modell kan ge ett korrekt svar av en slump, men då ska det inte räknas som en träff.',
+        ],
+      },
+      {
+        heading: 'Vad det kostar',
+        paragraphs: [
+          'Ett första system som svarar ur en dokumentsamling ingår i AI-utveckling, från 60 000 kr utan moms och med fast pris per steg. Måste dokumenten stanna hos er kan modellen köras på er egen server. Löpande arbete med nya dokument och uppföljning av kvaliteten ingår i drift och förvaltning, från 5 000 kr i månaden.',
         ],
       },
     ],
@@ -85,16 +106,17 @@ export const rag: L10n<GuideContent> = {
   en: {
     id: 'rag',
     seo: {
-      title: 'AI that answers from your documents | Anton Wester',
+      title: 'How do you get AI to answer from your own documents? | Anton Wester',
       description:
         'How to build AI that answers from manuals, contracts and procedures with sources. Chunking, permissions, citations and tests. A practical guide by Anton Wester.',
     },
-    h1: 'AI that answers from your documents',
+    h1: 'How do you get AI to answer from your own documents?',
     promise: 'A good answer starts with the right passage, not a better prompt.',
     intro:
-      'RAG is less about the model than about which documents are found, who may see them and how the answer shows where it came from.',
-    published: '2026-10-14',
-    readingMinutes: 8,
+      'Have the system first search out the passages in your manuals, contracts and procedures that deal with the question, then let the model answer only from those, with a source. Permissions belong in the search, not the prompt. When the material is missing, the answer should be an honest no. The technique is called RAG.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'The question decides whether RAG is needed',
@@ -139,10 +161,30 @@ export const rag: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Keep the documents current',
+        paragraphs: [
+          'A RAG system is only as good as the documents in it. When a procedure changes, the old version has to leave the search or be marked as replaced. Read documents in again when they change, and store when each passage was last read. Then you can tell whether an answer rests on something out of date.',
+          'Give every document collection an owner. Whoever owns the procedure is also responsible for it being right in the system. This tends to fail in the routines more often than in the technology.',
+        ],
+      },
+      {
+        heading: 'When everything fits, you don’t need search',
+        paragraphs: [
+          'The chat on antonwester.se answers from the site’s own text: services, prices, cases and common questions. The material is small enough to fit in the model’s instructions, so there’s no search at all. First a question tree built from the pages’ questions and answers replies, and that costs nothing. If that isn’t enough, a chain of language models answers. If no model answers, the question goes to me.',
+          'The principles are the same as in a bigger system. The model answers from a bounded set of material, it may say it doesn’t know, and there’s a person to hand over to. Search is needed once the documents are too many to send along every time.',
+        ],
+      },
+      {
         heading: 'Test with questions you actually receive',
         paragraphs: [
           'Collect 30–50 questions from support, sales and operations. Write down which document holds the answer and what a correct answer must contain. Run the same set whenever you change chunking, model or search.',
           'Measure whether the right document was found, whether the answer was correct and whether the source pointed to the right place. Those three catch different failures. A model can produce a correct answer by luck, and that should not count as a hit.',
+        ],
+      },
+      {
+        heading: 'What it costs',
+        paragraphs: [
+          'A first system that answers from one document collection is part of AI development, from SEK 60,000 excluding VAT with a fixed price per step. If the documents must stay with you, the model can run on your own server. Ongoing work with new documents and quality follow-up is part of hosting and maintenance, from SEK 5,000 a month.',
         ],
       },
     ],

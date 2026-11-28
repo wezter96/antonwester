@@ -183,9 +183,10 @@ export function headForPrices(l: Locale): HeadProps {
   const url = urlFor(page, l);
   const c = prices[l];
   const unitCode = { month: 'MON' } as const;
-  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name: c.h1, url }], [
+  const name = ui[l].footer.prices;
+  return base(page, l, c.seo.title, c.seo.description, [homeCrumb(l), { name, url }], [
     {
-      '@context': CTX, '@type': 'OfferCatalog', '@id': `${url}#prices`, name: c.h1, url,
+      '@context': CTX, '@type': 'OfferCatalog', '@id': `${url}#prices`, name, url,
       itemListElement: c.rows.map((r) => ({
         '@type': 'Offer', name: r.name, description: r.detail, seller: { '@id': ORG },
         ...(r.service ? { itemOffered: { '@id': `${urlFor({ kind: 'service', id: r.service }, l)}#service` } } : {}),

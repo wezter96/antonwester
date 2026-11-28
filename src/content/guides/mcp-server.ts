@@ -4,16 +4,17 @@ export const mcpServer: L10n<GuideContent> = {
   sv: {
     id: 'mcp-server',
     seo: {
-      title: 'Bygg en MCP-server som faktiskt används | Anton Wester',
+      title: 'Hur bygger man en MCP-server som används? | Anton Wester',
       description:
         'Så bygger du en MCP-server i TypeScript: verktyg, beskrivningar, behörigheter, godkännanden och tester. Praktiska råd från en som bygger AI-system.',
     },
-    h1: 'Bygg en MCP-server som faktiskt används',
+    h1: 'Hur bygger man en MCP-server som faktiskt används?',
     promise: 'MCP är ett gränssnitt, inte en produkt.',
     intro:
-      'Här är delarna jag brukar bygga, och fallgroparna som avgör om servern blir använd eller bara ligger kvar i en mapp.',
-    published: '2026-11-11',
-    readingMinutes: 9,
+      'Bygg en MCP-server när samma förmåga ska användas från flera AI-klienter, som Claude, en IDE eller en egen agent. Håll verktygen få och smala, beskriv dem så att modellen förstår när de ska användas, kontrollera behörigheter på servern och kräv godkännande för allt som skriver. Börja med läsverktyg.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'Vad MCP löser',
@@ -114,6 +115,13 @@ await server.connect(new StdioServerTransport());`,
         ],
       },
       {
+        heading: 'MCP i mina egna produkter',
+        paragraphs: [
+          'SökHem har en öppen MCP-server med bara läsverktyg. En AI-klient kan söka bland områden, hämta öppna fakta om ett område och läsa SökHems guider. Bostadsannonser och priser finns inte där, eftersom de inte är SökHems att dela. Gränsen för vad servern visar är ett beslut om data, och den sattes innan första verktyget skrevs.',
+          'OpenAudit kan köras av en AI-agent via MCP, så att agenten kan granska det den just har byggt. I Copyset kan en agent som Claude Code lägga till nycklar och föreslå texter via MCP, men aldrig godkänna dem. I Wez styr Claude Code eller Codex mitt agentteam via MCP. Det är tre olika sorters verktyg bakom samma protokoll.',
+        ],
+      },
+      {
         heading: 'Vad jag skulle bygga först',
         paragraphs: [
           'Börja med det tråkigaste verktyget som sparar mest tid: läs en order, slå upp en artikel eller hämta en kunds senaste ärende. Mät hur ofta det används och var det går fel. Bygg ut när någon saknar en förmåga, inte för att protokollet gör det möjligt.',
@@ -136,21 +144,23 @@ await server.connect(new StdioServerTransport());`,
       },
     ],
     relatedServices: ['agents', 'development'],
+    relatedCases: ['sokhem', 'openaudit', 'copyset'],
     relatedGuides: ['ai-agents', 'ai-evaluation'],
   },
   en: {
     id: 'mcp-server',
     seo: {
-      title: 'Build an MCP server people actually use | Anton Wester',
+      title: 'How do you build an MCP server people use? | Anton Wester',
       description:
         'How to build an MCP server in TypeScript: tools, descriptions, permissions, approvals and tests. Practical advice from someone who builds AI systems.',
     },
-    h1: 'Build an MCP server people actually use',
+    h1: 'How do you build an MCP server people actually use?',
     promise: 'MCP is an interface, not a product.',
     intro:
-      'These are the parts I usually build, and the traps that decide whether the server gets used or stays in a folder.',
-    published: '2026-11-11',
-    readingMinutes: 9,
+      'Build an MCP server when the same capability will be used from several AI clients, such as Claude, an IDE or your own agent. Keep the tools few and narrow, describe them so the model knows when to use them, check permissions on the server and require approval for anything that writes. Start with read tools.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 10,
     sections: [
       {
         heading: 'What MCP solves',
@@ -251,6 +261,13 @@ await server.connect(new StdioServerTransport());`,
         ],
       },
       {
+        heading: 'MCP in my own products',
+        paragraphs: [
+          'SökHem has a public MCP server with read tools only. An AI client can search areas, fetch open facts about an area and read SökHem’s guides. Listings and prices aren’t there, because they aren’t SökHem’s to share. The line for what the server shows is a decision about data, and it was drawn before the first tool was written.',
+          'OpenAudit can be run by an AI agent over MCP, so the agent can audit what it has just built. In Copyset an agent such as Claude Code can add keys and suggest copy over MCP, but never approve it. In Wez, Claude Code or Codex steer my agent team over MCP. That’s three different kinds of tools behind the same protocol.',
+        ],
+      },
+      {
         heading: 'What I would build first',
         paragraphs: [
           'Start with the most boring tool that saves the most time: read an order, look up an article or fetch a customer’s latest ticket. Measure how often it is used and where it fails. Expand when someone is missing a capability, not because the protocol makes it possible.',
@@ -273,6 +290,7 @@ await server.connect(new StdioServerTransport());`,
       },
     ],
     relatedServices: ['agents', 'development'],
+    relatedCases: ['sokhem', 'openaudit', 'copyset'],
     relatedGuides: ['ai-agents', 'ai-evaluation'],
   },
 };

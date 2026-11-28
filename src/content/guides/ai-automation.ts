@@ -4,16 +4,17 @@ export const aiAutomation: L10n<GuideContent> = {
   sv: {
     id: 'ai-automation',
     seo: {
-      title: 'Automatisera rutiner med AI utan att tappa kontrollen | Anton Wester',
+      title: 'Hur automatiserar man rutiner med AI? | Anton Wester',
       description:
         'Så automatiserar du fakturor, mejl och rutiner med AI: deterministiska steg, godkännanden, idempotens och mätning. Praktisk guide av Anton Wester.',
     },
-    h1: 'Automatisera rutiner med AI utan att tappa kontrollen',
+    h1: 'Hur automatiserar man rutiner med AI utan att tappa kontrollen?',
     promise: 'Automatisera flödet, inte bara texten.',
     intro:
-      'AI gör mest nytta i kanten av ett flöde: läsa, tolka och föreslå. Resten bör vara vanlig, förutsägbar kod med tydliga kontroller.',
-    published: '2026-09-16',
-    readingMinutes: 7,
+      'Låt AI göra det som kräver tolkning, som att läsa en faktura eller ett mejl, och låt vanlig kod göra resten: kontrollera belopp, stoppa dubbletter och skriva till era system. Det AI:n är osäker på går till en människa. Börja med ett flöde, mät hur mycket som går rakt igenom och bygg vidare därifrån.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'Börja med flödet, inte verktyget',
@@ -37,10 +38,24 @@ export const aiAutomation: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Ett exempel till: beställningar i mejlen',
+        paragraphs: [
+          'En kund mejlar en beställning med fritext och en bifogad lista. AI läser ut kund, artiklar och antal. Koden slår upp kunden i kundregistret och artiklarna i artikelregistret. Finns allt och antalen ser rimliga ut skapas ett orderutkast.',
+          'Saknas en artikel eller är kunden okänd går mejlet till säljaren, med det som gick att tolka redan ifyllt. Säljaren gör då bara den del som kräver en människa. Även ett flöde som inte går helt rakt igenom sparar tid på det sättet.',
+        ],
+      },
+      {
         heading: 'Gör skrivningarna idempotenta',
         paragraphs: [
           'Ett automatiskt flöde kommer förr eller senare att köras två gånger. Nätverket kan tappa svaret, kön kan starta om och någon kan trycka igen. Varje skrivning behöver en unik nyckel så att samma faktura inte blir två fakturor.',
           'Spara också vilket steg som är klart. Då kan flödet återupptas utan att börja om från början, och ni slipper dubbletter i affärssystemet.',
+        ],
+      },
+      {
+        heading: 'Köer och omförsök',
+        paragraphs: [
+          'Ett flöde som läser mejl och skriver till ett affärssystem beror på flera system, och vart och ett kan vara nere en stund. Lägg därför varje steg som ett jobb i en kö, med ett begränsat antal omförsök och längre väntan mellan försöken. Ett jobb som fortfarande misslyckas efter sista försöket ska sparas där en människa ser det. Det får inte bara försvinna.',
+          'Så är bakgrundsjobben byggda i SökHem, min bostadstjänst. Matchning, notiser och inläsning av bostäder körs som jobb i BullMQ med Redis som kö. Mejl skickas med en idempotensnyckel, och samma notis om samma bostad stoppas om den nyss har gått ut. Jobb som ger upp sparas i en egen tabell i databasen, så att det går att se i efterhand vilka köer som har haft problem.',
         ],
       },
       {
@@ -64,6 +79,13 @@ export const aiAutomation: L10n<GuideContent> = {
           'Börja med ett flöde och en avdelning. När det fungerar går det att återanvända kontrollerna, loggningen och granskningskön i nästa flöde.',
         ],
       },
+      {
+        heading: 'Vad det kostar',
+        paragraphs: [
+          'AI-automation ingår i AI-utveckling, som börjar på 60 000 kr utan moms. Priset sätts efter vad flödet är värt för er och är fast för varje steg. Lägger en person två timmar om dagen på att läsa och föra in fakturor är det ungefär 440 timmar om året, och det är där vi börjar räkna.',
+          'Till det kommer kostnaden för AI-tjänsten, som beror på hur många dokument som läses och hur långa de är. Jag mäter den på era egna dokument under testet, så att ni vet vad ett dokument kostar att läsa innan flödet tar över. Vet ni inte vilket flöde ni ska börja med är en AI-kartläggning, från 25 000 kr, ett bättre första steg.',
+        ],
+      },
     ],
     faq: [
       {
@@ -78,23 +100,29 @@ export const aiAutomation: L10n<GuideContent> = {
         q: 'Hur lång tid tar en första automation?',
         a: 'Ett smalt flöde med ett system kan ofta vara igång på några veckor. Fler system och fler undantag tar längre tid.',
       },
+      {
+        q: 'Vad kostar AI-automation?',
+        a: 'Ett första flöde ingår i AI-utveckling, från 60 000 kr utan moms och med fast pris per steg. Kostnaden för AI-tjänsten kommer utöver det, och jag mäter den under testet.',
+      },
     ],
     relatedServices: ['automation', 'agents'],
+    relatedCases: ['sokhem', 'webnu'],
     relatedGuides: ['ai-agents', 'mcp-server'],
   },
   en: {
     id: 'ai-automation',
     seo: {
-      title: 'Automate routine work with AI without losing control | Anton Wester',
+      title: 'How do you automate routine work with AI? | Anton Wester',
       description:
         'How to automate invoices, email and routines with AI: deterministic steps, approvals, idempotency and measurement. A practical guide by Anton Wester.',
     },
-    h1: 'Automate routine work with AI without losing control',
+    h1: 'How do you automate routine work with AI without losing control?',
     promise: 'Automate the flow, not just the text.',
     intro:
-      'AI is most useful at the edge of a flow: reading, interpreting and suggesting. The rest should be ordinary, predictable code with clear checks.',
-    published: '2026-09-16',
-    readingMinutes: 7,
+      'Let AI do the parts that need interpretation, such as reading an invoice or an email, and let ordinary code do the rest: check amounts, stop duplicates and write to your systems. Anything the AI is unsure about goes to a person. Start with one flow, measure how much goes straight through and build from there.',
+    published: '2026-11-12',
+    updated: '2026-11-28',
+    readingMinutes: 9,
     sections: [
       {
         heading: 'Start with the flow, not the tool',
@@ -118,10 +146,24 @@ export const aiAutomation: L10n<GuideContent> = {
         ],
       },
       {
+        heading: 'Another example: orders in the inbox',
+        paragraphs: [
+          'A customer emails an order with free text and an attached list. AI reads out the customer, items and quantities. Code looks the customer up in the customer register and the items in the product register. If everything exists and the quantities look reasonable, an order draft is created.',
+          'If an item is missing or the customer is unknown, the email goes to the seller with whatever could be read already filled in. The seller then does only the part that needs a person. Even a flow that doesn’t go all the way through saves time like that.',
+        ],
+      },
+      {
         heading: 'Make writes idempotent',
         paragraphs: [
           'An automated flow will eventually run twice. The network can drop the response, the queue can restart and someone can press the button again. Every write needs a unique key so the same invoice does not become two invoices.',
           'Store which step is complete as well. Then the flow can resume without starting over, and you avoid duplicates in the business system.',
+        ],
+      },
+      {
+        heading: 'Queues and retries',
+        paragraphs: [
+          'A flow that reads email and writes to a business system depends on several systems, and any of them can be down for a while. So put each step in a queue as a job, with a limited number of retries and a longer wait between attempts. A job that still fails after the last attempt should be kept where a person can see it. It mustn’t just disappear.',
+          'That’s how the background jobs in SökHem, my home-search service, are built. Matching, notifications and loading listings run as jobs in BullMQ with Redis as the queue. Emails are sent with an idempotency key, and the same notification about the same home is stopped if it has just gone out. Jobs that give up are saved in their own database table, so you can see afterwards which queues have had trouble.',
         ],
       },
       {
@@ -145,6 +187,13 @@ export const aiAutomation: L10n<GuideContent> = {
           'Start with one flow and one department. When it works, the checks, logging and review queue can be reused in the next flow.',
         ],
       },
+      {
+        heading: 'What it costs',
+        paragraphs: [
+          'AI automation is part of AI development, which starts at SEK 60,000 excluding VAT. The price is set by what the flow is worth to you and is fixed for each step. If a person spends two hours a day reading and entering invoices, that’s about 440 hours a year, and that’s where we start counting.',
+          'On top of that comes the cost of the AI service, which depends on how many documents are read and how long they are. I measure it on your own documents during the test, so you know what one document costs to read before the flow takes over. If you don’t know which flow to start with, an AI assessment from SEK 25,000 is a better first step.',
+        ],
+      },
     ],
     faq: [
       {
@@ -159,8 +208,13 @@ export const aiAutomation: L10n<GuideContent> = {
         q: 'How long does a first automation take?',
         a: 'A narrow flow with one system can often be live in a few weeks. More systems and more exceptions take longer.',
       },
+      {
+        q: 'What does AI automation cost?',
+        a: 'A first flow is part of AI development, from SEK 60,000 excluding VAT with a fixed price per step. The cost of the AI service comes on top, and I measure it during the test.',
+      },
     ],
     relatedServices: ['automation', 'agents'],
+    relatedCases: ['sokhem', 'webnu'],
     relatedGuides: ['ai-agents', 'mcp-server'],
   },
 };
